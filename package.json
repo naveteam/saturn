@@ -33,8 +33,11 @@
     "server": "live-server --port=7000 -q --open=./example",
     "start": "concurrently \"yarn:watch\" \"yarn:server\"",
     "test": "jest",
+    "coverage": "npm test -- --coverage",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "preversion": "npm run lint && npm test && npm run build",
+    "postpublish": "npm run build:clean"
   },
   "files": [
     "dist"
