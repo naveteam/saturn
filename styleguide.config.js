@@ -1,3 +1,5 @@
+const { version } = require('./package');
+
 module.exports = {
   webpackConfig: {
     module: {
@@ -10,23 +12,17 @@ module.exports = {
       ]
     }
   },
+  version,
+  pagePerSection: true,
   skipComponentsWithoutExample: true,
   sections: [
     {
-      name: 'Introduction',
-      content: 'docs/introduction.md'
-    },
-    {
-      name: 'Documentation',
+      name: 'Guide',
       sections: [
         {
           name: 'Installation',
           content: 'docs/installation.md',
           description: 'The description for the installation section'
-        },
-        {
-          name: 'Configuration',
-          content: 'docs/configuration.md'
         }
       ]
     },
@@ -34,8 +30,8 @@ module.exports = {
       name: 'Components',
       defaultExample: true,
       components: `src/**/[A-Z]*.js`,
-      exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
-      usageMode: 'expand' // 'hide' | 'collapse' | 'expand'
+      exampleMode: 'expand',
+      usageMode: 'expand'
     }
   ]
 }
