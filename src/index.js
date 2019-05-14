@@ -1,2 +1,10 @@
-export { default as Button} from "./Button";
-export * from "./Button";
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const App = () => {
+  return (
+    <h1>teste</h1>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
