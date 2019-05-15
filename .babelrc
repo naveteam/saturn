@@ -10,7 +10,6 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "@babel/plugin-external-helpers",
     "@babel/plugin-proposal-object-rest-spread"
   ]
 }

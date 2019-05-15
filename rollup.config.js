@@ -29,6 +29,7 @@ export default [
         format: 'umd',
         name: 'index',
         exports: "named",
+        interop: false,
         globals: {
           react: "React",
           "react-dom": "ReactDOM"
@@ -36,11 +37,13 @@ export default [
       },
       {
         file: pkg.main,
+        interop: false,
         format: 'cjs',
         exports: "named"
       },
       {
         file: pkg.module,
+        interop: false,
         format: 'es',
       },
     ],
