@@ -28,7 +28,11 @@
     "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-node-resolve": "4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "webpack": "^4.30.0"
+    "webpack": "^4.30.0",
+    "@storybook/react": "^5.0.11",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addons": "^5.0.11"
   },
   "scripts": {
     "prepare": "yarn build",
@@ -41,7 +45,9 @@
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "preversion": "npm run lint && npm test && npm run build",
-    "postpublish": "npm run build:clean"
+    "postpublish": "npm run build:clean",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "files": [
     "dist"
