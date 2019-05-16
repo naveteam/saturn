@@ -8,16 +8,16 @@ import pkg from './package.json'
 
 function makeExternalPredicate(externalArr) {
   if (!externalArr.length) {
-    return () => false;
+    return () => false
   }
-  const pattern = new RegExp(`^(${externalArr.join("|")})($|/)`);
-  return id => pattern.test(id);
+  const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`)
+  return id => pattern.test(id)
 }
 
 function getExternal(isUMD) {
-  const external = Object.keys(pkg.peerDependencies || {});
-  const allExternal = [...external, ...Object.keys(pkg.dependencies || {})];
-  return isUMD ? external : makeExternalPredicate(allExternal);
+  const external = Object.keys(pkg.peerDependencies || {})
+  const allExternal = [...external, ...Object.keys(pkg.dependencies || {})]
+  return isUMD ? external : makeExternalPredicate(allExternal)
 }
 
 export default [
@@ -28,37 +28,37 @@ export default [
         file: pkg.browser,
         format: 'umd',
         name: 'index',
-        exports: "named",
+        exports: 'named',
         interop: false,
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM"
+          react: 'React',
+          'react-dom': 'ReactDOM'
         }
       },
       {
         file: pkg.main,
         interop: false,
         format: 'cjs',
-        exports: "named"
+        exports: 'named'
       },
       {
         file: pkg.module,
         interop: false,
-        format: 'es',
-      },
+        format: 'es'
+      }
     ],
     external: getExternal(true),
     plugins: [
       peerDepsExternal(),
       babel({
-        exclude: 'node_modules/**',
+        exclude: 'node_modules/**'
       }),
       localResolve(),
       resolve(),
       commonjs({
-        include: /node_modules/,
+        include: /node_modules/
       }),
-      filesize(),
-    ],
-  },
+      filesize()
+    ]
+  }
 ]

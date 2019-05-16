@@ -1,5 +1,5 @@
-import Button from "./Button";
+import Button from './Button'
 
-export * from "./Button";
+export * from './Button'
 
-export {Button}
+export { Button }

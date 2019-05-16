@@ -14,6 +14,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
@@ -22,10 +24,12 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "24.5.0",
     "babel-loader": "^8.0.5",
+    "commitlint": "^7.6.1",
     "concurrently": "^4.1.0",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "husky": "^2.3.0",
     "jest": "24.5.0",
     "live-server": "^1.2.1",
     "prettier": "^1.17.1",
@@ -52,7 +56,10 @@
     "postpublish": "npm run build:clean",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "prettier": "yarn prettier:js && git add .",
+    "prettier:js": "prettier --write *.js src/*.js src/**/*.js src/**/**/*.js src/**/**/**/*.js src/**/**/**/**/*.js",
+    "eslint": "eslint src/*.js src/**/*.js src/**/**/*.js src/**/**/*.js src/**/**/**/*.js src/**/**/**/**/*.js"
   },
   "files": [
     "dist"
