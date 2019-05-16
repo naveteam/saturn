@@ -22,6 +22,7 @@
     "babel-jest": "24.5.0",
     "babel-loader": "^8.0.5",
     "concurrently": "^4.1.0",
+    "cz-conventional-changelog": "2.1.0",
     "jest": "24.5.0",
     "live-server": "^1.2.1",
     "react-styleguidist": "^9.0.7",
@@ -35,7 +36,6 @@
     "webpack": "^4.30.0"
   },
   "scripts": {
-    "prepare": "yarn build",
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "server": "live-server --port=7000 -q --open=./example",
@@ -47,7 +47,8 @@
     "preversion": "npm run lint && npm test && npm run build",
     "postpublish": "npm run build:clean",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "commit": "npx git-cz"
   },
   "files": [
     "dist"
@@ -60,12 +61,18 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0"
   },
   "browserslist": [
     ">1%",
     "last 1 version",
     "Firefox ESR",
     "not dead"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
