@@ -9,7 +9,7 @@ import { Button } from '../src'
 storiesOf('Welcome', module).add('to Storybook', () => <h1>Design System</h1>);
 
 storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')} text='Botão de teste' />)
+  .add('with text', () => <Button onClick={action('clicked')}>teste</Button>)
   // .add('with some emoji', () => (
   //   <Button onClick={action('clicked')}>
   //     <span role="img" aria-label="so cool">
