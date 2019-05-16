@@ -60,3 +60,8 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 - [ ] Table
 - [ ] Navbar
 - [ ] Drawer
+
+
+# License
+
+MIT © [Nave Team](https://github.com/naveteam)
