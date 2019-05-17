@@ -1,19 +1,16 @@
-import React from 'react';
-
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 
 import { Button } from '../src'
 
-storiesOf('Welcome', module).add('to Storybook', () => <h1>Design System</h1>);
-
 storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>teste</Button>)
-  // .add('with some emoji', () => (
-  //   <Button onClick={action('clicked')}>
-  //     <span role="img" aria-label="so cool">
-  //       😀 😎 👍 💯
-  //     </span>
-  //   </Button>
-  // ));
+  .add('primary', () => {
+    return (
+      <React.Fragment>
+        <Button variant='primary' aditionalStyles='margin-bottom: 20px;' onClick={action('clicked')}>primary</Button>
+        <br />
+        <Button variant='primary' disabled>DISABLED</Button>
+      </React.Fragment>
+    )
+  })
+  .add('secondary', () => <Button variant='secondary' onClick={action('clicked')}>secondary</Button>)
