@@ -1,3 +1,3 @@
-```jsx { "props": { "background": "black" } }
-<Button>teste</Button>
+```jsx { "props": { "variant": "primary" } }
+<Button variant='primary'>teste</Button>
 ```
