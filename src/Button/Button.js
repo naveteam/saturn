@@ -2,6 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+const PRIMARY = 'primary'
+
+const SECONDARY = 'secondary'
+
+const GHOST = 'ghost'
+
 const defaultStyles = `
   border: 0;
   outline: none;
@@ -16,15 +22,15 @@ const defaultStyles = `
 
 const Button = props => {
   const { variant, ...rest } = props
-  if (variant === 'primary') {
+  if (variant === PRIMARY) {
     return <PrimaryButton {...rest} />
   }
 
-  if (variant === 'secondary') {
+  if (variant === SECONDARY) {
     return <SecondaryButton {...rest} />
   }
 
-  if (variant === 'ghost') {
+  if (variant === GHOST) {
     return <GhostButton {...rest} />
   }
   return <PrimaryButton {...rest} />
