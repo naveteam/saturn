@@ -20,6 +20,7 @@ All components are inside `src` folder. You need to follow our folder structure.
 - Create a react component using functional components (react project version is 16.8.6, so we have hooks :)) inside `src` folder.
 - Use Styled Components for styles.
 - Create a storybook storie inside stories folder and start build your component.
+- Check our [zeplin](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) for styleguide
 
 ## Create documentation
 
