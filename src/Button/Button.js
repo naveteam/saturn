@@ -18,6 +18,12 @@ const defaultStyles = `
   border-radius: 4px;
   cursor: pointer;
   text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
 `
 
 const Button = props => {
