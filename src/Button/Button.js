@@ -6,6 +6,7 @@ const defaultStyles = `
   border: 0;
   outline: none;
   height: 32px;
+  font-weight: 500;
   transition: all .3s ease-in-out;
   width: 140px;
   border-radius: 4px;
@@ -21,6 +22,10 @@ const Button = props => {
 
   if (variant === 'secondary') {
     return <SecondaryButton {...rest} />
+  }
+
+  if (variant === 'ghost') {
+    return <GhostButton {...rest} />
   }
   return <PrimaryButton {...rest} />
 }
@@ -40,7 +45,6 @@ const PrimaryButton = styled.button`
       &:disabled {
         background-color: ${theme.colors.grey};
         color: rgba(0, 0, 0, 0.3);
-        font-weight: 500;
         &:hover {
           cursor: not-allowed;
         }
@@ -63,6 +67,41 @@ const SecondaryButton = styled.button`
       }
       &:focus {
         box-shadow: 0 0 4px 4px rgba(0, 125, 254, 0.3);
+      }
+      &:disabled {
+        background-color: ${theme.colors.white};
+        color: rgba(0, 0, 0, 0.3);
+        border: 1px solid ${theme.colors.grey};
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+      ${aditionalStyles ? aditionalStyles : ''}
+    `
+  }};
+`
+
+const GhostButton = styled.button`
+  ${({ theme, aditionalStyles }) => {
+    return `
+      ${defaultStyles}
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.blue};
+      &:hover {
+        background-color: ${theme.colors.grey};
+      }
+      &:focus {
+        box-shadow: 0 0 4px 4px rgba(0, 125, 254, 0.3);
+        :hover {
+          background-color: ${theme.colors.white};
+        }
+      }
+      &:disabled {
+        background-color: ${theme.colors.white};
+        color: rgba(0, 0, 0, 0.3);
+        &:hover {
+          cursor: not-allowed;
+        }
       }
       ${aditionalStyles ? aditionalStyles : ''}
     `
