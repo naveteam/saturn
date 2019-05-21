@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { Typography } from '../src'
 
 storiesOf('Typography', module)
-  .add('primary', () => {
+  .add('normal', () => {
     return (
       <Typography as='p'>
         test

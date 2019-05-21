@@ -26,7 +26,9 @@ Obs.: All commands will be shown using `yarn`, but you choose what is best for y
 
 If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 
-## ROADMAP
+## Roadmap
+
+### Components
 
 - [ ] Grid system
 - [ ] Typography
@@ -61,6 +63,9 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 - [ ] Navbar
 - [ ] Drawer
 
+### General improvements
+
+- [ ] Improve UMD build
 
 # License
 
