@@ -30,7 +30,7 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 
 ### Components
 
-- [ ] Grid system
+- [ ] Grid system (We want something like [Rebass](https://github.com/rebassjs/grid))
 - [ ] Typography
 - [ ] Colors
 - [ ] Icons
