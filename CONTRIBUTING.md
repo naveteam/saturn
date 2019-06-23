@@ -2,6 +2,13 @@
 
 We love pull requests, but for contribute you need to follow some pre requisites.
 
+## Install dependencies
+
+First install [nodejs](https://nodejs.org/) if you don't have it installed.
+
+Run `yarn` or `npm i` to install all project dependencies.
+
+Obs.: All commands will be shown using `yarn`, but you choose what is best for your development.
 
 ## Initial config
 

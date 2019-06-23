@@ -15,14 +15,6 @@ Our goal is create an React UI component based lib for everybody who want to use
 - [Storybook](https://github.com/storybooks/storybook)
 - [Docz](https://www.docz.site/)
 
-## Install dependencies
-
-First install [nodejs](https://nodejs.org/) if you don't have it installed.
-
-Run `yarn` or `npm i` to install all project dependencies.
-
-Obs.: All commands will be shown using `yarn`, but you choose what is best for your development.
-
 ## How to contribute
 
 If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
