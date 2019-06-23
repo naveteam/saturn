@@ -1,4 +1,4 @@
-# Nave Design System
+# Nave Design Kit (NOT PUBLISHED YET)
 
 This design system will be nave's first open source lib.
 Our goal is create an React UI component based lib for everybody who want to use it. We already have a zeplin project [here](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) to guide you in development.
@@ -24,12 +24,10 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 ### Components
 
 - [ ] Grid system (We want something like [Rebass](https://github.com/rebassjs/grid))
-- [ ] Typography
-- [ ] Colors
+- [x] Buttons
+- [x] Typography
 - [ ] Icons
-- [ ] Shadows
-- [ ] Borders
-- [ ] Buttons (with icons too)
+- [ ] Icon Buttons
 - [ ] Inputs
 - [ ] Search Input
 - [ ] Spinners
