@@ -22,9 +22,7 @@ export default props => {
       return parseModifiers[key](value)
     })
     .join('')
-  return `
-    ${stylesToBeRendered}
-  `
+  return stylesToBeRendered
 }
 
 const parseModifiers = {
