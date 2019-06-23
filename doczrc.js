@@ -1,6 +1,6 @@
 export default {
-  title: 'Nave Design System',
-  description: 'Design system of Nave.rs team',
+  title: 'Nave Design Kit',
+  description: 'Nave.rs Design system',
   themeConfig: {
     colors: {
       primary: '#007dfe'
