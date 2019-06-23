@@ -1,4 +1,4 @@
-export default {
+const styles = {
   colors: {
     blue: '#007dfe',
     darkBlue: '#076cd5',
@@ -15,3 +15,6 @@ export default {
     white: '#ffffff'
   }
 }
+
+export { styles }
+export default styles
