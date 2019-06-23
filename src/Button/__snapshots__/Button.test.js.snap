@@ -1,0 +1,262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders disabled 1`] = `
+.c0 {
+  border: 0;
+  outline: none;
+  height: 32px;
+  font-weight: 500;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #007dfe;
+  color: #ffffff;
+}
+
+.c0:hover {
+  background-color: #076cd5;
+}
+
+.c0:focus {
+  box-shadow: 0 0 4px 4px rgba(0,125,254,0.3);
+}
+
+.c0:disabled {
+  background-color: #f5f5f5;
+  color: rgba(0,0,0,0.3);
+}
+
+.c0:disabled:hover {
+  cursor: not-allowed;
+}
+
+<div>
+  <button
+    class="c0"
+    disabled=""
+  >
+    test
+  </button>
+</div>
+`;
+
+exports[`Button renders with ghost variant 1`] = `
+.c0 {
+  border: 0;
+  outline: none;
+  height: 32px;
+  font-weight: 500;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #ffffff;
+  color: #007dfe;
+}
+
+.c0:hover {
+  background-color: #f5f5f5;
+}
+
+.c0:focus {
+  box-shadow: 0 0 4px 4px rgba(0,125,254,0.3);
+}
+
+.c0:focus:hover {
+  background-color: #ffffff;
+}
+
+.c0:disabled {
+  background-color: #ffffff;
+  color: rgba(0,0,0,0.3);
+}
+
+.c0:disabled:hover {
+  cursor: not-allowed;
+}
+
+<div>
+  <button
+    class="c0"
+  >
+    test
+  </button>
+</div>
+`;
+
+exports[`Button renders with primary variant 1`] = `
+.c0 {
+  border: 0;
+  outline: none;
+  height: 32px;
+  font-weight: 500;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #007dfe;
+  color: #ffffff;
+}
+
+.c0:hover {
+  background-color: #076cd5;
+}
+
+.c0:focus {
+  box-shadow: 0 0 4px 4px rgba(0,125,254,0.3);
+}
+
+.c0:disabled {
+  background-color: #f5f5f5;
+  color: rgba(0,0,0,0.3);
+}
+
+.c0:disabled:hover {
+  cursor: not-allowed;
+}
+
+<div>
+  <button
+    class="c0"
+  >
+    test
+  </button>
+</div>
+`;
+
+exports[`Button renders with secondary variant 1`] = `
+.c0 {
+  border: 0;
+  outline: none;
+  height: 32px;
+  font-weight: 500;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #ffffff;
+  color: #007dfe;
+  border: 1px solid #007dfe;
+}
+
+.c0:hover {
+  color: #ffffff;
+  background-color: #007dfe;
+}
+
+.c0:focus {
+  box-shadow: 0 0 4px 4px rgba(0,125,254,0.3);
+}
+
+.c0:disabled {
+  background-color: #ffffff;
+  color: rgba(0,0,0,0.3);
+  border: 1px solid #f5f5f5;
+}
+
+.c0:disabled:hover {
+  cursor: not-allowed;
+}
+
+<div>
+  <button
+    class="c0"
+  >
+    test
+  </button>
+</div>
+`;
+
+exports[`Button renders without pass children 1`] = `
+.c0 {
+  border: 0;
+  outline: none;
+  height: 32px;
+  font-weight: 500;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  text-align: center;
+  background-color: #007dfe;
+  color: #ffffff;
+}
+
+.c0:hover {
+  background-color: #076cd5;
+}
+
+.c0:focus {
+  box-shadow: 0 0 4px 4px rgba(0,125,254,0.3);
+}
+
+.c0:disabled {
+  background-color: #f5f5f5;
+  color: rgba(0,0,0,0.3);
+}
+
+.c0:disabled:hover {
+  cursor: not-allowed;
+}
+
+<div>
+  <button
+    class="c0"
+  />
+</div>
+`;

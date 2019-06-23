@@ -3,6 +3,14 @@
   "plugins": [
       "react-hooks"
   ],
+  "overrides": [
+    {
+      "files": ["src/**/*.spec.js", "src/**/*.test.js"],
+      "rules": {
+        "quotes": "off"
+      }
+    }
+  ],
   "rules": {
       "indent": ["error", 2, {"SwitchCase": 1}],
       "quotes": [2, "single"],

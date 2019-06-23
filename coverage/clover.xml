@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1561265516828" clover="3.2.0">
+  <project timestamp="1561265516828" name="All files">
+    <metrics statements="8" coveredstatements="6" conditionals="8" coveredconditionals="6" methods="3" coveredmethods="2" elements="19" coveredelements="14" complexity="0" loc="8" ncloc="8" packages="2" files="2" classes="2"/>
+    <package name="helpers">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="testTheme.js" path="/Users/joaobretanha/Documents/workspace/nave-design-system/helpers/testTheme.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Typography">
+      <metrics statements="7" coveredstatements="5" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="1"/>
+      <file name="Typography.js" path="/Users/joaobretanha/Documents/workspace/nave-design-system/src/Typography/Typography.js">
+        <metrics statements="7" coveredstatements="5" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
