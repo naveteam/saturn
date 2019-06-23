@@ -11,7 +11,7 @@ We love pull requests, but for contribute you need to follow some pre requisites
 
 ## Development
 
-Once you have all dependencies installed, you can run `yarn storybook` to start storybook playground.
+Once you have all dependencies installed, you can run `yarn start` to start storybook playground.
 
 Choose a task from our [roadmap](#roadmap) that haven't been already done and start work with it.
 
@@ -20,6 +20,7 @@ All components are inside `src` folder. You need to follow our folder structure.
 - Create a react component using functional components (react project version is 16.8.6, so we have hooks :)) inside `src` folder.
 - Use Styled Components for styles.
 - Create a storybook storie inside stories folder and start build your component.
+- Create unit tests using jest
 - Check our [zeplin](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) for styleguide
 
 ## Create documentation
