@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+import modifiers from '../helpers/modifiers'
+
 const PRIMARY = 'primary'
 
 const SECONDARY = 'secondary'
@@ -43,9 +45,11 @@ const Button = props => {
 }
 
 const PrimaryButton = styled.button`
-  ${({ theme, aditionalStyles }) => {
+  ${props => {
+    const { theme } = props
     return `
       ${defaultStyles}
+      ${modifiers(props)}
       background-color: ${theme.colors.blue};
       color: ${theme.colors.white};
       &:hover {
@@ -61,15 +65,16 @@ const PrimaryButton = styled.button`
           cursor: not-allowed;
         }
       }
-      ${aditionalStyles ? aditionalStyles : ''}
     `
   }};
 `
 
 const SecondaryButton = styled.button`
-  ${({ theme, aditionalStyles }) => {
+  ${props => {
+    const { theme } = props
     return `
       ${defaultStyles}
+      ${modifiers(props)}
       background-color: ${theme.colors.white};
       color: ${theme.colors.blue};
       border: 1px solid ${theme.colors.blue};
@@ -88,15 +93,16 @@ const SecondaryButton = styled.button`
           cursor: not-allowed;
         }
       }
-      ${aditionalStyles ? aditionalStyles : ''}
     `
   }};
 `
 
 const GhostButton = styled.button`
-  ${({ theme, aditionalStyles }) => {
+  ${props => {
+    const { theme } = props
     return `
       ${defaultStyles}
+      ${modifiers(props)}
       background-color: ${theme.colors.white};
       color: ${theme.colors.blue};
       &:hover {
@@ -115,14 +121,12 @@ const GhostButton = styled.button`
           cursor: not-allowed;
         }
       }
-      ${aditionalStyles ? aditionalStyles : ''}
     `
   }};
 `
 
 Button.propTypes = {
-  variant: PropTypes.string,
-  aditionalStyles: PropTypes.string
+  variant: PropTypes.string
 }
 
 export default Button

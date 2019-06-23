@@ -2,21 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+import modifiers from '../helpers/modifiers'
+
 const Component = props => {
   const { as, children, ...rest } = props
   return React.createElement(as, rest, children)
 }
 
-const Typography = styled(Component)`
-  ${({ theme, aditionalStyles, color, fontSize, fontFamily }) => {
+const StyledTypography = styled(Component)`
+  ${props => {
+    const { theme, color, fontSize, fontFamily } = props
     return `
+      ${modifiers(props)}
       font-family: ${fontFamily || 'Roboto'};
       color: ${color || theme.colors.darkGrey};
       ${fontSize ? `font-size: ${fontSize};` : ''}
-      ${aditionalStyles ? aditionalStyles : ''}
     `
   }};
 `
+
+const Typography = props => <StyledTypography {...props} />
 
 Typography.defaultProps = {
   as: 'p'

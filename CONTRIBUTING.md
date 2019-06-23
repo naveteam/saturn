@@ -17,9 +17,10 @@ Choose a task from our [roadmap](#roadmap) that haven't been already done and st
 
 All components are inside `src` folder. You need to follow our folder structure.
 
-- Create a react component using functional components (react project version is 16.8.6, so we have hooks :)) inside `src` folder.
+- Create a react component using functional components inside `src` folder and export it inside `src/index.js`
 - Use Styled Components for styles.
-- Create a storybook storie inside stories folder and start build your component.
+- Once you've exported, you'll need create a storybook story inside stories folder to see your component.
+- Create documentation using docz
 - Create unit tests using jest
 - Check our [zeplin](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) for styleguide
 
