@@ -1,6 +1,6 @@
-# Nave Design Kit (NOT PUBLISHED YET)
+# Nave Kit (NOT PUBLISHED YET)
 
-This design system will be nave's first open source lib.
+A library with a lot of useful components following our design system.
 Our goal is create a React UI component based lib for everybody who wants to use it. We already have a zeplin project [here](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) to guide you in development.
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)

@@ -1,5 +1,5 @@
 {
-  "name": "nave-design-kit",
+  "name": "nave-kit",
   "version": "0.1.0",
   "author": "Nave.rs Team",
   "main": "dist/es/index.js",
@@ -7,13 +7,14 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/naveteam/design-kit"
+    "url": "https://github.com/naveteam/nave-kit"
   },
   "keywords": [
     "react",
     "react-ui",
     "nave design",
     "nave-design-kit",
+    "nave-kit",
     "nave-design-system"
   ],
   "sideEffects": false,
