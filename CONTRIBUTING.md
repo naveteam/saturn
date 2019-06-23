@@ -45,3 +45,7 @@ If you want to make a  commit use our script following commitizen. Run `yarn com
 ## Opening a pull request
 
 We have a pull request template configured inside the project. When you'll open a PR, you need to select the template and fill all pre requisites.
+
+### You can add yourself as a contributor
+
+https://allcontributors.org/docs/en/bot/usage
