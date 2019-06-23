@@ -1,4 +1,5 @@
 # Nave Kit (NOT PUBLISHED YET)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 A library with a lot of useful components following our design system.
 Our goal is create a React UI component based lib for everybody who wants to use it. We already have a zeplin project [here](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) to guide you in development.
@@ -62,3 +63,19 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 # License
 
 MIT © [Nave Team](https://github.com/naveteam)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.facebook.com/jpbretanha"><img src="https://avatars2.githubusercontent.com/u/7989125?v=4" width="100px;" alt="João Pedro Bretanha"/><br /><sub><b>João Pedro Bretanha</b></sub></a><br /><a href="https://github.com/naveteam/nave-kit/commits?author=jpbretanha" title="Code">💻</a> <a href="https://github.com/naveteam/nave-kit/commits?author=jpbretanha" title="Documentation">📖</a> <a href="#content-jpbretanha" title="Content">🖋</a> <a href="#infra-jpbretanha" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jpbretanha" title="Maintenance">🚧</a> <a href="#platform-jpbretanha" title="Packaging/porting to new platform">📦</a> <a href="#review-jpbretanha" title="Reviewed Pull Requests">👀</a> <a href="#tool-jpbretanha" title="Tools">🔧</a> <a href="https://github.com/naveteam/nave-kit/commits?author=jpbretanha" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
