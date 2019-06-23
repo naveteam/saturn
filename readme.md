@@ -13,7 +13,7 @@ Our goal is create an React UI component based lib for everybody who want to use
 - [React](https://reactjs.org/)
 - [Styled Components](https://www.styled-components.com/)
 - [Storybook](https://github.com/storybooks/storybook)
-- [React Styleguidist (documentation)](https://github.com/styleguidist/react-styleguidist)
+- [Docz](https://www.docz.site/)
 
 ## Install dependencies
 
