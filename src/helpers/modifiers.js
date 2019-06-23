@@ -1,6 +1,6 @@
 export default props => {
   if (!props) return ''
-  const { mx, my, mb, mt, ml, mr, px, py, pb, pt, pr, pl } = props
+  const { mx, my, mb, mt, ml, mr, px, py, pb, pt, pr, pl, width, maxWidth } = props
   const modifiers = {
     mx,
     my,
@@ -13,7 +13,9 @@ export default props => {
     pb,
     pt,
     pr,
-    pl
+    pl,
+    width,
+    maxWidth
   }
 
   const styles = Object.entries(modifiers).filter(([_, value]) => value)
@@ -37,5 +39,7 @@ const parseModifiers = {
   pt: value => `padding-top: ${value};`,
   pb: value => `padding-bottom: ${value};`,
   pr: value => `padding-right: ${value};`,
-  pl: value => `padding-left: ${value};`
+  pl: value => `padding-left: ${value};`,
+  width: value => `width: ${value};`,
+  maxWidth: value => `max-width: ${value};`
 }
