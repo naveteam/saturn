@@ -1,76 +1,47 @@
 import resolve from 'rollup-plugin-node-resolve'
-import { uglify } from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 import commonjs from 'rollup-plugin-commonjs'
+import nodeGlobals from 'rollup-plugin-node-globals'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import localResolve from 'rollup-plugin-local-resolve'
-import filesize from 'rollup-plugin-filesize'
-import pkg from './package.json'
-
-function makeExternalPredicate(externalArr) {
-  if (!externalArr.length) {
-    return () => false
-  }
-  const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`)
-  return id => pattern.test(id)
-}
-
-function getExternal(isUMD) {
-  const external = Object.keys(pkg.peerDependencies || {})
-  const allExternal = [...external, ...Object.keys(pkg.dependencies || {})]
-  return isUMD ? external : makeExternalPredicate(allExternal)
-}
 
 const config = {
   input: 'src/index.js',
   output: [
     {
-      file: pkg.browser,
+      file: 'dist/umd/nave-design-system.min.js',
       format: 'umd',
       name: 'index',
       exports: 'named',
       sourcemap: true,
-      interop: false,
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
         'prop-types': 'PropTypes',
         'styled-components': 'styled'
       }
-    },
-    {
-      file: pkg.main,
-      interop: false,
-      format: 'cjs',
-      exports: 'named'
-    },
-    {
-      file: pkg.module,
-      interop: false,
-      format: 'es'
     }
   ],
-  external: getExternal(true),
   plugins: [
     localResolve(),
+    resolve(),
     peerDepsExternal(),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      runtimeHelpers: true
     }),
-    resolve(),
     commonjs({
-      include: /node_modules/
+      include: /node_modules/,
+      ignoreGlobal: true
     }),
+    nodeGlobals(),
     replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    filesize()
+    terser()
   ]
-}
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(uglify())
 }
 
 export default config

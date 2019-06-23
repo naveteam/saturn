@@ -29,7 +29,7 @@ module.exports = {
     {
       name: 'Components',
       defaultExample: true,
-      components: `src/**/[A-Z]*.js`,
+      components: 'src/**/[A-Z]*.js',
       exampleMode: 'expand',
       usageMode: 'expand'
     }

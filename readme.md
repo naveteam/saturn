@@ -65,7 +65,10 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 
 ### General improvements
 
+Currently we generate just ES build
+
 - [ ] Improve UMD build
+- [ ] Create tests for UMD build
 
 # License
 
