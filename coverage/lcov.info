@@ -1,5 +1,5 @@
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/helpers/testTheme.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/helpers/testTheme.js
 FN:8,renderWithTheme
 FNF:1
 FNH:1
@@ -11,7 +11,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/Button/Button.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/Button/Button.js
 FN:31,(anonymous_0)
 FN:48,(anonymous_1)
 FN:73,(anonymous_2)
@@ -57,7 +57,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/Theme/Provider.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/Theme/Provider.js
 FN:6,(anonymous_0)
 FNF:1
 FNH:1
@@ -73,7 +73,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/Theme/index.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/Theme/index.js
 FNF:0
 FNH:0
 LF:0
@@ -82,7 +82,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/Theme/styles.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/Theme/styles.js
 FNF:0
 FNH:0
 DA:1,2
@@ -92,7 +92,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/Typography/Typography.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/Typography/Typography.js
 FN:7,(anonymous_0)
 FN:13,(anonymous_1)
 FN:24,(anonymous_2)
@@ -122,7 +122,7 @@ BRF:6
 BRH:6
 end_of_record
 TN:
-SF:/Users/joaobretanha/Documents/workspace/nave-design-system/src/helpers/modifiers.js
+SF:/Users/joaobretanha/Documents/workspace/nave-kit/src/helpers/modifiers.js
 FN:1,(anonymous_0)
 FN:21,(anonymous_1)
 FN:23,(anonymous_2)

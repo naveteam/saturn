@@ -1,7 +1,7 @@
 # Nave Kit (NOT PUBLISHED YET)
 
 A library with a lot of useful components following our design system.
-Our goal is create a React UI component based lib for everybody who wants to use it. We already have a zeplin project [here](https://app.zeplin.io/project/5cbf466cd45ec65486ec3c78/dashboard) to guide you in development.
+Our goal is create a React UI component based lib for everybody who wants to use it. We already have a figma project [here](https://www.figma.com/file/S36AdAJX1B1PZhWcNVeBKNCn/Design-System?node-id=0%3A1) to guide you in development.
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
