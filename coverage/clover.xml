@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1562355082947" clover="3.2.0">
-  <project timestamp="1562355082947" name="All files">
+<coverage generated="1563629871945" clover="3.2.0">
+  <project timestamp="1563629871945" name="All files">
     <metrics statements="59" coveredstatements="42" conditionals="16" coveredconditionals="16" methods="26" coveredmethods="10" elements="101" coveredelements="68" complexity="0" loc="59" ncloc="59" packages="5" files="7" classes="7"/>
     <package name="helpers">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -29,13 +29,13 @@
         <line num="47" count="1" type="stmt"/>
         <line num="49" count="3" type="stmt"/>
         <line num="50" count="3" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
         <line num="74" count="1" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
         <line num="100" count="1" type="stmt"/>
-        <line num="102" count="1" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
-        <line num="128" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="125" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.Theme">

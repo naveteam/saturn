@@ -10,12 +10,12 @@ const SECONDARY = 'secondary'
 
 const GHOST = 'ghost'
 
-const defaultStyles = `
+const DefaultButton = styled.button`
   border: 0;
   outline: none;
   height: 32px;
   font-weight: 500;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
@@ -44,11 +44,10 @@ const Button = props => {
   return <PrimaryButton {...rest} />
 }
 
-const PrimaryButton = styled.button`
+const PrimaryButton = styled(DefaultButton)`
   ${props => {
     const { theme } = props
     return `
-      ${defaultStyles}
       ${modifiers(props)}
       background-color: ${theme.colors.blue};
       color: ${theme.colors.white};
@@ -69,11 +68,10 @@ const PrimaryButton = styled.button`
   }};
 `
 
-const SecondaryButton = styled.button`
+const SecondaryButton = styled(DefaultButton)`
   ${props => {
     const { theme } = props
     return `
-      ${defaultStyles}
       ${modifiers(props)}
       background-color: ${theme.colors.white};
       color: ${theme.colors.blue};
@@ -97,11 +95,10 @@ const SecondaryButton = styled.button`
   }};
 `
 
-const GhostButton = styled.button`
+const GhostButton = styled(DefaultButton)`
   ${props => {
     const { theme } = props
     return `
-      ${defaultStyles}
       ${modifiers(props)}
       background-color: ${theme.colors.white};
       color: ${theme.colors.blue};
