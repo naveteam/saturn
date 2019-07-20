@@ -6,8 +6,8 @@ exports[`Button renders disabled 1`] = `
   outline: none;
   height: 32px;
   font-weight: 500;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
@@ -58,8 +58,8 @@ exports[`Button renders with ghost variant 1`] = `
   outline: none;
   height: 32px;
   font-weight: 500;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
@@ -113,8 +113,8 @@ exports[`Button renders with primary variant 1`] = `
   outline: none;
   height: 32px;
   font-weight: 500;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
@@ -164,8 +164,8 @@ exports[`Button renders with secondary variant 1`] = `
   outline: none;
   height: 32px;
   font-weight: 500;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
@@ -218,8 +218,8 @@ exports[`Button renders without pass children 1`] = `
   outline: none;
   height: 32px;
   font-weight: 500;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 140px;
   border-radius: 4px;
   cursor: pointer;
