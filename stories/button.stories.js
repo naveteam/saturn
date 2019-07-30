@@ -8,7 +8,7 @@ storiesOf('Button', module)
   .add('primary', () => {
     return (
       <React.Fragment>
-        <Button variant='primary' aditionalStyles='margin-bottom: 20px;'>primary</Button>
+        <Button variant='primary' mb='20px'>primary</Button>
         <br />
         <Button variant='primary' disabled>DISABLED</Button>
       </React.Fragment>
@@ -17,7 +17,7 @@ storiesOf('Button', module)
   .add('secondary', () => {
     return (
       <React.Fragment>
-        <Button variant='secondary' aditionalStyles='margin-bottom: 20px;'>secondary</Button>
+        <Button variant='secondary' mb='20px'>secondary</Button>
         <br />
         <Button variant='secondary' disabled>disabled</Button>
       </React.Fragment>
@@ -26,7 +26,7 @@ storiesOf('Button', module)
   .add('ghost', () => {
     return (
       <React.Fragment>
-        <Button variant='ghost' aditionalStyles='margin-bottom: 20px;'>ghost</Button>
+        <Button variant='ghost' mb='20px;'>ghost</Button>
         <br />
         <Button variant='ghost' disabled>disabled</Button>
       </React.Fragment>
