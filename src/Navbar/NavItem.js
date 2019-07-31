@@ -9,10 +9,12 @@ export const NavItem = styled.a`
   text-decoration: none;
   font-family: 'Roboto';
   margin: 0 1em;
+  opacity: 0.8;
+  transition: 0.4s;
   :visited {
     color: #5d5d5d;
   }
   :hover {
-    background-color: #eee;
+    opacity: 1;
   }
 `

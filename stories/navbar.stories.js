@@ -23,7 +23,19 @@ storiesOf('Navbar', module)
       </React.Fragment>
     )
   })
-  .add('Navbar with search')
+  .add('Navbar with search', () => {
+    return (
+      <React.Fragment>
+        <Navbar
+          searchable={true}
+          handleSearchChange={() => {}}
+          right={data.map((item,index) =>
+            <NavItem key={index} href={item.ref}>{`${item.title}${index}`}</NavItem>
+          )}
+        />
+      </React.Fragment>
+    )
+  })
   .add('NavItem', () => {
     return (
       <React.Fragment>
