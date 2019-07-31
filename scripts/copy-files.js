@@ -7,7 +7,7 @@ const packagePath = process.cwd()
 const buildPath = path.join(packagePath, './dist')
 const srcPath = path.join(packagePath, './src')
 
-async function includeFileInBuild(file) {
+async function includeFileInBuild (file) {
   console.log('file', file)
   const sourcePath = path.resolve(packagePath, file)
   const targetPath = path.resolve(buildPath, path.basename(file))
@@ -15,8 +15,10 @@ async function includeFileInBuild(file) {
   console.log(`Copied ${sourcePath} to ${targetPath}`)
 }
 
-async function createModulePackages({ from, to }) {
-  const directoryPackages = glob.sync('*/index.js', { cwd: from }).map(path.dirname)
+async function createModulePackages ({ from, to }) {
+  const directoryPackages = glob
+    .sync('*/index.js', { cwd: from })
+    .map(path.dirname)
 
   await Promise.all(
     directoryPackages.map(async directoryPackage => {
@@ -26,14 +28,17 @@ async function createModulePackages({ from, to }) {
       }
       const packageJsonPath = path.join(to, directoryPackage, 'package.json')
       return packageJsonPath
-    }),
+    })
   )
 }
 
-async function createPackageFile() {
-  const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8')
+async function createPackageFile () {
+  const packageData = await fse.readFile(
+    path.resolve(packagePath, './package.json'),
+    'utf8'
+  )
   const { scripts, devDependencies, config, ...packageDataOther } = JSON.parse(
-    packageData,
+    packageData
   )
   const newPackageData = {
     ...packageDataOther,
@@ -44,19 +49,23 @@ async function createPackageFile() {
   }
   const targetPath = path.resolve(buildPath, './package.json')
 
-  await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8')
+  await fse.writeFile(
+    targetPath,
+    JSON.stringify(newPackageData, null, 2),
+    'utf8'
+  )
   console.log(`Created package.json in ${targetPath}`)
 
   return newPackageData
 }
 
-async function prepend(file, string) {
+async function prepend (file, string) {
   const data = await fse.readFile(file, 'utf8')
   await fse.writeFile(file, string + data, 'utf8')
 }
 
-async function addLicense(packageData) {
-  const license = `/** @license Nave Design System v${packageData.version}
+async function addLicense (packageData) {
+  const license = `/** @license Nave kit v${packageData.version}
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -78,19 +87,16 @@ async function addLicense(packageData) {
           throw err
         }
       }
-    }),
+    })
   )
 }
 
-async function run() {
+async function run () {
   try {
     const packageData = await createPackageFile()
 
     await Promise.all(
-      [
-        './README.md',
-        './LICENSE'
-      ].map(file => includeFileInBuild(file)),
+      ['./README.md', './LICENSE'].map(file => includeFileInBuild(file))
     )
 
     await addLicense(packageData)
