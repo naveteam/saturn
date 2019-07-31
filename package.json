@@ -87,7 +87,7 @@
     "postpublish": "yarn run build:clean",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "commit": "git-cz",
+    "commit": "npx git-cz",
     "release": "yarn build && yarn publish build --tag latest",
     "prettier": "yarn prettier:js",
     "prettier:js": "prettier --write *.js src/*.js src/**/*.js src/**/**/*.js src/**/**/**/*.js src/**/**/**/**/*.js",
