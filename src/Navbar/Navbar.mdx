@@ -4,13 +4,59 @@ name: Navbar
 
 import { Playground, Props } from 'docz'
 import Navbar from './Navbar'
+import {NavbarMenu} from './NavbarMenu'
+import {NavItem} from './NavItem'
+import {data} from './DataExample'
 
-# Navbar
+# Props
 
-<Props of={Navbar} />
 
-## Simple
+<Props of={NavbarMenu} />
+
+# Generic
+You can show basicly anything, passign which you want show to `right` prop.
+
+## Navbar with generic data on 'right'
 
 <Playground>
-  <Navbar />
+  <Navbar
+    right={
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <svg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'/></svg>
+        <div style={{marginLeft: '1em',height: '30px', width: '30px', borderRadius: '50%', backgroundColor: '#0f0'}} />
+      </div>
+    }
+  />
+</Playground>
+
+## Navbar with search
+
+  You can treat the input through the `handleSearchChange` prop
+<Playground>
+  <Navbar
+    searchable={true}
+    handleSearchChange={() => {}}
+  />
+</Playground>
+
+## Navbar with menu
+
+  This navbar is specific for showing menu items. Only this Navbar have the colapse
+  comportament is controlled by `mode` prop, passing `'allways'` the hamburger button
+  is allways shown, but passing `'mobile'` it's shown just on mobile devices.
+
+  >To test collapse behavior, you need to use browser resizing
+
+<Playground>
+  <NavbarMenu
+    mode='mobile'
+    menuItems={
+      <>
+      <NavItem key={1} href={`/example`}>ITEM</NavItem>
+      <NavItem key={2} href={`/example`}>ITEM2</NavItem>
+      <NavItem key={3} href={`/example`}>ITEM3</NavItem>
+      <NavItem key={4} href={`/example`}>ITEM4</NavItem>
+      </>
+    }
+  />
 </Playground>

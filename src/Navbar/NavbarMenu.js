@@ -2,9 +2,14 @@ import React, { Fragment, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Navbar = props => {
-  const { searchable, right } = props
+export const NavbarMenu = props => {
+  const { searchable, menuItems, mode } = props
+  const [isShown, setIsShown] = useState(false)
   const [value, setValue] = useState('')
+
+  const handleIcon = () => {
+    setIsShown(!isShown)
+  }
 
   return (
     <Fragment>
@@ -31,12 +36,32 @@ const Navbar = props => {
             </div>
           </InputContainer>
         )}
-        {right}
+        {mode !== 'allways' && <DesktopMenu>{menuItems}</DesktopMenu>}
+        <MenuButton mode={mode} open={isShown} onClick={() => handleIcon()}>
+          <span />
+          <span />
+          <span />
+        </MenuButton>
       </NavbarContainer>
+      <MobileMenu isShown={isShown}>{menuItems}</MobileMenu>
     </Fragment>
   )
 }
-
+const MobileMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  visibility: ${props => (props.isShown ? 'visible' : 'hidden')};
+  opacity: ${props => (props.isShown ? 1 : 0)};
+  justify-content: space-between;
+  position: fixed;
+  width: 100vw;
+  height: ${props => (props.isShown ? 'calc(100vh - 60px)' : 0)};
+  background-color: #fff;
+  transition: all 0.3s linear;
+  overflow: hidden;
+  box-shadow: 0px 9px 10px -7px rgba(50, 50, 50, 0.2);
+`
 const NavbarContainer = styled.div`
   font-family: 'Roboto';
   display: flex;
@@ -46,6 +71,67 @@ const NavbarContainer = styled.div`
   padding: 0 2em;
   height: 60px;
   box-shadow: 0px 9px 10px -7px rgba(50, 50, 50, 0.2);
+`
+const MenuButton = styled.div`
+  ${({ mode }) =>
+    mode === 'mobile' &&
+    `
+  display: none;
+  `}
+  width: 32px;
+  height: 32px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
+  :hover {
+    opacity: 1;
+  }
+  span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #7d7d7d;
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+  }
+  span:nth-child(1) {
+    top: 0px;
+  }
+  span:nth-child(2) {
+    top: 10px;
+  }
+  span:nth-child(3) {
+    top: 20px;
+  }
+  ${({ open }) =>
+    open &&
+    `
+      span:nth-child(1){
+        top: 10px;
+        transform: rotate(135deg);
+      }
+      span:nth-child(2){
+        opacity: 0;
+        left: -60px;
+      }
+      span:nth-child(3){
+        top: 10px;
+        transform: rotate(-135deg);
+      }
+    `}
+`
+
+const DesktopMenu = styled.div`
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `
 const LogoContainer = styled.div`
   margin: 0.8em 1em;
@@ -64,13 +150,9 @@ const InputContainer = styled.div`
   border-radius: 5px;
   border-width: 1px;
   height: 1.5em;
-  width: 20%;
+  width: 35%;
   background-color: #fff;
-  transition: width 0.5s;
   display: flex;
-  ${Input}:focus-within {
-    width: 35%;
-  }
 `
 const Input = styled.input`
   color: #7f7f7f;
@@ -80,11 +162,15 @@ const Input = styled.input`
   border-width: 0;
   outline: none;
 `
+NavbarMenu.defaultProps = {
+  mode: 'mobile'
+}
 
-Navbar.propTypes = {
+NavbarMenu.propTypes = {
   /** Every element passed in this property will be shown to the right of the navbar */
   right: PropTypes.oneOfType([PropTypes.func, PropTypes.elementType]),
   /** Treatment for what was entered in the search field */
-  searchable: PropTypes.func
+  searchable: PropTypes.func,
+  //** To choose when the hamburger button will appear */
+  mode: PropTypes.string
 }
-export default Navbar

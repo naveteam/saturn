@@ -1,10 +1,10 @@
 {
   "config": {
-    "title": "Nave Design System",
-    "description": "Design system of Nave.rs team",
+    "title": "Nave Design Kit",
+    "description": "Nave.rs Design system",
     "menu": [],
     "version": "0.1.0",
-    "repository": null,
+    "repository": "https://github.com/naveteam/nave-kit",
     "native": false,
     "codeSandbox": true,
     "themeConfig": {
@@ -21,54 +21,235 @@
     "wrapper": "helpers/doczTheme",
     "plugins": []
   },
+  "entries": [
+    {
+      "key": "CONTRIBUTING.md",
+      "value": {
+        "id": "6a3371457528722a734f3c51d9238c13",
+        "filepath": "CONTRIBUTING.md",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/CONTRIBUTING.md",
+        "slug": "contributing",
+        "route": "/contributing",
+        "name": "Contributing",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "contributing",
+            "depth": 1,
+            "value": "CONTRIBUTING"
+          },
+          {
+            "slug": "install-dependencies",
+            "depth": 2,
+            "value": "Install dependencies"
+          },
+          {
+            "slug": "initial-config",
+            "depth": 2,
+            "value": "Initial config"
+          },
+          {
+            "slug": "development",
+            "depth": 2,
+            "value": "Development"
+          },
+          {
+            "slug": "create-documentation",
+            "depth": 2,
+            "value": "Create documentation"
+          },
+          {
+            "slug": "commiting",
+            "depth": 2,
+            "value": "Commiting"
+          },
+          {
+            "slug": "opening-a-pull-request",
+            "depth": 2,
+            "value": "Opening a pull request"
+          },
+          {
+            "slug": "you-can-add-yourself-as-a-contributor",
+            "depth": 3,
+            "value": "You can add yourself as a contributor"
+          }
+        ]
+      }
+    },
+    {
+      "key": "license.md",
+      "value": {
+        "id": "53e892b8b41cc4caece1cfd5ef21d6e7",
+        "filepath": "license.md",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/license.md",
+        "slug": "license",
+        "route": "/license",
+        "name": "License",
+        "menu": "",
+        "headings": []
+      }
+    },
+    {
+      "key": "readme.md",
+      "value": {
+        "id": "0730bb7c2e8f9ea2438b52e419dd86c9",
+        "filepath": "readme.md",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/readme.md",
+        "slug": "readme",
+        "route": "/readme",
+        "name": "Readme",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "nave-kit-not-published-yet",
+            "depth": 1,
+            "value": "Nave Kit (NOT PUBLISHED YET)"
+          },
+          {
+            "slug": "what-were-using",
+            "depth": 2,
+            "value": "What we're using"
+          },
+          {
+            "slug": "how-to-contribute",
+            "depth": 2,
+            "value": "How to contribute"
+          },
+          {
+            "slug": "roadmap",
+            "depth": 2,
+            "value": "Roadmap"
+          },
+          {
+            "slug": "components",
+            "depth": 3,
+            "value": "Components"
+          },
+          {
+            "slug": "general-improvements",
+            "depth": 3,
+            "value": "General improvements"
+          },
+          {
+            "slug": "license",
+            "depth": 1,
+            "value": "License"
+          },
+          {
+            "slug": "contributors-",
+            "depth": 2,
+            "value": "Contributors ✨"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/Button/Button.mdx",
+      "value": {
+        "name": "Button",
+        "id": "84b7c5fedddc508968c380b1bba30402",
+        "filepath": "src/Button/Button.mdx",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/src/Button/Button.mdx",
+        "slug": "src-button-button",
+        "route": "/src-button-button",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "button",
+            "depth": 1,
+            "value": "Button"
+          },
+          {
+            "slug": "primary",
+            "depth": 2,
+            "value": "Primary"
+          },
+          {
+            "slug": "secondary",
+            "depth": 2,
+            "value": "Secondary"
+          },
+          {
+            "slug": "ghost",
+            "depth": 2,
+            "value": "Ghost"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/Navbar/DataExample.mdx",
+      "value": {
+        "id": "b16790dfa84f4e2b705eb724d77f3e90",
+        "filepath": "src/Navbar/DataExample.mdx",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/src/Navbar/DataExample.mdx",
+        "slug": "src-navbar-data-example",
+        "route": "/src-navbar-data-example",
+        "name": "Data example",
+        "menu": "",
+        "headings": []
+      }
+    },
+    {
+      "key": "src/Navbar/Navbar.mdx",
+      "value": {
+        "name": "Navbar",
+        "id": "52b7319f0a64c6bfaf5eb1ac0a66af7a",
+        "filepath": "src/Navbar/Navbar.mdx",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/src/Navbar/Navbar.mdx",
+        "slug": "src-navbar-navbar",
+        "route": "/src-navbar-navbar",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "props",
+            "depth": 1,
+            "value": "Props"
+          },
+          {
+            "slug": "generic",
+            "depth": 1,
+            "value": "Generic"
+          },
+          {
+            "slug": "navbar-with-generic-data-on-right",
+            "depth": 2,
+            "value": "Navbar with generic data on 'right'"
+          },
+          {
+            "slug": "navbar-with-search",
+            "depth": 2,
+            "value": "Navbar with search"
+          },
+          {
+            "slug": "navbar-with-menu",
+            "depth": 2,
+            "value": "Navbar with menu"
+          }
+        ]
+      }
+    },
+    {
+      "key": "src/Typography/Typography.mdx",
+      "value": {
+        "name": "Typography",
+        "id": "e982216bac594c31cf6ae95f23d4b5c9",
+        "filepath": "src/Typography/Typography.mdx",
+        "link": "https://github.com/naveteam/nave-kit/edit/master/src/Typography/Typography.mdx",
+        "slug": "src-typography-typography",
+        "route": "/src-typography-typography",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "typography",
+            "depth": 1,
+            "value": "Typography"
+          }
+        ]
+      }
+    }
+  ],
   "props": [
-    {
-      "key": "dist/Button/Button.js",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Button",
-          "methods": [],
-          "actualName": "Button",
-          "props": {
-            "variant": {
-              "type": {
-                "name": "string"
-              },
-              "required": false,
-              "description": ""
-            },
-            "aditionalStyles": {
-              "type": {
-                "name": "string"
-              },
-              "required": false,
-              "description": ""
-            }
-          }
-        }
-      ]
-    },
-    {
-      "key": "dist/Theme/Provider.js",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Provider",
-          "methods": [],
-          "actualName": "Provider",
-          "props": {
-            "theme": {
-              "type": {
-                "name": "object"
-              },
-              "required": false,
-              "description": ""
-            }
-          }
-        }
-      ]
-    },
     {
       "key": "src/Button/Button.js",
       "value": [
@@ -155,331 +336,85 @@
       ]
     },
     {
-      "key": "dist/es/Button/Button.js",
+      "key": "src/Navbar/Navbar.js",
       "value": [
         {
           "description": "",
-          "displayName": "Button",
+          "displayName": "Navbar",
           "methods": [],
-          "actualName": "Button",
+          "actualName": "Navbar",
           "props": {
-            "variant": {
+            "right": {
               "type": {
-                "name": "string"
+                "name": "union",
+                "value": [
+                  {
+                    "name": "func"
+                  },
+                  {
+                    "name": "elementType"
+                  }
+                ]
               },
               "required": false,
-              "description": ""
+              "description": "Every element passed in this property will be shown to the right of the navbar"
             },
-            "aditionalStyles": {
+            "searchable": {
               "type": {
-                "name": "string"
+                "name": "func"
               },
               "required": false,
-              "description": ""
+              "description": "Treatment for what was entered in the search field"
             }
           }
         }
       ]
     },
     {
-      "key": "dist/es/Theme/Provider.js",
+      "key": "src/Navbar/NavbarMenu.js",
       "value": [
         {
           "description": "",
-          "displayName": "Provider",
+          "displayName": "NavbarMenu",
           "methods": [],
-          "actualName": "Provider",
+          "actualName": "NavbarMenu",
           "props": {
-            "theme": {
+            "right": {
               "type": {
-                "name": "object"
+                "name": "union",
+                "value": [
+                  {
+                    "name": "func"
+                  },
+                  {
+                    "name": "elementType"
+                  }
+                ]
               },
               "required": false,
-              "description": ""
-            }
-          }
-        }
-      ]
-    },
-    {
-      "key": "dist/esm/Button/Button.js",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Button",
-          "methods": [],
-          "actualName": "Button",
-          "props": {
-            "variant": {
-              "type": {
-                "name": "string"
-              },
-              "required": false,
-              "description": ""
+              "description": "Every element passed in this property will be shown to the right of the navbar"
             },
-            "aditionalStyles": {
+            "searchable": {
+              "type": {
+                "name": "func"
+              },
+              "required": false,
+              "description": "Treatment for what was entered in the search field"
+            },
+            "mode": {
               "type": {
                 "name": "string"
               },
               "required": false,
-              "description": ""
+              "description": "",
+              "defaultValue": {
+                "value": "'mobile'",
+                "computed": false
+              }
             }
           }
         }
       ]
-    },
-    {
-      "key": "dist/esm/Theme/Provider.js",
-      "value": [
-        {
-          "description": "",
-          "displayName": "Provider",
-          "methods": [],
-          "actualName": "Provider",
-          "props": {
-            "theme": {
-              "type": {
-                "name": "object"
-              },
-              "required": false,
-              "description": ""
-            }
-          }
-        }
-      ]
-    }
-  ],
-  "entries": [
-    {
-      "key": "CONTRIBUTING.md",
-      "value": {
-        "id": "6a3371457528722a734f3c51d9238c13",
-        "filepath": "CONTRIBUTING.md",
-        "link": "",
-        "slug": "contributing",
-        "route": "/contributing",
-        "name": "Contributing",
-        "menu": "",
-        "headings": [
-          {
-            "slug": "contributing",
-            "depth": 1,
-            "value": "CONTRIBUTING"
-          },
-          {
-            "slug": "initial-config",
-            "depth": 2,
-            "value": "Initial config"
-          },
-          {
-            "slug": "development",
-            "depth": 2,
-            "value": "Development"
-          },
-          {
-            "slug": "create-documentation",
-            "depth": 2,
-            "value": "Create documentation"
-          },
-          {
-            "slug": "commiting",
-            "depth": 2,
-            "value": "Commiting"
-          },
-          {
-            "slug": "opening-a-pull-request",
-            "depth": 2,
-            "value": "Opening a pull request"
-          }
-        ]
-      }
-    },
-    {
-      "key": "README.md",
-      "value": {
-        "id": "04c6e90faac2675aa89e2176d2eec7d8",
-        "filepath": "README.md",
-        "link": "",
-        "slug": "readme",
-        "route": "/readme",
-        "name": "Readme",
-        "menu": "",
-        "headings": [
-          {
-            "slug": "nave-design-system",
-            "depth": 1,
-            "value": "Nave Design System"
-          },
-          {
-            "slug": "what-were-using",
-            "depth": 2,
-            "value": "What we're using"
-          },
-          {
-            "slug": "install-dependencies",
-            "depth": 2,
-            "value": "Install dependencies"
-          },
-          {
-            "slug": "how-to-contribute",
-            "depth": 2,
-            "value": "How to contribute"
-          },
-          {
-            "slug": "roadmap",
-            "depth": 2,
-            "value": "Roadmap"
-          },
-          {
-            "slug": "components",
-            "depth": 3,
-            "value": "Components"
-          },
-          {
-            "slug": "general-improvements",
-            "depth": 3,
-            "value": "General improvements"
-          },
-          {
-            "slug": "license",
-            "depth": 1,
-            "value": "License"
-          }
-        ]
-      }
-    },
-    {
-      "key": "license.md",
-      "value": {
-        "id": "53e892b8b41cc4caece1cfd5ef21d6e7",
-        "filepath": "license.md",
-        "link": "",
-        "slug": "license",
-        "route": "/license",
-        "name": "License",
-        "menu": "",
-        "headings": []
-      }
-    },
-    {
-      "key": "dist/README.md",
-      "value": {
-        "id": "90524ffa151b37c8b277925c017ad1ba",
-        "filepath": "dist/README.md",
-        "link": "",
-        "slug": "dist-readme",
-        "route": "/dist-readme",
-        "name": "Readme",
-        "menu": "",
-        "headings": [
-          {
-            "slug": "nave-design-system",
-            "depth": 1,
-            "value": "Nave Design System"
-          },
-          {
-            "slug": "what-were-using",
-            "depth": 2,
-            "value": "What we're using"
-          },
-          {
-            "slug": "install-dependencies",
-            "depth": 2,
-            "value": "Install dependencies"
-          },
-          {
-            "slug": "how-to-contribute",
-            "depth": 2,
-            "value": "How to contribute"
-          },
-          {
-            "slug": "roadmap",
-            "depth": 2,
-            "value": "Roadmap"
-          },
-          {
-            "slug": "components",
-            "depth": 3,
-            "value": "Components"
-          },
-          {
-            "slug": "general-improvements",
-            "depth": 3,
-            "value": "General improvements"
-          },
-          {
-            "slug": "license",
-            "depth": 1,
-            "value": "License"
-          }
-        ]
-      }
-    },
-    {
-      "key": "docs/installation.md",
-      "value": {
-        "id": "11d8910b58f5c70ccb3bedc0f37c892f",
-        "filepath": "docs/installation.md",
-        "link": "",
-        "slug": "docs-installation",
-        "route": "/docs-installation",
-        "name": "Installation",
-        "menu": "",
-        "headings": []
-      }
-    },
-    {
-      "key": "src/Button/Button.mdx",
-      "value": {
-        "name": "Button",
-        "id": "84b7c5fedddc508968c380b1bba30402",
-        "filepath": "src/Button/Button.mdx",
-        "link": "",
-        "slug": "src-button-button",
-        "route": "/src-button-button",
-        "menu": "",
-        "headings": [
-          {
-            "slug": "button",
-            "depth": 1,
-            "value": "Button"
-          },
-          {
-            "slug": "primary",
-            "depth": 2,
-            "value": "Primary"
-          },
-          {
-            "slug": "secondary",
-            "depth": 2,
-            "value": "Secondary"
-          },
-          {
-            "slug": "ghost",
-            "depth": 2,
-            "value": "Ghost"
-          }
-        ]
-      }
-    },
-    {
-      "key": "src/Typography/Typography.mdx",
-      "value": {
-        "name": "Typography",
-        "id": "e982216bac594c31cf6ae95f23d4b5c9",
-        "filepath": "src/Typography/Typography.mdx",
-        "link": "",
-        "slug": "src-typography-typography",
-        "route": "/src-typography-typography",
-        "menu": "",
-        "headings": [
-          {
-            "slug": "typography",
-            "depth": 1,
-            "value": "Typography"
-          }
-        ]
-      }
     }
   ]
 }
