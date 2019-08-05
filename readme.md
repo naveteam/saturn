@@ -29,7 +29,7 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 - [x] Typography
 - [ ] Icons
 - [ ] Icon Buttons
-- [ ] Inputs
+- [x] Inputs
 - [ ] Search Input
 - [ ] Spinners
 - [ ] Text Input
