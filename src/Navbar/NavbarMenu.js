@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 export const NavbarMenu = props => {
-  const { searchable, menuItems, mode } = props
+  const { searchable, menuItems, mode, imageNavbar } = props
   const [isShown, setIsShown] = useState(false)
   const [value, setValue] = useState('')
 
@@ -14,7 +14,7 @@ export const NavbarMenu = props => {
   return (
     <Fragment>
       <NavbarContainer>
-        <LogoContainer>//LOGO</LogoContainer>
+        <LogoContainer>{imageNavbar ? <Logo src={imageNavbar} /> : <p>LOGO</p>}</LogoContainer>
         {searchable && (
           <InputContainer>
             <Input
@@ -37,7 +37,7 @@ export const NavbarMenu = props => {
           </InputContainer>
         )}
         {mode !== 'allways' && <DesktopMenu>{menuItems}</DesktopMenu>}
-        <MenuButton mode={mode} open={isShown} onClick={() => handleIcon()}>
+        <MenuButton mode={mode} open={isShown} onClick={handleIcon}>
           <span />
           <span />
           <span />
@@ -61,6 +61,10 @@ const MobileMenu = styled.div`
   transition: all 0.3s linear;
   overflow: hidden;
   box-shadow: 0px 9px 10px -7px rgba(50, 50, 50, 0.2);
+`
+const Logo = styled.img`
+  max-height: 100%;
+  max-width: 100%;
 `
 const NavbarContainer = styled.div`
   font-family: 'Roboto';
@@ -86,7 +90,7 @@ const MenuButton = styled.div`
   @media only screen and (max-width: 768px) {
     display: block;
   }
-  :hover {
+  &:hover {
     opacity: 1;
   }
   span {
@@ -172,5 +176,7 @@ NavbarMenu.propTypes = {
   /** Treatment for what was entered in the search field */
   searchable: PropTypes.func,
   //** To choose when the hamburger button will appear */
-  mode: PropTypes.string
+  mode: PropTypes.string,
+  /** Image path */
+  imageNavbar: PropTypes.string
 }

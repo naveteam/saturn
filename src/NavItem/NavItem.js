@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
-export const NavItem = styled.a`
+const NavItem = styled.a`
   text-transform: uppercase;
   padding: 0.2em 0.4em;
   border-radius: 5px;
@@ -11,10 +10,12 @@ export const NavItem = styled.a`
   margin: 0 1em;
   opacity: 0.8;
   transition: 0.4s;
-  :visited {
+  &:visited {
     color: #5d5d5d;
   }
-  :hover {
+  &:hover {
     opacity: 1;
   }
 `
+
+export default NavItem

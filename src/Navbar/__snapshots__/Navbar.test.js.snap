@@ -48,7 +48,9 @@ exports[`Navbar render with \`right\` prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <p>
       test
@@ -135,7 +137,9 @@ exports[`Navbar render with \`searchable\` and \`right\` 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -250,7 +254,9 @@ exports[`Navbar render with \`searchable\` prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -332,7 +338,9 @@ exports[`Navbar render without ´right´ prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
   </div>
 </div>
@@ -361,8 +369,8 @@ exports[`NavbarMenu render with \`right\` prop 1`] = `
   width: 100vw;
   height: 0;
   background-color: #fff;
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   overflow: hidden;
   box-shadow: 0px 9px 10px -7px rgba(50,50,50,0.2);
 }
@@ -395,8 +403,8 @@ exports[`NavbarMenu render with \`right\` prop 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .c3:hover {
@@ -408,15 +416,15 @@ exports[`NavbarMenu render with \`right\` prop 1`] = `
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #7D7D7D;
+  background: #7d7d7d;
   border-radius: 1px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .c3 span:nth-child(1) {
@@ -470,7 +478,9 @@ exports[`NavbarMenu render with \`right\` prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -568,7 +578,9 @@ exports[`NavbarMenu render with \`searchable\` and \`menuItems\` 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -625,8 +637,8 @@ exports[`NavbarMenu render with \`searchable\` and \`right\` 1`] = `
   width: 100vw;
   height: 0;
   background-color: #fff;
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   overflow: hidden;
   box-shadow: 0px 9px 10px -7px rgba(50,50,50,0.2);
 }
@@ -659,8 +671,8 @@ exports[`NavbarMenu render with \`searchable\` and \`right\` 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .c5:hover {
@@ -672,15 +684,15 @@ exports[`NavbarMenu render with \`searchable\` and \`right\` 1`] = `
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #7D7D7D;
+  background: #7d7d7d;
   border-radius: 1px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .c5 span:nth-child(1) {
@@ -758,7 +770,9 @@ exports[`NavbarMenu render with \`searchable\` and \`right\` 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -829,8 +843,8 @@ exports[`NavbarMenu render with \`searchable\` prop 1`] = `
   width: 100vw;
   height: 0;
   background-color: #fff;
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   overflow: hidden;
   box-shadow: 0px 9px 10px -7px rgba(50,50,50,0.2);
 }
@@ -863,8 +877,8 @@ exports[`NavbarMenu render with \`searchable\` prop 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .c5:hover {
@@ -876,15 +890,15 @@ exports[`NavbarMenu render with \`searchable\` prop 1`] = `
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #7D7D7D;
+  background: #7d7d7d;
   border-radius: 1px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .c5 span:nth-child(1) {
@@ -962,7 +976,9 @@ exports[`NavbarMenu render with \`searchable\` prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -1088,7 +1104,9 @@ exports[`NavbarMenu render with \`searchable\`, \`right\` and \`menuItems\` 1`] 
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"
@@ -1148,8 +1166,8 @@ exports[`NavbarMenu render without ´right´ prop 1`] = `
   width: 100vw;
   height: 0;
   background-color: #fff;
-  -webkit-transition: all .3s linear;
-  transition: all .3s linear;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   overflow: hidden;
   box-shadow: 0px 9px 10px -7px rgba(50,50,50,0.2);
 }
@@ -1182,8 +1200,8 @@ exports[`NavbarMenu render without ´right´ prop 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .c3:hover {
@@ -1195,15 +1213,15 @@ exports[`NavbarMenu render without ´right´ prop 1`] = `
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #7D7D7D;
+  background: #7d7d7d;
   border-radius: 1px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .c3 span:nth-child(1) {
@@ -1257,7 +1275,9 @@ exports[`NavbarMenu render without ´right´ prop 1`] = `
     <div
       class="c1"
     >
-      //LOGO
+      <p>
+        LOGO
+      </p>
     </div>
     <div
       class="c2"

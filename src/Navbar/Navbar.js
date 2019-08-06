@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Navbar = props => {
-  const { searchable, right } = props
+  const { searchable, right, imageNavbar } = props
   const [value, setValue] = useState('')
 
   return (
     <Fragment>
       <NavbarContainer>
-        <LogoContainer>//LOGO</LogoContainer>
+        <LogoContainer>{imageNavbar ? <Logo src={imageNavbar} /> : <p>LOGO</p>}</LogoContainer>
         {searchable && (
           <InputContainer>
             <Input
@@ -57,6 +57,10 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
 `
+const Logo = styled.img`
+  max-height: 100%;
+  max-width: 100%;
+`
 const InputContainer = styled.div`
   padding: 0.2em;
   border-style: solid;
@@ -85,6 +89,8 @@ Navbar.propTypes = {
   /** Every element passed in this property will be shown to the right of the navbar */
   right: PropTypes.oneOfType([PropTypes.func, PropTypes.elementType]),
   /** Treatment for what was entered in the search field */
-  searchable: PropTypes.func
+  searchable: PropTypes.func,
+  /** Image path */
+  imageNavbar: PropTypes.string
 }
 export default Navbar
