@@ -65,4 +65,14 @@ describe('Input', () => {
     const { container } = renderWithTheme(<Input verified />)
     expect(container.firstChild).toMatchSnapshot()
   })
+
+  it('renders text input', () => {
+    const { container } = renderWithTheme(<Input multiline />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
+
+  it('renders text input disable', () => {
+    const { container } = renderWithTheme(<Input multiline disabled />)
+    expect(container.firstChild).toMatchSnapshot()
+  })
 })

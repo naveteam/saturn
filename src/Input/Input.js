@@ -10,9 +10,13 @@ const Input = props => {
   return (
     <Wrapper {...rest}>
       {label && <Label {...rest}>{label}</Label>}
-      <InputContainer {...rest}>
+      <InputContainer multiline={rest.multiline} {...rest}>
         {rest.leftIcon && rest.leftIcon}
-        <StyledInput disabled={rest.disabled} {...rest} />
+        {rest.multiline ? (
+          <StyledTextInput disabled={rest.disabled} {...rest} />
+        ) : (
+          <StyledInput disabled={rest.disabled} {...rest} />
+        )}
         {rest.rightIcon && rest.rightIcon}
       </InputContainer>
       {rest.error && <Error>{rest.error}</Error>}
@@ -51,6 +55,16 @@ const InputContainer = styled.div`
   padding: 8px 10px;
   border: 1px solid ${({ theme }) => theme.colors.mediumGrey};
   ${({ theme: { colors }, ...props }) => {
+    if (props.multiline) {
+      if (props.disabled) {
+        return `
+          border: 1px solid rgba(37, 37, 37, 0.3);
+          background: ${colors.grey};
+          min-height: 160px;`
+      }
+      return `
+        min-height: 160px;`
+    }
     if (props.disabled) {
       return `
         border: 1px solid rgba(37, 37, 37, 0.3);
@@ -90,11 +104,38 @@ const StyledInput = styled.input`
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: ${props => (props.leftIcon ? '4px' : 0)};
   padding-right: ${props => (props.rightIcon ? '4px' : 0)};
   color: ${props => props.theme.colors.darkGrey};
   ::placeholder {
     color: rgba(37, 37, 37, 0.3);
+  }
+`
+const StyledTextInput = styled.textarea`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border: none;
+  outline: none;
+  flex: 1;
+  height: 100%;
+  resize: none;
+  background-color: transparent;
+  color: ${props => props.theme.colors.darkGrey};
+  ::placeholder {
+    color: rgba(37, 37, 37, 0.3);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: ${props => props.theme.colors.grey};
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: ${props => props.theme.colors.blue};
   }
 `
 
@@ -110,6 +151,7 @@ const Caption = styled(Typography)`
   margin-top: 5px;
   color: ${({ theme }) => theme.colors.mediumGrey};
   font-size: 12px;
+  line-height: 14px;
 `
 
 Input.propTypes = {
