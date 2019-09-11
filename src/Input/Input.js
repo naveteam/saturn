@@ -10,7 +10,7 @@ const Input = props => {
   return (
     <Wrapper {...rest}>
       {label && <Label {...rest}>{label}</Label>}
-      <InputContainer {...rest}>
+      <InputContainer multiline={rest.multiline} {...rest}>
         {rest.leftIcon && rest.leftIcon}
         <StyledInput disabled={rest.disabled} {...rest} />
         {rest.rightIcon && rest.rightIcon}
@@ -51,6 +51,10 @@ const InputContainer = styled.div`
   padding: 8px 10px;
   border: 1px solid ${({ theme }) => theme.colors.mediumGrey};
   ${({ theme: { colors }, ...props }) => {
+    if (props.multiline) {
+      return `
+      height: 160px;`
+    }
     if (props.disabled) {
       return `
         border: 1px solid rgba(37, 37, 37, 0.3);
