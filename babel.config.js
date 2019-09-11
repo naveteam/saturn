@@ -27,6 +27,33 @@ module.exports = {
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
+    [
+      'babel-plugin-root-import',
+      {
+        paths: [
+          {
+            rootPathSuffix: './',
+            rootPathPrefix: '~'
+          },
+          {
+            rootPathSuffix: './src',
+            rootPathPrefix: 'src'
+          },
+          {
+            rootPathSuffix: './src/components',
+            rootPathPrefix: 'components'
+          },
+          {
+            rootPathSuffix: './helpers',
+            rootPathPrefix: 'helpers'
+          },
+          {
+            rootPathSuffix: './stories',
+            rootPathPrefix: 'stories'
+          }
+        ]
+      }
+    ],
     '@babel/plugin-transform-runtime',
     // for IE 11 support
     '@babel/plugin-transform-object-assign'
