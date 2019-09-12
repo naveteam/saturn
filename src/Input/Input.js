@@ -12,11 +12,7 @@ const Input = props => {
       {label && <Label {...rest}>{label}</Label>}
       <InputContainer multiline={rest.multiline} {...rest}>
         {rest.leftIcon && rest.leftIcon}
-        {rest.multiline ? (
-          <StyledTextInput disabled={rest.disabled} {...rest} />
-        ) : (
-          <StyledInput disabled={rest.disabled} {...rest} />
-        )}
+        {rest.multiline ? <StyledTextInput {...rest} /> : <StyledInput {...rest} />}
         {rest.rightIcon && rest.rightIcon}
       </InputContainer>
       {rest.error && <Error>{rest.error}</Error>}
