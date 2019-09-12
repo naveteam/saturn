@@ -27,7 +27,7 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
-    "@commitlint/cli": "^7.6.1",
+    "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^7.6.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-links": "^5.0.11",
@@ -36,25 +36,28 @@
     "@testing-library/react": "^8.0.1",
     "all-contributors-cli": "^6.7.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.3",
     "babel-jest": "24.5.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-root-import": "^6.4.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "commitlint": "^7.6.1",
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
+    "customize-cra": "^0.6.1",
     "cz-conventional-changelog": "2.1.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^2.3.0",
+    "husky": "^3.0.5",
     "jest": "^24.8.0",
     "jest-dom": "^3.5.0",
     "jest-styled-components": "^6.3.3",
     "live-server": "^1.2.1",
     "prettier": "^1.18.2",
+    "react-app-rewired": "^2.1.3",
     "react-test-renderer": "^16.8.6",
     "rollup": "1.7.0",
     "rollup-plugin-babel": "4.3.2",
@@ -71,9 +74,9 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "concurrently \"yarn build:cjs\" \"yarn build:es\" \"yarn build:esm\" \"yarn build:umd\" && yarn build:copy-files",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore \"**/*.test.js\"",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore \"**/*.test.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore \"**/*.test.js\"",
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src/components --out-dir ./dist --ignore \"**/*.test.js\"",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src/components --out-dir ./dist/es --ignore \"**/*.test.js\"",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src/components --out-dir ./dist/esm --ignore \"**/*.test.js\"",
     "build:umd": "cross-env BABEL_ENV=production-umd rollup -c rollup.config.js",
     "build:copy-files": "node ./scripts/copy-files.js",
     "server": "live-server --port=7000 -q --open=./example",
@@ -120,5 +123,16 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "src"
+    ]
   }
 }

@@ -30,6 +30,7 @@ All components are inside `src` folder. You need to follow our folder structure.
 - Create documentation using docz
 - Create unit tests using jest
 - Check our [figma](https://www.figma.com/file/S36AdAJX1B1PZhWcNVeBKNCn/Design-System?node-id=0%3A1) for styleguide
+- If you want to import files from the root folder, use `~` before the desired path.
 
 ## Create documentation
 
@@ -37,10 +38,9 @@ All component folder have a markdown file(.md) that will be used for documentati
 
 To run styleguidist type `yarn styleguide` and check our live documentation.
 
-
 ## Commiting
 
-If you want to make a  commit use our script following commitizen. Run `yarn commit` and fill all questions.
+If you want to make a commit use our script following commitizen. Run `yarn commit` and fill all questions.
 
 ## Opening a pull request
 
