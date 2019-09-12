@@ -35,6 +35,7 @@ exports[`Input renders disabled input 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #5d5d5d;
@@ -111,6 +112,7 @@ exports[`Input renders error input 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #5d5d5d;
@@ -203,6 +205,7 @@ exports[`Input renders input with caption 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #5d5d5d;
@@ -229,6 +232,7 @@ exports[`Input renders input with caption 1`] = `
   margin-top: 5px;
   color: #7f7f7f;
   font-size: 12px;
+  line-height: 14px;
 }
 
 <div
@@ -302,6 +306,7 @@ exports[`Input renders input with label 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #5d5d5d;
@@ -382,6 +387,7 @@ exports[`Input renders input with left icon 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 4px;
   padding-right: 0;
   color: #5d5d5d;
@@ -470,6 +476,7 @@ exports[`Input renders input with right icon 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 4px;
   color: #5d5d5d;
@@ -543,7 +550,7 @@ exports[`Input renders text input 1`] = `
   height: 36px;
   padding: 8px 10px;
   border: 1px solid #7f7f7f;
-  height: 160px;
+  min-height: 160px;
 }
 
 .c2 {
@@ -558,9 +565,8 @@ exports[`Input renders text input 1`] = `
   -ms-flex: 1;
   flex: 1;
   height: 100%;
-  background: transparent;
-  padding-left: 0;
-  padding-right: 0;
+  resize: none;
+  background-color: transparent;
   color: #5d5d5d;
 }
 
@@ -580,14 +586,108 @@ exports[`Input renders text input 1`] = `
   color: rgba(37,37,37,0.3);
 }
 
+.c2::-webkit-scrollbar {
+  width: 10px;
+  background: #f5f5f5;
+}
+
+.c2::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+  background-color: #007dfe;
+}
+
 <div
   class="c0"
 >
   <div
     class="c1"
   >
-    <input
+    <textarea
       class="c2"
+    />
+  </div>
+</div>
+`;
+
+exports[`Input renders text input disable 1`] = `
+.c0 {
+  box-sizing: border-box;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 328px;
+  height: 36px;
+  padding: 8px 10px;
+  border: 1px solid #7f7f7f;
+  border: 1px solid rgba(37,37,37,0.3);
+  background: #f5f5f5;
+  min-height: 160px;
+}
+
+.c1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border: none;
+  outline: none;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  resize: none;
+  background-color: transparent;
+  color: #5d5d5d;
+}
+
+.c1::-webkit-input-placeholder {
+  color: rgba(37,37,37,0.3);
+}
+
+.c1::-moz-placeholder {
+  color: rgba(37,37,37,0.3);
+}
+
+.c1:-ms-input-placeholder {
+  color: rgba(37,37,37,0.3);
+}
+
+.c1::placeholder {
+  color: rgba(37,37,37,0.3);
+}
+
+.c1::-webkit-scrollbar {
+  width: 10px;
+  background: #f5f5f5;
+}
+
+.c1::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+  background-color: #007dfe;
+}
+
+<div
+  class=""
+  disabled=""
+>
+  <div
+    class="c0"
+    disabled=""
+  >
+    <textarea
+      class="c1"
+      disabled=""
     />
   </div>
 </div>
@@ -627,6 +727,7 @@ exports[`Input renders verified input 1`] = `
   flex: 1;
   height: 100%;
   background: transparent;
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
   color: #5d5d5d;

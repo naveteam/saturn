@@ -3,15 +3,28 @@ import { storiesOf } from '@storybook/react'
 
 import { Input } from '../src'
 
-storiesOf('Text Input', module)
+storiesOf('Input Text Area', module)
   .add('normal', () => {
     return (
       <>
         <Input
           label='Label'
-          placeholder='Placeholder'
+          placeholder='Text here'
           caption='Caption'
           multiline
+        />
+      </>
+    )
+  })
+  .add('disabled', () => {
+    return (
+      <>
+        <Input
+          label='Label'
+          placeholder='Text here'
+          caption='Caption'
+          multiline
+          disabled
         />
       </>
     )
