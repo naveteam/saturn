@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithTheme } from '../../helpers/testTheme'
+import { renderWithTheme } from 'helpers/testTheme'
 
 import Button from './Button'
 

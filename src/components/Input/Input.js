@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Typography } from '../'
-import modifiers from '../helpers/modifiers'
+import { Typography } from 'src'
+import modifiers from 'src/helpers/modifiers'
 
 const Input = props => {
   const { label, ...rest } = props
