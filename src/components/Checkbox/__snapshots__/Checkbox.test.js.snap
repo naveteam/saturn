@@ -1,0 +1,532 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders input type checkbox disable selected 1`] = `
+.c7 {
+  font-family: Roboto;
+  color: #5d5d5d;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.c1:focus + .c8 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c8 .c4 {
+  visibility: hidden;
+}
+
+.c1:focus + .c9 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c9 .c4 {
+  visibility: visible;
+}
+
+.c1:focus + .c10 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c10 .c4 {
+  visibility: hidden;
+}
+
+.c3 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #007dfe;
+  border: 1px solid #007dfe;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: rgba(37,37,37,0.3);
+  border: none;
+  pointer-events: none;
+}
+
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c3 .c4 {
+  visibility: visible;
+}
+
+.c6 {
+  margin: 0;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: rgba(37,37,37,0.3);
+}
+
+<div
+  class="c0"
+  disabled=""
+>
+  <input
+    class="c1 c2"
+    disabled=""
+    label="Disabled Selected"
+    type="checkbox"
+  />
+  <div
+    class="c3"
+    disabled=""
+    label="Disabled Selected"
+  >
+    <svg
+      class="c4 c5"
+      viewBox="0 0 24 24"
+    >
+      <polyline
+        points="20 6 9 17 4 12"
+      />
+    </svg>
+  </div>
+  <p
+    class="c6 c7"
+    disabled=""
+  >
+    Disabled Selected
+  </p>
+</div>
+`;
+
+exports[`Checkbox renders input type checkbox disabled 1`] = `
+.c7 {
+  font-family: Roboto;
+  color: #5d5d5d;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.c1:focus + .c8 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c8 .c4 {
+  visibility: hidden;
+}
+
+.c1:focus + .c9 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c9 .c4 {
+  visibility: visible;
+}
+
+.c3 {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 1px solid #7f7f7f;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  border: 1px solid rgba(37,37,37,0.3);
+  pointer-events: none;
+}
+
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c3 .c4 {
+  visibility: hidden;
+}
+
+.c6 {
+  margin: 0;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: rgba(37,37,37,0.3);
+}
+
+<div
+  class="c0"
+  disabled=""
+>
+  <input
+    class="c1 c2"
+    disabled=""
+    label="Disabled"
+    type="checkbox"
+  />
+  <div
+    class="c3"
+    disabled=""
+    label="Disabled"
+  >
+    <svg
+      class="c4 c5"
+      viewBox="0 0 24 24"
+    >
+      <polyline
+        points="20 6 9 17 4 12"
+      />
+    </svg>
+  </div>
+  <p
+    class="c6 c7"
+    disabled=""
+  >
+    Disabled
+  </p>
+</div>
+`;
+
+exports[`Checkbox renders input type checkbox indeterminated 1`] = `
+.c7 {
+  font-family: Roboto;
+  color: #5d5d5d;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.c1:focus + .c8 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c8 .c4 {
+  visibility: hidden;
+}
+
+.c1:focus + .c9 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c9 .c4 {
+  visibility: visible;
+}
+
+.c1:focus + .c10 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c10 .c4 {
+  visibility: hidden;
+}
+
+.c1:focus + .c11 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c11 .c4 {
+  visibility: visible;
+}
+
+.c3 {
+  display: inline-block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 1px solid #7f7f7f;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: #5d5d5d;
+  border: 1px solid #5d5d5d;
+}
+
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c3 .c4 {
+  visibility: visible;
+}
+
+.c6 {
+  margin: 0;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: undefined;
+}
+
+<div
+  class="c0"
+>
+  <input
+    class="c1 c2"
+    label="Indeterminated"
+    type="checkbox"
+  />
+  <div
+    class="c3"
+    label="Indeterminated"
+  >
+    <svg
+      class="c4 c5"
+      viewBox="0 0 24 24"
+    >
+      <polyline
+        points="4 11 18 11 "
+      />
+    </svg>
+  </div>
+  <p
+    class="c6 c7"
+  >
+    Indeterminated
+  </p>
+</div>
+`;
+
+exports[`Checkbox renders input type checkbox not selected 1`] = `
+.c7 {
+  font-family: Roboto;
+  color: #5d5d5d;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.c3 {
+  display: inline-block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 1px solid #7f7f7f;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c3 .c4 {
+  visibility: hidden;
+}
+
+.c6 {
+  margin: 0;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: undefined;
+}
+
+<div
+  class="c0"
+>
+  <input
+    class="c1 c2"
+    label="Not Selected"
+    type="checkbox"
+  />
+  <div
+    class="c3"
+    label="Not Selected"
+  >
+    <svg
+      class="c4 c5"
+      viewBox="0 0 24 24"
+    >
+      <polyline
+        points="20 6 9 17 4 12"
+      />
+    </svg>
+  </div>
+  <p
+    class="c6 c7"
+  >
+    Not Selected
+  </p>
+</div>
+`;
+
+exports[`Checkbox renders input type checkbox selected 1`] = `
+.c7 {
+  font-family: Roboto;
+  color: #5d5d5d;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c5 {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2px;
+}
+
+.c2 {
+  border: 0;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.c1:focus + .c8 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c8 .c4 {
+  visibility: hidden;
+}
+
+.c3 {
+  display: inline-block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background: #007dfe;
+  border: 1px solid #007dfe;
+  border-radius: 2px;
+  box-sizing: border-box;
+  background: #007dfe;
+  border: none;
+}
+
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 3px #007dfe;
+}
+
+.c3 .c4 {
+  visibility: visible;
+}
+
+.c6 {
+  margin: 0;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  color: undefined;
+}
+
+<div
+  class="c0"
+>
+  <input
+    class="c1 c2"
+    label="Selected"
+    type="checkbox"
+  />
+  <div
+    class="c3"
+    label="Selected"
+  >
+    <svg
+      class="c4 c5"
+      viewBox="0 0 24 24"
+    >
+      <polyline
+        points="20 6 9 17 4 12"
+      />
+    </svg>
+  </div>
+  <p
+    class="c6 c7"
+  >
+    Selected
+  </p>
+</div>
+`;
