@@ -32,7 +32,7 @@ If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
 - [x] Inputs
 - [ ] Search Input
 - [ ] Spinners
-- [ ] Text Input
+- [x] Text Input
 - [ ] Checkboxes
 - [ ] Radio Buttons
 - [ ] Switches
