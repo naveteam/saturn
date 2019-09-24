@@ -60,7 +60,7 @@ const StyledCheckbox = styled.div`
       return `
       background: rgba(37, 37, 37, 0.3);
       border: none;
-      pointer-events: none`
+      pointer-events: none;`
     }
     if (props.selected) {
       return `
@@ -71,7 +71,7 @@ const StyledCheckbox = styled.div`
       return `
         background: ${colors.grey};
         border: 1px solid rgba(37, 37, 37, 0.3);
-        pointer-events: none`
+        pointer-events: none;`
     }
     if (props.indeterminated) {
       return `
@@ -95,8 +95,8 @@ const Label = styled(Typography)`
   transition: all 0.3s linear;
   ${({ theme: { colors }, ...props }) => {
     if (props.disabled) {
-      return 'color: rgba(37, 37, 37, 0.3)'
+      return 'color: rgba(37, 37, 37, 0.3);'
     }
-    return `color: ${colors.DarkGrey}`
+    return `color: ${colors.DarkGrey};`
   }}
 `
