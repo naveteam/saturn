@@ -21,4 +21,8 @@ export const imports = {
     import(
       /* webpackPrefetch: true, webpackChunkName: "src-typography-typography" */ 'src/Typography/Typography.mdx'
     ),
+  'src/Checkbox/Checkbox.mdx': () =>
+    import(
+    /* webpackPrefetch: true, webpackChunkName: "src-checkbox-checkbox" */ 'src/Checkbox/Checkbox.mdx'
+    ),
 }

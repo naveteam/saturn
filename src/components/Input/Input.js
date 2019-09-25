@@ -108,6 +108,7 @@ const StyledInput = styled.input`
     color: rgba(37, 37, 37, 0.3);
   }
 `
+
 const StyledTextInput = styled.textarea`
   font-family: Roboto;
   font-style: normal;
