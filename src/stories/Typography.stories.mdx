@@ -1,0 +1,21 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+
+import { Typography } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Typography" component={Typography} />
+
+# Typography
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+    }
+  }}>
+    <ThemeProvider>
+      <Typography>Lorem Ipsum dolor sit amet</Typography>
+    </ThemeProvider>
+  </Story>
+</Preview>

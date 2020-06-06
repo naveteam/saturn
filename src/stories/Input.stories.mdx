@@ -1,0 +1,21 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+
+import { Input } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Input" component={Input} />
+
+# Input
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}>
+    <ThemeProvider>
+      <Input name='base' label='Label' message='Message' placeholder='Placeholder' />
+    </ThemeProvider>
+  </Story>
+</Preview>
