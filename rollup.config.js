@@ -1,47 +1,41 @@
-import resolve from 'rollup-plugin-node-resolve'
-import { terser } from 'rollup-plugin-terser'
-import commonjs from 'rollup-plugin-commonjs'
-import nodeGlobals from 'rollup-plugin-node-globals'
-import babel from 'rollup-plugin-babel'
-import replace from 'rollup-plugin-replace'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
-import localResolve from 'rollup-plugin-local-resolve'
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import image from '@rollup/plugin-image'
+import external from 'rollup-plugin-peer-deps-external'
+import { eslint } from 'rollup-plugin-eslint'
 
-const config = {
-  input: 'src/index.js',
+import pkg from './package.json'
+
+export default {
+  input: './src/index.js',
   output: [
     {
-      file: 'dist/umd/nave-design-system.min.js',
-      format: 'umd',
-      name: 'index',
-      exports: 'named',
-      sourcemap: true,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes',
-        'styled-components': 'styled'
-      }
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: 'esm',
+      sourcemap: true
     }
   ],
   plugins: [
-    localResolve(),
-    resolve(),
-    peerDepsExternal(),
+    external(),
+    eslint({
+      fix: true
+    }),
+    resolve({
+      extensions: ['.jsx']
+    }),
     babel({
+      babelHelpers: 'inline',
       exclude: 'node_modules/**',
-      runtimeHelpers: true
+      presets: ['@babel/preset-env', '@babel/preset-react'],
+      plugins: ['@babel/plugin-proposal-optional-chaining']
     }),
-    commonjs({
-      include: /node_modules/,
-      ignoreGlobal: true
-    }),
-    nodeGlobals(),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    terser()
+    commonjs(),
+    image()
   ]
 }
-
-export default config

@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import",
+    "prettier",
+    "standard"
+  ],
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "no-trailing-spaces": [
+      2
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "react/jsx-boolean-value": [
+      0
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "prettier/prettier": 2,
+    "space-before-function-paren": 0
+  }
+}

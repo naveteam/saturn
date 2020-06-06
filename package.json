@@ -1,14 +1,9 @@
 {
-  "name": "nave-kit",
-  "version": "0.1.0",
-  "author": "Nave.rs Team",
-  "main": "dist/es/index.js",
+  "name": "@nave/components",
+  "version": "0.2.0",
+  "author": "Eduardo Bittencourt <eduardo.bittencourt@nave.rs>",
   "license": "MIT",
   "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/naveteam/nave-kit"
-  },
   "keywords": [
     "react",
     "react-ui",
@@ -17,125 +12,47 @@
     "nave-kit",
     "nave-design-system"
   ],
-  "sideEffects": false,
-  "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/plugin-transform-object-assign": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^7.6.0",
-    "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@storybook/react": "^5.0.11",
-    "@testing-library/react": "^8.0.1",
-    "all-contributors-cli": "^6.7.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "24.5.0",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-root-import": "^6.4.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "commitlint": "^7.6.1",
-    "concurrently": "^4.1.0",
-    "cross-env": "^5.2.0",
-    "customize-cra": "^0.6.1",
-    "cz-conventional-changelog": "2.1.0",
-    "docz": "^2.0.0-rc.38",
-    "docz-theme-default": "^1.2.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^3.0.5",
-    "jest": "^24.8.0",
-    "jest-dom": "^3.5.0",
-    "jest-styled-components": "^6.3.3",
-    "live-server": "^1.2.1",
-    "prettier": "^1.18.2",
-    "react": "^16.9.0",
-    "react-app-rewired": "^2.1.3",
-    "react-dom": "^16.9.0",
-    "react-test-renderer": "^16.8.6",
-    "rollup": "1.7.0",
-    "rollup-plugin-babel": "4.3.2",
-    "rollup-plugin-commonjs": "9.2.1",
-    "rollup-plugin-filesize": "^6.0.1",
-    "rollup-plugin-local-resolve": "^1.0.7",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "4.0.1",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^5.0.0",
-    "webpack": "^4.30.0"
-  },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "concurrently \"yarn build:cjs\" \"yarn build:es\" \"yarn build:esm\" \"yarn build:umd\" && yarn build:copy-files",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src/components --out-dir ./dist --ignore \"**/*.test.js\"",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src/components --out-dir ./dist/es --ignore \"**/*.test.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src/components --out-dir ./dist/esm --ignore \"**/*.test.js\"",
-    "build:umd": "cross-env BABEL_ENV=production-umd rollup -c rollup.config.js",
-    "build:copy-files": "node ./scripts/copy-files.js",
-    "server": "live-server --port=7000 -q --open=./example",
-    "start": "yarn storybook",
-    "test": "cross-env BABEL_ENV=test jest",
-    "test:watch": "cross-env BABEL_ENV=test jest --watch",
-    "coverage": "yarn test --coverage",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build",
-    "preversion": "yarn eslint && yarn test && yarn build",
-    "postpublish": "yarn run build:clean",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "commit": "npx git-cz",
-    "release": "yarn build && yarn publish build --tag latest",
-    "prettier": "yarn prettier:js",
-    "prettier:js": "prettier --write *.js src/*.js src/**/*.js src/**/**/*.js src/**/**/**/*.js src/**/**/**/**/*.js",
-    "eslint": "eslint src/*.js src/**/*.js src/**/**/*.js src/**/**/*.js src/**/**/**/*.js src/**/**/**/**/*.js",
-    "contributors:add": "all-contributors add",
-    "contributors:generate": "all-contributors generate"
-  },
+  "main": "build/index.js",
+  "module": "build/index.es.js",
   "files": [
-    "dist"
+    "build"
   ],
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "dependencies": {
-    "react-styleguidist": "^9.1.16",
-    "styled-components": "^4.3.2"
+  "scripts": {
+    "start": "start-storybook -p 3000 -s public",
+    "build": "rollup -c"
   },
   "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2"
+    "react": ">=16.13.1",
+    "react-dom": ">=16.13.1"
   },
-  "browserslist": [
-    ">1%",
-    "last 1 version",
-    "Firefox ESR",
-    "not dead"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "bower_components",
-      "src"
-    ]
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@rollup/plugin-babel": "^5.0.3",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@storybook/addon-storysource": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.13.1",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2"
   }
 }
