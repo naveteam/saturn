@@ -6,4 +6,6 @@ export default {
   component: Input
 }
 
-export const Base = () => <Input />
+export const Base = () => {
+  return <Input />
+}
