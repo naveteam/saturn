@@ -1,6 +1,6 @@
 {
   "name": "@naveteam/ui-components",
-  "version": "0.2.2-1",
+  "version": "0.2.2-2",
   "author": "Eduardo Bittencourt <eduardo.bittencourt@nave.rs>",
   "license": "MIT",
   "private": false,
@@ -20,7 +20,7 @@
   "scripts": {
     "start": "start-storybook -p 3000 -s public",
     "build": "rollup -c",
-    "deploy": "storybook-to-ghpages"
+    "deploy": "storybook-to-ghpages --ci"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
