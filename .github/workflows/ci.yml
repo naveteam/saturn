@@ -1,7 +1,7 @@
-name: Production Workflow
+name: ci
 
 on:
-  push:
+  create:
     tags:
      - 'v*'
 
@@ -16,7 +16,7 @@ jobs:
       - name: Check package version
         uses: technote-space/package-version-check-action@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          COMMIT_DISABLED: 1
 
       - name: Install Package dependencies
         run: yarn install

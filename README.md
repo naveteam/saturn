@@ -10,6 +10,7 @@
 [![NPM](https://img.shields.io/npm/v/@naveteam/ui-components.svg)](https://www.npmjs.com/package/@naveteam/ui-components)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![Production Workflow](https://github.com/naveteam/nave-kit/workflows/Production%20Workflow/badge.svg)
 
 ## ❗️ Motivação
 
