@@ -1,8 +1,10 @@
 {
   "name": "@naveteam/ui-components",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Eduardo Bittencourt <eduardo.bittencourt@nave.rs>",
   "license": "MIT",
+  "repository": "naveteam/nave-kit",
+  "homepage": "https://naveteam.github.io/nave-kit/",
   "private": false,
   "keywords": [
     "react",
