@@ -79,6 +79,8 @@ yarn // ou npm install
 yarn start // ou npm run start 
 ```
 
+Você pode acompanhar o andamento do projeto e assumir cards que estão na coluna `To Do` [aqui](https://github.com/naveteam/nave-kit/projects/2).
+
 # Licença
 
 MIT © [Nave Team](https://github.com/naveteam)
