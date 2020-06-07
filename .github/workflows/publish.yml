@@ -1,23 +1,44 @@
-name: Publish
+name: Production Workflow
 
 on:
   push:
-    branches: [ v2 ]
+    tags:
+     - 'v*'
 
 jobs:
-  build:
+  npm:
+    name: Publish Package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
         with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-      - run: yarn install
-      - run: yarn build
-      - run: npm publish --access public
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Install Package dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+          npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: yarn deploy
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  pages:
+    name: Publish Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Package dependencies
+        run: yarn install
+      - name: Build and Deploy
+        run: yarn deploy
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GH_TOKEN }}
