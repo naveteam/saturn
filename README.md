@@ -1,61 +1,84 @@
-# Nave Kit (NOT PUBLISHED YET)
+<p align="center">
+  <a href="https://nave.rs/" rel="noopener" target="_blank"><img width="150" style="border-radius: 10px;" src="https://avatars3.githubusercontent.com/u/33161449?s=200&v=4" alt="Nave.rs logo"></a></p>
+</p>
 
-A library with a lot of useful components following our design system.
-Our goal is create a React UI component based lib for everybody who wants to use it. We already have a figma project [here](https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System) to guide you in development.
+<h1 align="center">Nave Kit</h1>
+
+<p align="center">Repositório de componentes React baseado no <a href='https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System'>design system</a> da Nave.</p>
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
+[![NPM](https://img.shields.io/npm/v/@naveteam/ui-components.svg)](https://www.npmjs.com/package/@naveteam/ui-components)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-## What we're using
+## ❗️ Motivação
+
+Diversas vezes precisamos prototipar rapidamente novas aplicações e sempre precisamos recorrer à libs de componentes de layout como [Material UI](https://material-ui.com/pt/) ou [Ant Design](https://ant.design/). 
+
+A criação de um design system próprio pode aumentar a familiaridade da equipe com determinado padrão de código, fazendo com que gradativamente esses protótipos sejam criados de forma mais rápida e homogênea, abstraindo a necessidade de se preocupar com o layout que a aplicação terá.
+
+## 🛠 Tecnologias utilizadas
+
+Baseamos nosso desenvolvimento em:
 
 - [React](https://reactjs.org/)
 - [Styled Components](https://www.styled-components.com/)
 - [Styled System](https://styled-system.com/)
 - [Storybook](https://github.com/storybooks/storybook)
 
-## How to contribute
+## 🚀 Instalação
 
-If you want to contribute, check our [CONTRIBUTING](CONTRIBUTING.md) guide.
+No terminal, execute
 
-## Roadmap
+```shell
+yarn add @naveteam/ui-components
+// ou npm install @naveteam/ui-components
+```
 
-### Components
+## 💡 Utilização
 
-- [ ] Grid system (We want something like [Rebass](https://github.com/rebassjs/grid))
-- [ ] Typography
-- [ ] Icon
-- [ ] Button
-- [ ] Text Fields
-- [ ] Selects
-- [ ] Date Picker
-- [ ] Tooltip
-- [ ] Checkbox
-- [ ] Radio Button
-- [ ] Switch
-- [ ] Loader
-- [ ] Breadcrumb
-- [ ] Stepper
-- [ ] Divider
-- [ ] Pagination
-- [ ] Tag
-- [ ] Attachment
-- [ ] Alert
-- [ ] Progress Bar
-- [ ] Accordion
-- [ ] Upload
-- [ ] Slider
-- [ ] Tabset
-- [ ] Avatar
-- [ ] Sidebar Menu
-- [ ] Card
-- [ ] Carousel
-- [ ] Table
-- [ ] Header
-- [ ] Rating
-- [ ] Text Area
-- [ ] List
-- [ ] Dialog
+Com a lib instalada, o seguinte código já é o suficiente para iniciar o desenvolvimento da aplicação
 
-# License
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ThemeProvider, Input } from '@naveteam/ui-components'
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <Input name='naveteam' label='Simple Input' />
+    </ThemeProvider>
+  )
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'))
+```
+
+Você pode encontrar em nosso [Storybook](https://naveteam.github.io/nave-kit) a documentação necessária de todos os componentes disponíveis no projeto.
+
+## 🤝 Como contribuir
+
+Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo PRs para ajustar bugs ou mesmo levantando dúvidas, sugestões ou pedidos de ajustes através de issues. Para contribuir com nosso projeto, por favor siga nosso guia de [CONTRIBUTING](CONTRIBUTING.md).
+
+## 🚧 Desenvolvimento
+
+Caso você queira contribuir com o desenvolvimento do projeto, tudo que você têm a fazer é seguir essas etapas:
+
+```shell
+// clonar o repositório
+git clone git@github.com:naveteam/nave-kit.git
+
+// acessar a pasta do projeto
+cd nave-kit
+
+// instalar as dependências
+yarn // ou npm install
+
+// executar o projeto
+yarn start // ou npm run start 
+```
+
+# Licença
 
 MIT © [Nave Team](https://github.com/naveteam)
