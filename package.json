@@ -22,7 +22,8 @@
   "scripts": {
     "start": "start-storybook -p 3000 -s public",
     "build": "rollup -c",
-    "deploy": "storybook-to-ghpages --ci"
+    "deploy": "storybook-to-ghpages --ci",
+    "commit": "npx git-cz"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
@@ -33,6 +34,8 @@
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-babel": "^5.0.3",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-image": "^2.0.5",
@@ -42,6 +45,7 @@
     "@storybook/storybook-deployer": "^2.8.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "cz-conventional-changelog": "3.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-config-standard-react": "^9.2.0",
@@ -52,6 +56,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -62,5 +67,10 @@
     "storybook-addon-designs": "^5.2.1",
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
