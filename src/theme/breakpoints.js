@@ -1,5 +1,1 @@
-export default {
-  sm: '360px',
-  md: '768px',
-  lg: '1280px'
-}
+export default ['360px', '768px', '1280px']

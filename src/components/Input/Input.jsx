@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { space, layout, flexbox } from 'styled-system'
 import PropTypes from 'prop-types'
 
+import { Typography } from '../'
+
 const Input = forwardRef(({ name, label, message, placeholder, value, onChange }, ref) => {
   return (
     <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center'>
-      <Label for={name} mb='3'>
+      <Label htmlFor={name} mb='3'>
         {label}
       </Label>
       <InputBase ref={ref} name={name} placeholder={placeholder} value={value} onChange={onChange} p='3' />
@@ -20,7 +22,7 @@ const Container = styled.div`
   ${flexbox}
 `
 
-const Label = styled.label`
+const Label = styled(Typography)`
   ${space}
 `
 
@@ -28,7 +30,7 @@ const InputBase = styled.input`
   ${space}
 `
 
-const Info = styled.span`
+const Info = styled(Typography)`
   ${space}
 `
 

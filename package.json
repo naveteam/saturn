@@ -1,6 +1,6 @@
 {
   "name": "@naveteam/ui-components",
-  "version": "0.2.5",
+  "version": "0.2.8",
   "author": "Eduardo Bittencourt <eduardo.bittencourt@nave.rs>",
   "license": "MIT",
   "repository": "naveteam/nave-kit",
@@ -61,6 +61,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "rollup": "^2.13.1",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
