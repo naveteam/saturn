@@ -43,6 +43,7 @@
     "@storybook/addon-docs": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/storybook-deployer": "^2.8.6",
+    "@styled-system/prop-types": "^5.1.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "cz-conventional-changelog": "3.2.0",

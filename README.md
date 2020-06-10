@@ -63,6 +63,12 @@ Você pode encontrar em nosso [Storybook](https://naveteam.github.io/nave-kit) a
 Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo PRs para ajustar bugs ou mesmo levantando dúvidas, sugestões ou pedidos de ajustes através de issues. Para contribuir com nosso projeto, por favor siga nosso guia de [CONTRIBUTING](CONTRIBUTING.md).
 
 
-# Licença
+## 🐛 Bugs Conhecidos
+
+### O Storyblok não renderiza PropTypes passadas dinamicamente para meu componente
+
+Isso é uma limitação do Addon do Storyblok responsável por criar a tela de Docs. Esse comportamento já foi reportado e existe uma issue aberta para tratar essa questão [aqui](https://github.com/storybookjs/storybook/issues/10536). Enquanto esse problema não é resolvido, você pode declarar as PropTypes do Styled System de forma estática, ou informar na descrição do componente quais módulos do Design System estão importados no componente.
+
+## Licença
 
 MIT © [Nave Team](https://github.com/naveteam)
