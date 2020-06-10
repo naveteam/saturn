@@ -58,29 +58,10 @@ ReactDOM.render(<App />, document.querySelector('#app'))
 
 Você pode encontrar em nosso [Storybook](https://naveteam.github.io/nave-kit) a documentação necessária de todos os componentes disponíveis no projeto.
 
-## 🤝 Como contribuir
+## 🤝 Contribuição
 
 Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo PRs para ajustar bugs ou mesmo levantando dúvidas, sugestões ou pedidos de ajustes através de issues. Para contribuir com nosso projeto, por favor siga nosso guia de [CONTRIBUTING](CONTRIBUTING.md).
 
-## 🚧 Desenvolvimento
-
-Caso você queira contribuir com o desenvolvimento do projeto, tudo que você têm a fazer é seguir essas etapas:
-
-```shell
-// clonar o repositório
-git clone git@github.com:naveteam/nave-kit.git
-
-// acessar a pasta do projeto
-cd nave-kit
-
-// instalar as dependências
-yarn // ou npm install
-
-// executar o projeto
-yarn start // ou npm run start 
-```
-
-Você pode acompanhar o andamento do projeto e assumir cards que estão na coluna `To Do` [aqui](https://github.com/naveteam/nave-kit/projects/2).
 
 # Licença
 
