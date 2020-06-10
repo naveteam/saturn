@@ -65,6 +65,7 @@
     "rollup": "^2.13.1",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-terser": "^6.1.0",
     "storybook-addon-designs": "^5.2.1",
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5"

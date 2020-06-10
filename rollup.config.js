@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import image from '@rollup/plugin-image'
 import external from 'rollup-plugin-peer-deps-external'
 import { eslint } from 'rollup-plugin-eslint'
+import { terser } from 'rollup-plugin-terser'
 
 import pkg from './package.json'
 
@@ -36,6 +37,7 @@ export default {
       plugins: ['@babel/plugin-proposal-optional-chaining']
     }),
     commonjs(),
-    image()
+    image(),
+    terser()
   ]
 }
