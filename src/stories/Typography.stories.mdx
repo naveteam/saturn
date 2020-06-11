@@ -1,6 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Typography, Heading, Subtitle } from '../components'
+import { Typography, Heading, Subtitle, Paragraph } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Typography" />
@@ -63,4 +63,26 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
   </Story>
 </Preview>
 
+
 <Props of={Subtitle} />
+
+
+# Body
+
+O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as` e `fontSize`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
+
+<Preview>
+  <Story name="Body" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+    }
+  }}>
+    <ThemeProvider>
+      <Paragraph>Subtitle</Paragraph>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+
+<Props of={Paragraph} />
