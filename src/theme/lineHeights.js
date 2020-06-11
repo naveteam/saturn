@@ -18,4 +18,9 @@ lineHeights.heading = {
 
 lineHeights.subtitle = lineHeights[3]
 
+lineHeights.caption = {
+  sm: lineHeights[0],
+  md: lineHeights[1]
+}
+
 export default lineHeights

@@ -18,4 +18,9 @@ fontSizes.heading = {
 
 fontSizes.subtitle = fontSizes[3]
 
+fontSizes.caption = {
+  sm: fontSizes[0],
+  md: fontSizes[1]
+}
+
 export default fontSizes
