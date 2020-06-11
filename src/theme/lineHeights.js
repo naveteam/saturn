@@ -23,4 +23,13 @@ lineHeights.caption = {
   md: lineHeights[1]
 }
 
+lineHeights.inputTitle = lineHeights[2]
+
+lineHeights.button = lineHeights[1]
+
+lineHeights.tag = {
+  sm: lineHeights[0],
+  md: lineHeights[1]
+}
+
 export default lineHeights

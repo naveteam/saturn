@@ -23,4 +23,13 @@ fontSizes.caption = {
   md: fontSizes[1]
 }
 
+fontSizes.inputTitle = fontSizes[2]
+
+fontSizes.button = fontSizes[1]
+
+fontSizes.tag = {
+  sm: fontSizes[0],
+  md: fontSizes[1]
+}
+
 export default fontSizes
