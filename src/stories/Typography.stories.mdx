@@ -48,7 +48,7 @@ O componente de Heading é uma extensão do componente [Typography](#typography)
 
 # Subtitle
 
-O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as` e `fontSize`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
+O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Preview>
   <Story name="Subtitle" parameters={{
@@ -67,19 +67,20 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
 <Props of={Subtitle} />
 
 
-# Body
+# Paragraph
 
-O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as` e `fontSize`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
+O componente de Paragraph é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Preview>
-  <Story name="Body" parameters={{
+  <Story name="Paragraph" parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
     }
   }}>
     <ThemeProvider>
-      <Paragraph>Subtitle</Paragraph>
+      <Paragraph>Paragraph - md</Paragraph>
+      <Paragraph variant='sm'>Paragraph - sm</Paragraph>
     </ThemeProvider>
   </Story>
 </Preview>
@@ -89,7 +90,7 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
 
 # Caption
 
-O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as` e `fontSize`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
+O componente de Caption é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Preview>
   <Story name="Caption" parameters={{
@@ -99,7 +100,8 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
     }
   }}>
     <ThemeProvider>
-      <Caption>Caption</Caption>
+      <Caption>Caption (md)</Caption>
+      <Caption variant='sm'>Caption (sm)</Caption>
     </ThemeProvider>
   </Story>
 </Preview>
