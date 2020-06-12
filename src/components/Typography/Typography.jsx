@@ -10,14 +10,13 @@ const BaseComponent = props => {
 }
 
 const Typography = props => {
-  return <StyledBase {...props} />
+  return <StyledBase color='typography.default' {...props} />
 }
 
 const StyledBase = styled(BaseComponent)`
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  color: black;
   ${space}
   ${typography}
   ${color}

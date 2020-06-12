@@ -4,7 +4,7 @@ const colors = {
   gray: {
     50: '#9E9E9E',
     100: '#F5F5F5',
-    200: '#EEEEE',
+    200: '#EEEEEE',
     300: '#E0E0E0',
     400: '#BDBDBD',
     500: '#9E9E9E',
@@ -142,5 +142,17 @@ colors.error = colors.red.main
 colors.support = colors.purple.main
 colors.lightmode = colors.gray.lightmode
 colors.darkmode = colors.gray.darkmode
+
+// Typography's colors
+colors.typography = {
+  default: colors.gray['700'],
+  heading: colors.gray['700'],
+  subtitle: colors.gray['800'],
+  paragraph: colors.gray['900'],
+  inputTitle: colors.gray['800'],
+  button: colors.gray['900'],
+  caption: colors.gray['800'],
+  tag: colors.gray['900']
+}
 
 export default colors

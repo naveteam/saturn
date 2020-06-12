@@ -6,6 +6,7 @@ import { Typography } from './'
 const Paragraph = ({ variant, ...props }) => (
   <Typography
     as='p'
+    color={props.color || 'typography.paragraph'}
     fontSize={props.fontSize || `paragraph.${variant}`}
     lineHeight={props.lineHeight || `paragraph.${variant}`}
     {...props}
