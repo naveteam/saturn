@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "eduardobittencourt",
+      "name": "Eduardo Bittencourt",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25224459?v=4",
+      "profile": "http://bittencourt.dev",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "nave-kit",
+  "projectOwner": "naveteam",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
