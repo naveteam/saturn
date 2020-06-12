@@ -20,7 +20,15 @@ const Heading = ({ variant, ...props }) => {
     }
   }, [])
 
-  return <Typography color={props.color || 'typography.heading'} as={variant} {...fontProps} {...props} />
+  return (
+    <Typography
+      fontWeight={props.fontWeight || 'heading'}
+      color={props.color || 'typography.heading'}
+      as={variant}
+      {...fontProps}
+      {...props}
+    />
+  )
 }
 
 Heading.defaultProps = {

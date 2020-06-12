@@ -5,6 +5,7 @@ import { Typography } from './'
 const Subtitle = props => (
   <Typography
     as='p'
+    fontWeight={props.fontWeight || 'subtitle'}
     color={props.color || 'typography.subtitle'}
     fontSize='subtitle'
     lineHeight='subtitle'
