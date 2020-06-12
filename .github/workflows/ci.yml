@@ -1,7 +1,7 @@
 name: ci
 
 on:
-  create:
+  push:
     tags:
      - 'v*'
 
