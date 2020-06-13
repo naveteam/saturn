@@ -17,14 +17,14 @@ const StyledBase = styled(BaseComponent)`
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  color: black;
   ${space}
   ${typography}
   ${color}
 `
 
 Typography.defaultProps = {
-  as: 'p'
+  as: 'p',
+  color: 'typography.default'
 }
 
 Typography.propTypes = {

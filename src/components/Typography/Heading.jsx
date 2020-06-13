@@ -3,27 +3,30 @@ import PropTypes from 'prop-types'
 
 import { Typography } from './'
 
-const Heading = ({ variant, ...props }) => {
-  const fontSize = useMemo(() => {
+const Heading = ({ variant, fontSize, lineHeight, ...props }) => {
+  // Issue aberta sobre o suporte de "array responsivo" nas alias: https://github.com/styled-system/styled-system/issues/1393
+  const fontProps = useMemo(() => {
     switch (variant) {
       case 'h1':
-        return [7, 8]
-      case 'h2':
-        return 6
-      case 'h3':
-        return 5
-      case 'h4':
-        return 4
+        return {
+          fontSize: fontSize || [`heading.${variant}.mobile`, `heading.${variant}.desktop`],
+          lineHeight: lineHeight || [`heading.${variant}.mobile`, `heading.${variant}.desktop`]
+        }
       default:
-        return [7, 8]
+        return {
+          fontSize: fontSize || `heading.${variant}`,
+          lineHeight: lineHeight || `heading.${variant}`
+        }
     }
   }, [variant])
 
-  return <Typography as={variant} fontSize={props.fontSize || fontSize} {...props} />
+  return <Typography {...fontProps} {...props} />
 }
 
 Heading.defaultProps = {
-  variant: 'h1'
+  variant: 'h1',
+  fontWeight: 'heading',
+  color: 'typography.heading'
 }
 
 Heading.propTypes = {
