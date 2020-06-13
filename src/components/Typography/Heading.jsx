@@ -18,7 +18,7 @@ const Heading = ({ variant, fontSize, lineHeight, ...props }) => {
           lineHeight: lineHeight || `heading.${variant}`
         }
     }
-  }, [])
+  }, [variant])
 
   return <Typography {...fontProps} {...props} />
 }
