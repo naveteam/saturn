@@ -5,9 +5,9 @@ import { Typography } from './'
 
 const Caption = ({ variant, as, fontWeight, color, fontSize, lineHeight, ...props }) => (
   <Typography
-    as={as || 'p'}
-    fontWeight={fontWeight || 'caption'}
-    color={color || 'typography.caption'}
+    as={as}
+    fontWeight={fontWeight}
+    color={color}
     fontSize={fontSize || `caption.${variant}`}
     lineHeight={lineHeight || `caption.${variant}`}
     {...props}
@@ -15,7 +15,10 @@ const Caption = ({ variant, as, fontWeight, color, fontSize, lineHeight, ...prop
 )
 
 Caption.defaultProps = {
-  variant: 'md'
+  variant: 'md',
+  as: 'p',
+  fontWeight: 'caption',
+  color: 'typography.caption'
 }
 
 Caption.propTypes = {

@@ -10,7 +10,7 @@ const BaseComponent = props => {
 }
 
 const Typography = ({ color, ...props }) => {
-  return <StyledBase color={color || 'typography.default'} {...props} />
+  return <StyledBase color={color} {...props} />
 }
 
 const StyledBase = styled(BaseComponent)`
@@ -23,7 +23,8 @@ const StyledBase = styled(BaseComponent)`
 `
 
 Typography.defaultProps = {
-  as: 'p'
+  as: 'p',
+  color: 'typography.default'
 }
 
 Typography.propTypes = {
