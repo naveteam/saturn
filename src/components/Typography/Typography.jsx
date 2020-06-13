@@ -9,8 +9,8 @@ const BaseComponent = props => {
   return React.createElement(as, rest, children)
 }
 
-const Typography = ({ color, ...props }) => {
-  return <StyledBase color={color} {...props} />
+const Typography = props => {
+  return <StyledBase {...props} />
 }
 
 const StyledBase = styled(BaseComponent)`
