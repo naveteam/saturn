@@ -1,0 +1,32 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+
+import { Button } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Button" component={Button} />
+
+# Button
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <Button variant='filled' color='green.500' fontSize='20px' onClick={() => console.log('primary')}>
+        Filled
+      </Button>
+      <Button variant='outline' color='blue.500' fontSize='20px' onClick={() => console.log('Outline')}>
+        Outline
+      </Button>
+      <Button variant='text' color='blue.500' fontSize='20px' onClick={() => console.log('Ghost')}>
+        Text
+      </Button>
+      <Button variant='disabled' color='white' fontSize='20px' onClick={() => console.log('Disabled')}>
+        Disabled
+      </Button>
+    </ThemeProvider>
+  </Story>
+</Preview>
