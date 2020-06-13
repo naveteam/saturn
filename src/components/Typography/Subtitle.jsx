@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Typography } from './'
 
-const Subtitle = props => (
+const Subtitle = ({ color, fontWeight, as, ...props }) => (
   <Typography
-    as='p'
-    fontWeight={props.fontWeight || 'subtitle'}
-    color={props.color || 'typography.subtitle'}
+    as={as || 'p'}
+    fontWeight={fontWeight || 'subtitle'}
+    color={color || 'typography.subtitle'}
     fontSize='subtitle'
     lineHeight='subtitle'
     {...props}
