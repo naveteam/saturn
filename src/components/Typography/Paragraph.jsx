@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 
 import { Typography } from './'
 
-const Paragraph = ({ variant, fontWeight, color, fontSize, lineHeight, ...props }) => (
+const Paragraph = ({ variant, fontSize, lineHeight, ...props }) => (
   <Typography
     as='p'
-    fontWeight={fontWeight}
-    color={color}
     fontSize={fontSize || `paragraph.${variant}`}
     lineHeight={lineHeight || `paragraph.${variant}`}
     {...props}

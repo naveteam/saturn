@@ -2,9 +2,8 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import { Typography } from './'
-import { fontWeight } from 'styled-system'
 
-const Heading = ({ variant, color, fontWeight, fontSize, lineHeight, ...props }) => {
+const Heading = ({ variant, fontSize, lineHeight, ...props }) => {
   // Issue aberta sobre o suporte de "array responsivo" nas alias: https://github.com/styled-system/styled-system/issues/1393
   const fontProps = useMemo(() => {
     switch (variant) {
@@ -21,7 +20,7 @@ const Heading = ({ variant, color, fontWeight, fontSize, lineHeight, ...props })
     }
   }, [])
 
-  return <Typography fontWeight={fontWeight} color={color} as={variant} {...fontProps} {...props} />
+  return <Typography {...fontProps} {...props} />
 }
 
 Heading.defaultProps = {

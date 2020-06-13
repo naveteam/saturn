@@ -3,15 +3,8 @@ import PropTypes from 'prop-types'
 
 import { Typography } from './'
 
-const Caption = ({ variant, as, fontWeight, color, fontSize, lineHeight, ...props }) => (
-  <Typography
-    as={as}
-    fontWeight={fontWeight}
-    color={color}
-    fontSize={fontSize || `caption.${variant}`}
-    lineHeight={lineHeight || `caption.${variant}`}
-    {...props}
-  />
+const Caption = ({ variant, fontSize, lineHeight, ...props }) => (
+  <Typography fontSize={fontSize || `caption.${variant}`} lineHeight={lineHeight || `caption.${variant}`} {...props} />
 )
 
 Caption.defaultProps = {
