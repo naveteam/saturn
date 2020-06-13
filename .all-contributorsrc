@@ -23,7 +23,10 @@
         "code",
         "bug",
         "doc",
-        "example"
+        "example",
+        "ideas",
+        "maintenance",
+        "review"
       ]
     }
   ],
