@@ -6,10 +6,13 @@ const Subtitle = ({ color, fontWeight, as, ...props }) => (
   <Typography as={as} fontWeight={fontWeight} color={color} fontSize='subtitle' lineHeight='subtitle' {...props} />
 )
 
-Subtitle.propTypes = {
+Subtitle.defaultProps = {
   as: 'p',
   fontWeight: 'subtitle',
-  color: 'typography.subtitle',
+  color: 'typography.subtitle'
+}
+
+Subtitle.propTypes = {
   ...Typography.propTypes
 }
 
