@@ -46,6 +46,15 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "gabrieldocouto",
+      "name": "Gabriel Do Couto Santos",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/40507979?v=4",
+      "profile": "https://github.com/gabrieldocouto",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
