@@ -20,7 +20,10 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/46852072?v=4",
       "profile": "https://github.com/dpnunez",
       "contributions": [
-        "code"
+        "code",
+        "bug",
+        "doc",
+        "example"
       ]
     }
   ],
