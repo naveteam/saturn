@@ -11,7 +11,28 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/25224459?v=4",
       "profile": "http://bittencourt.dev",
       "contributions": [
-        "doc"
+        "doc",
+        "code",
+        "ideas",
+        "maintenance",
+        "review",
+        "bug",
+        "example"
+      ]
+    },
+    {
+      "login": "dpnunez",
+      "name": "Daniel Pôrto Nuñez",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/46852072?v=4",
+      "profile": "https://github.com/dpnunez",
+      "contributions": [
+        "code",
+        "bug",
+        "doc",
+        "example",
+        "ideas",
+        "maintenance",
+        "review"
       ]
     },
     {
