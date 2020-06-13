@@ -8,7 +8,7 @@ const Paragraph = ({ variant, fontWeight, color, fontSize, lineHeight, ...props 
     as='p'
     fontWeight={fontWeight}
     color={color}
-    fontSize={fontSize}
+    fontSize={fontSize || `paragraph.${variant}`}
     lineHeight={lineHeight || `paragraph.${variant}`}
     {...props}
   />
