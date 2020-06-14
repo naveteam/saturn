@@ -123,6 +123,7 @@ const colors = {
   }
 }
 
+colors.gray.main = colors.gray['400']
 colors.blue.main = colors.blue['400']
 colors.cyan.main = colors.cyan['400']
 colors.red.main = colors.red['400']
