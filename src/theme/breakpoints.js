@@ -1,1 +1,1 @@
-export default ['360px', '768px', '1280px']
+export default ['768px', '1280px']
