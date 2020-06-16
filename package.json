@@ -22,6 +22,7 @@
   "scripts": {
     "start": "start-storybook -p 3000 -s public",
     "build": "rollup -c",
+    "build-sb":"build-storybook -c .storybook -o build",
     "deploy": "storybook-to-ghpages --ci",
     "commit": "npx git-cz"
   },
