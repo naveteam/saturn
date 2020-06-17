@@ -5,28 +5,30 @@ import PropTypes from 'prop-types'
 
 import { Typography } from '../'
 
-const CustomButton = forwardRef(({ type, variant, children, color, fontSize, disabled, fontWeight, ...props }, ref) => {
-  const nameColor = color.split('.') // Apenas para mostrar a variação de cores
-  return (
-    <Button
-      type={type}
-      color={color}
-      colorVariant={nameColor}
-      ref={ref}
-      variant={disabled ? 'disabled' : variant}
-      disabled={disabled}
-      {...props}
-    >
-      <Typography
-        color={variant === 'filled' || disabled ? 'white' : color}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
+const CustomButton = forwardRef(
+  ({ type, variant, children, color, fontSize = 'button', disabled, fontWeight, ...props }, ref) => {
+    const nameColor = color.split('.') // Apenas para mostrar a variação de cores
+    return (
+      <Button
+        type={type}
+        color={color}
+        colorVariant={nameColor}
+        ref={ref}
+        variant={disabled ? 'disabled' : variant}
+        disabled={disabled}
+        {...props}
       >
-        {children}
-      </Typography>
-    </Button>
-  )
-})
+        <Typography
+          color={variant === 'filled' || disabled ? 'white' : color}
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+        >
+          {children}
+        </Typography>
+      </Button>
+    )
+  }
+)
 
 const Button = styled.button`
   width: 100%;
