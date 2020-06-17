@@ -69,5 +69,10 @@ Para que a execução de sua task seja feita da melhor maneira possível, alguma
 ### 🔜 Após o desenvolvimento
 
 - Abrir um `Pull Request` com sua branch seguindo um dos modelos de PR presentes no repositório. Descrever de maneira clara e objetiva seu PR e certificar-se que todo o checklist seja cumprido.
+- Executar o comando `yarn chromatic` em seu terminal para criar um build do seu projeto dentro da ferramenta do Chromatic. Esse comando é essencial para aprovação do seu PR, mesmo se não houverem mudanças visuais no componente.
 - Após um mínimo de 2 (dois) approves, mergear seu PR na `master` e testar em ambiente de produção se o comportamento de seu componente está de acordo com o esperado.
 - Sentar, tomar um café e admirar seu componente recém criado disponível em produção. ☕️
+
+## 🌀 Workflow
+
+Você pode visualizar a abstração do workflow desenvolvido para o nave-kit [aqui](https://miro.com/app/board/o9J_kqytVp0=/)
