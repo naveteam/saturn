@@ -22,10 +22,10 @@
   "scripts": {
     "start": "start-storybook -p 3000 -s public",
     "build": "rollup -c",
-    "build-sb": "build-storybook -c .storybook -o build",
+    "build-storybook": "build-storybook -c .storybook -o build",
     "deploy": "storybook-to-ghpages --ci",
     "commit": "npx git-cz",
-    "chromatic": "chromatic build-sb --project-token=aisyw673n8n"
+    "chromatic": "chromatic --project-token=aisyw673n8n"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
