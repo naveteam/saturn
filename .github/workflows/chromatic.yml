@@ -18,4 +18,4 @@ jobs:
       run: yarn install
 
     - name: Build and Deploy
-      run: yarn chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} -b build-sb
+      run: yarn chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} -b build-sb --exit-zero-on-changes
