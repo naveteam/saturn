@@ -63,6 +63,16 @@ Você pode encontrar em nosso [Storybook](https://naveteam.github.io/nave-kit) a
 
 Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo PRs para ajustar bugs ou mesmo levantando dúvidas, sugestões ou pedidos de ajustes através de issues. Para contribuir com nosso projeto, por favor siga nosso guia de [CONTRIBUTING](CONTRIBUTING.md).
 
+## 📚 Links úteis
+
+- [Figma](https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System): Onde todo o design do projeto se encontra
+- [Chromatic](https://www.chromatic.com/builds?appId=5ee911f58891670022043e8a): Local onde ocorre a revisão dos componentes pelo time de degisn
+- [NPM](https://www.npmjs.com/package/@naveteam/ui-components): Acesso ao pacote NPM do projeto
+- [Github](https://github.com/naveteam/nave-kit): Repositório da lib
+- [Storybook](https://naveteam.github.io/nave-kit): Página com o projeto mais atualizado para referência
+- [Miro](https://miro.com/app/board/o9J_kqytVp0=): Resumo do Workflow de desenvolvimento de um componente
+- [Roadmap](https://github.com/naveteam/nave-kit/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
+
 ## 🐛 Bugs Conhecidos
 
 ### O Storybook não renderiza PropTypes passadas dinamicamente para meu componente

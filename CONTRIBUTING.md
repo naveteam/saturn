@@ -75,4 +75,4 @@ Para que a execução de sua task seja feita da melhor maneira possível, alguma
 
 ## 🌀 Workflow
 
-Você pode visualizar a abstração do workflow desenvolvido para o nave-kit [aqui](https://miro.com/app/board/o9J_kqytVp0=/)
+Você pode visualizar a abstração do workflow desenvolvido para o nave-kit [aqui](https://miro.com/app/board/o9J_kqytVp0=)
