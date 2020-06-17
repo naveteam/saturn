@@ -22,9 +22,10 @@
   "scripts": {
     "start": "start-storybook -p 3000 -s public",
     "build": "rollup -c",
-    "build-sb":"build-storybook -c .storybook -o build",
+    "build-sb": "build-storybook -c .storybook -o build",
     "deploy": "storybook-to-ghpages --ci",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "chromatic": "chromatic build-sb --project-token=aisyw673n8n"
   },
   "peerDependencies": {
     "react": ">=16.13.1",
@@ -47,6 +48,7 @@
     "@styled-system/prop-types": "^5.1.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "chromatic": "^4.0.3",
     "cz-conventional-changelog": "3.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
