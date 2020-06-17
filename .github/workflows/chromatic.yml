@@ -1,21 +1,20 @@
 name: chromatic
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+on: [push]
 
 jobs:
   deploy:
     name: Preview
     runs-on: ubuntu-latest
+    if: github.base_ref == 'master'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
 
-    - name: Install Package dependencies
+    - name: Install dependencies
       run: yarn install
 
-    - name: Build and Deploy
-      run: yarn chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} -b build-sb --exit-zero-on-changes
+    - name: Chromatic
+      run: yarn chromatic --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
