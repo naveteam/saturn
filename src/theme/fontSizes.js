@@ -25,7 +25,7 @@ fontSizes.caption = {
 
 fontSizes.inputTitle = fontSizes[2]
 
-fontSizes.button = fontSizes[1]
+fontSizes.button = fontSizes[2]
 
 fontSizes.tag = {
   sm: fontSizes[0],
