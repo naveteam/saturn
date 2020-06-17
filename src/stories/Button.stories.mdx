@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
 
-import { Button } from '../components'
+import { Button, Flex, Box, Input } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Button" component={Button} />
@@ -15,18 +16,28 @@ import { ThemeProvider } from '../theme'
     }
   }}>
     <ThemeProvider>
-      <Button variant='filled' color='green.500' fontSize='20px' onClick={() => console.log('primary')}>
-        Filled
-      </Button>
-      <Button variant='outline' color='blue.500' fontSize='20px' onClick={() => console.log('Outline')}>
-        Outline
-      </Button>
-      <Button variant='text' color='blue.500' fontSize='20px' onClick={() => console.log('Ghost')}>
-        Text
-      </Button>
-      <Button variant='disabled' color='white' fontSize='20px' onClick={() => console.log('Disabled')}>
-        Disabled
-      </Button>
+      <Flex>
+        <Box width={[1, 1, 1 / 4]} p='2' flexWrap='wrap'>
+          <Button variant='filled' color='red.400' fontSize='20px' onClick={() => console.log('Filled')}>
+            Filled
+          </Button>
+        </Box>
+        <Box width={[1, 1, 1 / 4]} p='2'>
+          <Button variant='outline' color='blue.500' fontSize='20px' onClick={() => console.log('Outline')}>
+            Outline
+          </Button>
+        </Box>
+        <Box width={[1, 1, 1 / 4]} p='2'>
+          <Button variant='text' color='blue.500' fontSize='20px' onClick={() => console.log('Text')}>
+            Text
+          </Button>
+        </Box>
+        <Box width={[1, 1, 1 / 4]} p='2'>
+          <Button variant='filled' color='blue.500' fontSize='20px' disabled onClick={() => console.log('Disabled')}>
+            Disabled
+          </Button>
+        </Box>
+      </Flex>
     </ThemeProvider>
   </Story>
 </Preview>
