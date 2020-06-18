@@ -25,7 +25,7 @@ const Base = styled.div`
 Tag.defaultProps = {
   variant: 'md',
   fontWeight: 'tag',
-  backgroundColor: 'red.main',
+  backgroundColor: 'blue.main',
   color: 'white'
 }
 
