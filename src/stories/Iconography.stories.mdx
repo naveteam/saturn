@@ -1,0 +1,23 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Icon, Flex, Box, Caption } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Iconography" component={Icon} />
+
+# Icon
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}>
+    <ThemeProvider>
+      <Icon icon='edu' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Icon} />
