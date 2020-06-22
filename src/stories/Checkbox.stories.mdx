@@ -1,0 +1,38 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Checkbox } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Checkbox" component={Checkbox} />
+
+# Default
+
+Lorem ipsum dolor...
+
+<Preview>
+  <Story name="Default">
+    <ThemeProvider>
+      <Checkbox label='teste' name='a' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+### Proptypes Flex
+
+<Props of={Checkbox} />
+
+# disabled
+
+Lorem ipsum dolor...
+
+<Preview>
+  <Story name="Disable">
+    <ThemeProvider>
+      <Checkbox label='teste' value={false} disabled/>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+### Proptypes Flex
+
+<Props of={Checkbox} />
