@@ -1,21 +1,57 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
-import { space, layout, flexbox } from 'styled-system'
+import { space, layout, flexbox, border, typography } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'
 
-const Input = forwardRef(({ name, label, message, placeholder, value, onChange }, ref) => {
-  return (
-    <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center'>
-      <Label htmlFor={name} mb='3'>
-        {label}
-      </Label>
-      <InputBase ref={ref} name={name} placeholder={placeholder} value={value} onChange={onChange} p='3' />
-      <Info mt='2'>{message}</Info>
-    </Container>
-  )
-})
+const Input = forwardRef(
+  ({ name, label, message, placeholder, value, onChange, prefix, suffix, error, disabled }, ref) => {
+    return (
+      <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center'>
+        {label && (
+          <Label htmlFor={name} mb='3' fontSize={2} color={error ? 'error' : 'gray.800'} fontWeight={1} lineHeight={1}>
+            {label}
+          </Label>
+        )}
+        <Border
+          borderRadius={4}
+          borderColor={error ? 'error' : 'gray.600'}
+          borderWidth='1px'
+          borderStyle='solid'
+          p='3'
+          display='flex'
+          error={error}
+        >
+          {prefix && <Typography mr={3}>{prefix}</Typography>}
+          <InputBase
+            ref={ref}
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            border='none'
+            fontSize={2}
+            color='gray.900'
+            backgroundColor='white'
+            flex='1'
+            disabled={disabled}
+          />
+          {suffix && (
+            <Typography ml={3} color={error ? 'error' : 'gray.800'}>
+              {suffix}
+            </Typography>
+          )}
+        </Border>
+        {message && (
+          <Info mt='2' fontSize={1} lineHeight={1} color={error ? 'error' : 'gray.800'}>
+            {message}
+          </Info>
+        )}
+      </Container>
+    )
+  }
+)
 
 const Container = styled.div`
   ${layout}
@@ -26,8 +62,20 @@ const Label = styled(Typography)`
   ${space}
 `
 
+const Border = styled.div`
+  ${space}
+  ${border}
+  ${layout}
+`
+
 const InputBase = styled.input`
   ${space}
+  ${border}
+  ${typography}
+  ${flexbox}
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.gray[600]};
+  }
 `
 
 const Info = styled(Typography)`

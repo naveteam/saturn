@@ -16,6 +16,10 @@ import { ThemeProvider } from '../theme'
   }}>
     <ThemeProvider>
       <Input name='base' label='Label' message='Message' placeholder='Placeholder' />
+      <Input name='prefix' label='Prefix' placeholder='Input com prefixo' prefix='R$' />
+      <Input name='suffix' label='Suffix' placeholder='Input com sufixo' suffix='reais' />
+      <Input name='error' label='Error' placeholder='Input com erro' suffix='error' error={true} message='Required' />
+      <Input name='disabled' label='Disabled' placeholder='Input desabilitado' disabled />
     </ThemeProvider>
   </Story>
 </Preview>
