@@ -17,7 +17,9 @@
         "maintenance",
         "review",
         "bug",
-        "example"
+        "example",
+        "infra",
+        "talk"
       ]
     },
     {
