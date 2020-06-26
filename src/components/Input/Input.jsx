@@ -8,7 +8,7 @@ import { Typography } from '../'
 const Input = forwardRef(
   ({ name, label, message, placeholder, value, onChange, prefix, suffix, error, disabled }, ref) => {
     return (
-      <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center'>
+      <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center' disabled={disabled}>
         {label && (
           <Label htmlFor={name} mb='3' fontSize={2} color={error ? 'error' : 'gray.800'} fontWeight={1} lineHeight={1}>
             {label}
@@ -56,6 +56,17 @@ const Input = forwardRef(
 const Container = styled.div`
   ${layout}
   ${flexbox}
+  ${({ disabled, theme }) =>
+    disabled &&
+    `
+    border-color: ${theme.colors.gray[400]};
+    ${Border} {
+      background-color: ${theme.colors.gray[100]};
+    }
+    ${Label}, ${Info} {
+      color: ${theme.colors.gray[500]}
+    }
+  `}
 `
 
 const Label = styled(Typography)`
@@ -75,6 +86,12 @@ const InputBase = styled.input`
   ${flexbox}
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray[600]};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.gray[100]};
+    &::placeholder {
+    color: ${({ theme }) => theme.colors.gray[500]};
+    }
   }
 `
 

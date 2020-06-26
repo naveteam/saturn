@@ -34,7 +34,7 @@ export default {
       babelHelpers: 'inline',
       exclude: 'node_modules/**',
       presets: ['@babel/preset-env', '@babel/preset-react'],
-      plugins: ['@babel/plugin-proposal-optional-chaining']
+      plugins: ['@babel/plugin-proposal-optional-chaining', 'babel-plugin-styled-components']
     }),
     commonjs(),
     image(),
