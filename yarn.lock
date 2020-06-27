@@ -2681,6 +2681,46 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
+"@xstyled/core@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@xstyled/core/-/core-1.17.1.tgz#a915e2bf93dc20c8e74f7f8f7e4e0410fdf8483e"
+  integrity sha512-HHPiElug7o0S5+3VbwKYXVcS7KWsD4F5+EW8myuFdROcMU31nl999KqdBfnIChsX9ZJFrBarbRgYR2L/xEqw3Q==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@xstyled/system" "^1.17.1"
+
+"@xstyled/prop-types@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@xstyled/prop-types/-/prop-types-1.17.1.tgz#a22120e11e4e0b0bc27b98dc503fafc82af94ffc"
+  integrity sha512-0bWKTSAIUeg5ONxFthHwoZEBmvAl/9hlktFDShQya9+MiOkktLCNV1UMawh3cJinWEecimz1KSSTRqK4dE4s3A==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
+"@xstyled/styled-components@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@xstyled/styled-components/-/styled-components-1.17.1.tgz#ea4b74e0e0bd41e0cc9488f930c21c92581e5851"
+  integrity sha512-np1gl0RrxzOBMyhI/HNiKfMor1rJnmPhEttQ9lZmlynYZ5uA4t4iAm1eJKyl6QbkM8QAklliwdkYqR8aWzySLQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@xstyled/core" "^1.17.1"
+    "@xstyled/system" "^1.17.1"
+    "@xstyled/util" "^1.17.1"
+
+"@xstyled/system@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@xstyled/system/-/system-1.17.1.tgz#d1a21eb54e12628d1705f6f28fbc0f10f9ab65a5"
+  integrity sha512-Y3NRUypWOTolC9jpCyPHqjrPoRSF0ftxdhXbOY/DDvo2Q4L76GantinJH7cEXqxQaqEl3uA0h5bsjY0F5KflSw==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@xstyled/util" "^1.17.1"
+
+"@xstyled/util@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@xstyled/util/-/util-1.17.1.tgz#a3f16c1304863f76a6dc17782613a88239f32950"
+  integrity sha512-r5Jebxto3WjyvalwGdd0QLTJZE041R/BBXn+JWnDOsrxHXumG1tZ4w4/GnjH0bhA4rcUb7rP3yTffqehhMCSWQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
