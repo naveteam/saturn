@@ -1,7 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
 import { Tag } from '../components'
-import { ThemeProvider } from '../theme'
+import { ThemeProvider } from '../theme/xStyled'
 
 <Meta title="Tag" component={Tag} />
 
@@ -18,6 +18,9 @@ Componente base de Tag
   }}>
     <ThemeProvider>
       <Tag>Selected</Tag>
+      <Tag color='secondary'>Secondary</Tag>
+      <Tag selected={false}>Not Selected</Tag>
+      <Tag selected='disabled'>Disabled</Tag>
     </ThemeProvider>
   </Story>
 </Preview>

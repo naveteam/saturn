@@ -12,7 +12,7 @@ const fontSizes = [10, 12, 14, 16, 20, 24, 32, 40, 48]
 
 const fontWeights = [400, 600]
 
-const lineHeights = [14, 16, 18, 24, 32, 40, 48, 64, 72]
+const lineHeights = ['14px', '16px', '18px', '24px', '32px', '40px', '48px', '64px', '72px']
 
 const space = [0, 2, 4, 8, 16, 24, 32, 64]
 
