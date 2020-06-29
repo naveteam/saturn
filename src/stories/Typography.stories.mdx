@@ -1,7 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
 import { Typography, Heading, Subtitle, Paragraph, Caption } from '../components'
-import { ThemeProvider } from '../theme'
+import { ThemeProvider } from '../theme/xStyled'
 
 <Meta title="Typography" />
 
@@ -79,8 +79,8 @@ O componente de Paragraph é uma extensão do componente [Typography](#typograph
     }
   }}>
     <ThemeProvider>
-      <Paragraph>Paragraph - md</Paragraph>
-      <Paragraph variant='sm'>Paragraph - sm</Paragraph>
+      <Paragraph>Paragraph (md)</Paragraph>
+      <Paragraph variant='sm'>Paragraph (sm)</Paragraph>
     </ThemeProvider>
   </Story>
 </Preview>

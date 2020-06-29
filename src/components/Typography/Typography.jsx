@@ -1,17 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
-import { space, typography, color } from 'styled-system'
+import styled from '@xstyled/styled-components'
+import { space, typography, color } from '@xstyled/system'
 import PropTypes from 'prop-types'
-import StyledSystemPropTypes from '@styled-system/prop-types'
 
-const BaseComponent = props => {
-  const { as, children, ...rest } = props
-  return React.createElement(as, rest, children)
-}
+const BaseComponent = ({ as, children, ...props }) => React.createElement(as, props, children)
 
-const Typography = props => {
-  return <StyledBase {...props} />
-}
+const Typography = props => <StyledBase {...props} />
 
 const StyledBase = styled(BaseComponent)`
   margin: 0;
@@ -23,14 +17,10 @@ const StyledBase = styled(BaseComponent)`
 `
 
 Typography.defaultProps = {
-  as: 'p',
-  color: 'typography.default'
+  as: 'p'
 }
 
 Typography.propTypes = {
-  ...StyledSystemPropTypes.space,
-  ...StyledSystemPropTypes.typography,
-  ...StyledSystemPropTypes.color,
   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'p', 'span', 'label'])
 }
 
