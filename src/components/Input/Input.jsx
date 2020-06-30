@@ -5,14 +5,20 @@ import { variant } from '@xstyled/system'
 import { Flex, Box } from '../Grid'
 import { Typography } from '../'
 
-const Input = forwardRef(({ label, message, prefix, suffix, error, placeholder, width }, ref) => {
+const Input = forwardRef(({ label, message, prefix, suffix, error, placeholder, width, disabled }, ref) => {
   const [focus, setFocus] = useState(false)
   return (
-    <Wrapper error={error} width={width}>
+    <Wrapper error={error} width={width} disabled={disabled}>
       <Label>{label}</Label>
       <Container focus={focus}>
         {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
-        <InputBase ref={ref} placeholder={placeholder} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+        <InputBase
+          ref={ref}
+          placeholder={placeholder}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          disabled={disabled}
+        />
         {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
       </Container>
       <Message>{message}</Message>
@@ -38,6 +44,25 @@ const errorVariant = variant({
   }
 })
 
+const disabledVariant = variant({
+  prop: 'disabled',
+  default: false,
+  variants: {
+    true: css`
+      p {
+        color: gray.500;
+      }
+      div {
+        border-color: gray.400;
+        background-color: gray.100;
+        span {
+          color: gray.400;
+        }
+      }
+    `
+  }
+})
+
 const focusVariant = variant({
   prop: 'focus',
   default: false,
@@ -52,6 +77,7 @@ const focusVariant = variant({
 
 const Wrapper = styled(Box)`
   ${errorVariant}
+  ${disabledVariant}
 `
 const Label = styled(Typography)`
   font-size: 2;
@@ -79,6 +105,7 @@ const InputBase = styled.input`
   flex: 1;
   font-size: 3;
   line-height: 3;
+  background-color: transparent;
   &::placeholder {
     color: gray.600;
   }
