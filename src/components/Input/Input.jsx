@@ -1,46 +1,92 @@
-import React, { forwardRef } from 'react'
-import styled from 'styled-components'
-import { space, layout, flexbox } from 'styled-system'
-import PropTypes from 'prop-types'
+import React, { useState, forwardRef } from 'react'
+import styled, { css } from '@xstyled/styled-components'
+import { variant } from '@xstyled/system'
 
+import { Flex, Box } from '../Grid'
 import { Typography } from '../'
 
-const Input = forwardRef(({ name, label, message, placeholder, value, onChange }, ref) => {
+const Input = forwardRef(({ label, message, prefix, suffix, error, placeholder, width }, ref) => {
+  const [focus, setFocus] = useState(false)
   return (
-    <Container display='flex' flexDirection='column' alignItems='stretch' justifyContent='center'>
-      <Label htmlFor={name} mb='3'>
-        {label}
-      </Label>
-      <InputBase ref={ref} name={name} placeholder={placeholder} value={value} onChange={onChange} p='3' />
-      <Info mt='2'>{message}</Info>
-    </Container>
+    <Wrapper error={error} width={width}>
+      <Label>{label}</Label>
+      <Container focus={focus}>
+        {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
+        <InputBase ref={ref} placeholder={placeholder} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+        {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
+      </Container>
+      <Message>{message}</Message>
+    </Wrapper>
   )
 })
 
-const Container = styled.div`
-  ${layout}
-  ${flexbox}
-`
+const errorVariant = variant({
+  prop: 'error',
+  default: false,
+  variants: {
+    true: css`
+      p {
+        color: red.400;
+      }
+      div {
+        border-color: red.400;
+        span {
+          color: red.400;
+        }
+      }
+    `
+  }
+})
 
+const focusVariant = variant({
+  prop: 'focus',
+  default: false,
+  variants: {
+    true: css`
+      border-color: blue.50;
+      border-width: 2px;
+      padding: 3px;
+    `
+  }
+})
+
+const Wrapper = styled(Box)`
+  ${errorVariant}
+`
 const Label = styled(Typography)`
-  ${space}
+  font-size: 2;
+  line-height: 1;
+  font-weight: 1;
+  margin-bottom: 2;
 `
-
+const Container = styled(Flex)`
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 2;
+  padding: 2;
+  align-items: center;
+  ${focusVariant}
+`
+const Affix = styled(Typography)`
+  font-size: 1;
+  line-height: 1;
+  margin: 0 2;
+  pointer-events: none;
+`
 const InputBase = styled.input`
-  ${space}
+  border: 0;
+  flex: 1;
+  font-size: 3;
+  line-height: 3;
+  &::placeholder {
+    color: gray.600;
+  }
 `
-
-const Info = styled(Typography)`
-  ${space}
+const Message = styled(Typography)`
+  font-size: 1;
+  line-height: 1;
+  margin-top: 2;
 `
-
-Input.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  message: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func
-}
 
 export default Input
