@@ -28,6 +28,11 @@ colors.secondary = colors.cyan['400']
 colors.secondary_hover = colors.cyan['600']
 colors.secondary_active = colors.cyan['800']
 
+colors.success = colors.green['400']
+colors.error = colors.red['400']
+colors.warning = colors.amber['400']
+colors.info = colors.blue['400']
+
 colors.disabled = colors.gray['500']
 
 const Theme = { colors, space, radii, breakpoints, fontSizes, fontWeights, lineHeights }

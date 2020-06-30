@@ -5,10 +5,10 @@ import { variant } from '@xstyled/system'
 import { Flex, Box } from '../Grid'
 import { Typography } from '../'
 
-const Input = forwardRef(({ label, message, prefix, suffix, error, placeholder, width, disabled }, ref) => {
+const Input = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, ...props }, ref) => {
   const [focus, setFocus] = useState(false)
   return (
-    <Wrapper error={error} width={width} disabled={disabled}>
+    <Wrapper disabled={disabled} {...props}>
       <Label>{label}</Label>
       <Container focus={focus}>
         {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
@@ -32,12 +32,12 @@ const errorVariant = variant({
   variants: {
     true: css`
       p {
-        color: red.400;
+        color: error;
       }
       div {
-        border-color: red.400;
+        border-color: error;
         span {
-          color: red.400;
+          color: error;
         }
       }
     `
@@ -50,7 +50,7 @@ const disabledVariant = variant({
   variants: {
     true: css`
       p {
-        color: gray.500;
+        color: disabled;
       }
       div {
         border-color: gray.400;
