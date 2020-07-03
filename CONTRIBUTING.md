@@ -19,10 +19,10 @@ Após instalação e configuração de seu ambiente, tudo que você têm a fazer
 
 ```shell
 // clonar o repositório
-git clone git@github.com:naveteam/nave-kit.git
+git clone git@github.com:naveteam/saturn-system.git
 
 // acessar a pasta do projeto
-cd nave-kit
+cd saturn-system
 
 // instalar as dependências
 yarn // ou npm install
@@ -33,7 +33,7 @@ yarn start // ou npm run start
 
 Isso irá abrir o playground do StoryBook, onde todos os nossos componentes serão desenvolvidos.
 
-Para executar novas tasks, você pode selecionar qualquer card da coluna `To Do` presente no nosso [roadmap](https://github.com/naveteam/nave-kit/projects/2).
+Para executar novas tasks, você pode selecionar qualquer card da coluna `To Do` presente no nosso [roadmap](https://github.com/naveteam/saturn-system/projects/2).
 
 ## 📁 Estrutura de pastas
 
@@ -75,4 +75,4 @@ Para que a execução de sua task seja feita da melhor maneira possível, alguma
 
 ## 🌀 Workflow
 
-Você pode visualizar a abstração do workflow desenvolvido para o nave-kit [aqui](https://miro.com/app/board/o9J_kqytVp0=)
+Você pode visualizar a abstração do workflow desenvolvido para o saturn-system [aqui](https://miro.com/app/board/o9J_kqytVp0=)
