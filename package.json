@@ -3,15 +3,15 @@
   "version": "0.2.8",
   "author": "Eduardo Bittencourt <eduardo.bittencourt@nave.rs>",
   "license": "MIT",
-  "repository": "naveteam/nave-kit",
-  "homepage": "https://naveteam.github.io/nave-kit/",
+  "repository": "naveteam/saturn-system",
+  "homepage": "https://naveteam.github.io/saturn-system/",
   "private": false,
   "keywords": [
     "react",
     "react-ui",
     "nave design",
     "nave-design-kit",
-    "nave-kit",
+    "saturn-system",
     "nave-design-system"
   ],
   "main": "build/index.js",

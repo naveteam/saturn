@@ -2,7 +2,7 @@
   <a href="https://nave.rs/" rel="noopener" target="_blank"><img width="150" style="border-radius: 10px;" src="https://avatars3.githubusercontent.com/u/33161449?s=200&v=4" alt="Nave.rs logo"></a></p>
 </p>
 
-<h1 align="center">Nave Kit</h1>
+<h1 align="center">Saturn System</h1>
 
 <p align="center">Repositório de componentes React baseado no <a href='https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System'>design system</a> da Nave.</p>
 
@@ -10,8 +10,8 @@
 [![NPM](https://img.shields.io/npm/v/@naveteam/ui-components.svg)](https://www.npmjs.com/package/@naveteam/ui-components)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
-![ci](https://github.com/naveteam/nave-kit/workflows/ci/badge.svg)
-[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/nave-kit?color=purple)](#contributors-)
+![ci](https://github.com/naveteam/saturn-system/workflows/ci/badge.svg)
+[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/saturn-system?color=purple)](#contributors-)
 
 ## ❗️ Motivação
 
@@ -57,7 +57,7 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-Você pode encontrar em nosso [Storybook](https://naveteam.github.io/nave-kit) a documentação necessária de todos os componentes disponíveis no projeto.
+Você pode encontrar em nosso [Storybook](https://naveteam.github.io/saturn-system) a documentação necessária de todos os componentes disponíveis no projeto.
 
 ## 🤝 Contribuição
 
@@ -68,10 +68,10 @@ Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo
 - [Figma](https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System): Onde todo o design do projeto se encontra
 - [Chromatic](https://www.chromatic.com/builds?appId=5ee911f58891670022043e8a): Local onde ocorre a revisão dos componentes pelo time de degisn
 - [NPM](https://www.npmjs.com/package/@naveteam/ui-components): Acesso ao pacote NPM do projeto
-- [Github](https://github.com/naveteam/nave-kit): Repositório da lib
-- [Storybook](https://naveteam.github.io/nave-kit): Página com o projeto mais atualizado para referência
+- [Github](https://github.com/naveteam/saturn-system): Repositório da lib
+- [Storybook](https://naveteam.github.io/saturn-system): Página com o projeto mais atualizado para referência
 - [Miro](https://miro.com/app/board/o9J_kqytVp0=): Resumo do Workflow de desenvolvimento de um componente
-- [Roadmap](https://github.com/naveteam/nave-kit/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
+- [Roadmap](https://github.com/naveteam/saturn-system/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
 
 ## 🐛 Bugs Conhecidos
 
