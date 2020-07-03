@@ -7,7 +7,7 @@
 <p align="center">Repositório de componentes React baseado no <a href='https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System'>design system</a> da Nave.</p>
 
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
-[![NPM](https://img.shields.io/npm/v/@naveteam/ui-components.svg)](https://www.npmjs.com/package/@naveteam/ui-components)
+[![NPM](https://img.shields.io/npm/v/@naveteam/saturn.svg)](https://www.npmjs.com/package/@naveteam/saturn)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 ![ci](https://github.com/naveteam/saturn-system/workflows/ci/badge.svg)
@@ -33,8 +33,8 @@ Baseamos nosso desenvolvimento em:
 No terminal, execute
 
 ```shell
-yarn add @naveteam/ui-components
-// ou npm install @naveteam/ui-components
+yarn add @naveteam/saturn
+// ou npm install @naveteam/saturn
 ```
 
 ## 💡 Utilização
@@ -44,7 +44,7 @@ Com a lib instalada, o seguinte código já é o suficiente para iniciar o desen
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider, Input } from '@naveteam/ui-components'
+import { ThemeProvider, Input } from '@naveteam/saturn'
 
 const App = () => {
   return (
@@ -67,7 +67,7 @@ Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo
 
 - [Figma](https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System): Onde todo o design do projeto se encontra
 - [Chromatic](https://www.chromatic.com/builds?appId=5ee911f58891670022043e8a): Local onde ocorre a revisão dos componentes pelo time de degisn
-- [NPM](https://www.npmjs.com/package/@naveteam/ui-components): Acesso ao pacote NPM do projeto
+- [NPM](https://www.npmjs.com/package/@naveteam/saturn): Acesso ao pacote NPM do projeto
 - [Github](https://github.com/naveteam/saturn-system): Repositório da lib
 - [Storybook](https://naveteam.github.io/saturn-system): Página com o projeto mais atualizado para referência
 - [Miro](https://miro.com/app/board/o9J_kqytVp0=): Resumo do Workflow de desenvolvimento de um componente
