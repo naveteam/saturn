@@ -1,13 +1,13 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Tag } from '../components'
+import { Tag, Flex, Box } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Tag" component={Tag} />
 
 # Tag
 
-Componente base de Tag
+O component de Tag permite o usuário executar ações ou mostrar informações destacadas. Também pode ser utilizado como marcações para filtros, selects e checkbox.
 
 <Preview>
   <Story name="Base" parameters={{
@@ -17,12 +17,90 @@ Componente base de Tag
     }
   }}>
     <ThemeProvider>
-      <Tag>Selected</Tag>
+      <Flex>
+        <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+          <Tag>Selected</Tag>
+        </Box>
+        <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+          <Tag color='secondary'>Secondary</Tag>
+        </Box>
+        <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+          <Tag selected={false}>Not Selected</Tag>
+        </Box>
+        <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+          <Tag selected='disabled'>Disabled</Tag>
+        </Box>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Primary
+A variant primary tem uma função de mais destaque, ideal para executar ações e/ou mostrar informações fundamentais para o usuário.
+<Preview>
+  <Story name="Primary" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+    }
+  }}>
+    <ThemeProvider>
+      <Tag>Primary</Tag>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Secondary
+A variant secondary é ideal para funções de menores destaque como informações de filtro, upload de arquivos e execuções de menor prioridade.
+<Preview>
+  <Story name="Secondary" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+    }
+  }}>
+    <ThemeProvider>
       <Tag color='secondary'>Secondary</Tag>
-      <Tag selected={false}>Not Selected</Tag>
-      <Tag selected='disabled'>Disabled</Tag>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Selected | Not selected
+As variants selected e not selected são utilizadas para definir se um conteúdo está ou destacado.
+<Preview>
+  <Story name="Selected || Not select" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+    }
+  }}>
+    <ThemeProvider>
+    <Flex>
+      <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+        <Tag color='primary' selected={true}>Selected</Tag>
+      </Box>
+      <Box width={{xs: 1, sm: 1 / 8}} p='2' >
+        <Tag color='primary' selected={false}>Not Selected</Tag>
+      </Box>
+    </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+A variant disabled informa se um conteúdo está disponível para a interação com usuário ou apenas para visualização.
+<Preview>
+  <Story name="Disabled" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+    }
+  }}>
+    <ThemeProvider>
+      <Tag color='primary' selected={'disabled'}>Selected</Tag>
     </ThemeProvider>
   </Story>
 </Preview>
 
 <Props of={Tag} />
+
