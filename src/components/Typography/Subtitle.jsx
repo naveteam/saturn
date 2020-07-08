@@ -2,12 +2,13 @@ import React from 'react'
 
 import { Typography } from './'
 
-const Subtitle = props => <Typography fontSize='subtitle' lineHeight='subtitle' {...props} />
+const Subtitle = props => <Typography {...props} />
 
 Subtitle.defaultProps = {
   as: 'p',
-  fontWeight: 'subtitle',
-  color: 'typography.subtitle'
+  fontWeight: 1,
+  fontSize: 3,
+  lineHeight: 3
 }
 
 Subtitle.propTypes = {

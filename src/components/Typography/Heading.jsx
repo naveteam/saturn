@@ -1,32 +1,49 @@
-import React, { useMemo } from 'react'
+import React from 'react'
+import styled, { css } from '@xstyled/styled-components'
+import { variant, breakpoints } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import { Typography } from './'
 
-const Heading = ({ variant, fontSize, lineHeight, ...props }) => {
-  // Issue aberta sobre o suporte de "array responsivo" nas alias: https://github.com/styled-system/styled-system/issues/1393
-  const fontProps = useMemo(() => {
-    switch (variant) {
-      case 'h1':
-        return {
-          fontSize: fontSize || [`heading.${variant}.mobile`, `heading.${variant}.desktop`],
-          lineHeight: lineHeight || [`heading.${variant}.mobile`, `heading.${variant}.desktop`]
-        }
-      default:
-        return {
-          fontSize: fontSize || `heading.${variant}`,
-          lineHeight: lineHeight || `heading.${variant}`
-        }
-    }
-  }, [variant])
+const Heading = props => <Base forwardedAs={props.variant} {...props} />
 
-  return <Typography {...fontProps} as={variant} {...props} />
-}
+const tagVariant = variant({
+  default: 'h1',
+  key: 'heading',
+  prop: 'variant',
+  variants: {
+    h1: breakpoints({
+      xs: css`
+        font-size: 7;
+        line-height: 7;
+      `,
+      md: css`
+        font-size: 8;
+        line-height: 8;
+      `
+    }),
+    h2: css`
+      font-size: 6;
+      line-height: 6;
+    `,
+    h3: css`
+      font-size: 5;
+      line-height: 5;
+    `,
+    h4: css`
+      font-size: 4;
+      line-height: 4;
+    `
+  }
+})
+
+const Base = styled(Typography)`
+  ${tagVariant}
+`
 
 Heading.defaultProps = {
   variant: 'h1',
-  fontWeight: 'heading',
-  color: 'typography.heading'
+  fontWeight: 1
 }
 
 Heading.propTypes = {

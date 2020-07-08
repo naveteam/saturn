@@ -1,4 +1,4 @@
-const colors = {
+const pallette = {
   black: '#000000',
   white: '#ffffff',
   gray: {
@@ -123,37 +123,4 @@ const colors = {
   }
 }
 
-colors.gray.main = colors.gray['400']
-colors.blue.main = colors.blue['400']
-colors.cyan.main = colors.cyan['400']
-colors.red.main = colors.red['400']
-colors.amber.main = colors.amber['400']
-colors.green.main = colors.green['400']
-colors.purple.main = colors.purple['400']
-
-colors.gray.lightmode = colors.gray['50']
-colors.gray.darkmode = colors.gray['900']
-
-colors.primary = colors.blue.main
-colors.secondary = colors.cyan.main
-colors.information = colors.blue.main
-colors.success = colors.green.main
-colors.alert = colors.amber.main
-colors.error = colors.red.main
-colors.support = colors.purple.main
-colors.lightmode = colors.gray.lightmode
-colors.darkmode = colors.gray.darkmode
-
-// Typography's colors
-colors.typography = {
-  default: colors.gray['700'],
-  heading: colors.gray['700'],
-  subtitle: colors.gray['800'],
-  paragraph: colors.gray['900'],
-  inputTitle: colors.gray['800'],
-  button: colors.gray['900'],
-  caption: colors.gray['800'],
-  tag: colors.gray['900']
-}
-
-export default colors
+export default pallette

@@ -47,7 +47,9 @@
     "@storybook/react": "^5.3.19",
     "@storybook/storybook-deployer": "^2.8.6",
     "@storybook/theming": "^5.3.19",
-    "@styled-system/prop-types": "^5.1.5",
+    "@xstyled/prop-types": "^1.17.1",
+    "@xstyled/styled-components": "^1.17.1",
+    "@xstyled/system": "^1.17.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "chromatic": "^4.0.3",
@@ -73,8 +75,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-terser": "^6.1.0",
     "storybook-addon-designs": "^5.2.1",
-    "styled-components": "^5.1.1",
-    "styled-system": "^5.1.5"
+    "styled-components": "^5.1.1"
   },
   "config": {
     "commitizen": {

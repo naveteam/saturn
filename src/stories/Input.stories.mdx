@@ -1,11 +1,11 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Input } from '../components'
+import { Flex, Input } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Input" component={Input} />
 
-# Input
+# Base
 
 <Preview>
   <Story name="Base" parameters={{
@@ -19,3 +19,51 @@ import { ThemeProvider } from '../theme'
     </ThemeProvider>
   </Story>
 </Preview>
+
+# Affixes
+
+<Preview>
+  <Story name="Prefix" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}>
+    <ThemeProvider>
+      <Input name='prefix' label='Prefix' placeholder='Input com prefixo' prefix='R$'/>
+      <Input name='suffix' label='Suffix' placeholder='Input com sufixo' suffix='reais'/>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Error
+
+<Preview>
+  <Story name="Error" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}>
+    <ThemeProvider>
+      <Input name='error' label='Error' placeholder='Input com erro' error message='Required' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+<Preview>
+  <Story name="Disabled" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}>
+    <ThemeProvider>
+      <Input name='disabled' label='Disabled' placeholder='Input desativado' disabled message='Disabled' prefix='R$' suffix='reais' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Input} />

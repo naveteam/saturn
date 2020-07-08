@@ -1,10 +1,40 @@
-import colors from './colors'
-import breakpoints from './breakpoints'
-import space from './space'
-import fontSizes from './fontSizes'
-import lineHeights from './lineHeights'
-import fontWeights from './fontWeights'
+import pallette from './pallette'
 
-const Theme = { colors, breakpoints, space, fontSizes, lineHeights, fontWeights }
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920
+}
+
+const fontSizes = [10, 12, 14, 16, 20, 24, 32, 40, 48]
+
+const fontWeights = [400, 600]
+
+const lineHeights = ['14px', '16px', '18px', '24px', '32px', '40px', '48px', '64px', '72px']
+
+const space = [0, 2, 4, 8, 16, 24, 32, 64]
+
+const radii = [0, 2, 4, 8]
+
+const colors = { ...pallette }
+
+colors.primary = colors.blue['400']
+colors.primary_hover = colors.blue['600']
+colors.primary_active = colors.blue['800']
+
+colors.secondary = colors.cyan['400']
+colors.secondary_hover = colors.cyan['600']
+colors.secondary_active = colors.cyan['800']
+
+colors.success = colors.green['400']
+colors.error = colors.red['400']
+colors.warning = colors.amber['400']
+colors.info = colors.blue['400']
+
+colors.disabled = colors.gray['500']
+
+const Theme = { colors, space, radii, breakpoints, fontSizes, fontWeights, lineHeights }
 
 export { Theme }

@@ -1,21 +1,36 @@
 import React from 'react'
+import styled, { css } from '@xstyled/styled-components'
+import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import { Typography } from './'
 
-const Paragraph = ({ variant, fontSize, lineHeight, ...props }) => (
-  <Typography
-    as='p'
-    fontSize={fontSize || `paragraph.${variant}`}
-    lineHeight={lineHeight || `paragraph.${variant}`}
-    {...props}
-  />
-)
+const Paragraph = ({ as, ...props }) => <Base forwardedAs={props.as} {...props} />
+
+const sizeVariant = variant({
+  default: 'md',
+  key: 'paragraph',
+  prop: 'variant',
+  variants: {
+    md: css`
+      font-size: 3;
+      line-height: 3;
+    `,
+    sm: css`
+      font-size: 2;
+      line-height: 1;
+    `
+  }
+})
+
+const Base = styled(Typography)`
+  ${sizeVariant}
+`
 
 Paragraph.defaultProps = {
   variant: 'md',
-  fontWeight: 'paragraph',
-  color: 'typography.paragraph'
+  as: 'p',
+  fontWeight: 0
 }
 
 Paragraph.propTypes = {

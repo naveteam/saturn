@@ -1,0 +1,73 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Button } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Button" component={Button} />
+
+# Button
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <Button width={1/2}>Primary</Button>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Colors
+
+<Preview>
+  <Story name="Colors" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <Button width={1/2}>Primary</Button>
+      <Button width={1/2} color='secondary'>Secondary</Button>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Variants
+
+<Preview>
+  <Story name="Variants" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <Button width={1/3} variant='filled'>Filled</Button>
+      <Button width={1/3} variant='outlined'>Outlined</Button>
+      <Button width={1/3} variant='text'>Text</Button>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+<Preview>
+  <Story name="Disabled" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <Button width={1/3} variant='filled' disabled>Filled Disabled</Button>
+      <Button width={1/3} variant='outlined' disabled>Outlined Disabled</Button>
+      <Button width={1/3} variant='text' disabled>Text Disabled</Button>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Button} />

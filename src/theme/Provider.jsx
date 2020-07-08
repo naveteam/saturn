@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { ThemeProvider as StyledProvider } from 'styled-components'
+import { ThemeProvider as StyledProvider } from '@xstyled/styled-components'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
