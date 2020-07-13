@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="https://nave.rs/" rel="noopener" target="_blank"><img width="150" style="border-radius: 10px;" src="https://avatars3.githubusercontent.com/u/33161449?s=200&v=4" alt="Nave.rs logo"></a></p>
-</p>
-
-<h1 align="center">Saturn System</h1>
+![Saturn](https://github.com/naveteam/saturn/blob/assets/header.png?raw=true)
 
 <p align="center">Repositório de componentes React baseado no <a href='https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System'>design system</a> da Nave.</p>
 
