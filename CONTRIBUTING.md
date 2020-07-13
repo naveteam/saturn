@@ -53,7 +53,7 @@ Para que a execução de sua task seja feita da melhor maneira possível, alguma
 
 - Certificar-se que seu repositório está atualizado e que todas as dependências estão instaladas e compatíveis com as versões descritas no `package.json`.
 - Garantir que o `ESLint` e o `EditorConfig` estejam corretamente configurados afim de manter o padrão de código.
-- Criar uma nova `branch` baseada na master mais atualizada para a criação do seu componente. Utilizar o prefixo `feat/<nome-do-componente>` para novos componentes e `fix/<resumo-do-bugfix>` para bugfixes.
+- Criar uma nova `branch` baseada na main mais atualizada para a criação do seu componente. Utilizar o prefixo `feat/<nome-do-componente>` para novos componentes e `fix/<resumo-do-bugfix>` para bugfixes.
 
 ### 🔛 Durante o desenvolvimento
 
@@ -70,7 +70,7 @@ Para que a execução de sua task seja feita da melhor maneira possível, alguma
 
 - Abrir um `Pull Request` com sua branch seguindo um dos modelos de PR presentes no repositório. Descrever de maneira clara e objetiva seu PR e certificar-se que todo o checklist seja cumprido.
 - Executar o comando `yarn chromatic` em seu terminal para criar um build do seu projeto dentro da ferramenta do Chromatic. Esse comando é essencial para aprovação do seu PR, mesmo se não houverem mudanças visuais no componente.
-- Após um mínimo de 2 (dois) approves, mergear seu PR na `master` e testar em ambiente de produção se o comportamento de seu componente está de acordo com o esperado.
+- Após um mínimo de 2 (dois) approves, mergear seu PR na `main` e testar em ambiente de produção se o comportamento de seu componente está de acordo com o esperado.
 - Sentar, tomar um café e admirar seu componente recém criado disponível em produção. ☕️
 
 ## 🌀 Workflow
