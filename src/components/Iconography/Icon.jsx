@@ -2,15 +2,15 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 const Icon = ({ icon }) => {
-  const src = useMemo(() => {
+  const IconBase = useMemo(() => {
     try {
-      return require(`../../assets/icons/${icon}.svg`)
+      return require(`../../assets/icons/${icon}.svg`).ReactComponent
     } catch {
-      return require('../../assets/icons/clear.svg')
+      return require('../../assets/icons/clear.svg').ReactComponent
     }
   }, [icon])
 
-  return <img src={src} />
+  return <IconBase />
 }
 
 Icon.defaultProps = {
