@@ -14,7 +14,7 @@ const Icon = ({ icon }) => {
 }
 
 Icon.defaultProps = {
-  icon: 'build'
+  icon: 'clear'
 }
 
 Icon.propTypes = {
