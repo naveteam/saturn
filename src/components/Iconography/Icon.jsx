@@ -1,8 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, forwardRef } from 'react'
+import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
-const Icon = ({ icon }) => {
-  const IconBase = useMemo(() => {
+const Icon = forwardRef((props, ref) => <Base ref={ref} {...props} />)
+
+const IconComponent = ({ icon, ...props }) => {
+  const IconSrc = useMemo(() => {
     try {
       return require(`../../assets/icons/${icon}.svg`).ReactComponent
     } catch {
@@ -10,11 +13,15 @@ const Icon = ({ icon }) => {
     }
   }, [icon])
 
-  return <IconBase />
+  return <IconSrc {...props} />
 }
 
+const Base = styled(IconComponent)``
+
 Icon.defaultProps = {
-  icon: 'clear'
+  icon: 'clear',
+  width: 24,
+  height: 24
 }
 
 Icon.propTypes = {
