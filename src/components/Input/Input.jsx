@@ -109,6 +109,9 @@ const InputBase = styled.input`
   &::placeholder {
     color: gray.600;
   }
+  &:focus {
+    outline: none;
+  }
 `
 const Message = styled(Typography)`
   font-size: 1;

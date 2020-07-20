@@ -74,6 +74,9 @@ const Base = styled.button`
   &:disabled {
     cursor: initial;
   }
+  &:focus {
+    outline: none;
+  }
 `
 
 Button.defaultProps = {
