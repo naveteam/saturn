@@ -1,6 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
 import { Icon, Flex, Box, Caption } from '../components'
+import { useIcon } from '../hooks'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display|Iconography" component={Icon} />
@@ -23,6 +24,23 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
 </Preview>
 
 <Props of={Icon} />
+
+# useIcon
+
+O hook `useIcon` retorna o `src` de um icon para que ele possa ser usado em uma tag `img` ou em qualquer propriedade CSS.
+
+<Preview>
+  <Story name="hook" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=18%3A0'
+    }
+  }}>
+    <ThemeProvider>
+      <img src={useIcon('fingerprint')} style={{ width: 24}} />
+    </ThemeProvider>
+  </Story>
+</Preview>
 
 # All Icons
 
