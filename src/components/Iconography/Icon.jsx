@@ -1,8 +1,7 @@
 import React, { useMemo, forwardRef } from 'react'
 import styled from '@xstyled/styled-components'
+import { color, th } from '@xstyled/system'
 import PropTypes from 'prop-types'
-
-const Icon = forwardRef((props, ref) => <Base ref={ref} {...props} />)
 
 const IconComponent = ({ icon, ...props }) => {
   const IconSrc = useMemo(() => {
@@ -16,12 +15,18 @@ const IconComponent = ({ icon, ...props }) => {
   return <IconSrc {...props} />
 }
 
-const Base = styled(IconComponent)``
+const Icon = styled(IconComponent)`
+  * {
+    fill: ${({ color }) => th.color(color)};
+  }
+  ${color}
+`
 
 Icon.defaultProps = {
   icon: 'clear',
   width: 24,
-  height: 24
+  height: 24,
+  fill: 'rgb(66, 66, 66)'
 }
 
 Icon.propTypes = {
