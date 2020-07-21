@@ -53,7 +53,7 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-Você pode encontrar em nosso [Storybook](https://naveteam.github.io/saturn-system) a documentação necessária de todos os componentes disponíveis no projeto.
+Você pode encontrar em nosso [Storybook](https://saturn.nave.rs) a documentação necessária de todos os componentes disponíveis no projeto.
 
 ## 🤝 Contribuição
 
@@ -65,7 +65,7 @@ Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo
 - [Chromatic](https://www.chromatic.com/builds?appId=5ee911f58891670022043e8a): Local onde ocorre a revisão dos componentes pelo time de degisn
 - [NPM](https://www.npmjs.com/package/@naveteam/saturn): Acesso ao pacote NPM do projeto
 - [Github](https://github.com/naveteam/saturn-system): Repositório da lib
-- [Storybook](https://naveteam.github.io/saturn-system): Página com o projeto mais atualizado para referência
+- [Storybook](https://saturn.nave.rs): Página com o projeto mais atualizado para referência
 - [Miro](https://miro.com/app/board/o9J_kqytVp0=): Resumo do Workflow de desenvolvimento de um componente
 - [Roadmap](https://github.com/naveteam/saturn-system/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
 
