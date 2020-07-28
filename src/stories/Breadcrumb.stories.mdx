@@ -1,0 +1,105 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Breadcrumb, Flex, Box } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display|Breadcrumb' component={Breadcrumb} />
+
+# Breadcrumb
+
+O component de Breadcrumb permite o usuário à enxergar o caminho percorrido além de navegar atravéz do mesmo.
+
+A variante padrão é `responsive`, ou seja, no desktop conta com sua visualização completa e no mobile irá ser reduzido, apontando para a página anterior.
+
+<Preview>
+  <Story
+    name='Responsive'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Breadcrumb
+          path={[
+            {
+              label: 'Home',
+              link: '/'
+            },
+            {
+              label: 'Página anterior',
+              link: '/'
+            },
+            {
+              label: 'Página atual',
+              link: '/'
+            }
+          ]}
+        />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Condensed
+
+A variante `condensed` irá sempre apontar para à página anterior, tanto em resoluções maiores quanto menores.
+
+<Preview>
+  <Story
+    name='Condensed'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Breadcrumb variant='condensed' path={[{ label: 'Página anterior', link: '/' }]} />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Expanded
+
+A variante `expanded` segue o mesmo caminho da anterior. Porém, nesse caso, irá mostrar sempre todo o caminho percorrido.
+
+<Preview>
+  <Story
+    name='Expanded'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Breadcrumb
+          variant='expanded'
+          path={[
+            {
+              label: 'Home',
+              link: '/'
+            },
+            {
+              label: 'Página anterior',
+              link: '/'
+            },
+            {
+              label: 'Página atual',
+              link: '/'
+            }
+          ]}
+        />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Breadcrumb} />
