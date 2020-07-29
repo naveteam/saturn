@@ -6,8 +6,8 @@
 [![NPM](https://img.shields.io/npm/v/@naveteam/saturn.svg)](https://www.npmjs.com/package/@naveteam/saturn)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
-![ci](https://github.com/naveteam/saturn-system/workflows/ci/badge.svg)
-[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/saturn-system?color=purple)](#contributors-)
+![ci](https://github.com/naveteam/saturn/workflows/ci/badge.svg)
+[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/saturn?color=purple)](#contributors-)
 
 ## ❗️ Motivação
 
@@ -64,10 +64,10 @@ Sinta-se livre para contribuir com o projeto, criando novos componentes, abrindo
 - [Figma](https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System): Onde todo o design do projeto se encontra
 - [Chromatic](https://www.chromatic.com/builds?appId=5ee911f58891670022043e8a): Local onde ocorre a revisão dos componentes pelo time de degisn
 - [NPM](https://www.npmjs.com/package/@naveteam/saturn): Acesso ao pacote NPM do projeto
-- [Github](https://github.com/naveteam/saturn-system): Repositório da lib
+- [Github](https://github.com/naveteam/saturn): Repositório da lib
 - [Storybook](https://saturn.nave.rs): Página com o projeto mais atualizado para referência
 - [Miro](https://miro.com/app/board/o9J_kqytVp0=): Resumo do Workflow de desenvolvimento de um componente
-- [Roadmap](https://github.com/naveteam/saturn-system/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
+- [Roadmap](https://github.com/naveteam/saturn/projects/2): Link do projeto do GitHub com o andamento do desenvolvimento
 
 ## 🐛 Bugs Conhecidos
 
