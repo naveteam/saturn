@@ -5,7 +5,9 @@ import { ThemeProvider } from '../theme'
 
 <Meta title="Data Input|Input" component={Input} />
 
-# Base
+# Input
+
+O componente de `Input` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
 
 <Preview>
   <Story name="Base" parameters={{
@@ -22,21 +24,25 @@ import { ThemeProvider } from '../theme'
 
 # Affixes
 
+O `Input` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas.
+
 <Preview>
-  <Story name="Prefix" parameters={{
+  <Story name="Affixes" parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
     }
   }}>
     <ThemeProvider>
-      <Input name='prefix' label='Prefix' placeholder='Input com prefixo' prefix='R$'/>
-      <Input name='suffix' label='Suffix' placeholder='Input com sufixo' suffix='reais'/>
+      <Input name='prefix' label='Prefix' placeholder='Prefix' prefix='R$'/>
+      <Input name='suffix' label='Suffix' placeholder='Suffix' suffix='reais'/>
     </ThemeProvider>
   </Story>
 </Preview>
 
 # Error
+
+Passando a prop de `error` para o `Input`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado no input em questão.
 
 <Preview>
   <Story name="Error" parameters={{
@@ -46,12 +52,14 @@ import { ThemeProvider } from '../theme'
     }
   }}>
     <ThemeProvider>
-      <Input name='error' label='Error' placeholder='Input com erro' error message='Required' />
+      <Input name='error' label='Error' placeholder='Error Input' error message='Required' />
     </ThemeProvider>
   </Story>
 </Preview>
 
 # Disabled
+
+O `Input` pode receber a prop de `disabled`, que desabilita todo o seu uso.
 
 <Preview>
   <Story name="Disabled" parameters={{
@@ -61,7 +69,7 @@ import { ThemeProvider } from '../theme'
     }
   }}>
     <ThemeProvider>
-      <Input name='disabled' label='Disabled' placeholder='Input desativado' disabled message='Disabled' prefix='R$' suffix='reais' />
+      <Input name='disabled' label='Disabled' placeholder='Disabled Input' disabled message='Disabled' prefix='R$' suffix='reais' />
     </ThemeProvider>
   </Story>
 </Preview>
