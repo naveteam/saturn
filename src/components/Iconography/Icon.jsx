@@ -1,4 +1,4 @@
-import React, { useMemo, forwardRef } from 'react'
+import React, { useMemo } from 'react'
 import styled from '@xstyled/styled-components'
 import { color, th } from '@xstyled/system'
 import PropTypes from 'prop-types'

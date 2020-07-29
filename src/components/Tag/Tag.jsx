@@ -3,10 +3,14 @@ import styled, { css } from '@xstyled/styled-components'
 import { th, variant, compose, color, layout, space, border } from '@xstyled/system'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
+import { Icon } from '../Iconography'
 
-const Tag = ({ children, ...props }) => (
+const Tag = ({ children, close, ...props }) => (
   <Base {...props}>
-    <Text>{children}</Text>
+    <Content>
+      <Text paddingRight={close ? 0 : 2}>{children}</Text>
+      {close && <Icon icon='clear' color='white' height='16' />}
+    </Content>
   </Base>
 )
 
@@ -46,12 +50,17 @@ const selectedVariant = variant({
 
 const Base = styled.div`
   display: inline-block;
-  padding: 2;
+  padding: 2 0 2 2;
   border-radius: 2;
   border-width: 1px;
   border-style: solid;
   ${baseProps}
   ${selectedVariant}
+`
+
+const Content = styled.div`
+  display: flex;
+  aling-items: center;
 `
 
 const Text = styled(Typography)`
@@ -62,11 +71,13 @@ const Text = styled(Typography)`
 
 Tag.defaultProps = {
   selected: true,
+  close: false,
   color: 'primary'
 }
 
 Tag.propTypes = {
   selected: PropTypes.oneOf([true, false, 'disabled']),
+  close: PropTypes.bool,
   color: PropTypes.oneOf(['primary', 'secondary'])
 }
 

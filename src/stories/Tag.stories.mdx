@@ -40,6 +40,23 @@ A `Tag` pode receber a prop `color`. A variant primary tem uma função de mais 
   </Story>
 </Preview>
 
+# Close
+
+A `Tag` pode receber a prop `close`. Essa prop indicará se a tag deve renderizar o ícone de fechar/remover a tag.
+
+<Preview>
+  <Story name="Close" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+    }
+  }}>
+    <ThemeProvider>
+      <Tag close>Close</Tag>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
 # Selected
 
 A prop `selected` pode definir se a `Tag` está ou não selecionada. Pode ser de grande utilidade para informar quais tags esstão sendo utilizadas ou não. A variant disabled informa se o conteúdo está indisponível para a interação com o usuário.
