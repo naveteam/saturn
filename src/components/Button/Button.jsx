@@ -1,4 +1,4 @@
-import React, { forwardRef, Children } from 'react'
+import React, { forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { layout, variant, th } from '@xstyled/system'
 import PropTypes from 'prop-types'

@@ -70,7 +70,7 @@ const focusVariant = variant({
     true: css`
       border-color: blue.50;
       border-width: 2px;
-      padding: 3px;
+      padding: 0;
     `
   }
 })
@@ -90,8 +90,8 @@ const Container = styled(Flex)`
   border-style: solid;
   border-color: black;
   border-radius: 2;
-  padding: 2;
   align-items: center;
+  padding: 1px;
   ${focusVariant}
 `
 const Affix = styled(Typography)`
@@ -106,11 +106,18 @@ const InputBase = styled.input`
   font-size: 3;
   line-height: 3;
   background-color: transparent;
+  padding: 7px;
   &::placeholder {
     color: gray.600;
   }
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    ::placeholder {
+      color: disabled;
+    }
   }
 `
 const Message = styled(Typography)`
