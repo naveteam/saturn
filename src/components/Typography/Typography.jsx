@@ -21,7 +21,7 @@ Typography.defaultProps = {
 }
 
 Typography.propTypes = {
-  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'p', 'span', 'label'])
+  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'p', 'span', 'label', 'a'])
 }
 
 export default Typography

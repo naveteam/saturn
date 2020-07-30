@@ -1,18 +1,22 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from '@xstyled/styled-components'
-import { typography, th, up, down } from '@xstyled/system'
+import { th, up, down } from '@xstyled/system'
 
-import { Flex, Icon } from '../'
+import { Flex, Typography } from '../'
 
 const Breadcrumb = ({ path, variant, ...props }) => {
   const lastPage = useMemo(() => (path.length > 1 ? path[path?.length - 2] : path[0]), [path])
 
+  const isNotLastElement = useCallback(index => path.length - 1 !== index, [path])
+
   const CondensedBreadcrumb = useMemo(
     () => (
-      <Flex {...props}>
-        <Icon icon='chevron_left' color='gray.800' />
-        <Link href={lastPage?.link} {...props}>
+      <Flex alignItems='center' {...props}>
+        <Icon fontSize={3} lineHeight={3} mr={8} color='gray.800'>
+          ‹
+        </Icon>
+        <Link as='a' fontSize={3} lineHeight={3} href={lastPage?.link} {...props}>
           {lastPage?.label}
         </Link>
       </Flex>
@@ -24,11 +28,15 @@ const Breadcrumb = ({ path, variant, ...props }) => {
     () => (
       <Flex {...props}>
         {path.map(({ label, link }, index) => (
-          <Flex key={index}>
-            <Link {...(path.length - 1 !== index && { href: link })} {...props}>
+          <Flex key={index} alignItems='center'>
+            <Link as='a' fontSize={3} lineHeight={3} {...(isNotLastElement(index) && { href: link })} {...props}>
               {label}
             </Link>
-            {path.length - 1 !== index && <Icon icon='chevron_right' />}
+            {isNotLastElement(index) && (
+              <Icon fontSize={3} lineHeight={3} mx={8} color='gray.800'>
+                ›
+              </Icon>
+            )}
           </Flex>
         ))}
       </Flex>
@@ -48,10 +56,7 @@ const Breadcrumb = ({ path, variant, ...props }) => {
   )
 }
 
-const Link = styled.a`
-  font-size: 16px;
-  line-height: 24px;
-  font-family: 'Open Sans', sans-serif;
+const Link = styled(Typography)`
   cursor: pointer;
   color: ${({ color }) => th.color(color)};
   text-decoration: none;
@@ -71,18 +76,21 @@ const Link = styled.a`
   :only-child {
     &:last-child {
       cursor: default;
-      color: ${th.color('gray.800')};
+      color: gray.800;
       :hover {
         text-decoration: none;
       }
     }
   }
-  ${typography};
+`
+
+const Icon = styled(Typography)`
+  cursor: default;
 `
 
 const DesktopContainer = styled(Flex)(
   down(
-    'sm',
+    'md',
     css`
       display: none;
     `
@@ -91,7 +99,7 @@ const DesktopContainer = styled(Flex)(
 
 const MobileContainer = styled(Flex)(
   up(
-    'sm',
+    'md',
     css`
       display: none;
     `
