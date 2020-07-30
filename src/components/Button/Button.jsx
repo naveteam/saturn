@@ -1,9 +1,17 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Children } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { layout, variant, th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-const Button = forwardRef((props, ref) => <Base ref={ref} {...props} />)
+import { Typography } from '../'
+
+const Button = forwardRef(({ children, ...props }, ref) => (
+  <Base ref={ref} {...props}>
+    <Typography fontSize={2} fontWeight={1}>
+      {children}
+    </Typography>
+  </Base>
+))
 
 const colorVariants = variant({
   default: 'filled',
@@ -67,8 +75,7 @@ const Base = styled.button`
   border-width: 1px;
   border-style: solid;
   border-radius: 2;
-  font-size: 1;
-  font-weight: 1;
+  min-height: 40px;
   ${layout}
   ${colorVariants}
   &:disabled {
