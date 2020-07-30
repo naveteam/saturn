@@ -7,7 +7,7 @@ import { Typography } from '../'
 
 const Button = forwardRef(({ children, ...props }, ref) => (
   <Base ref={ref} {...props}>
-    <Typography fontSize={2} fontWeight={1}>
+    <Typography fontSize={2} fontWeight={1} lineHeight={3}>
       {children}
     </Typography>
   </Base>
@@ -71,7 +71,7 @@ const colorVariants = variant({
 
 const Base = styled.button`
   cursor: pointer;
-  padding: 3;
+  padding: 2;
   border-width: 1px;
   border-style: solid;
   border-radius: 2;

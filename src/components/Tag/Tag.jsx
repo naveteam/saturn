@@ -8,7 +8,9 @@ import { Icon } from '../Iconography'
 const Tag = ({ children, close, ...props }) => (
   <Base {...props}>
     <Content>
-      <Text padding={close ? '3px 0 3px 4px' : '3px 4px 3px 4px'}>{children}</Text>
+      <Text padding={close ? '3px 0 3px 4px' : '3px 4px 3px 4px'} lineHeight={1}>
+        {children}
+      </Text>
       {close && <Icon icon='clear' color='white' height='16' />}
     </Content>
   </Base>
@@ -50,7 +52,7 @@ const selectedVariant = variant({
 
 const Base = styled.div`
   display: inline-block;
-  border-radius: 2;
+  border-radius: 1;
   border-width: 1px;
   border-style: solid;
   ${baseProps}

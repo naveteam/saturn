@@ -1,0 +1,97 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Flex, TextField } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data input|TextField' component={TextField} />
+
+# TextField
+
+O componente de `TextField` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField name='base' label='Label' message='Message' placeholder='Placeholder' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Affixes
+
+O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas.
+
+<Preview>
+  <Story
+    name='Affixes'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField name='prefix' label='Prefix' placeholder='Prefix' prefix='R$' />
+      <TextField name='suffix' label='Suffix' placeholder='Suffix' suffix='reais' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Error
+
+Passando a prop de `error` para o `TextField`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado no input em questão.
+
+<Preview>
+  <Story
+    name='Error'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField name='error' label='Error' placeholder='Error TextField' error message='Required' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
+
+<Preview>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField
+        name='disabled'
+        label='Disabled'
+        placeholder='Disabled TextField'
+        disabled
+        message='Disabled'
+        prefix='R$'
+        suffix='reais'
+      />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={TextField} />
