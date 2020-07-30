@@ -8,7 +8,7 @@ import { Icon } from '../Iconography'
 const Tag = ({ children, close, ...props }) => (
   <Base {...props}>
     <Content>
-      <Text paddingRight={close ? 0 : 2}>{children}</Text>
+      <Text padding={close ? '3px 0 3px 4px' : '3px 4px 3px 4px'}>{children}</Text>
       {close && <Icon icon='clear' color='white' height='16' />}
     </Content>
   </Base>
@@ -50,7 +50,6 @@ const selectedVariant = variant({
 
 const Base = styled.div`
   display: inline-block;
-  padding: 2 0 2 2;
   border-radius: 2;
   border-width: 1px;
   border-style: solid;
@@ -60,7 +59,7 @@ const Base = styled.div`
 
 const Content = styled.div`
   display: flex;
-  aling-items: center;
+  align-items: center;
 `
 
 const Text = styled(Typography)`
