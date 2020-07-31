@@ -3,9 +3,9 @@ import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
-import { Typography } from '../'
+import { Typography } from '..'
 
-const Input = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, ...props }, ref) => {
+const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, ...props }, ref) => {
   const [focus, setFocus] = useState(false)
   return (
     <Wrapper disabled={disabled} {...props}>
@@ -70,7 +70,7 @@ const focusVariant = variant({
     true: css`
       border-color: blue.50;
       border-width: 2px;
-      padding: 3px;
+      padding: 0;
     `
   }
 })
@@ -83,21 +83,21 @@ const Label = styled(Typography)`
   font-size: 2;
   line-height: 1;
   font-weight: 1;
-  margin-bottom: 2;
+  margin-bottom: 3;
 `
 const Container = styled(Flex)`
   border-width: 1px;
   border-style: solid;
   border-color: black;
   border-radius: 2;
-  padding: 2;
   align-items: center;
+  padding: 1px;
   ${focusVariant}
 `
 const Affix = styled(Typography)`
   font-size: 1;
   line-height: 1;
-  margin: 0 2;
+  margin: 0 3;
   pointer-events: none;
 `
 const InputBase = styled.input`
@@ -106,11 +106,18 @@ const InputBase = styled.input`
   font-size: 3;
   line-height: 3;
   background-color: transparent;
+  padding: 6px;
   &::placeholder {
     color: gray.600;
   }
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    ::placeholder {
+      color: disabled;
+    }
   }
 `
 const Message = styled(Typography)`
@@ -119,4 +126,4 @@ const Message = styled(Typography)`
   margin-top: 2;
 `
 
-export default Input
+export default TextField

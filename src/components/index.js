@@ -1,5 +1,5 @@
 export * from './Typography'
-export * from './Input'
+export * from './TextField'
 export * from './Grid'
 export * from './Tag'
 export * from './Button'
