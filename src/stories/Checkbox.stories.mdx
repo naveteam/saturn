@@ -96,3 +96,23 @@ O `Checkbox` exige um texto para cada elemento, se não for fornecido, será exi
     </ThemeProvider>
   </Story>
 </Preview>
+
+# onChange
+
+O `Checkbox` funciona sem o uso de uma função externa de onChange. Mas se você está integrando este componente com alguma biblioteca de formulários, a função de onChange também pode ser utilizada e irá funcionar normalmente.
+
+<Preview>
+  <Story
+    name='onChange'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox text='Not selected' />
+    </ThemeProvider>
+  </Story>
+</Preview>

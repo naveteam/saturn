@@ -1,22 +1,25 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css, down, typography, variant } from '@xstyled/styled-components'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 
-const Checkbox = ({ checked, color, disabled, text, ...props }) => {
-  const [selected, setSelected] = React.useState(checked)
+const Checkbox = ({ checked: propsChecked, color, disabled, onChange, text, ...props }) => {
+  const [checked, setChecked] = useState(propsChecked)
+
   return (
-    <LabelContainer color={color} variant={disabled ? 'disabled' : selected ? 'checked' : 'base'}>
-      <Icon icon={selected ? 'checkbox_checked' : 'checkbox_outline'} height='24px' width='24px' />
+    <LabelContainer color={color} variant={disabled ? 'disabled' : checked ? 'checked' : 'base'}>
+      <Icon icon={checked ? 'checkbox_checked' : 'checkbox_outline'} height='24px' width='24px' />
       <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={3}>
         {text}
       </Typography>
       <Input
         type='checkbox'
-        onChange={() => setSelected(current => !current)}
-        defaultChecked={selected}
+        onChange={e => {
+          setChecked(e.target.checked)
+          onChange && onChange()
+        }}
         disabled={disabled}
         {...props}
       />
@@ -28,6 +31,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   color: PropTypes.string,
   disabled: PropTypes.bool,
+  onChange: PropTypes.func,
   text: PropTypes.string
 }
 
