@@ -1,0 +1,98 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Checkbox } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input|Checkbox' component={Checkbox} />
+
+# Checkbox
+
+O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado e exige que um texto seja fornecido para cada `Checkbox`, caso isso não ocorra, um texto padrão será exibido.
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox text='Not selected' />
+      <Checkbox checked={true} text='Selected' />
+      <Checkbox text='Not selected custom color' color='#ff00ff' />
+      <Checkbox text='Selected custom color' color='success' checked={true} />
+      <Checkbox checked={true} text='Selected disabled' disabled={true} />
+      <Checkbox checked={false} text='Not selected disabled' disabled={true} />
+      <Checkbox />
+      <Checkbox checkbox={true} color='secondary' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Color
+
+O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida no tema ou qualquer outra cor que esteja em formato aceito pelo CSS. Para usar uma cor customizada, o checkbox não pode estar em sua variant `disabled`. Caso a prop não for passada, o texto do checkbox ficará com a cor padrão.
+
+<Preview>
+  <Story
+    name='Color'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox text='Default color' />
+      <Checkbox text='Not selected custom color' color='#ff0000' />
+      <Checkbox text='Selected custom color' color='warning' checked={true} />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Checked | Disabled
+
+Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checked`. O valor desta prop indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso. Cores customizadas não irão funcionar. Se algum valor de checked for passado para o componente, este dado será adicionado ao seu valor padrão.
+
+<Preview>
+  <Story
+    name='Checked | Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox text='Not selected' />
+      <Checkbox checked={true} text='Selected' />
+      <Checkbox checked={false} text='Not selected disabled' disabled={true} />
+      <Checkbox checked={true} text='Selected disabled' disabled={true} />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Text
+
+O `Checkbox` exige um texto para cada elemento, se não for fornecido, será exibido um texto padrão.
+
+<Preview>
+  <Story
+    name='Text'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox checked={false} />
+    </ThemeProvider>
+  </Story>
+</Preview>
