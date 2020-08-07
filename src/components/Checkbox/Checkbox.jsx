@@ -5,12 +5,15 @@ import styled, { css, down, typography, variant } from '@xstyled/styled-componen
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 
-const Checkbox = ({ checked: propsChecked, color, disabled, onChange, text, ...props }) => {
+const getIcon = checked => (checked ? 'checkbox_checked' : 'checkbox_outline')
+const getVariant = (checked, disabled) => (disabled ? 'disabled' : checked ? 'checked' : 'base')
+
+const Checkbox = ({ checked: propsChecked, color, disabled, onChange = () => {}, text, ...props }) => {
   const [checked, setChecked] = useState(propsChecked)
 
   return (
-    <LabelContainer color={color} variant={disabled ? 'disabled' : checked ? 'checked' : 'base'}>
-      <Icon icon={checked ? 'checkbox_checked' : 'checkbox_outline'} height='24px' width='24px' />
+    <LabelContainer color={color} variant={getVariant(checked, disabled)}>
+      <Icon icon={getIcon(checked)} height='24' />
       <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={3}>
         {text}
       </Typography>
@@ -18,8 +21,9 @@ const Checkbox = ({ checked: propsChecked, color, disabled, onChange, text, ...p
         type='checkbox'
         onChange={e => {
           setChecked(e.target.checked)
-          onChange && onChange()
+          onChange()
         }}
+        defaultChecked={propsChecked}
         disabled={disabled}
         {...props}
       />
@@ -45,7 +49,6 @@ const variants = variant({
   variants: {
     base: css`
       color: gray.800;
-      ${typography}
 
       svg path {
         fill: gray.700;
@@ -53,15 +56,14 @@ const variants = variant({
     `,
     checked: css`
       color: gray.900;
-      ${typography}
 
       svg path {
         fill: blue.400;
       }
     `,
     disabled: css`
-      color: gray.500;
-      cursor: default;
+      color: gray.500 !important;
+      cursor: not-allowed;
 
       svg path {
         fill: gray.400;
@@ -88,6 +90,7 @@ const LabelContainer = styled.label`
   )}
 
   ${variants}
+  ${typography}
 `
 
 const Input = styled.input`
