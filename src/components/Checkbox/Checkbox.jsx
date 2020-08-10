@@ -8,14 +8,14 @@ import { Icon } from '../Iconography'
 const getIcon = checked => (checked ? 'checkbox_checked' : 'checkbox_outline')
 const getVariant = (checked, disabled) => (disabled ? 'disabled' : checked ? 'checked' : 'base')
 
-const Checkbox = ({ checked: propsChecked, color, disabled, onChange = () => {}, text, ...props }) => {
+const Checkbox = ({ checked: propsChecked, color, disabled, onChange = () => {}, label, ...props }) => {
   const [checked, setChecked] = useState(propsChecked)
 
   return (
     <LabelContainer color={color} variant={getVariant(checked, disabled)}>
       <Icon icon={getIcon(checked)} height='24' />
       <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={3}>
-        {text}
+        {label}
       </Typography>
       <Input
         type='checkbox'
@@ -36,13 +36,13 @@ Checkbox.propTypes = {
   color: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  text: PropTypes.string
+  label: PropTypes.string
 }
 
 Checkbox.defaultProps = {
   checked: false,
   disabled: false,
-  text: 'Default Text'
+  label: 'Default label'
 }
 
 const variants = variant({

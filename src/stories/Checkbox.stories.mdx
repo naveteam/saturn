@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Checkbox
 
-O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado e exige que um texto seja fornecido para cada `Checkbox`, caso isso não ocorra, um texto padrão será exibido.
+O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado e exige que uma label seja fornecido para cada `Checkbox`, caso isso não ocorra, uma label padrão será exibida.
 
 <Preview>
   <Story
@@ -20,12 +20,12 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
     }}
   >
     <ThemeProvider>
-      <Checkbox text='Not selected' />
-      <Checkbox checked={true} text='Selected' />
-      <Checkbox text='Not selected custom color' color='#ff00ff' />
-      <Checkbox text='Selected custom color' color='success' checked={true} />
-      <Checkbox checked={true} text='Selected disabled' disabled={true} />
-      <Checkbox checked={false} text='Not selected disabled' disabled={true} />
+      <Checkbox label='Not selected' />
+      <Checkbox checked={true} label='Selected' />
+      <Checkbox label='Not selected custom color' color='#ff00ff' />
+      <Checkbox label='Selected custom color' color='success' checked={true} />
+      <Checkbox checked={true} label='Selected disabled' disabled={true} />
+      <Checkbox checked={false} label='Not selected disabled' disabled={true} />
       <Checkbox />
       <Checkbox checkbox={true} color='secondary' />
     </ThemeProvider>
@@ -47,9 +47,9 @@ O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida
     }}
   >
     <ThemeProvider>
-      <Checkbox text='Default color' />
-      <Checkbox text='Not selected custom color' color='#ff0000' />
-      <Checkbox text='Selected custom color' color='warning' checked={true} />
+      <Checkbox label='Default color' />
+      <Checkbox label='Not selected custom color' color='#ff0000' />
+      <Checkbox label='Selected custom color' color='warning' checked={true} />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -69,21 +69,21 @@ Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checke
     }}
   >
     <ThemeProvider>
-      <Checkbox text='Not selected' />
-      <Checkbox checked={true} text='Selected' />
-      <Checkbox checked={false} text='Not selected disabled' disabled={true} />
-      <Checkbox checked={true} text='Selected disabled' disabled={true} />
+      <Checkbox label='Not selected' />
+      <Checkbox checked={true} label='Selected' />
+      <Checkbox checked={false} label='Not selected disabled' disabled={true} />
+      <Checkbox checked={true} label='Selected disabled' disabled={true} />
     </ThemeProvider>
   </Story>
 </Preview>
 
-# Text
+# Label
 
-O `Checkbox` exige um texto para cada elemento, se não for fornecido, será exibido um texto padrão.
+O `Checkbox` exige uma label para cada elemento, se não for fornecido, será exibida uma label padrão.
 
 <Preview>
   <Story
-    name='Text'
+    name='label'
     parameters={{
       design: {
         type: 'figma',
@@ -112,7 +112,7 @@ O `Checkbox` funciona sem o uso de uma função externa de onChange. Mas se voc�
     }}
   >
     <ThemeProvider>
-      <Checkbox text='Not selected' />
+      <Checkbox label='Not selected' />
     </ThemeProvider>
   </Story>
 </Preview>
