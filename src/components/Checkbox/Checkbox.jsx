@@ -17,7 +17,12 @@ const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
 })
 
 Checkbox.propTypes = {
-  color: PropTypes.string
+  checked: PropTypes.bool,
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  name: PropTypes.string
 }
 
 Checkbox.defaultProps = {
