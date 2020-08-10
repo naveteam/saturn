@@ -16,7 +16,7 @@ const Breadcrumb = ({ path, variant, ...props }) => {
         <Icon fontSize={3} lineHeight={3} mr={8} color='gray.800'>
           ‹
         </Icon>
-        <Link as='a' fontSize={3} lineHeight={3} href={lastPage?.link} {...props}>
+        <Link fowardedAs='a' fontSize={3} lineHeight={3} href={lastPage?.link} {...props}>
           {lastPage?.label}
         </Link>
       </Flex>
@@ -29,7 +29,13 @@ const Breadcrumb = ({ path, variant, ...props }) => {
       <Flex {...props}>
         {path.map(({ label, link }, index) => (
           <Flex key={index} alignItems='center'>
-            <Link as='a' fontSize={3} lineHeight={3} {...(isNotLastElement(index) && { href: link })} {...props}>
+            <Link
+              fowardedAs='a'
+              fontSize={3}
+              lineHeight={3}
+              {...(isNotLastElement(index) && { href: link })}
+              {...props}
+            >
               {label}
             </Link>
             {isNotLastElement(index) && (
