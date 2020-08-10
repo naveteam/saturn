@@ -20,14 +20,14 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Not selected' />
-      <Checkbox checked={true} label='Selected' />
-      <Checkbox label='Not selected custom color' color='#ff00ff' />
-      <Checkbox label='Selected custom color' color='success' checked={true} />
-      <Checkbox checked={true} label='Selected disabled' disabled={true} />
-      <Checkbox checked={false} label='Not selected disabled' disabled={true} />
-      <Checkbox />
-      <Checkbox checkbox={true} color='secondary' />
+      <Checkbox label='Not selected' name='check0' />
+      <Checkbox checked={true} label='Selected' name='check1' />
+      <Checkbox label='Not selected custom color' color='#ff00ff' name='check2' />
+      <Checkbox label='Selected custom color' color='success' checked={true} name='check3' />
+      <Checkbox checked={true} label='Selected disabled' disabled={true} name='check4' />
+      <Checkbox checked={false} label='Not selected disabled' disabled={true} name='check5' />
+      <Checkbox name='check6' />
+      <Checkbox checkbox={true} color='secondary' name='check7' />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -47,9 +47,9 @@ O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Default color' />
-      <Checkbox label='Not selected custom color' color='#ff0000' />
-      <Checkbox label='Selected custom color' color='warning' checked={true} />
+      <Checkbox label='Default color' name='check8' />
+      <Checkbox label='Not selected custom color' color='#ff0000' name='check9' />
+      <Checkbox label='Selected custom color' color='warning' checked={true} name='check10' />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -69,10 +69,10 @@ Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checke
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Not selected' />
-      <Checkbox checked={true} label='Selected' />
-      <Checkbox checked={false} label='Not selected disabled' disabled={true} />
-      <Checkbox checked={true} label='Selected disabled' disabled={true} />
+      <Checkbox label='Not selected' name='check11' />
+      <Checkbox checked={true} label='Selected' name='check12' />
+      <Checkbox checked={false} label='Not selected disabled' disabled={true} name='check13' />
+      <Checkbox checked={true} label='Selected disabled' disabled={true} name='check14' />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -92,7 +92,7 @@ O `Checkbox` exige uma label para cada elemento, se não for fornecido, será ex
     }}
   >
     <ThemeProvider>
-      <Checkbox checked={false} />
+      <Checkbox checked={false} name='check15' />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -112,7 +112,7 @@ O `Checkbox` funciona sem o uso de uma função externa de onChange. Mas se voc�
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Not selected' />
+      <Checkbox label='Not selected' name='check16' />
     </ThemeProvider>
   </Story>
 </Preview>
