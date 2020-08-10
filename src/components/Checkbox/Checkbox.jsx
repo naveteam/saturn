@@ -4,13 +4,13 @@ import styled, { css, down, typography } from '@xstyled/styled-components'
 
 import { Typography } from '../'
 
-const Checkbox = forwardRef(({ checked, color, disabled, onChange = () => {}, label, name, ...props }, ref) => {
+const Checkbox = forwardRef(({ color, disabled, onChange = () => {}, label, name, ...props }, ref) => {
   return (
     <LabelContainer color={color}>
       <Input
         type='checkbox'
         onChange={e => onChange(e)}
-        defaultChecked={checked}
+        defaultChecked={props.checked || false}
         disabled={disabled}
         name={name}
         ref={ref}
@@ -34,7 +34,6 @@ Checkbox.propTypes = {
 }
 
 Checkbox.defaultProps = {
-  checked: false,
   disabled: false,
   label: 'Default label'
 }
@@ -44,7 +43,7 @@ const LabelContainer = styled.label`
   position: relative;
   user-select: none;
   margin: 6;
-  margin-left: 0;
+  margin-left: 0 !important;
   flex-direction: row;
   color: gray.800;
 
@@ -52,11 +51,11 @@ const LabelContainer = styled.label`
     'sm',
     css`
       display: flex;
-      /* margin-right: 100px;
-        margin: 4;
-        flex-direction: column; */
+      margin-right: 0;
+      margin: 4;
     `
   )}
+
   &
     ~ input:checked
     p {
