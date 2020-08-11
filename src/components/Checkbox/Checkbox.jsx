@@ -74,8 +74,8 @@ const Input = styled.input`
   }
 
   &:checked:not(:disabled) + span {
-    background-color: blue.400;
-    border-color: blue.400;
+    background-color: primary;
+    border-color: primary;
   }
 
   &:disabled + span {
@@ -83,7 +83,7 @@ const Input = styled.input`
   }
 
   &:disabled ~ p {
-    color: gray.500 !important;
+    color: disabled;
   }
 
   &:checked ~ span:after {
