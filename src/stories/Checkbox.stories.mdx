@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Checkbox
 
-O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado e exige que uma label seja fornecido para cada `Checkbox`, caso isso não ocorra, uma label padrão será exibida.
+O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado.
 
 <Preview>
   <Story
@@ -27,14 +27,14 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
       <Checkbox checked={true} label='Selected disabled' disabled={true} name='check4' />
       <Checkbox checked={false} label='Not selected disabled' disabled={true} name='check5' />
       <Checkbox name='check6' />
-      <Checkbox checkbox={true} color='secondary' name='check7' />
+      <Checkbox checked={true} name='check7' />
     </ThemeProvider>
   </Story>
 </Preview>
 
 # Color
 
-O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida no tema ou qualquer outra cor que esteja em formato aceito pelo CSS. Para usar uma cor customizada, o checkbox não pode estar em sua variant `disabled`. Caso a prop não for passada, o texto do checkbox ficará com a cor padrão.
+O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida no tema ou qualquer outra cor que esteja em formato aceito pelo CSS. Para usar uma cor customizada, o checkbox não pode estar em sua variant `disabled`. Caso a prop não for passada, a label do checkbox ficará com a cor padrão.
 
 <Preview>
   <Story
@@ -79,7 +79,7 @@ Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checke
 
 # Label
 
-O `Checkbox` exige uma label para cada elemento, se não for fornecido, será exibida uma label padrão.
+O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido, nada será exibido.
 
 <Preview>
   <Story

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, down, typography } from '@xstyled/styled-components'
+import styled, { css, up, typography } from '@xstyled/styled-components'
 
 import { Typography } from '../'
 
@@ -9,9 +9,11 @@ const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
     <LabelContainer color={color}>
       <Input type='checkbox' ref={ref} {...props} />
       <CheckIcon />
-      <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={6}>
-        {label}
-      </Typography>
+      {label && (
+        <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={6}>
+          {label}
+        </Typography>
+      )}
     </LabelContainer>
   )
 })
@@ -25,21 +27,18 @@ Checkbox.propTypes = {
   name: PropTypes.string
 }
 
-Checkbox.defaultProps = {
-  disabled: false,
-  label: 'Default label'
-}
-
 const LabelContainer = styled.label`
   display: inline-flex;
+  vertical-align: top;
   position: relative;
   user-select: none;
   margin: 6;
-  margin-left: 0 !important;
-  flex-direction: row;
+  margin-left: 0;
   color: gray.800;
+  min-height: 24px;
+  min-width: 24px;
 
-  ${down(
+  ${up(
     'sm',
     css`
       display: flex;
@@ -62,6 +61,7 @@ const Input = styled.input`
   opacity: 0;
   height: 100%;
   width: 100%;
+  margin: 0;
 
   &:not(:disabled),
   &:not(:disabled) + span {
