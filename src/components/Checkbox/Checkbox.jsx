@@ -62,14 +62,10 @@ const Input = styled.input`
   height: 100%;
   width: 100%;
   margin: 0;
+  cursor: pointer;
+  z-index: 1;
 
-  &:not(:disabled),
-  &:not(:disabled) + span {
-    cursor: pointer;
-  }
-
-  &:disabled,
-  &:disabled + span {
+  &:disabled {
     cursor: not-allowed;
   }
 
