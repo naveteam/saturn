@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, up, typography } from '@xstyled/styled-components'
+import styled, { css, down, up, typography } from '@xstyled/styled-components'
 
 import { Typography } from '../'
+import { Icon } from '../Iconography'
 
 const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
   return (
     <LabelContainer color={color}>
       <Input type='checkbox' ref={ref} {...props} />
-      <CheckIcon />
+      <Checkmark />
       {label && (
         <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={6}>
           {label}
@@ -32,18 +33,15 @@ const LabelContainer = styled.label`
   vertical-align: top;
   position: relative;
   user-select: none;
-  margin: 6;
   margin-left: 0;
   color: gray.800;
   min-height: 24px;
   min-width: 24px;
 
-  ${up(
+  ${down(
     'sm',
     css`
       display: flex;
-      margin-right: 0;
-      margin: 4;
     `
   )}
 
@@ -51,7 +49,6 @@ const LabelContainer = styled.label`
     ~ input:checked
     p {
     color: gray.900;
-    ${typography}
   }
   ${typography}
 `
@@ -67,6 +64,10 @@ const Input = styled.input`
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  &:checked + span svg {
+    visibility: visible;
   }
 
   &:checked:disabled + span {
@@ -85,34 +86,31 @@ const Input = styled.input`
   &:disabled ~ p {
     color: disabled;
   }
-
-  &:checked ~ span:after {
-    display: block;
-    transform: translateX(-50%) translateY(calc(-50% - 2px)) rotate(45deg);
-  }
 `
 
-const CheckIcon = styled.span`
+const StyledCheckmark = styled.span`
   position: absolute;
+  box-sizing: border-box;
   top: 0;
   left: 0;
-  height: 22px;
-  width: 22px;
+  height: 24px;
+  width: 24px;
   border: solid 2px;
   border-color: gray.700;
   border-radius: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &:after {
-    content: '';
-    position: absolute;
-    display: none;
-    left: 50%;
-    top: 50%;
-    width: 7px;
-    height: 15px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
+  svg {
+    visibility: hidden;
   }
 `
+
+const Checkmark = () => (
+  <StyledCheckmark>
+    <Icon icon='check' color='white' height='20' />
+  </StyledCheckmark>
+)
 
 export default Checkbox
