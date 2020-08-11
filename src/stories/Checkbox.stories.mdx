@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Checkbox
 
-O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado, desmarcado.
+O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
 
 <Preview>
   <Story
@@ -56,7 +56,7 @@ O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida
 
 # Checked | Disabled
 
-Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checked`. O valor desta prop indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso. Cores customizadas não irão funcionar. Se algum valor de checked for passado para o componente, este dado será adicionado ao seu valor padrão.
+Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checked`. O valor desta prop indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as ores customizadas não irão funcionar.
 
 <Preview>
   <Story
@@ -99,7 +99,7 @@ O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido
 
 # onChange
 
-O `Checkbox` funciona sem o uso de uma função externa de onChange. Mas se você está integrando este componente com alguma biblioteca de formulários, a função de onChange também pode ser utilizada e irá funcionar normalmente.
+Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar.
 
 <Preview>
   <Story
