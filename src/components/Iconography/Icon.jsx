@@ -1,18 +1,14 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from '@xstyled/styled-components'
 import { color, th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-const IconComponent = ({ icon, ...props }) => {
-  const IconSrc = useMemo(() => {
-    try {
-      return require(`../../assets/icons/${icon}.svg`).ReactComponent
-    } catch {
-      return require('../../assets/icons/clear.svg').ReactComponent
-    }
-  }, [icon])
+import * as Icons from '../../icons'
 
-  return <IconSrc {...props} />
+const IconComponent = ({ icon, ...props }) => {
+  const IconSrc = Icons[`${icon[0].toUpperCase()}${icon.slice(1).replace(/([-_]\w)/g, g => g[1].toUpperCase())}`]
+
+  return IconSrc ? <IconSrc {...props} /> : <Icons.Clear {...props} />
 }
 
 const Icon = styled(IconComponent)`
