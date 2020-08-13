@@ -2,19 +2,26 @@ import React from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
-export const Loader = ({ time, showPercentage, size, variant }) => {
+import { Typography } from '../'
+
+export const Loader = ({ time, percentage, showPercentage, size, variant }) => {
   return (
     <LoaderContainer time={time} variant='icon'>
       <svg>
         <circle cx='60' cy='60' r='43' />
         <circle cx='60' cy='60' r='43' />
       </svg>
-      <span>0 %</span>
+      {showPercentage && percentage && (
+        <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
+          {percentage} %
+        </Typography>
+      )}
     </LoaderContainer>
   )
 }
 
 Loader.propTypes = {
+  percentage: PropTypes.number,
   time: PropTypes.number,
   showPercentage: PropTypes.bool,
   size: PropTypes.oneOf(['big', 'small']),
@@ -22,8 +29,7 @@ Loader.propTypes = {
 }
 
 Loader.defaultProps = {
-  showPercentage: false,
-  time: 5
+  showPercentage: false
 }
 
 const LoaderContainer = styled.div`
@@ -41,16 +47,16 @@ const LoaderContainer = styled.div`
     transform: translate(-50%, -50%) rotate(-90deg);
     fill: transparent;
   }
+  svg circle {
+    stroke-width: 9.6px;
+    stroke: #1565c0;
+  }
 
   svg circle:nth-child(1) {
-    stroke: #1565c0;
     opacity: 0.25;
-    stroke-width: 10px;
   }
 
   svg circle:nth-child(2) {
-    stroke: #1565c0;
-    stroke-width: 10px;
     stroke-linecap: round;
     stroke-dasharray: 500;
     animation: animate ${props => props.time}s linear;
@@ -66,13 +72,11 @@ const LoaderContainer = styled.div`
   }
 
   span {
-    display: block;
+    max-width: 52px;
     position: absolute;
     left: 50%;
     top: 50%;
-    color: #1565c0;
     transform: translate(-50%, -50%);
-    font-size: 20px;
   }
 `
 

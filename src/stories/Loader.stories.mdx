@@ -20,9 +20,8 @@ O componente `Loader` é utilizado para apresentar carregamentos de forma visual
     }}
   >
     <ThemeProvider>
-      <Loader />
-      {/* <Loader size='big' variant='icon' /> */}
-      {/* <Loader size='small' /> */}
+      <Loader showPercentage={true} percentage={80} time={5} />
+      <Loader percentage={80} time={5} />
     </ThemeProvider>
   </Story>
 </Preview>
