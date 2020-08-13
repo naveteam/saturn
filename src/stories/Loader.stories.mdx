@@ -3,7 +3,7 @@ import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 import { Loader } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Input|Loader' component={Button} />
+<Meta title='Data Display|Loader' component={Button} />
 
 # Loader
 
@@ -20,8 +20,9 @@ O componente `Loader` é utilizado para apresentar carregamentos de forma visual
     }}
   >
     <ThemeProvider>
-      <Loader size='big' variant='icon' />
-      <Loader size='small' />
+      <Loader />
+      {/* <Loader size='big' variant='icon' /> */}
+      {/* <Loader size='small' /> */}
     </ThemeProvider>
   </Story>
 </Preview>
