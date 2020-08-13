@@ -1,0 +1,28 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Flex, Switch } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data input|Switch' component={Switch} />
+
+# Switch
+
+O componente de `Switch` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Switch name='base' label='Label' message='Message' placeholder='Placeholder' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Switch} />
