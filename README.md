@@ -88,13 +88,12 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
     <td align="center"><a href="https://github.com/dpnunez"><img src="https://avatars2.githubusercontent.com/u/46852072?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Pôrto Nuñez</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=dpnunez" title="Code">💻</a> <a href="https://github.com/naveteam/saturn/issues?q=author%3Adpnunez" title="Bug reports">🐛</a> <a href="https://github.com/naveteam/saturn/commits?author=dpnunez" title="Documentation">📖</a> <a href="#example-dpnunez" title="Examples">💡</a> <a href="#ideas-dpnunez" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-dpnunez" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Adpnunez" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/mathfigue"><img src="https://avatars2.githubusercontent.com/u/51998795?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Figueiredo</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=mathfigue" title="Code">💻</a> <a href="#ideas-mathfigue" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-mathfigue" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Amathfigue" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/gabrieldocouto"><img src="https://avatars0.githubusercontent.com/u/40507979?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Do Couto Santos</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=gabrieldocouto" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://caaiosb.github.io"><img src="https://avatars0.githubusercontent.com/u/34246280?v=4" width="100px;" alt=""/><br /><sub><b>Caio Silva</b></sub></a><br /><a href="https://github.com/naveteam/saturn/issues?q=author%3ACaaioSB" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://caaiosb.github.io"><img src="https://avatars0.githubusercontent.com/u/34246280?v=4" width="100px;" alt=""/><br /><sub><b>Caio Silva</b></sub></a><br /><a href="https://github.com/naveteam/saturn/issues?q=author%3ACaaioSB" title="Bug reports">🐛</a> <a href="https://github.com/naveteam/saturn/commits?author=CaaioSB" title="Documentation">📖</a> <a href="#content-CaaioSB" title="Content">🖋</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Esse projeto segue a especificação de [all-contributors](https://github.com/all-contributors/all-contributors). Qualquer tipo de contribuição será bem-vinda!
