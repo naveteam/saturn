@@ -40,12 +40,12 @@ Com a lib instalada, o seguinte código já é o suficiente para iniciar o desen
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider, Input } from '@naveteam/saturn'
+import { ThemeProvider, TextField } from '@naveteam/saturn'
 
 const App = () => {
   return (
     <ThemeProvider>
-      <Input name='naveteam' label='Simple Input' />
+      <TextField name='base' label='Label' message='Message' placeholder='Placeholder' />
     </ThemeProvider>
   )
 }
@@ -94,6 +94,7 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 Esse projeto segue a especificação de [all-contributors](https://github.com/all-contributors/all-contributors). Qualquer tipo de contribuição será bem-vinda!
