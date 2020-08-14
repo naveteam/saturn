@@ -5,13 +5,31 @@ import styled, { css, down, up, typography } from '@xstyled/styled-components'
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 
+const StyledCheckmark = styled.span`
+  box-sizing: border-box;
+  height: 24px;
+  width: 24px;
+  border: solid 2px;
+  border-color: gray.700;
+  border-radius: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    visibility: hidden;
+  }
+`
+
 const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
   return (
     <LabelContainer color={color}>
       <Input type='checkbox' ref={ref} {...props} />
-      <Checkmark />
+      <StyledCheckmark>
+        <Icon icon='check' color='white' height='20' />
+      </StyledCheckmark>
       {label && (
-        <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={6}>
+        <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={3}>
           {label}
         </Typography>
       )}
@@ -33,7 +51,6 @@ const LabelContainer = styled.label`
   vertical-align: top;
   position: relative;
   user-select: none;
-  margin-left: 0;
   color: gray.800;
   min-height: 24px;
   min-width: 24px;
@@ -87,30 +104,5 @@ const Input = styled.input`
     color: disabled;
   }
 `
-
-const StyledCheckmark = styled.span`
-  position: absolute;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 24px;
-  border: solid 2px;
-  border-color: gray.700;
-  border-radius: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    visibility: hidden;
-  }
-`
-
-const Checkmark = () => (
-  <StyledCheckmark>
-    <Icon icon='check' color='white' height='20' />
-  </StyledCheckmark>
-)
 
 export default Checkbox

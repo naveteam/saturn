@@ -1,9 +1,8 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
-
 import { Checkbox } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Selection Controls|Checkbox' component={Checkbox} />
+<Meta title='Data Input|Checkbox' component={Checkbox} />
 
 # Checkbox
 
@@ -20,14 +19,7 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Not selected' name='check0' />
-      <Checkbox checked={true} label='Selected' name='check1' />
-      <Checkbox label='Not selected custom color' color='#ff00ff' name='check2' />
-      <Checkbox label='Selected custom color' color='success' checked={true} name='check3' />
-      <Checkbox checked={true} label='Selected disabled' disabled={true} name='check4' />
-      <Checkbox checked={false} label='Not selected disabled' disabled={true} name='check5' />
-      <Checkbox name='check6' />
-      <Checkbox checked={true} name='check7' />
+      <Checkbox label='Base' />
     </ThemeProvider>
   </Story>
 </Preview>
@@ -47,20 +39,20 @@ O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Default color' name='check8' />
-      <Checkbox label='Not selected custom color' color='#ff0000' name='check9' />
-      <Checkbox label='Selected custom color' color='warning' checked={true} name='check10' />
+      <Checkbox label='Default color' />
+      <Checkbox label='Not selected custom color' color='#ff0000' />
+      <Checkbox label='Selected color from theme' color='warning' />
     </ThemeProvider>
   </Story>
 </Preview>
 
-# Checked | Disabled
+# Checked | onChange
 
-Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checked`. O valor desta prop indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as ores customizadas não irão funcionar.
+O `Checkbox` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.
 
 <Preview>
   <Story
-    name='Checked | Disabled'
+    name='Checked | onChange'
     parameters={{
       design: {
         type: 'figma',
@@ -69,9 +61,30 @@ Em conjunto com a prop `color`, o `Checkbox` pode receber também a prop `checke
     }}
   >
     <ThemeProvider>
-      <Checkbox label='Not selected' name='check11' />
-      <Checkbox checked={true} label='Selected' name='check12' />
-      <Checkbox checked={false} label='Not selected disabled' disabled={true} name='check13' />
+      <Checkbox checked={true} onChange={() => {}} label='Selected' />
+      <Checkbox checked={false} onChange={() => {}} label='Not selected' />
+      <Checkbox checked={true} disabled={true} label='Selected disabled' />
+      <Checkbox checked={false} disabled={true} label='Not selected disabled' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as cores customizadas não irão funcionar.
+
+<Preview>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox label='Not selected disabled' disabled={true} name='check13' />
       <Checkbox checked={true} label='Selected disabled' disabled={true} name='check14' />
     </ThemeProvider>
   </Story>
@@ -92,27 +105,8 @@ O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido
     }}
   >
     <ThemeProvider>
-      <Checkbox checked={false} name='check15' />
-    </ThemeProvider>
-  </Story>
-</Preview>
-
-# onChange
-
-Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar.
-
-<Preview>
-  <Story
-    name='onChange'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Checkbox label='Not selected' name='check16' />
+      <Checkbox label='Checkbox Label' name='check15' />
+      <Checkbox name='check16' />
     </ThemeProvider>
   </Story>
 </Preview>
