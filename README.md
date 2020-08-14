@@ -7,7 +7,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 ![ci](https://github.com/naveteam/saturn/workflows/ci/badge.svg)
-[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/saturn?color=purple)](#contributors-)
+[![All Contributors](https://img.shields.io/github/all-contributors/naveteam/saturn/main)](#contributors-)
 
 ## ❗️ Motivação
 
