@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, down, up, typography } from '@xstyled/styled-components'
+import styled, { css, down, typography } from '@xstyled/styled-components'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
@@ -29,7 +29,7 @@ const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
         <Icon icon='check' color='white' height='20' />
       </StyledCheckmark>
       {label && (
-        <Typography fontSize={3} lineHeight={3} fontWeight={0} marginLeft={3}>
+        <Typography fontSize={3} lineHeight={3} fontWeight={0} paddingLeft={3}>
           {label}
         </Typography>
       )}
@@ -52,8 +52,7 @@ const LabelContainer = styled.label`
   position: relative;
   user-select: none;
   color: gray.800;
-  min-height: 24px;
-  min-width: 24px;
+  height: 24px;
 
   ${down(
     'sm',
@@ -62,24 +61,28 @@ const LabelContainer = styled.label`
     `
   )}
 
-  &
-    ~ input:checked
-    p {
+  & >
+    input:checked
+    ~ p {
     color: gray.900;
+    ${typography}
   }
   ${typography}
 `
 
 const Input = styled.input`
-  position: absolute;
   opacity: 0;
-  height: 100%;
-  width: 100%;
   margin: 0;
-  cursor: pointer;
-  z-index: 1;
+  height: 0;
+  width: 0;
 
-  &:disabled {
+  & ~ p,
+  & ~ span {
+    cursor: pointer;
+  }
+
+  &:disabled ~ p,
+  &:disabled ~ span {
     cursor: not-allowed;
   }
 
