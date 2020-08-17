@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
-
 import { Typography } from '../'
 
-export const Loader = ({ time, percentage, showPercentage, size, variant }) => {
+export const Loader = ({ percentage, showPercentage, size, variant }) => {
+  const [circleLength, setCircleLength] = useState(0)
+
+  useEffect(() => {
+    const length = document.getElementById('externalCircle').getTotalLength()
+    const purcent = percentage / 100
+    const offset = length * (1 - purcent)
+    setCircleLength({ length, offset })
+  }, [percentage])
+
   return (
-    <LoaderContainer time={time} variant='icon'>
+    <LoaderContainer circleLength={circleLength}>
       <svg>
-        <circle cx='60' cy='60' r='43' />
-        <circle cx='60' cy='60' r='43' />
+        <circle cx='48' cy='48' r='43' />
+        <circle id='externalCircle' cx='48' cy='48' r='43' />
       </svg>
       {showPercentage && percentage && (
         <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
@@ -19,6 +27,44 @@ export const Loader = ({ time, percentage, showPercentage, size, variant }) => {
     </LoaderContainer>
   )
 }
+
+const LoaderContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  height: 96px;
+  width: 96px;
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  svg {
+    height: 96px;
+    width: 96px;
+  }
+  svg circle {
+    fill: #fff;
+    stroke: #1565c0;
+    /* stroke-linecap: round; */
+    stroke-width: 9.6;
+    stroke-dashoffset: ${props => props.circleLength.offset};
+  }
+
+  svg circle:nth-child(1) {
+    width: 96px;
+    height: 96px;
+    opacity: 0.25;
+  }
+
+  svg circle:nth-child(2) {
+    stroke-dasharray: ${props => props.circleLength.length};
+    transform: rotate(-90deg) translate(0, -100%);
+    transform-origin: 100% 0;
+  }
+`
 
 Loader.propTypes = {
   percentage: PropTypes.number,
@@ -31,53 +77,5 @@ Loader.propTypes = {
 Loader.defaultProps = {
   showPercentage: false
 }
-
-const LoaderContainer = styled.div`
-  height: 96px;
-  width: 96px;
-  background: #333;
-  position: relative;
-
-  svg {
-    width: 120px;
-    height: 120px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
-    fill: transparent;
-  }
-  svg circle {
-    stroke-width: 9.6px;
-    stroke: #1565c0;
-  }
-
-  svg circle:nth-child(1) {
-    opacity: 0.25;
-  }
-
-  svg circle:nth-child(2) {
-    stroke-linecap: round;
-    stroke-dasharray: 500;
-    animation: animate ${props => props.time}s linear;
-  }
-
-  @keyframes animate {
-    from {
-      stroke-dashoffset: 500;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  span {
-    max-width: 52px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-`
 
 export default Loader
