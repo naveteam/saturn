@@ -9,7 +9,7 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
   useEffect(() => {
     const length = document.getElementById('externalCircle').getTotalLength()
     const purcent = percentage / 100
-    const offsetIndeterminate = length * (1 - 0.25)
+    const offsetIndeterminate = length * (1 - 0.75)
     const offset = length * (1 - purcent)
     setCircleLength({ length, offset, offsetIndeterminate })
   }, [])
@@ -31,14 +31,6 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
 
 const LoaderContainer = styled.div`
   display: inline-block;
-  position: relative;
-
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   svg circle {
     fill: none;
@@ -53,9 +45,42 @@ const LoaderContainer = styled.div`
   svg circle:nth-child(2) {
     stroke: #1565c0;
     stroke-dasharray: ${({ circleLength }) => circleLength.length};
-    transform: rotate(-90deg) translate(0, -100%);
-    transform-origin: 100% 0;
   }
+
+  ${variant({
+    prop: 'variant',
+    variants: {
+      determinate: css`
+        & {
+          position: relative;
+        }
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        svg circle:nth-child(2) {
+          transform-origin: 100% 0;
+          transform: rotate(-90deg) translate(0, -100%);
+        }
+      `,
+      indeterminate: css`
+        svg {
+          animation: rotate ${({ time }) => time}s infinite linear;
+        }
+        svg circle {
+          stroke-dashoffset: ${({ circleLength }) => circleLength.offsetIndeterminate};
+        }
+
+        @keyframes rotate {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `
+    }
+  })}
 
   ${variant({
     prop: 'size',
@@ -79,47 +104,14 @@ const LoaderContainer = styled.div`
           height: 24px;
           width: 24px;
         }
-        svg circle {
+        & svg circle:nth-child(1) {
+          z-index: 3;
+        }
+        & svg circle {
           cx: 12;
           cy: 12;
           r: 10;
           stroke-width: 4;
-        }
-      `
-    }
-  })}
-
-  ${variant({
-    prop: 'variant',
-    variants: {
-      determinate: css`
-        svg circle:nth-child(1) {
-          stroke: #c5d9f0;
-        }
-        svg circle:nth-child(2) {
-          stroke: #1565c0;
-        }
-      `,
-      indeterminate: css`
-        svg {
-          animation: rotate ${({ time }) => time}s infinite linear;
-        }
-        svg circle {
-          stroke-dashoffset: ${({ circleLength }) => circleLength.offsetIndeterminate};
-        }
-
-        svg circle:nth-child(1) {
-          stroke: #1565c0;
-        }
-
-        svg circle:nth-child(2) {
-          stroke: #c5d9f0;
-        }
-
-        @keyframes rotate {
-          to {
-            transform: rotate(360deg);
-          }
         }
       `
     }

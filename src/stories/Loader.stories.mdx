@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Loader
 
-O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) que possuí opcionalmente porcentagem e a variant sem tempo definido (`indeterminate` - padrão).
+O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) sem tempo definido (`indeterminate` - padrão).
 
 <Preview>
   <Story
@@ -40,19 +40,19 @@ O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon
     }}
   >
     <ThemeProvider>
-      <Loader size='icon' />
-      <Loader size='major' />
+      <Loader size='major' percentage='50' variant='determinate' />
+      <Loader size='icon' percentage='50' variant='determinate' />
     </ThemeProvider>
   </Story>
 </Preview>
 
-# Indeterminate | Size
+# Variants
 
-Apresentar as variações do size
+O `Loader` recebe a prop `variant` que indica uma entre as duas variações possíveis, `determinate` e `indeterminate`(padrão). Quando for a variação `determinate`, é necessário também passar uma prop chamada `percentage`, é um valor que indica a porcentagem de carregamento já realizado e junto com esta prop opcionalmente também é possível passar uma prop chamada `showPercentage` que é um booleano que define se esta porcentagem vai ser mostrada em texto, mas este texto só será exibido quando o `size` do `Loader` também for `major`.
 
 <Preview>
   <Story
-    name='Indeterminate | Size'
+    name='Variants'
     parameters={{
       design: {
         type: 'figma',
@@ -61,29 +61,9 @@ Apresentar as variações do size
     }}
   >
     <ThemeProvider>
-      <Loader percentage={70} size='icon' />
-      {/* <Loader percentage={30} variant='indeterminate' /> */}
-    </ThemeProvider>
-  </Story>
-</Preview>
-
-# Percentage
-
-O `Loader` tem a prop percentage, que define a quantidade de carregamento já realizada, em conjunto com esta prop está `showPercentage`, um valor booleano que define se a porcentagem será mostrada ou não em forma de texto.
-
-<Preview>
-  <Story
-    name='Percentage'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Loader percentage={90} showPercentage={true} />
-      <Loader percentage={50} />
+      <Loader percentage={30} showPercentage={true} variant='determinate' />
+      <Loader percentage={30} variant='determinate' />
+      <Loader variant='indeterminate' />
     </ThemeProvider>
   </Story>
 </Preview>
