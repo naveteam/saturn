@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Loader
 
-O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Apresentar o componente sem nenhuma alteração de prop
+O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) que possuí opcionalmente porcentagem e a variant sem tempo definido (`indeterminate` - padrão).
 
 <Preview>
   <Story
@@ -20,34 +20,14 @@ O componente `Loader` é utilizado para apresentar carregamentos de forma visual
     }}
   >
     <ThemeProvider>
-      <Loader percentage={50} time={5} showPercentage={true} />
-    </ThemeProvider>
-  </Story>
-</Preview>
-
-# Variant
-
-Apresentar as variações icon e major
-
-<Preview>
-  <Story
-    name='Variant'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Loader percentage={10} />
+      <Loader />
     </ThemeProvider>
   </Story>
 </Preview>
 
 # Size
 
-Apresentar as variações do size
+O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon` e `major`, que indicam o tamanho do `Loader`, por padrão é `major`.
 
 <Preview>
   <Story
@@ -60,7 +40,29 @@ Apresentar as variações do size
     }}
   >
     <ThemeProvider>
-      <Loader percentage={10} />
+      <Loader size='icon' />
+      <Loader size='major' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Indeterminate | Size
+
+Apresentar as variações do size
+
+<Preview>
+  <Story
+    name='Indeterminate | Size'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Loader percentage={70} size='icon' />
+      {/* <Loader percentage={30} variant='indeterminate' /> */}
     </ThemeProvider>
   </Story>
 </Preview>
