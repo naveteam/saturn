@@ -1,14 +1,14 @@
 import React, { useState, forwardRef } from 'react'
-import styled, { css, keyframes } from '@xstyled/styled-components'
-import { variant } from '@xstyled/styled-components'
+import styled, { css, variant } from '@xstyled/styled-components'
+import PropTypes from 'prop-types'
 
 import { Flex, Box } from '../Grid'
 import Typography from '../Typography'
 
-const Switch = forwardRef(({ name, label, value, disabled, ...props }, ref) => {
-  const [isEnabled, setIsEnabled] = useState(false)
+const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, checked, ...props }, ref) => {
+  const [isEnabled, setIsEnabled] = useState(defaultChecked)
   return (
-    <Flex {...props} alignItems='center'>
+    <Flex alignItems='center' {...props}>
       <SwitchContainer enabled={isEnabled} disabled={disabled}>
         <HidenInput
           ref={ref}
@@ -16,12 +16,17 @@ const Switch = forwardRef(({ name, label, value, disabled, ...props }, ref) => {
           name={name}
           id={name}
           value={value}
-          onChange={e => setIsEnabled(e.target.checked)}
+          onChange={e => {
+            setIsEnabled(e.target.checked)
+            if (onChange) onChange(e)
+          }}
           disabled={disabled}
+          defaultChecked={defaultChecked}
+          checked={checked}
         />
         <Controller htmlFor={name} enabled={isEnabled} />
       </SwitchContainer>
-      {label && <Typography>{label}</Typography>}
+      {label && <Typography color={disabled ? 'disabled' : 'gray.900'}>{label}</Typography>}
     </Flex>
   )
 })
@@ -45,14 +50,10 @@ const positionVariant = variant({
   prop: 'enabled',
   variants: {
     true: css`
-      animation: ${keyframes`from { left: 2px } to { right: 2px }`} 1s ease-out;
-      right: 2px;
-      transition: all 0.3s ease-in-out;
+      left: 18px;
     `,
     false: css`
-      animation: ${keyframes`from { right: 2px } to { left: 2px }`} 1s ease-out;
       left: 2px;
-      transition: all 0.3s ease-in-out;
     `
   }
 })
@@ -86,10 +87,21 @@ const Controller = styled(Box)`
   border-radius: 50%;
   position: absolute;
   top: 2px;
+  left: 2px;
 
   transition: all 0.3s ease-in-out;
 
   ${positionVariant}
 `
+
+Switch.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  defaultChecked: PropTypes.bool,
+  checked: PropTypes.any
+}
 
 export default Switch
