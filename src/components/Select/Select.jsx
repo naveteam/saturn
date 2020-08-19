@@ -50,7 +50,11 @@ const Select = forwardRef(
               {disabled ? (
                 <option value=''>{optionLabel}</option>
               ) : (
-                options.map(option => <option value={option[optionValue]}>{optionSelected || optionLabel}</option>)
+                options.map(option => (
+                  <option key={option} value={option[optionValue]}>
+                    {optionSelected || optionLabel}
+                  </option>
+                ))
               )}
             </SelectBase>
             {!disabled && focus ? <ExpandLess /> : <ExpandMore />}
@@ -59,7 +63,7 @@ const Select = forwardRef(
           {focus && (
             <OptionsContainer>
               {options.map(option => (
-                <div onClick={() => handleChange(option[optionValue])}>
+                <div key={option} onClick={() => handleChange(option[optionValue])}>
                   <OptionContainer>
                     <OptionLabel>{option[optionLabel]}</OptionLabel>
                     {option[optionValue] === optionSelected && <IconCheck />}
