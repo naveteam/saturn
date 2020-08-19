@@ -1,0 +1,147 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Select } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data input|Select' component={Select} />
+
+# Select
+
+O componente de `Select` é utilizado para que o usuário possa selecionar uma ou mais opções da aplicação.
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select
+        label='Label'
+        options={[
+          {
+            name: 'Name 1',
+            description: 'Dev A1'
+          },
+          {
+            name: 'Name 2',
+            description: 'Dev A2'
+          },
+          {
+            name: 'Name 3',
+            description: 'Dev A3'
+          },
+          {
+            name: 'Name 4',
+            description: 'Dev B1'
+          },
+          {
+            name: 'Name 5',
+            description: 'Dev B2'
+          },
+          {
+            name: 'Name 6',
+            description: 'Dev B3'
+          },
+          {
+            name: 'Name 7',
+            description: 'Dev C1'
+          },
+          {
+            name: 'Name 8',
+            description: 'Dev C2'
+          }
+        ]}
+        optionLabel='description'
+        optionValue='name'
+        caption='Caption'
+      />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Error
+
+Passando a prop de `error` para o `Select`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado na option em questão.
+
+<Preview>
+  <Story
+    name='Error'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select
+        label='Error'
+        options={[
+          {
+            name: 'Name 1',
+            description: 'Dev A1'
+          },
+          {
+            name: 'Name 2',
+            description: 'Dev A2'
+          },
+          {
+            name: 'Name 3',
+            description: 'Dev A3'
+          },
+          {
+            name: 'Name 4',
+            description: 'Dev B1'
+          },
+          {
+            name: 'Name 5',
+            description: 'Dev B2'
+          },
+          {
+            name: 'Name 6',
+            description: 'Dev B3'
+          },
+          {
+            name: 'Name 7',
+            description: 'Dev C1'
+          },
+          {
+            name: 'Name 8',
+            description: 'Dev C2'
+          }
+        ]}
+        optionLabel='description'
+        optionValue='name'
+        error
+        caption='Error'
+      />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
+
+<Preview>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select label='Disabled' optionLabel='Disabled' disabled caption='Disabled' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Select} />
