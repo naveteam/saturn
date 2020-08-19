@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css, variant } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
 
 export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
   const [circleLength, setCircleLength] = useState(0)
+  const externalCircleRef = useRef()
 
   useEffect(() => {
-    const length = document.getElementById('externalCircle').getTotalLength()
+    const length = externalCircleRef.current.getTotalLength()
     const purcent = percentage / 100
     const offsetIndeterminate = length * (1 - 0.75)
     const offset = length * (1 - purcent)
@@ -18,7 +19,7 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
     <LoaderContainer time={time} size={size} variant={variant} circleLength={circleLength}>
       <svg>
         <circle />
-        <circle id='externalCircle' />
+        <circle ref={externalCircleRef} />
       </svg>
       {showPercentage && percentage && size !== 'icon' && variant !== 'indeterminate' && (
         <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
@@ -38,12 +39,15 @@ const LoaderContainer = styled.div`
     stroke-dashoffset: ${({ circleLength }) => circleLength.offset};
   }
 
+  svg circle {
+    stroke: ${({ theme }) => theme.colors.primary};
+  }
+
   svg circle:nth-child(1) {
-    stroke: #c5d9f0;
+    opacity: 0.25;
   }
 
   svg circle:nth-child(2) {
-    stroke: #1565c0;
     stroke-dasharray: ${({ circleLength }) => circleLength.length};
   }
 
@@ -51,9 +55,8 @@ const LoaderContainer = styled.div`
     prop: 'variant',
     variants: {
       determinate: css`
-        & {
-          position: relative;
-        }
+        position: relative;
+
         span {
           position: absolute;
           top: 50%;
@@ -61,8 +64,8 @@ const LoaderContainer = styled.div`
           transform: translate(-50%, -50%);
         }
         svg circle:nth-child(2) {
-          transform-origin: 100% 0;
           transform: rotate(-90deg) translate(0, -100%);
+          transform-origin: 100% 0;
         }
       `,
       indeterminate: css`
@@ -104,10 +107,8 @@ const LoaderContainer = styled.div`
           height: 24px;
           width: 24px;
         }
-        & svg circle:nth-child(1) {
-          z-index: 3;
-        }
-        & svg circle {
+
+        svg circle {
           cx: 12;
           cy: 12;
           r: 10;
