@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect, forwardRef } from 'react'
+import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import { th, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
 import { Typography, Caption } from '..'
-import { ExpandMore, ExpandLess, Check } from '../../icons'
+import { Icon } from '..'
 
 const Select = forwardRef(
   ({ label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
@@ -20,16 +20,14 @@ const Select = forwardRef(
     }
 
     const outsideAlerter = ref => {
-      useEffect(() => {
-        const handleClickOutside = event => {
-          ref.current && !ref.current.contains(event.target) && setFocus(false)
-        }
+      const handleClickOutside = event => {
+        ref.current && !ref.current.contains(event.target) && setFocus(false)
+      }
 
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-          document.removeEventListener('mousedown', handleClickOutside)
-        }
-      }, [ref])
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
     }
 
     outsideAlerter(containerRef)
@@ -57,7 +55,11 @@ const Select = forwardRef(
                 ))
               )}
             </SelectBase>
-            {!disabled && focus ? <ExpandLess /> : <ExpandMore />}
+            {!disabled && focus ? (
+              <Icon icon='ExpandLess' color='gray.800' />
+            ) : (
+              <Icon icon='ExpandMore' color='gray.800' />
+            )}
           </SelectContainer>
 
           {focus && (
@@ -66,7 +68,7 @@ const Select = forwardRef(
                 <div key={option} onClick={() => handleChange(option[optionValue])}>
                   <OptionContainer>
                     <OptionLabel>{option[optionLabel]}</OptionLabel>
-                    {option[optionValue] === optionSelected && <IconCheck />}
+                    {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
                   </OptionContainer>
                 </div>
               ))}
@@ -110,10 +112,10 @@ const disabledVariant = variant({
       div {
         cursor: default;
         border-color: gray.400;
-        background-color: ${({ quiet }) => (quiet ? '#fff' : '#F5F5F5')};
+        background-color: ${({ quiet }) => (quiet ? th('white') : th.color('gray.100'))};
         select {
-          color: gray.400;
-          background-color: ${({ quiet }) => (quiet ? '#fff' : '#F5F5F5')};
+          color: disabled;
+          background-color: ${({ quiet }) => (quiet ? th('white') : th.color('gray.100'))};
         }
         path {
           fill: gray.400;
@@ -148,10 +150,6 @@ const Label = styled(Typography)`
   font-weight: 1;
   margin-bottom: 3;
   color: gray.800;
-`
-const IconCheck = styled(Check)`
-  padding: 0;
-  fill: blue.100;
 `
 const Message = styled(Caption)`
   font-size: 1;
@@ -200,7 +198,7 @@ const SelectBase = styled.select`
   border: 0;
   font-size: 3;
   line-height: 3;
-  color: ${({ filled }) => (filled ? '#212121' : '#757575')};
+  color: ${({ filled }) => (filled ? th('colors.gray.900') : th('colors.gray.600'))};
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
