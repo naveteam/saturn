@@ -40,7 +40,8 @@ const errorVariant = variant({
           color: error;
         }
       }
-    `
+    `,
+    false: css``
   }
 })
 
@@ -59,7 +60,8 @@ const disabledVariant = variant({
           color: gray.400;
         }
       }
-    `
+    `,
+    false: css``
   }
 })
 
@@ -71,7 +73,8 @@ const focusVariant = variant({
       border-color: blue.50;
       border-width: 2px;
       padding: 0;
-    `
+    `,
+    false: css``
   }
 })
 
