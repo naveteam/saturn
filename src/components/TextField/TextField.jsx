@@ -3,9 +3,9 @@ import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
-import { Typography } from '..'
+import { Caption, Typography } from '..'
 
-const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, ...props }, ref) => {
+const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, type, name, ...props }, ref) => {
   const [focus, setFocus] = useState(false)
   return (
     <Wrapper disabled={disabled} {...props}>
@@ -14,6 +14,8 @@ const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, dis
         {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
         <InputBase
           ref={ref}
+          type={type}
+          name={name}
           placeholder={placeholder}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
@@ -123,7 +125,7 @@ const InputBase = styled.input`
     }
   }
 `
-const Message = styled(Typography)`
+const Message = styled(Caption)`
   font-size: 1;
   line-height: 1;
   margin-top: 2;
