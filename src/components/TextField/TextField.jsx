@@ -3,7 +3,7 @@ import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
-import { Typography } from '..'
+import { Caption, Typography } from '..'
 
 const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, type, name, ...props }, ref) => {
   const [focus, setFocus] = useState(false)
