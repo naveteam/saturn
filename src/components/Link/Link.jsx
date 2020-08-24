@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { variant, space, typography } from '@xstyled/system'
+import { layout, variant, space, typography, color } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
 
 const Link = ({ component, propPath, children, to, as, target, color, ...props }) => {
   const DefaultComponent = ({ children, to, as, propPath, color, ...props }) => {
-    console.log(to)
     return (
       <a href={to} target={target} variant={variant} {...props}>
         {children}
@@ -19,32 +18,36 @@ const Link = ({ component, propPath, children, to, as, target, color, ...props }
   const mountPath = { [propPath]: to }
 
   return (
-    <Base {...mountPath} passHref {...props} to={to} target={target}>
-      {component ? (
-        <a target={target}>
-          <Label color={color} as={as}>
-            {children}
-          </Label>
-        </a>
-      ) : (
-        <Label color={color} as={as}>
-          {children}
+    <BaseStyled {...props} display='flex'>
+      <Base {...mountPath} passHref to={to} target={target}>
+        <Label fontFamily='Open Sans' m={0} p={0} alignItems='center' color={color} as={as}>
+          {component ? (
+            <a color={color} target={target}>
+              {children}
+            </a>
+          ) : (
+            <>{children}</>
+          )}
         </Label>
-      )}
-    </Base>
+      </Base>
+    </BaseStyled>
   )
 }
 
-const Label = styled(Typography)`
-  font-family: 'Open Sans', sans-serif;
-  color: #424242;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  text-decoration-line: underline;
-  ${space}
+const BaseStyled = styled.div`
   ${typography}
+  ${layout}
+  ${space}
+  ${color}
+`
+
+const Label = styled(Typography)`
+  text-decoration-line: underline;
+  ${typography}
+  ${variant}
+  ${space}
+  ${color}
+  ${layout}
 `
 
 Link.defaultProps = {
