@@ -13,7 +13,7 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
     const offsetIndeterminate = length * (1 - 0.75)
     const offset = length * (1 - purcent)
     setCircleLength({ length, offset, offsetIndeterminate })
-  }, [])
+  }, [percentage])
 
   return (
     <LoaderContainer time={time} size={size} variant={variant} circleLength={circleLength}>
