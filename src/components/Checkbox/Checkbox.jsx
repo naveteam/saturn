@@ -9,7 +9,7 @@ const StyledCheckmark = styled.span`
   box-sizing: border-box;
   height: 24px;
   width: 24px;
-  border: solid 2px;
+  border: solid 3px;
   border-color: gray.700;
   border-radius: 2;
   display: flex;
@@ -62,7 +62,7 @@ const LabelContainer = styled.label`
   )}
 
   & >
-    input:checked
+    input:checked:enabled
     ~ p {
     color: gray.900;
     ${typography}
