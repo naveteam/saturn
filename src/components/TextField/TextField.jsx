@@ -2,31 +2,44 @@ import React, { useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 
+import { Icon } from '../Iconography'
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
 
-const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, type, name, ...props }, ref) => {
-  const [focus, setFocus] = useState(false)
-  return (
-    <Wrapper disabled={disabled} {...props}>
-      <Label>{label}</Label>
-      <Container focus={focus}>
-        {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
-        <InputBase
-          ref={ref}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          disabled={disabled}
-        />
-        {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
-      </Container>
-      <Message>{message}</Message>
-    </Wrapper>
-  )
-})
+const TextField = forwardRef(
+  ({ label, message, prefix, suffix, placeholder, disabled, type, name, password, ...props }, ref) => {
+    const [focus, setFocus] = useState(false)
+    const [inputType, setInputType] = useState(type)
+
+    return (
+      <Wrapper disabled={disabled} {...props}>
+        <Label>{label}</Label>
+        <Container focus={focus}>
+          {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
+          <InputBase
+            ref={ref}
+            type={inputType}
+            name={name}
+            placeholder={placeholder}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            disabled={disabled}
+          />
+          {password && (
+            <Icon
+              onMouseOver={() => setInputType('text')}
+              onMouseOut={() => setInputType('password')}
+              icon='visibility'
+              pr={3}
+            />
+          )}
+          {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
+        </Container>
+        <Message>{message}</Message>
+      </Wrapper>
+    )
+  }
+)
 
 const errorVariant = variant({
   prop: 'error',

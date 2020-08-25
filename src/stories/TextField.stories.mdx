@@ -94,4 +94,31 @@ O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
   </Story>
 </Preview>
 
+# Password
+
+O `TextField` pode receber a prop de `password`, que insere o ícone para mostrar ou ocultar a senha.
+
+<Preview>
+  <Story
+    name='Password'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField
+        type='password'
+        name='password'
+        label='Password'
+        placeholder='Password TextField'
+        message='Password'
+        password
+      />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
 <Props of={TextField} />
