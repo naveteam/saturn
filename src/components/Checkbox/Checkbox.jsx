@@ -7,9 +7,10 @@ import { Icon } from '../Iconography'
 
 const StyledCheckmark = styled.span`
   box-sizing: border-box;
-  height: 24px;
-  width: 24px;
-  border: solid 3px;
+  height: 18px;
+  width: 18px;
+  border: solid 2px;
+  margin: 3px;
   border-color: gray.700;
   border-radius: 2;
   display: flex;
