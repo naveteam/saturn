@@ -44,12 +44,12 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setFocus(!focus)}
           >
-            <SelectBase tabIndex='-1' value={optionSelected} onChange={handleChange} filled={filled} ref={ref}>
+            <SelectBase value={optionSelected} onChange={handleChange} filled={filled} ref={ref}>
               {disabled ? (
                 <option value=''>{optionLabel}</option>
               ) : (
                 options.map(option => (
-                  <option key={option} value={option[optionValue]}>
+                  <option key={option[optionLabel]} value={option[optionValue]}>
                     {optionSelected || optionLabel}
                   </option>
                 ))
@@ -65,7 +65,7 @@ const Select = forwardRef(
           {focus && (
             <OptionsContainer>
               {options.map(option => (
-                <div key={option} onClick={() => handleChange(option[optionValue])}>
+                <div key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
                   <OptionContainer>
                     <OptionLabel>{option[optionLabel]}</OptionLabel>
                     {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
@@ -198,6 +198,7 @@ const SelectBase = styled.select`
   border: 0;
   font-size: 3;
   line-height: 3;
+  background: white;
   color: ${({ filled }) => (filled ? th('colors.gray.900') : th('colors.gray.600'))};
   cursor: pointer;
   -webkit-appearance: none;
