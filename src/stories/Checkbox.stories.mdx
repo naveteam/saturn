@@ -24,28 +24,6 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
   </Story>
 </Preview>
 
-# Color
-
-O `Checkbox` pode receber a prop `color`. Pode ser utilizada alguma cor definida no tema ou qualquer outra cor que esteja em formato aceito pelo CSS. Para usar uma cor customizada, o checkbox não pode estar em sua variant `disabled`. Caso a prop não for passada, a label do checkbox ficará com a cor padrão.
-
-<Preview>
-  <Story
-    name='Color'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Checkbox label='Default color' />
-      <Checkbox label='Not selected custom color' color='#ff0000' />
-      <Checkbox label='Selected color from theme' color='warning' />
-    </ThemeProvider>
-  </Story>
-</Preview>
-
 # Checked | onChange
 
 O `Checkbox` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.

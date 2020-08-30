@@ -5,30 +5,12 @@ import styled, { css, down, typography } from '@xstyled/styled-components'
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 
-const StyledCheckmark = styled.span`
-  box-sizing: border-box;
-  height: 18px;
-  width: 18px;
-  border: solid 2px;
-  margin: 3px;
-  border-color: gray.700;
-  border-radius: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    visibility: hidden;
-  }
-`
-
 const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
   return (
     <LabelContainer color={color}>
       <Input type='checkbox' ref={ref} {...props} />
-      <StyledCheckmark>
-        <Icon icon='check' color='white' height='20' />
-      </StyledCheckmark>
+      <CheckedIcon icon='checkbox_checked' color='primary' />
+      <UncheckedIcon icon='checkbox_outline' />
       {label && (
         <Typography fontSize={3} lineHeight={3} fontWeight={0} paddingLeft={3}>
           {label}
@@ -47,13 +29,18 @@ Checkbox.propTypes = {
   name: PropTypes.string
 }
 
+const CheckedIcon = styled(Icon)`
+  display: none;
+`
+const UncheckedIcon = styled(Icon)``
+
 const LabelContainer = styled.label`
   display: inline-flex;
   vertical-align: top;
   position: relative;
   user-select: none;
   color: gray.800;
-  height: 24px;
+  min-height: 24px;
 
   ${down(
     'sm',
@@ -87,8 +74,11 @@ const Input = styled.input`
     cursor: not-allowed;
   }
 
-  &:checked + span svg {
-    visibility: visible;
+  &:checked + ${CheckedIcon} {
+    display: inherit;
+    & + ${UncheckedIcon} {
+      display: none;
+    }
   }
 
   &:checked:disabled + span {
