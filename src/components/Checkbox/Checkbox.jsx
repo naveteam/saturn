@@ -65,12 +65,14 @@ const Input = styled.input`
   width: 0;
 
   & ~ p,
-  & ~ span {
+  & ~ span,
+  & ~ svg {
     cursor: pointer;
   }
 
   &:disabled ~ p,
-  &:disabled ~ span {
+  &:disabled ~ span,
+  &:disabled ~ svg {
     cursor: not-allowed;
   }
 
