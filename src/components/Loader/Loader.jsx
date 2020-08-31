@@ -9,9 +9,9 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
 
   useEffect(() => {
     const length = externalCircleRef.current.getTotalLength()
-    const purcent = percentage / 100
+    const percent = percentage / 100
     const offsetIndeterminate = length * (1 - 0.75)
-    const offset = length * (1 - purcent)
+    const offset = length * (1 - percent)
     setCircleLength({ length, offset, offsetIndeterminate })
   }, [percentage])
 
