@@ -93,6 +93,7 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
     <td align="center"><a href="https://github.com/rbschumacher"><img src="https://avatars2.githubusercontent.com/u/54547117?v=4" width="100px;" alt=""/><br /><sub><b>Rafael Schumacher</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=rbschumacher" title="Code">💻</a> <a href="https://github.com/naveteam/saturn/commits?author=rbschumacher" title="Documentation">📖</a> <a href="#example-rbschumacher" title="Examples">💡</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Arbschumacher" title="Reviewed Pull Requests">👀</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/juliano-reis-2ab203142/"><img src="https://avatars0.githubusercontent.com/u/30237272?v=4" width="100px;" alt=""/><br /><sub><b>Juliano Reis</b></sub></a><br /><a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Ajulianoddreis" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/italonolasco"><img src="https://avatars0.githubusercontent.com/u/19333230?v=4" width="100px;" alt=""/><br /><sub><b>Ítalo Nolasco</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=italonolasco" title="Code">💻</a> <a href="#maintenance-italonolasco" title="Maintenance">🚧</a></td>
   </tr>
 </table>
