@@ -94,6 +94,7 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
   </tr>
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/juliano-reis-2ab203142/"><img src="https://avatars0.githubusercontent.com/u/30237272?v=4" width="100px;" alt=""/><br /><sub><b>Juliano Reis</b></sub></a><br /><a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Ajulianoddreis" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/italonolasco"><img src="https://avatars0.githubusercontent.com/u/19333230?v=4" width="100px;" alt=""/><br /><sub><b>Ítalo Nolasco</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=italonolasco" title="Code">💻</a> <a href="#maintenance-italonolasco" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
