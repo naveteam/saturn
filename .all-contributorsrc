@@ -68,6 +68,17 @@
         "doc",
         "content"
       ]
+    },
+    {
+      "login": "thiagonunesbatista",
+      "name": "Thiago Nunes Batista",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/67487679?v=4",
+      "profile": "http://thiagonunesbatista.github.io",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
