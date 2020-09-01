@@ -91,6 +91,15 @@
         "example",
         "review"
       ]
+    },
+    {
+      "login": "julianoddreis",
+      "name": "Juliano Reis",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30237272?v=4",
+      "profile": "https://www.linkedin.com/in/juliano-reis-2ab203142/",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
