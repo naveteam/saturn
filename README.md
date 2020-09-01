@@ -92,6 +92,9 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
     <td align="center"><a href="http://thiagonunesbatista.github.io"><img src="https://avatars3.githubusercontent.com/u/67487679?v=4" width="100px;" alt=""/><br /><sub><b>Thiago Nunes Batista</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=thiagonunesbatista" title="Code">💻</a> <a href="https://github.com/naveteam/saturn/commits?author=thiagonunesbatista" title="Documentation">📖</a> <a href="#example-thiagonunesbatista" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/rbschumacher"><img src="https://avatars2.githubusercontent.com/u/54547117?v=4" width="100px;" alt=""/><br /><sub><b>Rafael Schumacher</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=rbschumacher" title="Code">💻</a> <a href="https://github.com/naveteam/saturn/commits?author=rbschumacher" title="Documentation">📖</a> <a href="#example-rbschumacher" title="Examples">💡</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Arbschumacher" title="Reviewed Pull Requests">👀</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/juliano-reis-2ab203142/"><img src="https://avatars0.githubusercontent.com/u/30237272?v=4" width="100px;" alt=""/><br /><sub><b>Juliano Reis</b></sub></a><br /><a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Ajulianoddreis" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
