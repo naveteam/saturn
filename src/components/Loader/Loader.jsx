@@ -104,15 +104,16 @@ const LoaderContainer = styled.div`
       icon: css`
         &,
         svg {
-          height: 24px;
-          width: 24px;
+          height: 20px;
+          width: 20px;
+          margin: 2px;
         }
 
         svg circle {
-          cx: 12;
-          cy: 12;
-          r: 10;
-          stroke-width: 4;
+          cx: 10;
+          cy: 10;
+          r: 8;
+          stroke-width: 2;
         }
       `
     }
