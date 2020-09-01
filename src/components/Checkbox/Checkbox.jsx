@@ -32,7 +32,11 @@ Checkbox.propTypes = {
 const CheckedIcon = styled(Icon)`
   display: none;
 `
-const UncheckedIcon = styled(Icon)``
+const UncheckedIcon = styled(Icon)`
+  & path {
+    fill: gray.700;
+  }
+`
 
 const LabelContainer = styled.label`
   display: inline-flex;
@@ -65,13 +69,11 @@ const Input = styled.input`
   width: 0;
 
   & ~ p,
-  & ~ span,
   & ~ svg {
     cursor: pointer;
   }
 
   &:disabled ~ p,
-  &:disabled ~ span,
   &:disabled ~ svg {
     cursor: not-allowed;
   }
@@ -83,17 +85,8 @@ const Input = styled.input`
     }
   }
 
-  &:checked:disabled + span {
-    background-color: gray.400;
-  }
-
-  &:checked:not(:disabled) + span {
-    background-color: primary;
-    border-color: primary;
-  }
-
-  &:disabled + span {
-    border-color: gray.400;
+  &:disabled ~ svg path {
+    fill: gray.400;
   }
 
   &:disabled ~ p {
