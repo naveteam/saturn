@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, useState, useEffect, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 
@@ -8,43 +8,39 @@ import { Icon } from '..'
 
 const Select = forwardRef(
   ({ label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
-    const [focus, setFocus] = useState(false)
-    const [filled, setFilled] = useState(false)
+    const [isOpened, setIsOpened] = useState(false)
     const [optionSelected, setOptionSelected] = useState()
     const containerRef = useRef(null)
 
     const handleChange = option => {
       setOptionSelected(option)
-      setFilled(true)
-      setFocus(false)
+      setIsOpened(false)
     }
 
-    const outsideAlerter = ref => {
+    useEffect(() => {
       const handleClickOutside = event => {
-        ref.current && !ref.current.contains(event.target) && setFocus(false)
+        containerRef.current && !containerRef.current.contains(event.target) && setIsOpened(false)
       }
 
       document.addEventListener('mousedown', handleClickOutside)
       return () => {
         document.removeEventListener('mousedown', handleClickOutside)
       }
-    }
-
-    outsideAlerter(containerRef)
+    }, [containerRef])
 
     return (
-      <Wrapper ref={containerRef} disabled={disabled} error={error} focus={focus} quiet={quiet} {...props}>
+      <Wrapper ref={containerRef} disabled={disabled} error={error} isOpened={isOpened} quiet={quiet} {...props}>
         {!quiet && <Label>{label}</Label>}
         <Container tabIndex='0'>
           <SelectContainer
             className='selectContainer'
-            focus={focus}
+            isOpened={isOpened}
             quiet={quiet}
             error={error}
             disabled={disabled}
-            onClick={() => !disabled && setFocus(!focus)}
+            onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase value={optionSelected} onChange={handleChange} filled={filled} ref={ref}>
+            <SelectBase value={optionSelected} onChange={handleChange} ref={ref}>
               {disabled ? (
                 <option value=''>{optionLabel}</option>
               ) : (
@@ -55,14 +51,10 @@ const Select = forwardRef(
                 ))
               )}
             </SelectBase>
-            {!disabled && focus ? (
-              <Icon icon='ExpandLess' color='gray.800' />
-            ) : (
-              <Icon icon='ExpandMore' color='gray.800' />
-            )}
+            <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
           </SelectContainer>
 
-          {focus && (
+          {isOpened && (
             <OptionsContainer>
               {options.map(option => (
                 <div key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
@@ -75,7 +67,7 @@ const Select = forwardRef(
             </OptionsContainer>
           )}
         </Container>
-        {!focus && <Message>{caption}</Message>}
+        {!isOpened && <Message>{caption}</Message>}
       </Wrapper>
     )
   }
@@ -126,8 +118,8 @@ const disabledVariant = variant({
   }
 })
 
-const focusVariant = variant({
-  prop: 'focus',
+const isOpenedVariant = variant({
+  prop: 'isOpened',
   default: false,
   variants: {
     true: css`
@@ -199,7 +191,7 @@ const SelectBase = styled.select`
   font-size: 3;
   line-height: 3;
   background: white;
-  color: ${({ filled }) => (filled ? th('colors.gray.900') : th('colors.gray.600'))};
+  color: ${({ value }) => (value ? th('colors.gray.900') : th('colors.gray.600'))};
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -213,7 +205,7 @@ const SelectContainer = styled(Flex)`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  ${focusVariant}
+  ${isOpenedVariant}
 `
 
 export default Select
