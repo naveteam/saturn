@@ -1,0 +1,92 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Checkbox } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input|Checkbox' component={Checkbox} />
+
+# Checkbox
+
+O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox label='Base' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Checked | onChange
+
+O `Checkbox` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.
+
+<Preview>
+  <Story
+    name='Checked | onChange'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox checked={true} onChange={() => {}} label='Selected' />
+      <Checkbox checked={false} onChange={() => {}} label='Not selected' />
+      <Checkbox checked={true} disabled={true} label='Selected disabled' />
+      <Checkbox checked={false} disabled={true} label='Not selected disabled' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Disabled
+
+A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as cores customizadas não irão funcionar.
+
+<Preview>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox label='Not selected disabled' disabled={true} name='check13' />
+      <Checkbox checked={true} label='Selected disabled' disabled={true} name='check14' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Label
+
+O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido, nada será exibido.
+
+<Preview>
+  <Story
+    name='label'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Checkbox label='Checkbox Label' name='check15' />
+      <Checkbox name='check16' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Checkbox} />
