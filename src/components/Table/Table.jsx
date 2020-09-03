@@ -2,22 +2,17 @@ import React from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
+import TableHeader from './TableHeader'
+
 import { Box, Typography } from '../'
 
 const Table = () => (
   <Container>
-    <TableHeader>
-      <TableTitle>Title</TableTitle>
-    </TableHeader>
-    <TableHeader>
-      <TableTitle>Title</TableTitle>
-    </TableHeader>
-    <TableHeader>
-      <TableTitle>Title</TableTitle>
-    </TableHeader>
-    <TableHeader>
-      <TableTitle>Title</TableTitle>
-    </TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableHeader>Title</TableHeader>
+
     <TableBody>
       <TableRow>
         <TableData>
@@ -33,6 +28,21 @@ const Table = () => (
           <TableDataText>Column 4</TableDataText>
         </TableData>
       </TableRow>
+      <TableRow>
+        <TableData>
+          <TableDataText>Column 1</TableDataText>
+        </TableData>
+        <TableData>
+          <TableDataText>Column 2</TableDataText>
+        </TableData>
+        <TableData>
+          <TableDataText>Column 3</TableDataText>
+        </TableData>
+        <TableData>
+          <TableDataText>Column 4</TableDataText>
+        </TableData>
+      </TableRow>
+
       <TableRow>
         <TableData>
           <TableDataText>Column 1</TableDataText>
@@ -78,10 +88,6 @@ const Container = styled.table`
       color: #fff;
     }
   }
-`
-
-const TableHeader = styled.th`
-  padding: 12px 16px;
 `
 
 const TableRow = styled.tr`
