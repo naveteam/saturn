@@ -1,8 +1,5 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import PropTypes from 'prop-types'
-
-import { Typography } from '../'
 
 const TableRow = ({ children }) => <Container>{children}</Container>
 
