@@ -60,7 +60,7 @@ const Select = forwardRef(
             </OptionsContainer>
           )}
         </Container>
-        {!isOpened && <Message>{caption}</Message>}
+        {!isOpened && caption && <Message>{caption}</Message>}
       </Wrapper>
     )
   }
