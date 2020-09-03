@@ -1,0 +1,76 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Loader } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display|Loader' component={Loader} />
+
+# Loader
+
+O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) e sem tempo definido (`indeterminate` - padrão).
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Loader />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Size
+
+O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon` e `major`, que indicam o tamanho do `Loader`, por padrão é `major`.
+
+<Preview>
+  <Story
+    name='Size'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Loader size='major' />
+      <Loader size='icon' />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Variants
+
+O `Loader` recebe a prop `variant` que indica uma entre as duas variações possíveis, `determinate` e `indeterminate` - padrão.
+
+Quando for a variação `determinate`, é necessário também passar uma prop chamada `percentage`, é um valor que indica a porcentagem de carregamento já realizado e junto com esta prop opcionalmente também é possível passar uma prop chamada `showPercentage` que é um booleano que define se esta porcentagem vai ser mostrada em texto, mas este texto só será exibido quando o `size` do `Loader` também for `major`.
+
+Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão é 5 segundos, mas este valor pode ser passado passando um número pela prop `time` indicando o tempo desejado para o ciclo do loader.
+
+<Preview>
+  <Story
+    name='Variants'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=245%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Loader percentage={30} showPercentage={true} variant='determinate' />
+      <Loader percentage={30} variant='determinate' />
+      <Loader variant='indeterminate' />
+      <Loader variant='indeterminate' time={8} />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Loader} />
