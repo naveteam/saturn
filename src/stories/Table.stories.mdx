@@ -1,0 +1,25 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Table } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Data Display|Table" />
+
+# Table
+
+É o componente base para a criação de todos os outros tipos de tipografia. Sua função é prover um componente flexível e seguindo a definição do [styled-system](https://styled-system.com/api). Pode ser utilizado em situações específicas onde nenhum dos componentes de tipografia previamente desenvolvidos atendam os requisitos necessários.
+
+<Preview>
+  <Story name="Regular" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
+    }
+  }}>
+    <ThemeProvider>
+      <Table />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Table} />
