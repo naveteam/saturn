@@ -1,6 +1,7 @@
-import React, { useRef, useState, useEffect, forwardRef } from 'react'
+import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
+import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 
 import { Flex, Box } from '../Grid'
 import { Typography, Caption } from '..'
@@ -17,21 +18,13 @@ const Select = forwardRef(
       setIsOpened(false)
     }
 
-    useEffect(() => {
-      const handleClickOutside = event => {
-        containerRef.current && !containerRef.current.contains(event.target) && setIsOpened(false)
-      }
-
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
-    }, [containerRef])
+    useClickOutside(() => isOpened && setIsOpened(false), containerRef)
+    useHotKey(() => isOpened && setIsOpened(false), 'Escape')
 
     return (
-      <Wrapper ref={containerRef} disabled={disabled} error={error} isOpened={isOpened} quiet={quiet} {...props}>
+      <Wrapper disabled={disabled} error={error} isOpened={isOpened} quiet={quiet} {...props}>
         {!quiet && <Label>{label}</Label>}
-        <Container tabIndex='0'>
+        <Container ref={containerRef} tabIndex='0'>
           <SelectContainer
             className='selectContainer'
             isOpened={isOpened}
