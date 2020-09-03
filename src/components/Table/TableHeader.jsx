@@ -6,7 +6,7 @@ import { Typography } from '../'
 
 const TableHeader = ({ children }) => (
   <Container>
-    <TableTitle>{children}</TableTitle>
+    <HeaderText>{children}</HeaderText>
   </Container>
 )
 
@@ -14,7 +14,7 @@ const Container = styled.th`
   padding: 12px 16px;
 `
 
-const TableTitle = styled(Typography)`
+const HeaderText = styled(Typography)`
   font-weight: 1;
   font-size: 16px;
   line-height: 24px;
