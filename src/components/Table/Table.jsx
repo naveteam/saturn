@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'
+import TableBody from './TableBody'
+import TableData from './TableData'
 
 import { Box, Typography } from '../'
 
@@ -16,32 +18,12 @@ const Table = () => (
 
     <TableBody>
       <TableRow>
-        <TableData>
-          <TableDataText>Column 1</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 2</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 3</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 4</TableDataText>
-        </TableData>
-      </TableRow>
-      <TableRow>
-        <TableData>
-          <TableDataText>Column 1</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 2</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 3</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 4</TableDataText>
-        </TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+        <Glauber>
+          <GlauberText>aaaa</GlauberText>
+        </Glauber>
       </TableRow>
     </TableBody>
   </Container>
@@ -67,7 +49,7 @@ const Container = styled.table`
   }
 
   td:last-child {
-    P {
+    p {
       border-radius: 4px;
       padding: 4px;
       background: #1565c0;
@@ -76,22 +58,12 @@ const Container = styled.table`
   }
 `
 
-const TableBody = styled.tbody`
-  border-top: 2px solid #9e9e9e;
-`
-
-const TableData = styled.td`
+const Glauber = styled.td`
   padding: 12px 16px;
   height: 48px;
 `
 
-const TableTitle = styled(Typography)`
-  font-weight: 1;
-  font-size: 16px;
-  line-height: 24px;
-`
-
-const TableDataText = styled(Typography)`
+const GlauberText = styled(Typography)`
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
