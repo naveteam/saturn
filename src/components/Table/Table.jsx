@@ -3,6 +3,7 @@ import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
 import TableHeader from './TableHeader'
+import TableRow from './TableRow'
 
 import { Box, Typography } from '../'
 
@@ -28,21 +29,6 @@ const Table = () => (
           <TableDataText>Column 4</TableDataText>
         </TableData>
       </TableRow>
-      <TableRow>
-        <TableData>
-          <TableDataText>Column 1</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 2</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 3</TableDataText>
-        </TableData>
-        <TableData>
-          <TableDataText>Column 4</TableDataText>
-        </TableData>
-      </TableRow>
-
       <TableRow>
         <TableData>
           <TableDataText>Column 1</TableDataText>
@@ -88,11 +74,6 @@ const Container = styled.table`
       color: #fff;
     }
   }
-`
-
-const TableRow = styled.tr`
-  padding: 16px;
-  border-bottom: 1px solid #e0e0e0;
 `
 
 const TableBody = styled.tbody`
