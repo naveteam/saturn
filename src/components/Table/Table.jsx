@@ -7,23 +7,25 @@ import TableRow from './TableRow'
 import TableBody from './TableBody'
 import TableData from './TableData'
 
-import { Box, Typography } from '../'
+import { Typography } from '../'
 
 const Table = () => (
   <Container>
     <TableHeader>Title</TableHeader>
     <TableHeader>Title</TableHeader>
     <TableHeader>Title</TableHeader>
-    <TableHeader>Title</TableHeader>
-
+    {}
     <TableBody>
       <TableRow>
         <TableData>Content</TableData>
         <TableData>Content</TableData>
         <TableData>Content</TableData>
-        <Glauber>
-          <GlauberText>aaaa</GlauberText>
-        </Glauber>
+      </TableRow>
+
+      <TableRow>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
       </TableRow>
     </TableBody>
   </Container>
@@ -50,23 +52,13 @@ const Container = styled.table`
 
   td:last-child {
     p {
+      text-align: center;
       border-radius: 4px;
       padding: 4px;
       background: #1565c0;
       color: #fff;
     }
   }
-`
-
-const Glauber = styled.td`
-  padding: 12px 16px;
-  height: 48px;
-`
-
-const GlauberText = styled(Typography)`
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
 `
 
 export default Table
