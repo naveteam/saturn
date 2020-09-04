@@ -7,6 +7,9 @@ import TableHeader from './TableHeader'
 import TableRow from './TableRow'
 import TableBody from './TableBody'
 import TableData from './TableData'
+import Avatar from './Avatar'
+
+import Checkbox from '../Checkbox'
 
 const Table = ({ type }) => (
   <Container type={type}>
@@ -15,12 +18,20 @@ const Table = ({ type }) => (
     <TableHeader>Title</TableHeader>
     <TableBody>
       <TableRow>
-        <TableData>Content</TableData>
+        <TableData>
+          <Checkbox />
+          <Avatar>G</Avatar>
+          Content
+        </TableData>
         <TableData>Content</TableData>
         <TableData>Content</TableData>
       </TableRow>
       <TableRow>
-        <TableData>Content</TableData>
+        <TableData>
+          <Checkbox />
+          <Avatar>G</Avatar>
+          Content
+        </TableData>
         <TableData>Content</TableData>
         <TableData>Content</TableData>
       </TableRow>
@@ -51,6 +62,10 @@ const Container = styled.table`
   height: 100%;
   border-collapse: collapse;
   text-align: left;
+
+  td:first-of-type {
+    background: red;
+  }
 
   tr:hover {
     background: #f5f5f5;
