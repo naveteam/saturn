@@ -228,4 +228,10 @@ Pagination.propTypes = {
   pagesShownedBetweenDots: PropTypes.number
 }
 
+const ButtonText = styled(Button)`
+  &:hover {
+    background-color: rgba(78, 152, 237, 0.15);
+  }
+`
+
 export default Pagination
