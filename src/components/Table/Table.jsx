@@ -54,7 +54,7 @@ const Container = styled.table`
   td:last-child {
     p {
       text-align: center;
-      border-radius: 4px;
+      border-radius: 2;
       padding: 4px;
       background: #1565c0;
       color: #fff;
