@@ -1,13 +1,13 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Table } from '../components'
+import { Avatar, Table, TableBody, TableData, TableHeader, TableRow, Checkbox } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display|Table" />
 
-# Table
+# Regular Table
 
-É o componente base para a criação de todos os outros tipos de tipografia. Sua função é prover um componente flexível e seguindo a definição do [styled-system](https://styled-system.com/api). Pode ser utilizado em situações específicas onde nenhum dos componentes de tipografia previamente desenvolvidos atendam os requisitos necessários.
+description
 
 <Preview>
   <Story name="Regular" parameters={{
@@ -17,7 +17,80 @@ import { ThemeProvider } from '../theme'
     }
   }}>
     <ThemeProvider>
-      <Table type="regular" />
+      <Table type="regular">
+    <TableHeader>
+      <Checkbox />
+      Title
+    </TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableData>
+          <Checkbox />
+          <Avatar>G</Avatar>
+          Content
+        </TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+      </TableRow>
+      <TableRow>
+        <TableData>
+          <Checkbox />
+          Content
+        </TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+      </TableRow>
+    </TableBody>
+  </Table>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Table} />
+
+
+
+# Quiet Table
+
+description
+
+<Preview>
+  <Story name="Quiet" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
+    }
+  }}>
+    <ThemeProvider>
+      <Table type="quiet">
+    <TableHeader>
+      <Checkbox />
+      Title
+    </TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableHeader>Title</TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableData>
+          <Checkbox />
+          <Avatar>G</Avatar>
+          Content
+        </TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+      </TableRow>
+      <TableRow>
+        <TableData>
+          <Checkbox />
+          Content
+        </TableData>
+        <TableData>Content</TableData>
+        <TableData>Content</TableData>
+      </TableRow>
+    </TableBody>
+  </Table>
     </ThemeProvider>
   </Story>
 </Preview>
