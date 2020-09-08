@@ -1,3 +1,4 @@
+import Avatar from './Avatar'
 import Table from './Table'
 import TableContent from './TableContent'
 import TableData from './TableData'
