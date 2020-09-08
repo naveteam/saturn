@@ -7,7 +7,7 @@ import { ThemeProvider } from '../theme'
 
 # Pagination
 
-O componente de `Pagination` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
+O componente de `Pagination` é utilizado para que o usuário possa trocar de página em sua aplicação. Sua estrutura é composta por um botões e dois ícones do tipo arrow.
 
 <Preview>
   <Story
@@ -20,7 +20,27 @@ O componente de `Pagination` é utilizado para que o usuário possa inserir info
     }}
   >
     <ThemeProvider>
-      <Pagination page={1} pageSize={8} />
+      <Pagination page={1} pageSize={20}/>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+# Pagination with INput
+
+Caso haja mais de 100 páginas a prop `variant` deve ser passada, caso seja a estrutura do componente será um input.
+
+<Preview>
+  <Story
+    name='Input'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=257%3A566'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Pagination page={1} pageSize={200} variant/>
     </ThemeProvider>
   </Story>
 </Preview>

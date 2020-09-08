@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
+import { th } from '@xstyled/system'
 
 import { Button, Icon } from '..'
 import { Flex } from '../Grid'
@@ -41,7 +42,7 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
 
   return (
     <Container justifyContent='center' alignItems='center' {...props}>
-      <Icon cursor='pointer' onClick={() => currentPage != 1 && setcurrentPage(currentPage - 1)} icon='chevron-left' />
+      <Icon mr={4} cursor='pointer' onClick={() => currentPage != 1 && setcurrentPage(currentPage - 1)} icon='chevron-left' />
       {variant ? (
         <Fragment>
           <TextField placeholder={currentPage} width={40} />
@@ -52,20 +53,28 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
         <Fragment>
           {showFirstDots && (
             <Fragment>
-              <Button color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(1)}>
+              <ButtonText
+                mr={4}
+                color='gray.900'
+                width={40}
+                height={40}
+                variant='text'
+                onClick={() => setcurrentPage(1)}
+              >
                 1
-              </Button>
+              </ButtonText>
               {!showLastDots && (
                 <Fragment>
-                  <Button color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(2)}>
+                  <ButtonText mr={4} color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(2)}>
                     {2}
-                  </Button>
-                  <Button color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(3)}>
+                  </ButtonText>
+                  <ButtonText mr={4} color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(3)}>
                     {3}
-                  </Button>
+                  </ButtonText>
                 </Fragment>
               )}
-              <Button
+              <ButtonText
+                mr={4}
                 color='gray.900'
                 width={40}
                 height={40}
@@ -73,13 +82,14 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                 onClick={() => setcurrentPage(currentPage - prevLength - 1)}
               >
                 ...
-              </Button>
+              </ButtonText>
             </Fragment>
           )}
           {Array.from({ length: prevLength }).map((_, index) => {
             const page = currentPage - (prevLength - index)
             return (
-              <Button
+              <ButtonText
+                mr={4}
                 key={page}
                 color='gray.900'
                 width={40}
@@ -88,16 +98,17 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                 onClick={() => setcurrentPage(page)}
               >
                 {page}
-              </Button>
+              </ButtonText>
             )
           })}
-          <Button width={40} height={40} onClick={() => setcurrentPage(currentPage)}>
+          <Button mr={4} width={40} height={40} onClick={() => setcurrentPage(currentPage)}>
             {currentPage}
           </Button>
           {Array.from({ length: nextLength }).map((_, index) => {
             const page = currentPage + index + 1
             return (
-              <Button
+              <ButtonText
+                mr={4}
                 key={page}
                 color='gray.900'
                 width={40}
@@ -106,12 +117,13 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                 onClick={() => setcurrentPage(page)}
               >
                 {page}
-              </Button>
+              </ButtonText>
             )
           })}
           {showLastDots && (
             <Fragment>
-              <Button
+              <ButtonText
+                mr={4}
                 color='gray.900'
                 width={40}
                 height={40}
@@ -119,10 +131,11 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                 onClick={() => setcurrentPage(currentPage + nextLength + 1)}
               >
                 ...
-              </Button>
+              </ButtonText>
               {!showFirstDots && (
                 <Fragment>
-                  <Button
+                  <ButtonText
+                    mr={4}
                     color='gray.900'
                     width={40}
                     height={40}
@@ -130,8 +143,9 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                     onClick={() => setcurrentPage(pageSize - 2)}
                   >
                     {pageSize - 2}
-                  </Button>
-                  <Button
+                  </ButtonText>
+                  <ButtonText
+                    mr={4}
                     color='gray.900'
                     width={40}
                     height={40}
@@ -139,12 +153,12 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                     onClick={() => setcurrentPage(pageSize - 2)}
                   >
                     {pageSize - 1}
-                  </Button>
+                  </ButtonText>
                 </Fragment>
               )}
-              <Button color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(pageSize)}>
+              <ButtonText color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(pageSize)}>
                 {pageSize}
-              </Button>
+              </ButtonText>
             </Fragment>
           )}
         </Fragment>
@@ -160,5 +174,11 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
 }
 
 const Container = styled(Flex)``
+
+const ButtonText = styled(Button)`
+  &:hover {
+    background-color: rgba(78, 152, 237, 0.15);
+  }
+`
 
 export default Pagination
