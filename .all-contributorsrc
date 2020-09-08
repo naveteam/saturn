@@ -68,6 +68,48 @@
         "doc",
         "content"
       ]
+    },
+    {
+      "login": "thiagonunesbatista",
+      "name": "Thiago Nunes Batista",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/67487679?v=4",
+      "profile": "http://thiagonunesbatista.github.io",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
+    },
+    {
+      "login": "rbschumacher",
+      "name": "Rafael Schumacher",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/54547117?v=4",
+      "profile": "https://github.com/rbschumacher",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "login": "julianoddreis",
+      "name": "Juliano Reis",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30237272?v=4",
+      "profile": "https://www.linkedin.com/in/juliano-reis-2ab203142/",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "italonolasco",
+      "name": "Ítalo Nolasco",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19333230?v=4",
+      "profile": "https://github.com/italonolasco",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,

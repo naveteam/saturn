@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { layout, variant, th } from '@xstyled/system'
+import { space, layout, variant, th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'
@@ -77,6 +77,7 @@ const Base = styled.button`
   border-radius: 2;
   min-height: 40px;
   ${layout}
+  ${space}
   ${colorVariants}
   &:disabled {
     cursor: initial;

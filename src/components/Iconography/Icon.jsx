@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { color, th } from '@xstyled/system'
+import { color, th, space, layout } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import * as Icons from '../../icons'
@@ -16,6 +16,8 @@ const Icon = styled(IconComponent)`
     fill: ${({ color }) => th.color(color)};
   }
   ${color}
+  ${space}
+  ${layout}
 `
 
 Icon.defaultProps = {
