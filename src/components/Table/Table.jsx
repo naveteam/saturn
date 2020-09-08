@@ -11,33 +11,7 @@ import Avatar from './Avatar'
 
 import Checkbox from '../Checkbox'
 
-const Table = ({ type }) => (
-  <Container type={type}>
-    <TableHeader>Title</TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableBody>
-      <TableRow>
-        <TableData>
-          <Checkbox />
-          <Avatar>G</Avatar>
-          Content
-        </TableData>
-        <TableData>Content</TableData>
-        <TableData>Content</TableData>
-      </TableRow>
-      <TableRow>
-        <TableData>
-          <Checkbox />
-          <Avatar>G</Avatar>
-          Content
-        </TableData>
-        <TableData>Content</TableData>
-        <TableData>Content</TableData>
-      </TableRow>
-    </TableBody>
-  </Container>
-)
+const Table = ({ type, children }) => <Container type={type}>{children}</Container>
 
 const typeVariant = variant({
   prop: 'type',
@@ -63,8 +37,14 @@ const Container = styled.table`
   border-collapse: collapse;
   text-align: left;
 
-  td:first-of-type {
-    background: red;
+  td:first-of-type,
+  th:first-of-type {
+    p label {
+      margin-right: 11px;
+    }
+    p span {
+      margin-right: 8px;
+    }
   }
 
   tr:hover {

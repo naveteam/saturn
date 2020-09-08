@@ -16,6 +16,8 @@ const Container = styled.td`
 `
 
 const DataText = styled(Typography)`
+  display: flex;
+  flex-direction: row;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
