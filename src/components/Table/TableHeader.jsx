@@ -16,8 +16,8 @@ const Container = styled.th`
 
 const HeaderText = styled(Typography)`
   font-weight: 1;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 3;
+  line-height: 3;
 `
 
 export default TableHeader
