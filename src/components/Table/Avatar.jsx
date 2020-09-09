@@ -5,7 +5,9 @@ import { Typography } from '../'
 
 const Avatar = ({ children }) => (
   <Container>
-    <DataText>{children}</DataText>
+    <Typography fontSize={10} color='white' p={4}>
+      {children}
+    </Typography>
   </Container>
 )
 
@@ -20,12 +22,4 @@ const Container = styled.span`
   justify-content: center;
   text-align: center;
 `
-
-const DataText = styled(Typography)`
-  font-weight: normal;
-  font-size: 10px;
-  color: #fff;
-  padding: 4px;
-`
-
 export default Avatar
