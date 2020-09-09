@@ -1,15 +1,6 @@
-import React, { useState, forwardRef } from 'react'
+import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
-import PropTypes from 'prop-types'
-
-import TableHeader from './TableHeader'
-import TableRow from './TableRow'
-import TableBody from './TableBody'
-import TableData from './TableData'
-import Avatar from './Avatar'
-
-import Checkbox from '../Checkbox'
 
 const Table = ({ type, children }) => <Container type={type}>{children}</Container>
 
