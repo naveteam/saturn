@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
 import { Pagination } from '../components'
@@ -6,6 +7,10 @@ import { ThemeProvider } from '../theme'
 <Meta title='Data input|Pagination' component={Pagination} />
 
 # Pagination
+export const PaginationProps = () => {
+  const [page, setPage] = useState(1)
+  return <Pagination page={page} pageSize={12} onPageChange={setPage} />
+}
 
 O componente de `Pagination` é utilizado para que o usuário possa trocar de página em sua aplicação. Sua estrutura é composta por um botões e dois ícones do tipo arrow.
 
@@ -20,7 +25,7 @@ O componente de `Pagination` é utilizado para que o usuário possa trocar de p�
     }}
   >
     <ThemeProvider>
-      <Pagination page={1} pageSize={20}/>
+      <PaginationProps />
     </ThemeProvider>
   </Story>
 </Preview>

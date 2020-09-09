@@ -7,50 +7,55 @@ import { Flex } from '../Grid'
 import TextField from '../TextField'
 import Typography from '../Typography'
 
-const PAGES_NUMBER = 3
-
-const MIDDLE = Math.trunc(PAGES_NUMBER / 2)
-
-const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, variant, ...props }) => {
-  const [currentPage, setcurrentPage] = useState(page)
-
-  const getLowerValue = (valueA, valueB) => {
-    if (valueA > valueB) {
-      return valueB
-    }
-    return valueA
+const getLowerValue = (valueA, valueB) => {
+  if (valueA > valueB) {
+    return valueB
   }
+  return valueA
+}
+
+const Pagination = ({
+  page,
+  pageSize,
+  onPageChange,
+  onPageSizeChange,
+  minPagesToShowDots,
+  pagesShownedBetweenDots,
+  variant,
+  ...props
+}) => {
+  const setPage = useCallback(pageNumber => {
+    onPageChange && onPageChange(pageNumber)
+  }, [])
 
   const getPages = useCallback(
     state => {
-      const prevLength = getLowerValue(MIDDLE, currentPage - 1)
-      const nextLength = getLowerValue(MIDDLE, pageSize - currentPage)
+      const prevLength = getLowerValue(MIDDLE, page - 1)
+      const nextLength = getLowerValue(MIDDLE, pageSize - page)
       if (state === 'prev') {
-        return pageSize > 7 ? getLowerValue(MIDDLE + MIDDLE - nextLength, currentPage - 1) : currentPage - 1
+        return pageSize > minPagesToShowDots ? getLowerValue(MIDDLE + MIDDLE - nextLength, page - 1) : page - 1
       }
 
-      return pageSize > 7 ? getLowerValue(MIDDLE + MIDDLE - prevLength, pageSize - currentPage) : pageSize - currentPage
+      return pageSize > minPagesToShowDots
+        ? getLowerValue(MIDDLE + MIDDLE - prevLength, pageSize - page)
+        : pageSize - page
     },
-    [currentPage, pageSize]
+    [page, pageSize]
   )
 
+  const MIDDLE = useMemo(() => Math.trunc(pagesShownedBetweenDots / 2), [pagesShownedBetweenDots])
   const prevLength = useMemo(() => getPages('prev'), [getPages])
   const nextLength = useMemo(() => getPages('next'), [getPages])
 
-  const showFirstDots = currentPage > 3 && pageSize > 7
-  const showLastDots = currentPage < pageSize - 2 && pageSize > 7
+  const showFirstDots = page > 3 && pageSize > minPagesToShowDots
+  const showLastDots = page < pageSize - 2 && pageSize > minPagesToShowDots
 
   return (
     <Container justifyContent='center' alignItems='center' {...props}>
-      <Icon
-        mr={4}
-        cursor='pointer'
-        onClick={() => currentPage != 1 && setcurrentPage(currentPage - 1)}
-        icon='chevron-left'
-      />
+      <Icon mr={4} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
       {variant ? (
         <Fragment>
-          <TextField placeholder={currentPage} width={40} />
+          <TextField placeholder={page} width={40} />
           <Typography pl={8}>de</Typography>
           <Typography pl={8}>{pageSize}</Typography>
         </Fragment>
@@ -61,10 +66,14 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               <ButtonText
                 mr={4}
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
+                minHeight={24}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(1)}
+                onClick={() => setPage(1)}
               >
                 1
               </ButtonText>
@@ -73,20 +82,28 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                   <ButtonText
                     mr={4}
                     color='gray.900'
-                    width={40}
-                    height={40}
+                    width={24}
+                    height={24}
+                    minHeight={24}
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                     variant='text'
-                    onClick={() => setcurrentPage(2)}
+                    onClick={() => setPage(2)}
                   >
                     {2}
                   </ButtonText>
                   <ButtonText
                     mr={4}
                     color='gray.900'
-                    width={40}
-                    height={40}
+                    width={24}
+                    height={24}
+                    minHeight={24}
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                     variant='text'
-                    onClick={() => setcurrentPage(3)}
+                    onClick={() => setPage(3)}
                   >
                     {3}
                   </ButtonText>
@@ -95,58 +112,68 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               <ButtonText
                 mr={4}
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
+                minHeight={24}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(currentPage - prevLength - 1)}
+                onClick={() => setPage(page - prevLength - 1)}
               >
                 ...
               </ButtonText>
             </Fragment>
           )}
           {Array.from({ length: prevLength }).map((_, index) => {
-            const page = currentPage - (prevLength - index)
+            const pagesBefore = page - (prevLength - index)
             return (
               <ButtonText
                 mr={4}
-                key={page}
+                key={pagesBefore}
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
+                minHeight={24}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(page)}
+                onClick={() => setPage(pagesBefore)}
               >
-                {page}
+                {pagesBefore}
               </ButtonText>
             )
           })}
           <Button
             mr={4}
-            width={40}
-            height={40}
+            width={24}
+            height={24}
             minHeight={24}
+            display='flex'
             justifyContent='center'
             alignItems='center'
-            onClick={() => setcurrentPage(currentPage)}
+            onClick={() => setPage(page)}
           >
-            {currentPage}
+            {page}
           </Button>
           {Array.from({ length: nextLength }).map((_, index) => {
-            const page = currentPage + index + 1
+            const pagesAfter = page + index + 1
             return (
               <ButtonText
                 mr={4}
-                key={page}
+                key={pagesAfter}
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
                 minHeight={24}
+                display='flex'
                 justifyContent='center'
                 alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(page)}
+                onClick={() => setPage(pagesAfter)}
               >
-                {page}
+                {pagesAfter}
               </ButtonText>
             )
           })}
@@ -155,10 +182,14 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               <ButtonText
                 mr={4}
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
+                minHeight={24}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(currentPage + nextLength + 1)}
+                onClick={() => setPage(page + nextLength + 1)}
               >
                 ...
               </ButtonText>
@@ -167,20 +198,28 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                   <ButtonText
                     mr={4}
                     color='gray.900'
-                    width={40}
-                    height={40}
+                    width={24}
+                    height={24}
+                    minHeight={24}
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                     variant='text'
-                    onClick={() => setcurrentPage(pageSize - 2)}
+                    onClick={() => setPage(pageSize - 2)}
                   >
                     {pageSize - 2}
                   </ButtonText>
                   <ButtonText
                     mr={4}
                     color='gray.900'
-                    width={40}
-                    height={40}
+                    width={24}
+                    height={24}
+                    minHeight={24}
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                     variant='text'
-                    onClick={() => setcurrentPage(pageSize - 2)}
+                    onClick={() => setPage(pageSize - 2)}
                   >
                     {pageSize - 1}
                   </ButtonText>
@@ -188,10 +227,14 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               )}
               <ButtonText
                 color='gray.900'
-                width={40}
-                height={40}
+                width={24}
+                height={24}
+                minHeight={24}
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
-                onClick={() => setcurrentPage(pageSize)}
+                onClick={() => setPage(pageSize)}
               >
                 {pageSize}
               </ButtonText>
@@ -200,11 +243,7 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
         </Fragment>
       )}
 
-      <Icon
-        cursor='pointer'
-        icon='chevron-right'
-        onClick={() => currentPage != pageSize && setcurrentPage(currentPage + 1)}
-      />
+      <Icon cursor='pointer' icon='chevron-right' onClick={() => page != pageSize && setPage(page + 1)} />
     </Container>
   )
 }
@@ -217,12 +256,16 @@ const ButtonText = styled(Button)`
   }
 `
 Pagination.defaultProps = {
-  page: 1
+  page: 1,
+  minPagesToShowDots: 7,
+  pagesShownedBetweenDots: 3
 }
 
 Pagination.propTypes = {
   page: PropTypes.number,
-  pageSize: PropTypes.number
+  pageSize: PropTypes.number,
+  minPagesToShowDots: PropTypes.number,
+  pagesShownedBetweenDots: PropTypes.number
 }
 
 export default Pagination
