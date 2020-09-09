@@ -144,6 +144,7 @@ const Message = styled(Caption)`
 `
 const OptionLabel = styled.option`
   color: gray.800;
+  font-family: 'Open Sans';
   font-size: 3;
   line-height: 3;
 `
