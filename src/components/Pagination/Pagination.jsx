@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
-import { th } from '@xstyled/system'
+import PropTypes from 'prop-types'
 
 import { Button, Icon } from '..'
 import { Flex } from '../Grid'
@@ -42,7 +42,12 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
 
   return (
     <Container justifyContent='center' alignItems='center' {...props}>
-      <Icon mr={4} cursor='pointer' onClick={() => currentPage != 1 && setcurrentPage(currentPage - 1)} icon='chevron-left' />
+      <Icon
+        mr={4}
+        cursor='pointer'
+        onClick={() => currentPage != 1 && setcurrentPage(currentPage - 1)}
+        icon='chevron-left'
+      />
       {variant ? (
         <Fragment>
           <TextField placeholder={currentPage} width={40} />
@@ -65,10 +70,24 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               </ButtonText>
               {!showLastDots && (
                 <Fragment>
-                  <ButtonText mr={4} color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(2)}>
+                  <ButtonText
+                    mr={4}
+                    color='gray.900'
+                    width={40}
+                    height={40}
+                    variant='text'
+                    onClick={() => setcurrentPage(2)}
+                  >
                     {2}
                   </ButtonText>
-                  <ButtonText mr={4} color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(3)}>
+                  <ButtonText
+                    mr={4}
+                    color='gray.900'
+                    width={40}
+                    height={40}
+                    variant='text'
+                    onClick={() => setcurrentPage(3)}
+                  >
                     {3}
                   </ButtonText>
                 </Fragment>
@@ -101,7 +120,15 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
               </ButtonText>
             )
           })}
-          <Button mr={4} width={40} height={40} onClick={() => setcurrentPage(currentPage)}>
+          <Button
+            mr={4}
+            width={40}
+            height={40}
+            minHeight={24}
+            justifyContent='center'
+            alignItems='center'
+            onClick={() => setcurrentPage(currentPage)}
+          >
             {currentPage}
           </Button>
           {Array.from({ length: nextLength }).map((_, index) => {
@@ -113,6 +140,9 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                 color='gray.900'
                 width={40}
                 height={40}
+                minHeight={24}
+                justifyContent='center'
+                alignItems='center'
                 variant='text'
                 onClick={() => setcurrentPage(page)}
               >
@@ -156,7 +186,13 @@ const Pagination = ({ page = 1, pageSize, onPageChange, onPageSizeChange, varian
                   </ButtonText>
                 </Fragment>
               )}
-              <ButtonText color='gray.900' width={40} height={40} variant='text' onClick={() => setcurrentPage(pageSize)}>
+              <ButtonText
+                color='gray.900'
+                width={40}
+                height={40}
+                variant='text'
+                onClick={() => setcurrentPage(pageSize)}
+              >
                 {pageSize}
               </ButtonText>
             </Fragment>
@@ -180,5 +216,13 @@ const ButtonText = styled(Button)`
     background-color: rgba(78, 152, 237, 0.15);
   }
 `
+Pagination.defaultProps = {
+  page: 1
+}
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  pageSize: PropTypes.number
+}
 
 export default Pagination
