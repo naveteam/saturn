@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useCallback, useMemo } from 'react'
+import React, { Fragment, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Button, Icon } from '..'
-import { Flex } from '../Grid'
+import { Flex as Container } from '../Grid'
 import TextField from '../TextField'
 import Typography from '../Typography'
 
@@ -55,7 +55,7 @@ const Pagination = ({
       <Icon mr={4} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
       {variant ? (
         <Fragment>
-          <TextField placeholder={page} width={40} />
+          <Input placeholder={page}  />
           <Typography pl={8}>de</Typography>
           <Typography pl={8}>{pageSize}</Typography>
         </Fragment>
@@ -63,7 +63,7 @@ const Pagination = ({
         <Fragment>
           {showFirstDots && (
             <Fragment>
-              <ButtonText
+              <ButtonNotSelected
                 mr={4}
                 color='gray.900'
                 width={24}
@@ -76,10 +76,10 @@ const Pagination = ({
                 onClick={() => setPage(1)}
               >
                 1
-              </ButtonText>
+              </ButtonNotSelected>
               {!showLastDots && (
                 <Fragment>
-                  <ButtonText
+                  <ButtonNotSelected
                     mr={4}
                     color='gray.900'
                     width={24}
@@ -92,8 +92,8 @@ const Pagination = ({
                     onClick={() => setPage(2)}
                   >
                     {2}
-                  </ButtonText>
-                  <ButtonText
+                  </ButtonNotSelected>
+                  <ButtonNotSelected
                     mr={4}
                     color='gray.900'
                     width={24}
@@ -106,10 +106,10 @@ const Pagination = ({
                     onClick={() => setPage(3)}
                   >
                     {3}
-                  </ButtonText>
+                  </ButtonNotSelected>
                 </Fragment>
               )}
-              <ButtonText
+              <ButtonNotSelected
                 mr={4}
                 color='gray.900'
                 width={24}
@@ -122,13 +122,13 @@ const Pagination = ({
                 onClick={() => setPage(page - prevLength - 1)}
               >
                 ...
-              </ButtonText>
+              </ButtonNotSelected>
             </Fragment>
           )}
           {Array.from({ length: prevLength }).map((_, index) => {
             const pagesBefore = page - (prevLength - index)
             return (
-              <ButtonText
+              <ButtonNotSelected
                 mr={4}
                 key={pagesBefore}
                 color='gray.900'
@@ -142,7 +142,7 @@ const Pagination = ({
                 onClick={() => setPage(pagesBefore)}
               >
                 {pagesBefore}
-              </ButtonText>
+              </ButtonNotSelected>
             )
           })}
           <Button
@@ -160,7 +160,7 @@ const Pagination = ({
           {Array.from({ length: nextLength }).map((_, index) => {
             const pagesAfter = page + index + 1
             return (
-              <ButtonText
+              <ButtonNotSelected
                 mr={4}
                 key={pagesAfter}
                 color='gray.900'
@@ -174,12 +174,12 @@ const Pagination = ({
                 onClick={() => setPage(pagesAfter)}
               >
                 {pagesAfter}
-              </ButtonText>
+              </ButtonNotSelected>
             )
           })}
           {showLastDots && (
             <Fragment>
-              <ButtonText
+              <ButtonNotSelected
                 mr={4}
                 color='gray.900'
                 width={24}
@@ -192,10 +192,10 @@ const Pagination = ({
                 onClick={() => setPage(page + nextLength + 1)}
               >
                 ...
-              </ButtonText>
+              </ButtonNotSelected>
               {!showFirstDots && (
                 <Fragment>
-                  <ButtonText
+                  <ButtonNotSelected
                     mr={4}
                     color='gray.900'
                     width={24}
@@ -208,8 +208,8 @@ const Pagination = ({
                     onClick={() => setPage(pageSize - 2)}
                   >
                     {pageSize - 2}
-                  </ButtonText>
-                  <ButtonText
+                  </ButtonNotSelected>
+                  <ButtonNotSelected
                     mr={4}
                     color='gray.900'
                     width={24}
@@ -222,10 +222,10 @@ const Pagination = ({
                     onClick={() => setPage(pageSize - 2)}
                   >
                     {pageSize - 1}
-                  </ButtonText>
+                  </ButtonNotSelected>
                 </Fragment>
               )}
-              <ButtonText
+              <ButtonNotSelected
                 color='gray.900'
                 width={24}
                 height={24}
@@ -237,7 +237,7 @@ const Pagination = ({
                 onClick={() => setPage(pageSize)}
               >
                 {pageSize}
-              </ButtonText>
+              </ButtonNotSelected>
             </Fragment>
           )}
         </Fragment>
@@ -248,9 +248,20 @@ const Pagination = ({
   )
 }
 
-const Container = styled(Flex)``
+const Input = styled(TextField)`
+  width: 32px;
 
-const ButtonText = styled(Button)`
+  div {
+    height: 24px;
+
+    input {
+      position: relative;
+      text-align: end;
+    }
+  }
+`
+
+const ButtonNotSelected = styled(Button)`
   &:hover {
     background-color: rgba(78, 152, 237, 0.15);
   }
