@@ -21,50 +21,13 @@ const Pagination = ({
   onPageChange,
   onPageSizeChange,
   minPagesToShowDots,
-  lastPageBeforeFirstDots,
   pagesShownedBetweenDots,
   variant,
   ...props
 }) => {
-  const [inputValue, setInputValue] = useState(page)
-  const debouncedValue = useDebounce(inputValue)
-
-  useEffect(() => {
-    variant === 'input' && setInputValue(page)
-  }, [page, variant])
-
-  useEffect(() => {
-    debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
-  }, [debouncedValue])
-
-  const setPage = useCallback(
-    pageNumber => {
-      onPageChange && onPageChange(pageNumber)
-    },
-    [onPageChange]
-  )
-
-  const showPagesInMiddle = direction => {
-    if (direction === 'before') {
-      return Array.from({ length: prevLength }).map((_, index) => {
-        const pagesBefore = page - (prevLength - index)
-        return (
-          <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
-            {pagesBefore}
-          </ButtonPage>
-        )
-      })
-    } else if (direction === 'after') {
-      return Array.from({ length: nextLength }).map((_, index) => {
-        const pagesAfter = page + index + 1
-        return (
-          <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
-            {pagesAfter}
-          </ButtonPage>
-        )
-      })
-    }
-  }
+  const setPage = useCallback(pageNumber => {
+    onPageChange && onPageChange(pageNumber)
+  }, [])
 
   const getPages = useCallback(
     state => {
@@ -234,12 +197,16 @@ const ButtonText = styled(Button)`
   }
 `
 Pagination.defaultProps = {
-  page: 1
+  page: 1,
+  minPagesToShowDots: 7,
+  pagesShownedBetweenDots: 3
 }
 
 Pagination.propTypes = {
   page: PropTypes.number,
-  pageSize: PropTypes.number
+  pageSize: PropTypes.number,
+  minPagesToShowDots: PropTypes.number,
+  pagesShownedBetweenDots: PropTypes.number
 }
 
 export default Pagination
