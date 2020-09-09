@@ -50,17 +50,17 @@ const Select = forwardRef(
           {isOpened && (
             <OptionsContainer>
               {options.map(option => (
-                <div key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
-                  <OptionContainer>
-                    <OptionLabel>{option[optionLabel]}</OptionLabel>
-                    {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
-                  </OptionContainer>
-                </div>
+                <OptionContainer key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
+                  <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
+                    {option[optionLabel]}
+                  </Typography>
+                  {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
+                </OptionContainer>
               ))}
             </OptionsContainer>
           )}
         </Container>
-        {!isOpened && caption && <Message>{caption}</Message>}
+        {caption && <Message isOpened={isOpened}>{caption}</Message>}
       </Wrapper>
     )
   }
@@ -128,6 +128,7 @@ const isOpenedVariant = variant({
 const Wrapper = styled(Box)`
   ${disabledVariant}
   ${errorVariant}
+  position: relative;
 `
 const Label = styled(Typography)`
   font-size: 2;
@@ -141,13 +142,9 @@ const Message = styled(Caption)`
   line-height: 1;
   margin-top: 2;
   color: gray.800;
+  visibility: ${({ isOpened }) => (isOpened ? 'hidden' : 'visible')};
 `
-const OptionLabel = styled.option`
-  color: gray.800;
-  font-family: 'Open Sans';
-  font-size: 3;
-  line-height: 3;
-`
+
 const OptionContainer = styled(Flex)`
   flex: 1;
   justify-content: space-between;
@@ -159,6 +156,10 @@ const OptionContainer = styled(Flex)`
 `
 const OptionsContainer = styled.div`
   display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  background-color: ${({ theme }) => theme.colors.white};
 `
 const Container = styled.div`
   outline: none;
