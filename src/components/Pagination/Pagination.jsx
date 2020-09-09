@@ -191,22 +191,4 @@ Pagination.propTypes = {
   pagesShownedBetweenDots: PropTypes.number
 }
 
-const ButtonText = styled(Button)`
-  &:hover {
-    background-color: rgba(78, 152, 237, 0.15);
-  }
-`
-Pagination.defaultProps = {
-  page: 1,
-  minPagesToShowDots: 7,
-  pagesShownedBetweenDots: 3
-}
-
-Pagination.propTypes = {
-  page: PropTypes.number,
-  pageSize: PropTypes.number,
-  minPagesToShowDots: PropTypes.number,
-  pagesShownedBetweenDots: PropTypes.number
-}
-
 export default Pagination
