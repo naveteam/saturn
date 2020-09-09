@@ -233,5 +233,13 @@ const ButtonText = styled(Button)`
     background-color: rgba(78, 152, 237, 0.15);
   }
 `
+Pagination.defaultProps = {
+  page: 1
+}
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  pageSize: PropTypes.number
+}
 
 export default Pagination
