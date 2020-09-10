@@ -1,6 +1,13 @@
+import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
+
+const Table = ({ type, children, ...props }) => (
+  <Container type={type} {...props}>
+    {children}
+  </Container>
+)
 
 const typeVariant = variant({
   prop: 'type',
@@ -15,7 +22,7 @@ const typeVariant = variant({
   }
 })
 
-const Table = styled.table`
+const Container = styled.table`
   ${typeVariant}
   border-radius: 4px;
   background: white;
@@ -50,6 +57,7 @@ const Table = styled.table`
     }
   }
 `
+
 Table.defaultProps = {
   type: 'regular'
 }
