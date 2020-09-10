@@ -55,7 +55,7 @@ const Pagination = ({
       <Icon mr={4} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
       {variant ? (
         <Fragment>
-          <Input placeholder={page}  />
+          <Input placeholder={page} />
           <Typography pl={8}>de</Typography>
           <Typography pl={8}>{pageSize}</Typography>
         </Fragment>
@@ -255,8 +255,9 @@ const Input = styled(TextField)`
     height: 24px;
 
     input {
-      position: relative;
-      text-align: end;
+      width: 24px;
+      padding: 0;
+      text-align: center;
     }
   }
 `
