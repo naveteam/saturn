@@ -1,9 +1,6 @@
-import React from 'react'
 import styled from '@xstyled/styled-components'
 
-const TableBody = ({ children }) => <Container>{children}</Container>
-
-const Container = styled.tbody`
+const TableBody = styled.tbody`
   border-top: 2px solid #e0e0e0;
 `
 
