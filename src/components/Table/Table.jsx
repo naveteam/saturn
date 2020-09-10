@@ -1,5 +1,6 @@
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
+import PropTypes from 'prop-types'
 
 const typeVariant = variant({
   prop: 'type',
@@ -49,5 +50,9 @@ const Table = styled.table`
     }
   }
 `
+
+Table.propTypes = {
+  type: PropTypes.oneOf(['regular', 'quiet'])
+}
 
 export default Table
