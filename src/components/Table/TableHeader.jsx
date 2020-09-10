@@ -5,18 +5,14 @@ import { Typography } from '../'
 
 const TableHeader = ({ children }) => (
   <Container>
-    <HeaderText>{children}</HeaderText>
+    <Typography fontWeight={1} fontSize={3} lineHeight={3}>
+      {children}
+    </Typography>
   </Container>
 )
 
 const Container = styled.th`
   padding: 12px 16px;
-`
-
-const HeaderText = styled(Typography)`
-  font-weight: 1;
-  font-size: 3;
-  line-height: 3;
 `
 
 export default TableHeader
