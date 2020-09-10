@@ -24,7 +24,7 @@ const typeVariant = variant({
 
 const Container = styled.table`
   ${typeVariant}
-  border-radius: 4px;
+  border-radius: 4;
   background: white;
 
   min-width: 328px;
@@ -36,7 +36,7 @@ const Container = styled.table`
   td:first-of-type,
   th:first-of-type {
     p label {
-      margin-right: 11px;
+      margin-right: 12px;
     }
     p span {
       margin-right: 8px;
