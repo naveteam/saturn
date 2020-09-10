@@ -64,6 +64,9 @@ const Table = styled.table`
     }
   }
 `
+Table.defaultProps = {
+  type: 'regular'
+}
 
 Table.defaultProps = {
   type: 'regular'
