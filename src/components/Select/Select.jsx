@@ -2,6 +2,7 @@ import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
+import PropTypes from 'prop-types'
 
 import { Flex, Box } from '../Grid'
 import { Typography, Caption } from '..'
@@ -23,10 +24,13 @@ const Select = forwardRef(
 
     return (
       <Wrapper disabled={disabled} error={error} isOpened={isOpened} quiet={quiet} {...props}>
-        {!quiet && <Label>{label}</Label>}
+        {!quiet && (
+          <Typography mb={3} fontSize={2} lineHeight={1} fontWeight={1} color='gray.800'>
+            {label}
+          </Typography>
+        )}
         <Container ref={containerRef} tabIndex='0'>
           <SelectContainer
-            className='selectContainer'
             isOpened={isOpened}
             quiet={quiet}
             error={error}
@@ -131,13 +135,6 @@ const Wrapper = styled(Box)`
   ${errorVariant}
   position: relative;
 `
-const Label = styled(Typography)`
-  font-size: 2;
-  line-height: 1;
-  font-weight: 1;
-  margin-bottom: 3;
-  color: gray.800;
-`
 const Message = styled(Caption)`
   font-size: 1;
   line-height: 1;
@@ -203,5 +200,23 @@ const SelectContainer = styled(Flex)`
   cursor: pointer;
   ${isOpenedVariant}
 `
+
+Select.defaultProps = {
+  error: false,
+  disabled: false,
+  quiet: false,
+  options: []
+}
+
+Select.propTypes = {
+  label: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.object),
+  optionLabel: PropTypes.string,
+  optionValue: PropTypes.string,
+  caption: PropTypes.string,
+  error: PropTypes.bool,
+  disabled: PropTypes.bool,
+  quiet: PropTypes.bool
+}
 
 export default Select
