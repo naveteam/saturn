@@ -1,8 +1,5 @@
-import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
-
-const Table = ({ type, children }) => <Container type={type}>{children}</Container>
+import { th, variant } from '@xstyled/system'
 
 const typeVariant = variant({
   prop: 'type',
@@ -17,10 +14,10 @@ const typeVariant = variant({
   }
 })
 
-const Container = styled.table`
+const Table = styled.table`
   ${typeVariant}
   border-radius: 4px;
-  background: ${({ theme }) => theme.white};
+  background: white;
 
   min-width: 328px;
   max-width: 100%;
@@ -39,7 +36,7 @@ const Container = styled.table`
   }
 
   tr:hover {
-    background: #f5f5f5;
+    background-color: ${th.color('gray.100')};
   }
 
   td:last-child {
@@ -47,8 +44,8 @@ const Container = styled.table`
       text-align: center;
       border-radius: 2;
       padding: 4px;
-      background: #1565c0;
-      color: #fff;
+      background: ${th.color('blue.400')};
+      color: ${th.color('white')};
     }
   }
 `
