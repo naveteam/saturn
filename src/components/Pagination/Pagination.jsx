@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
+import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import { Button, Icon } from '..'
@@ -52,19 +53,21 @@ const Pagination = ({
 
   return (
     <Container justifyContent='center' alignItems='center' {...props}>
-      <Icon mr={4} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
+      <Icon mr={2} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
       {variant ? (
         <Fragment>
           <Input placeholder={page} />
-          <Typography pl={8}>de</Typography>
-          <Typography pl={8}>{pageSize}</Typography>
+          <Typography ml={3}>de</Typography>
+          <Typography ml={2} mr={2}>
+            {pageSize}
+          </Typography>
         </Fragment>
       ) : (
         <Fragment>
           {showFirstDots && (
             <Fragment>
               <ButtonNotSelected
-                mr={4}
+                mr={2}
                 color='gray.900'
                 width={24}
                 height={24}
@@ -80,7 +83,7 @@ const Pagination = ({
               {!showLastDots && (
                 <Fragment>
                   <ButtonNotSelected
-                    mr={4}
+                    mr={2}
                     color='gray.900'
                     width={24}
                     height={24}
@@ -94,7 +97,7 @@ const Pagination = ({
                     {2}
                   </ButtonNotSelected>
                   <ButtonNotSelected
-                    mr={4}
+                    mr={2}
                     color='gray.900'
                     width={24}
                     height={24}
@@ -110,7 +113,7 @@ const Pagination = ({
                 </Fragment>
               )}
               <ButtonNotSelected
-                mr={4}
+                mr={2}
                 color='gray.900'
                 width={24}
                 height={24}
@@ -129,7 +132,7 @@ const Pagination = ({
             const pagesBefore = page - (prevLength - index)
             return (
               <ButtonNotSelected
-                mr={4}
+                mr={2}
                 key={pagesBefore}
                 color='gray.900'
                 width={24}
@@ -145,8 +148,8 @@ const Pagination = ({
               </ButtonNotSelected>
             )
           })}
-          <Button
-            mr={4}
+          <ButtonSelected
+            mr={2}
             width={24}
             height={24}
             minHeight={24}
@@ -156,12 +159,12 @@ const Pagination = ({
             onClick={() => setPage(page)}
           >
             {page}
-          </Button>
+          </ButtonSelected>
           {Array.from({ length: nextLength }).map((_, index) => {
             const pagesAfter = page + index + 1
             return (
               <ButtonNotSelected
-                mr={4}
+                mr={2}
                 key={pagesAfter}
                 color='gray.900'
                 width={24}
@@ -180,7 +183,7 @@ const Pagination = ({
           {showLastDots && (
             <Fragment>
               <ButtonNotSelected
-                mr={4}
+                mr={2}
                 color='gray.900'
                 width={24}
                 height={24}
@@ -196,7 +199,7 @@ const Pagination = ({
               {!showFirstDots && (
                 <Fragment>
                   <ButtonNotSelected
-                    mr={4}
+                    mr={2}
                     color='gray.900'
                     width={24}
                     height={24}
@@ -210,7 +213,7 @@ const Pagination = ({
                     {pageSize - 2}
                   </ButtonNotSelected>
                   <ButtonNotSelected
-                    mr={4}
+                    mr={2}
                     color='gray.900'
                     width={24}
                     height={24}
@@ -255,6 +258,7 @@ const Input = styled(TextField)`
     height: 24px;
 
     input {
+      font-size: ${th.fontSize(1)};
       width: 24px;
       padding: 0;
       text-align: center;
@@ -262,7 +266,17 @@ const Input = styled(TextField)`
   }
 `
 
+const ButtonSelected = styled(Button)`
+  p {
+    font-size: ${th.fontSize(1)};
+  }
+`
+
 const ButtonNotSelected = styled(Button)`
+  p {
+    font-size: ${th.fontSize(1)};
+  }
+
   &:hover {
     background-color: rgba(78, 152, 237, 0.15);
   }
