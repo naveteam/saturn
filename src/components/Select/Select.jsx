@@ -74,11 +74,12 @@ const errorVariant = variant({
       p {
         color: error;
       }
-      .selectContainer {
+      div div {
         border-style: solid;
         border-color: error;
-        select {
-          color: gray.900;
+
+        div {
+          border: 0;
         }
       }
     `,
