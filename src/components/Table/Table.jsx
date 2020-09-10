@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
@@ -22,7 +21,7 @@ const typeVariant = variant({
   }
 })
 
-const Container = styled.table`
+const Table = styled.table`
   ${typeVariant}
   border-radius: 4;
   background: ${th.color('white')};
