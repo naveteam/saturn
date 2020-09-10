@@ -50,6 +50,9 @@ const Table = styled.table`
     }
   }
 `
+Table.defaultProps = {
+  type: 'regular'
+}
 
 Table.propTypes = {
   type: PropTypes.oneOf(['regular', 'quiet'])
