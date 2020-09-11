@@ -1,9 +1,8 @@
 import Table from './Table'
-import TableBody from './TableBody'
+import TableContent from './TableContent'
 import TableData from './TableData'
-import TableHeader from './TableHeader'
 import TableRow from './TableRow'
 
-export { Table, TableBody, TableData, TableHeader, TableRow }
+export { Table, TableContent, TableData, TableRow }
 
 export default Table

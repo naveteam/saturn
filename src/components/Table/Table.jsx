@@ -25,7 +25,7 @@ const typeVariant = variant({
 const Container = styled.table`
   ${typeVariant}
   border-radius: 4;
-  background: white;
+  background: ${th.color('white')};
 
   min-width: 328px;
   max-width: 100%;

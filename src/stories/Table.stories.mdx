@@ -1,6 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Table, TableBody, TableData, TableHeader, TableRow, Checkbox } from '../components'
+import { Table, TableContent, TableData, TableRow, Checkbox, Typography } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display|Table" />
@@ -20,31 +20,37 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
   }}>
     <ThemeProvider>
       <Table type="regular">
-    <TableHeader>
-      <Checkbox />
-      Title
-    </TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableBody>
-      <TableRow>
-        <TableData>
-          <Checkbox />
-          Content
-        </TableData>
-        <TableData>Content</TableData>
-        <TableData>Content</TableData>
-      </TableRow>
-      <TableRow>
-        <TableData>
-          <Checkbox />
-          Content
-        </TableData>
-        <TableData>Content</TableData>
-        <TableData>Content</TableData>
-      </TableRow>
-    </TableBody>
-  </Table>
+        <TableContent as='thead'>
+          <TableData>
+            <Checkbox label='Content'/>
+          </TableData>
+          {['Teste' , 'Teste1'].map((header, index) => (
+            <TableData key={index}>
+              <Typography fontWeight={1} fontSize={3} lineHeight={3}>
+                {header}
+              </Typography>
+            </TableData>
+          ))}
+        </TableContent>
+        <TableContent>
+          <TableRow>
+            <TableData as='td'>
+              <Checkbox />
+              Content
+            </TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>
+              <Checkbox />
+              Content
+            </TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+          </TableRow>
+        </TableContent>
+      </Table>
     </ThemeProvider>
   </Story>
 </Preview>
@@ -65,13 +71,13 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
   }}>
     <ThemeProvider>
       <Table type="quiet">
-    <TableHeader>
+    <TableData>
       <Checkbox />
       Title
-    </TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableHeader>Title</TableHeader>
-    <TableBody>
+    </TableData>
+    <TableData>Title</TableData>
+    <TableData>Title</TableData>
+    <TableContent>
       <TableRow>
         <TableData>
           <Checkbox />
@@ -88,7 +94,7 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
         <TableData>Content</TableData>
         <TableData>Content</TableData>
       </TableRow>
-    </TableBody>
+    </TableContent>
   </Table>
     </ThemeProvider>
   </Story>
