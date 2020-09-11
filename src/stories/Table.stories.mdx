@@ -22,7 +22,8 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
       <Table type="regular">
         <TableContent as='thead'>
           <TableData>
-            <Checkbox label='Content'/>
+            <Checkbox />
+            <Typography fontWeight={1} fontSize={3} lineHeight={3}>Content</Typography>
           </TableData>
           {['Teste' , 'Teste1'].map((header, index) => (
             <TableData key={index}>
@@ -36,19 +37,17 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
           <TableRow>
             <TableData as='td'>
               <Checkbox />
-              Content
+              <Typography>Content</Typography>
             </TableData>
-            <TableData>Content</TableData>
-            <TableData>Content</TableData>
+            <TableData><Typography>Content</Typography></TableData>
+            <TableData><Typography>Content</Typography></TableData>
           </TableRow>
           <TableRow>
-            <TableData>
-              <Checkbox />
-              Content
-            </TableData>
-            <TableData>Content</TableData>
-            <TableData>Content</TableData>
+            <TableData as='td'><Typography>Content</Typography></TableData>
+            <TableData as='td'><Typography>Content</Typography></TableData>
+            <TableData as='td'><Typography>Content</Typography></TableData>
           </TableRow>
+          
         </TableContent>
       </Table>
     </ThemeProvider>

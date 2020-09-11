@@ -43,11 +43,11 @@ const Container = styled.table`
     }
   }
 
-  tr:hover {
-    background-color: ${th.color('gray.100')};
+  td {
+    align-items: center;
   }
 
-  td:last-child {
+  tr td:last-child {
     p {
       text-align: center;
       border-radius: 2;
