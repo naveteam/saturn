@@ -1,8 +1,7 @@
-import React, { Fragment, useCallback, useMemo, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
-import { useDebounce } from '@naveteam/prometheus'
 import { Button, Icon } from '..'
 import { Flex as Container } from '../Grid'
 import Typography from '../Typography'
@@ -65,7 +64,7 @@ const Pagination = ({
   const showLastDots = page < pageSize - 2 && pageSize > minPagesToShowDots
 
   return (
-    <Container justifyContent='center' alignItems='center' {...props}>
+    <Container {...props}>
       <Icon
         mr={2}
         color='gray.800'
