@@ -184,7 +184,7 @@ const SelectBase = styled.select`
   font-size: 3;
   line-height: 3;
   background: white;
-  color: ${({ value }) => (value ? th('colors.gray.900') : th('colors.gray.600'))};
+  color: ${({ value }) => (value ? th('colors.gray.900') : th('colors.gray.500'))};
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -192,7 +192,7 @@ const SelectBase = styled.select`
 const SelectContainer = styled(Flex)`
   border-width: 1px;
   border-style: ${({ quiet }) => (quiet ? 'none' : 'solid')};
-  border-color: black;
+  border-color: gray.500;
   border-radius: 2;
   padding: ${({ quiet, error }) => (quiet && !error ? '8px' : '7px')};
   justify-content: space-between;
