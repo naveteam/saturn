@@ -25,6 +25,21 @@ const Pagination = ({
   variant,
   ...props
 }) => {
+  useEffect(() => {
+    document.getElementById('page').value = page
+    console.log(page)
+  }, [page])
+
+  const onChangePageInput = () => {
+    setTimeout(
+      () =>
+        Number(document.getElementById('page').value) <= pageSize
+          ? setPage(Number(document.getElementById('page').value))
+          : setPage(page),
+      700
+    )
+  }
+
   const setPage = useCallback(pageNumber => {
     onPageChange && onPageChange(pageNumber)
   }, [])
