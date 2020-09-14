@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
 
-const DefaultComponent = ({ children, to, as, propPath, color, target, ...props }) => (
-  <a href={to} target={target} {...props}>
+const DefaultComponent = ({ children, to, ...props }) => (
+  <a href={to} {...props}>
     {children}
   </a>
 )
