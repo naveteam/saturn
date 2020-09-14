@@ -26,8 +26,7 @@ const Pagination = ({
   ...props
 }) => {
   useEffect(() => {
-    document.getElementById('page').value = page
-    console.log(page)
+    variant && (document.getElementById('page').value = page)
   }, [page])
 
   const onChangePageInput = () => {
