@@ -5,15 +5,13 @@ import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
 
-const Link = ({ component, propPath, children, to, as, target, color, passHref, ...props }) => {
-  const DefaultComponent = ({ children, to, as, propPath, color, ...props }) => {
-    return (
-      <a href={to} target={target} {...props}>
-        {children}
-      </a>
-    )
-  }
+const DefaultComponent = ({ children, to, as, propPath, color, target, ...props }) => (
+  <a href={to} target={target} {...props}>
+    {children}
+  </a>
+)
 
+const Link = ({ component, propPath, children, to, as, target, color, passHref, ...props }) => {
   const Base = component ? component : DefaultComponent
   const mountPath = { [propPath]: to }
 
