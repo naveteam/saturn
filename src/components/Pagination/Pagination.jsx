@@ -1,11 +1,10 @@
-import React, { Fragment, useCallback, useMemo } from 'react'
+import React, { Fragment, useCallback, useMemo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
-
+import { useDebounce } from '@naveteam/prometheus'
 import { Button, Icon } from '..'
 import { Flex as Container } from '../Grid'
-import TextField from '../TextField'
 import Typography from '../Typography'
 
 const getLowerValue = (valueA, valueB) => {
@@ -25,6 +24,21 @@ const Pagination = ({
   variant,
   ...props
 }) => {
+  useEffect(() => {
+    document.getElementById('page').value = page
+    console.log(page)
+  }, [page])
+
+  const onChangePageInput = () => {
+    setTimeout(
+      () =>
+        Number(document.getElementById('page').value) <= pageSize
+          ? setPage(Number(document.getElementById('page').value))
+          : setPage(page),
+      700
+    )
+  }
+
   const setPage = useCallback(pageNumber => {
     onPageChange && onPageChange(pageNumber)
   }, [])
@@ -53,12 +67,20 @@ const Pagination = ({
 
   return (
     <Container justifyContent='center' alignItems='center' {...props}>
-      <Icon mr={2} cursor='pointer' onClick={() => page != 1 && setPage(page - 1)} icon='chevron-left' />
+      <Icon
+        mr={2}
+        color='gray.800'
+        cursor='pointer'
+        onClick={() => page != 1 && setPage(page - 1)}
+        icon='chevron-left'
+      />
       {variant ? (
         <Fragment>
-          <Input placeholder={page} />
-          <Typography ml={3}>de</Typography>
-          <Typography ml={2} mr={2}>
+          <Input id='page' onChange={onChangePageInput} />
+          <Typography ml={3} color='gray.800'>
+            de
+          </Typography>
+          <Typography ml={2} mr={2} color='gray.800'>
             {pageSize}
           </Typography>
         </Fragment>
@@ -246,12 +268,17 @@ const Pagination = ({
         </Fragment>
       )}
 
-      <Icon cursor='pointer' icon='chevron-right' onClick={() => page != pageSize && setPage(page + 1)} />
+      <Icon
+        color='gray.800'
+        cursor='pointer'
+        icon='chevron-right'
+        onClick={() => page != pageSize && setPage(page + 1)}
+      />
     </Container>
   )
 }
 
-const Input = styled(TextField)`
+const Input = styled.input`
   width: 32px;
 
   div {
