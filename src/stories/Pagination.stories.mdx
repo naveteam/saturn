@@ -8,8 +8,13 @@ import { ThemeProvider } from '../theme'
 
 # Pagination
 export const PaginationProps = () => {
-  const [page, setPage] = useState(1)
-  return <Pagination page={page} pageSize={12} onPageChange={setPage} />
+  const [page, setPage] = useState(5)
+  return <Pagination page={page} pageSize={30} onPageChange={setPage}/>
+}
+
+export const PaginationPropsInput = () => {
+  const [page, setPage] = useState(20)
+  return <Pagination page={page} pageSize={200} onPageChange={setPage} variant/>
 }
 
 O componente de `Pagination` é utilizado para que o usuário possa trocar de página em sua aplicação. Sua estrutura é composta por um botões e dois ícones do tipo arrow.
@@ -30,8 +35,7 @@ O componente de `Pagination` é utilizado para que o usuário possa trocar de p�
   </Story>
 </Preview>
 
-# Pagination with INput
-
+# Pagination with Input
 Caso haja mais de 100 páginas a prop `variant` deve ser passada, caso seja a estrutura do componente será um input.
 
 <Preview>
@@ -45,7 +49,7 @@ Caso haja mais de 100 páginas a prop `variant` deve ser passada, caso seja a es
     }}
   >
     <ThemeProvider>
-      <Pagination page={1} pageSize={200} variant/>
+      <PaginationPropsInput />
     </ThemeProvider>
   </Story>
 </Preview>

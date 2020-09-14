@@ -25,8 +25,7 @@ const Pagination = ({
   ...props
 }) => {
   useEffect(() => {
-    document.getElementById('page').value = page
-    console.log(page)
+    variant && (document.getElementById('page').value = page)
   }, [page])
 
   const onChangePageInput = () => {
@@ -279,17 +278,19 @@ const Pagination = ({
 }
 
 const Input = styled.input`
-  width: 32px;
-
-  div {
-    height: 24px;
-
-    input {
-      font-size: ${th.fontSize(1)};
-      width: 24px;
-      padding: 0;
-      text-align: center;
-    }
+  width: 28px;
+  height: 20px;
+  font-size: ${th.fontSize(1)};
+  font-family: 'Open Sans';
+  padding: 1px;
+  text-align: center;
+  border: 1px solid ${th.color('gray.600')};
+  border-radius: 2px;
+  &:focus {
+    outline: none;
+    border-color: ${th.color('blue.50')};
+    border-width: 2px;
+    padding: 0;
   }
 `
 
