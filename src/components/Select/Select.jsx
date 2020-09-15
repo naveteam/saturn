@@ -174,6 +174,22 @@ const Container = styled.div`
       flex: 1;
       flex-direction: column;
       overflow-y: scroll;
+      scrollbar-color: ${th.color('gray.500')};
+      scrollbar-width: thin;
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        display: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: ${th.color('gray.500')};
+        border-radius: 8px;
+        border: 4px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+      }
     }
   }
 `
