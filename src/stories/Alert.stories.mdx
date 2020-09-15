@@ -1,0 +1,24 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Alert } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Data Display|Alert" component={Alert} />
+
+# Alert
+
+
+
+<Preview>
+  <Story name="Tile" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
+    }
+  }}>
+    <ThemeProvider>
+      <Alert />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
