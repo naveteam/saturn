@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled, { css, down, typography } from '@xstyled/styled-components'
+import PropTypes from 'prop-types'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
@@ -81,5 +82,14 @@ const Input = styled.input`
     color: disabled;
   }
 `
+
+RadioButton.propTypes = {
+  checked: PropTypes.bool,
+  color: PropTypes.string,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  name: PropTypes.string
+}
 
 export default RadioButton
