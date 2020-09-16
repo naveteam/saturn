@@ -25,12 +25,12 @@ const Pagination = ({
   variant,
   ...props
 }) => {
-  const ref = useRef(null)
+  const inputRef = useRef(null)
   const [inputValue, setInputValue] = useState(page)
   const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
-    variant === 'input' && (ref.current.value = page)
+    variant === 'input' && (inputRef.current.value = page)
   }, [page])
 
   useEffect(() => {
