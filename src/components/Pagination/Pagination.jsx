@@ -1,4 +1,5 @@
-import React, { Fragment, useCallback, useMemo, useEffect, useRef } from 'react'
+import React, { Fragment, useCallback, useMemo, useEffect, useRef, useState } from 'react'
+import { useDebounce } from '@naveteam/prometheus'
 import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
@@ -25,14 +26,17 @@ const Pagination = ({
   ...props
 }) => {
   const ref = useRef(null)
+  const [inputValue, setInputValue] = useState(page)
+  const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
     variant && (ref.current.value = page)
   }, [page])
 
-  const onChangePageInput = () => {
-    setTimeout(() => (Number(ref.current.value) <= pageSize ? setPage(Number(ref.current.value)) : setPage(page)), 700)
-  }
+  useEffect(() => {
+    console.log(debouncedValue)
+    debouncedValue <= pageSize ? setPage(debouncedValue) : setPage(page)
+  }, [debouncedValue])
 
   const setPage = useCallback(pageNumber => {
     onPageChange && onPageChange(pageNumber)
@@ -71,7 +75,7 @@ const Pagination = ({
       />
       {variant ? (
         <Fragment>
-          <Input ref={ref} onChange={onChangePageInput} />
+          <Input ref={ref} onChange={() => setInputValue(Number(ref.current.value))} />
           <Typography ml={3} color='gray.800'>
             de
           </Typography>
