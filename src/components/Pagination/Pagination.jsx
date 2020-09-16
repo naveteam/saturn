@@ -1,7 +1,8 @@
 import React, { Fragment, useCallback, useMemo, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
+
 import { Button, Icon } from '..'
 import { Flex as Container } from '../Grid'
 import Typography from '../Typography'
@@ -86,181 +87,61 @@ const Pagination = ({
         <Fragment>
           {showFirstDots && (
             <Fragment>
-              <ButtonNotSelected
-                mr={2}
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(1)}
-              >
+              <ButtonPage variant='text' hover onClick={() => setPage(1)}>
                 1
-              </ButtonNotSelected>
+              </ButtonPage>
               {!showLastDots && (
                 <Fragment>
-                  <ButtonNotSelected
-                    mr={2}
-                    color='gray.900'
-                    width={24}
-                    height={24}
-                    minHeight={24}
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                    variant='text'
-                    onClick={() => setPage(2)}
-                  >
-                    {2}
-                  </ButtonNotSelected>
-                  <ButtonNotSelected
-                    mr={2}
-                    color='gray.900'
-                    width={24}
-                    height={24}
-                    minHeight={24}
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                    variant='text'
-                    onClick={() => setPage(3)}
-                  >
-                    {3}
-                  </ButtonNotSelected>
+                  <ButtonPage variant='text' hover onClick={() => setPage(2)}>
+                    2
+                  </ButtonPage>
+                  <ButtonPage variant='text' hover onClick={() => setPage(3)}>
+                    3
+                  </ButtonPage>
                 </Fragment>
               )}
-              <ButtonNotSelected
-                mr={2}
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(page - prevLength - 1)}
-              >
+              <ButtonPage variant='text' hover onClick={() => setPage(page - prevLength - 1)}>
                 ...
-              </ButtonNotSelected>
+              </ButtonPage>
             </Fragment>
           )}
           {Array.from({ length: prevLength }).map((_, index) => {
             const pagesBefore = page - (prevLength - index)
             return (
-              <ButtonNotSelected
-                mr={2}
-                key={pagesBefore}
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(pagesBefore)}
-              >
+              <ButtonPage hover key={pagesBefore} variant='text' onClick={() => setPage(pagesBefore)}>
                 {pagesBefore}
-              </ButtonNotSelected>
+              </ButtonPage>
             )
           })}
-          <ButtonSelected
-            mr={2}
-            width={24}
-            height={24}
-            minHeight={24}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            onClick={() => setPage(page)}
-          >
+          <ButtonPage selected onClick={() => setPage(page)}>
             {page}
-          </ButtonSelected>
+          </ButtonPage>
           {Array.from({ length: nextLength }).map((_, index) => {
             const pagesAfter = page + index + 1
             return (
-              <ButtonNotSelected
-                mr={2}
-                key={pagesAfter}
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(pagesAfter)}
-              >
+              <ButtonPage hover key={pagesAfter} variant='text' onClick={() => setPage(pagesAfter)}>
                 {pagesAfter}
-              </ButtonNotSelected>
+              </ButtonPage>
             )
           })}
           {showLastDots && (
             <Fragment>
-              <ButtonNotSelected
-                mr={2}
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(page + nextLength + 1)}
-              >
+              <ButtonPage variant='text' hover onClick={() => setPage(page + nextLength + 1)}>
                 ...
-              </ButtonNotSelected>
+              </ButtonPage>
               {!showFirstDots && (
                 <Fragment>
-                  <ButtonNotSelected
-                    mr={2}
-                    color='gray.900'
-                    width={24}
-                    height={24}
-                    minHeight={24}
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                    variant='text'
-                    onClick={() => setPage(pageSize - 2)}
-                  >
+                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 2)}>
                     {pageSize - 2}
-                  </ButtonNotSelected>
-                  <ButtonNotSelected
-                    mr={2}
-                    color='gray.900'
-                    width={24}
-                    height={24}
-                    minHeight={24}
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                    variant='text'
-                    onClick={() => setPage(pageSize - 2)}
-                  >
+                  </ButtonPage>
+                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 2)}>
                     {pageSize - 1}
-                  </ButtonNotSelected>
+                  </ButtonPage>
                 </Fragment>
               )}
-              <ButtonNotSelected
-                color='gray.900'
-                width={24}
-                height={24}
-                minHeight={24}
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-                variant='text'
-                onClick={() => setPage(pageSize)}
-              >
+              <ButtonPage variant='text' hover onClick={() => setPage(pageSize)}>
                 {pageSize}
-              </ButtonNotSelected>
+              </ButtonPage>
             </Fragment>
           )}
         </Fragment>
@@ -293,20 +174,34 @@ const Input = styled.input`
   }
 `
 
-const ButtonSelected = styled(Button)`
+const ButtonPage = styled(Button)`
+  margin-right: 2px;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${th.color('gray.900')};
+
   p {
     font-size: ${th.fontSize(1)};
-  }
-`
-
-const ButtonNotSelected = styled(Button)`
-  p {
-    font-size: ${th.fontSize(1)};
+    line-height: ${th.lineHeight(1)};
   }
 
-  &:hover {
-    background-color: rgba(78, 152, 237, 0.15);
-  }
+  ${props =>
+    props.selected &&
+    css`
+      color: white;
+    `}
+
+  ${props =>
+    props.hover &&
+    css`
+      &:hover {
+        background-color: rgba(78, 152, 237, 0.15);
+      }
+    `}
 `
 Pagination.defaultProps = {
   page: 1,
