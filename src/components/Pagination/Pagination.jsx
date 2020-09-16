@@ -30,7 +30,7 @@ const Pagination = ({
   const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
-    variant && (ref.current.value = page)
+    variant === 'input' && (ref.current.value = page)
   }, [page])
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Pagination = ({
         onClick={() => page != 1 && setPage(page - 1)}
         icon='chevron-left'
       />
-      {variant ? (
+      {variant === 'input' ? (
         <Fragment>
           <Input ref={ref} onChange={() => setInputValue(Number(ref.current.value))} />
           <Typography ml={3} color='gray.800'>
