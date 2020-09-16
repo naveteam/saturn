@@ -25,18 +25,14 @@ const Pagination = ({
   variant,
   ...props
 }) => {
+  const ref = useRef(null)
+
   useEffect(() => {
-    variant && (document.getElementById('page').value = page)
+    variant && (ref.current.value = page)
   }, [page])
 
   const onChangePageInput = () => {
-    setTimeout(
-      () =>
-        Number(document.getElementById('page').value) <= pageSize
-          ? setPage(Number(document.getElementById('page').value))
-          : setPage(page),
-      700
-    )
+    setTimeout(() => (Number(ref.current.value) <= pageSize ? setPage(Number(ref.current.value)) : setPage(page)), 700)
   }
 
   const setPage = useCallback(pageNumber => {
