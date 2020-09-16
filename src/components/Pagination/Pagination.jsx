@@ -41,6 +41,28 @@ const Pagination = ({
     onPageChange && onPageChange(pageNumber)
   }, [])
 
+  const showPagesInMiddle = direction => {
+    let pages
+
+    return direction === 'before'
+      ? Array.from({ length: prevLength }).map((_, index) => {
+          pages = page - (prevLength - index)
+          return (
+            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
+              {pages}
+            </ButtonPage>
+          )
+        })
+      : Array.from({ length: nextLength }).map((_, index) => {
+          pages = page + index + 1
+          return (
+            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
+              {pages}
+            </ButtonPage>
+          )
+        })
+  }
+
   const getPages = useCallback(
     state => {
       const prevLength = getLowerValue(MIDDLE, page - 1)
@@ -104,25 +126,11 @@ const Pagination = ({
               </ButtonPage>
             </Fragment>
           )}
-          {Array.from({ length: prevLength }).map((_, index) => {
-            const pagesBefore = page - (prevLength - index)
-            return (
-              <ButtonPage hover key={pagesBefore} variant='text' onClick={() => setPage(pagesBefore)}>
-                {pagesBefore}
-              </ButtonPage>
-            )
-          })}
+          {showPagesInMiddle('before')}
           <ButtonPage selected onClick={() => setPage(page)}>
             {page}
           </ButtonPage>
-          {Array.from({ length: nextLength }).map((_, index) => {
-            const pagesAfter = page + index + 1
-            return (
-              <ButtonPage hover key={pagesAfter} variant='text' onClick={() => setPage(pagesAfter)}>
-                {pagesAfter}
-              </ButtonPage>
-            )
-          })}
+          {showPagesInMiddle('after')}
           {showLastDots && (
             <Fragment>
               <ButtonPage variant='text' hover onClick={() => setPage(page + nextLength + 1)}>
