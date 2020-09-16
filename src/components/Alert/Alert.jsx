@@ -4,29 +4,46 @@ import { th, variant, compose, color, layout, space, border } from '@xstyled/sys
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 
-const Alert = () => (
-  <Base>
+const Alert = ({ type, title, text, closeIcon }) => (
+  <Base type={type}>
     <Header>
       <LeftHeader>
-        <Icon icon='info' color='white' height='24'/>
-        <Title>Title Alert</Title>
+        <Icon icon={type} color='white' height='20' />
+        <Title>{title}</Title>
       </LeftHeader>
 
-      <Icon icon='close' color='white' height='24'/>
+      {closeIcon && <Icon icon='close' color='white' height='24' />}
     </Header>
 
-    <Description>
-      Text of the alert goes here
-    </Description>
+    {text && <Description>{text}</Description>}
   </Base>
 )
 
+const typeVariant = variant({
+  prop: 'type',
+  default: 'info',
+  variants: {
+    info: css`
+      background: ${th.color('blue.400')};
+    `,
+    success: css`
+      background: ${th.color('green.400')};
+    `,
+    error: css`
+      background: ${th.color('red.400')};
+    `,
+    warning: css`
+      background: ${th.color('amber.400')};
+    `
+  }
+})
 
 const Base = styled.div`
+  ${typeVariant}
   display: flex;
+  width: 384px;
   flex-direction: column;
   border-radius: 2;
-  background: #1565C0;
   padding: 4;
 `
 const Header = styled.div`
@@ -53,6 +70,5 @@ const Description = styled(Typography)`
   line-height: 3;
   color: white;
 `
-
 
 export default Alert
