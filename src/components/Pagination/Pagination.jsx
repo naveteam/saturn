@@ -41,6 +41,28 @@ const Pagination = ({
     onPageChange && onPageChange(pageNumber)
   }, [])
 
+  const showPagesInMiddle = direction => {
+    let pages
+
+    return direction === 'before'
+      ? Array.from({ length: prevLength }).map((_, index) => {
+          pages = page - (prevLength - index)
+          return (
+            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
+              {pages}
+            </ButtonPage>
+          )
+        })
+      : Array.from({ length: nextLength }).map((_, index) => {
+          pages = page + index + 1
+          return (
+            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
+              {pages}
+            </ButtonPage>
+          )
+        })
+  }
+
   const getPages = useCallback(
     state => {
       const prevLength = getLowerValue(middle, page - 1)
