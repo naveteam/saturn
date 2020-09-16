@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useEffect } from 'react'
+import React, { Fragment, useCallback, useMemo, useEffect, useRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
@@ -24,18 +24,14 @@ const Pagination = ({
   variant,
   ...props
 }) => {
+  const ref = useRef(null)
+
   useEffect(() => {
-    variant && (document.getElementById('page').value = page)
+    variant && (ref.current.value = page)
   }, [page])
 
   const onChangePageInput = () => {
-    setTimeout(
-      () =>
-        Number(document.getElementById('page').value) <= pageSize
-          ? setPage(Number(document.getElementById('page').value))
-          : setPage(page),
-      700
-    )
+    setTimeout(() => (Number(ref.current.value) <= pageSize ? setPage(Number(ref.current.value)) : setPage(page)), 700)
   }
 
   const setPage = useCallback(pageNumber => {
@@ -75,7 +71,7 @@ const Pagination = ({
       />
       {variant ? (
         <Fragment>
-          <Input id='page' onChange={onChangePageInput} />
+          <Input ref={ref} onChange={onChangePageInput} />
           <Typography ml={3} color='gray.800'>
             de
           </Typography>
