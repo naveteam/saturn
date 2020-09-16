@@ -26,14 +26,17 @@ const Pagination = ({
   ...props
 }) => {
   const ref = useRef(null)
+  const [inputValue, setInputValue] = useState(page)
+  const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
     variant && (ref.current.value = page)
   }, [page])
 
-  const onChangePageInput = () => {
-    setTimeout(() => (Number(ref.current.value) <= pageSize ? setPage(Number(ref.current.value)) : setPage(page)), 700)
-  }
+  useEffect(() => {
+    console.log(debouncedValue)
+    debouncedValue <= pageSize ? setPage(debouncedValue) : setPage(page)
+  }, [debouncedValue])
 
   const setPage = useCallback(pageNumber => {
     onPageChange && onPageChange(pageNumber)
