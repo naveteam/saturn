@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Checkbox } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Input|Checkbox' component={Checkbox} />
+<Meta title='Data Input/Checkbox' component={Checkbox} />
 
 # Checkbox
 
 O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
 
-<Preview>
+<Canvas>
   <Story
     name='Base'
     parameters={{
@@ -22,13 +22,13 @@ O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode sele
       <Checkbox label='Base' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Checked | onChange
 
 O `Checkbox` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Checkbox`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Checkbox`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.
 
-<Preview>
+<Canvas>
   <Story
     name='Checked | onChange'
     parameters={{
@@ -45,13 +45,13 @@ O `Checkbox` pode receber a prop `checked`. É um valor booleano que indica o va
       <Checkbox checked={false} disabled={true} label='Not selected disabled' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Disabled
 
 A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as cores customizadas não irão funcionar.
 
-<Preview>
+<Canvas>
   <Story
     name='Disabled'
     parameters={{
@@ -66,13 +66,13 @@ A prop `disabled` desabilita completamente o `Checkbox`, impedindo seu uso e as 
       <Checkbox checked={true} label='Selected disabled' disabled={true} name='check14' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Label
 
 O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido, nada será exibido.
 
-<Preview>
+<Canvas>
   <Story
     name='label'
     parameters={{
@@ -87,6 +87,6 @@ O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido
       <Checkbox name='check16' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Checkbox} />
+<ArgsTable of={Checkbox} />

@@ -1,15 +1,15 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Icon, Flex, Box, Caption } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Data Display|Iconography" component={Icon} />
+<Meta title="Data Display/Iconography" component={Icon} />
 
 # Icon
 
 O componente de `Icon` é responsável por apresentar um dos ícones definidos em nosso Design System. Ele recebe um parâmetro principal chamado `icon` que define qual icon será renderizado.
 
-<Preview>
+<Canvas>
   <Story name="Base" parameters={{
     design: {
       type: 'figma',
@@ -20,15 +20,15 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
       <Icon icon='face' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Icon} />
+<ArgsTable of={Icon} />
 
 # All Icons
 
 Abaixo segue a lista com todos os ícones disponíveis no Design System até o momento.
 
-<Preview>
+<Canvas>
   <Story name="All Icons" parameters={{
     design: {
       type: 'figma',
@@ -229,4 +229,4 @@ Abaixo segue a lista com todos os ícones disponíveis no Design System até o m
       </Flex>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>

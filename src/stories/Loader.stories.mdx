@@ -1,15 +1,15 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Loader } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Display|Loader' component={Loader} />
+<Meta title='Data Display/Loader' component={Loader} />
 
 # Loader
 
 O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) e sem tempo definido (`indeterminate` - padrão).
 
-<Preview>
+<Canvas>
   <Story
     name='Base'
     parameters={{
@@ -23,13 +23,13 @@ O componente `Loader` é utilizado para apresentar carregamentos de forma visual
       <Loader />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Size
 
 O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon` e `major`, que indicam o tamanho do `Loader`, por padrão é `major`.
 
-<Preview>
+<Canvas>
   <Story
     name='Size'
     parameters={{
@@ -44,7 +44,7 @@ O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon
       <Loader size='icon' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Variants
 
@@ -54,7 +54,7 @@ Quando for a variação `determinate`, é necessário também passar uma prop ch
 
 Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão é 5 segundos, mas este valor pode ser passado passando um número pela prop `time` indicando o tempo desejado para o ciclo do loader.
 
-<Preview>
+<Canvas>
   <Story
     name='Variants'
     parameters={{
@@ -71,6 +71,6 @@ Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão 
       <Loader variant='indeterminate' time={8} />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Loader} />
+<ArgsTable of={Loader} />
