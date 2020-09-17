@@ -44,6 +44,7 @@
     "@rollup/plugin-image": "^2.0.5",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-viewport": "^6.0.21",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/storybook-deployer": "^2.8.6",
