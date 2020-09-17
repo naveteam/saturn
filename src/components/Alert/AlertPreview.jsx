@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
-import { Typography } from '../'
+import { Typography, Button } from '../'
 import { Icon } from '../Iconography'
 
 import { ToastContainer, toast as alert } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const Alert = ({ type, position, title, text, closeIcon }) => {
+const AlertPreview = ({ type, position, title, text, closeIcon }) => {
   const body = (
     <div>
       <span>
@@ -28,7 +28,7 @@ const Alert = ({ type, position, title, text, closeIcon }) => {
     progress: undefined
   }
 
-  useEffect(() => {
+  const notify = () => {
     switch (type) {
       case 'success':
         alert.success(body, options)
@@ -42,10 +42,13 @@ const Alert = ({ type, position, title, text, closeIcon }) => {
       default:
         alert.info(body, options)
     }
-  }, [])
+  }
 
   return (
     <div>
+      <Button width='350px' onClick={notify} style={{ margin: '5px' }}>
+        Clique para ver o alerta: {type}
+      </Button>
       <Container closeIcon={closeIcon} />
     </div>
   )
@@ -120,4 +123,4 @@ const Description = styled(Typography)`
   color: white;
 `
 
-export default Alert
+export default AlertPreview

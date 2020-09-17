@@ -1,6 +1,7 @@
 import Alert from './Alert'
 import AlertContainer from './AlertContainer'
+import AlertPreview from './AlertPreview'
 
-export { AlertContainer, Alert }
+export { Alert, AlertContainer, AlertPreview }
 
 export default Alert
