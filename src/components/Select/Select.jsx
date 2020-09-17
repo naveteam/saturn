@@ -94,17 +94,17 @@ const disabledVariant = variant({
   prop: 'disabled',
   default: false,
   variants: {
-    true: css`
+    true: ({ quiet }) => css`
       p {
         color: disabled;
       }
       div {
         cursor: default;
         border-color: gray.400;
-        background-color: ${({ quiet }) => (quiet ? th('white') : th.color('gray.100'))};
+        background-color: ${quiet ? th('white') : th.color('gray.100')};
         select {
           color: disabled;
-          background-color: ${({ quiet }) => (quiet ? th('white') : th.color('gray.100'))};
+          background-color: ${quiet ? th('white') : th.color('gray.100')};
         }
         path {
           fill: gray.400;
@@ -134,13 +134,16 @@ const Wrapper = styled(Box)`
   ${errorVariant}
   position: relative;
 `
-const Message = styled(Caption)`
-  font-size: 1;
-  line-height: 1;
-  margin-top: 2;
-  color: gray.800;
-  visibility: ${({ isOpened }) => (isOpened ? 'hidden' : 'visible')};
-`
+
+const Message = styled(Caption)(
+  ({ isOpened }) => css`
+    font-size: 1;
+    line-height: 1;
+    margin-top: 2;
+    color: gray.800;
+    visibility: ${isOpened ? 'hidden' : 'visible'};
+  `
+)
 
 const OptionContainer = styled(Flex)`
   flex: 1;
@@ -151,13 +154,15 @@ const OptionContainer = styled(Flex)`
     background-color: rgba(78, 152, 237, 0.1);
   }
 `
+
 const OptionsContainer = styled.div`
   display: none;
   position: absolute;
   width: 100%;
   z-index: 2;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${th.color('white')};
 `
+
 const Container = styled.div`
   outline: none;
   &:focus {
@@ -191,33 +196,39 @@ const Container = styled.div`
   }
 `
 
-const SelectBase = styled.select`
-  pointer-events: none;
-  border: 0;
-  font-size: 3;
-  line-height: 3;
-  background: white;
-  color: ${({ value }) => (value ? th('colors.gray.900') : th('colors.gray.500'))};
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-`
-const SelectContainer = styled(Flex)`
-  border-width: 1px;
-  border-style: ${({ quiet }) => (quiet ? 'none' : 'solid')};
-  border-color: gray.500;
-  border-radius: 2;
-  padding: ${({ quiet, error }) => (quiet && !error ? '8px' : '7px')};
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  ${isOpenedVariant}
-`
+const SelectBase = styled.select(
+  ({ value }) => css`
+    pointer-events: none;
+    border: 0;
+    font-size: 3;
+    line-height: 3;
+    background: white;
+    color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  `
+)
+
+const SelectContainer = styled(Flex)(
+  ({ quiet, error }) => css`
+    border-width: 1px;
+    border-style: ${quiet ? 'none' : 'solid'};
+    border-color: gray.500;
+    border-radius: 2;
+    padding: ${quiet && !error ? '8px' : '7px'};
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  `,
+  isOpenedVariant
+)
 
 Select.defaultProps = {
   error: false,
   disabled: false,
   quiet: false,
+  label: 'Select',
   options: []
 }
 
