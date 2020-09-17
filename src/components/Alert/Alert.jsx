@@ -44,11 +44,7 @@ const Alert = ({ type, position, title, text, closeIcon }) => {
     }
   }, [])
 
-  return (
-    <div>
-      <Container closeIcon={closeIcon} />
-    </div>
-  )
+  return <Container closeIcon={closeIcon} />
 }
 
 const closeVariant = variant({
