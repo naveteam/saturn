@@ -5,8 +5,7 @@ import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
 import { Flex, Box } from '../Grid'
-import { Typography, Caption } from '..'
-import { Icon } from '..'
+import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
   ({ label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
@@ -168,8 +167,6 @@ const Container = styled.div`
       box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
       max-height: 184px;
       margin-top: 8px;
-      padding: 4px 0;
-      padding-top: 4px;
       display: flex;
       flex: 1;
       flex-direction: column;
