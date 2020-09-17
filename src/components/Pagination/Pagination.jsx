@@ -42,22 +42,20 @@ const Pagination = ({
   }, [])
 
   const showPagesInMiddle = direction => {
-    let pages
-
     return direction === 'before'
       ? Array.from({ length: prevLength }).map((_, index) => {
-          pages = page - (prevLength - index)
+          const pagesBefore = page - (prevLength - index)
           return (
-            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
-              {pages}
+            <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
+              {pagesBefore}
             </ButtonPage>
           )
         })
       : Array.from({ length: nextLength }).map((_, index) => {
-          pages = page + index + 1
+          const pagesAfter = page + index + 1
           return (
-            <ButtonPage key={pages} hover variant='text' onClick={() => setPage(pages)}>
-              {pages}
+            <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
+              {pagesAfter}
             </ButtonPage>
           )
         })
@@ -141,7 +139,7 @@ const Pagination = ({
                   <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 2)}>
                     {pageSize - 2}
                   </ButtonPage>
-                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 2)}>
+                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 1)}>
                     {pageSize - 1}
                   </ButtonPage>
                 </Fragment>
