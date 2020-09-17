@@ -45,12 +45,12 @@ const AlertPreview = ({ type, position, title, text, closeIcon }) => {
   }
 
   return (
-    <div>
+    <>
       <Button width='350px' onClick={notify} style={{ margin: '5px' }}>
         Clique para ver o alerta: {type}
       </Button>
       <Container closeIcon={closeIcon} />
-    </div>
+    </>
   )
 }
 
