@@ -1,9 +1,9 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Alert } from '../components'
+import { AlertContainer, Alert } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Data Display|Alert" component={Alert} />
+<Meta title="Data Display|Alert" component={AlertContainer} />
 
 # Alert
 
@@ -17,7 +17,8 @@ import { ThemeProvider } from '../theme'
     }
   }}>
     <ThemeProvider>
-      <Alert type="info" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon/>
+      <AlertContainer type="info" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon/>
+      <Alert type="warning" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon/>
     </ThemeProvider>
   </Story>
 </Preview>
