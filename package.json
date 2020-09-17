@@ -82,5 +82,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "react-toastify": "^6.0.8"
   }
 }
