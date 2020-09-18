@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
-import { Typography } from '../'
-import { Icon } from '../Iconography'
-
 import { ToastContainer, toast as alert } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import PropTypes from 'prop-types'
+
+import { Typography } from '../'
+import { Icon } from '../Iconography'
 
 const Alert = ({ type, position, title, text, closeIcon }) => {
   const body = (
@@ -22,7 +23,7 @@ const Alert = ({ type, position, title, text, closeIcon }) => {
     position: position === 'top' ? 'top-center' : 'top-right',
     autoClose: 5000,
     hideProgressBar: true,
-    closeOnClick: closeIcon ? true : false,
+    closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined
@@ -115,5 +116,18 @@ const Description = styled(Typography)`
   line-height: 3;
   color: white;
 `
+Alert.defaultProps = {
+  type: 'info',
+  closeIcon: true,
+  position: 'top'
+}
+
+Alert.propTypes = {
+  type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
+  position: PropTypes.oneOf(['top', 'right']),
+  closeIcon: PropTypes.oneOf([true, false]),
+  title: PropTypes.string,
+  text: PropTypes.string
+}
 
 export default Alert

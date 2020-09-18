@@ -3,6 +3,7 @@ import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import { Typography, Button } from '../'
 import { Icon } from '../Iconography'
+import PropTypes from 'prop-types'
 
 import { ToastContainer, toast as alert } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -122,5 +123,19 @@ const Description = styled(Typography)`
   line-height: 3;
   color: white;
 `
+
+AlertPreview.defaultProps = {
+  type: 'info',
+  closeIcon: true,
+  position: 'top'
+}
+
+AlertPreview.propTypes = {
+  type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
+  position: PropTypes.oneOf(['top', 'right']),
+  closeIcon: PropTypes.oneOf([true, false]),
+  title: PropTypes.string,
+  text: PropTypes.string
+}
 
 export default AlertPreview
