@@ -1,5 +1,6 @@
 export * from './Typography'
 export * from './TextField'
+export * from './TextArea'
 export * from './Grid'
 export * from './Tag'
 export * from './Button'
