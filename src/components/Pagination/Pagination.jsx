@@ -31,52 +31,57 @@ const Pagination = ({
 
   useEffect(() => {
     variant === 'input' && (inputRef.current.value = page)
-  }, [page])
+  }, [page, variant, inputRef])
 
   useEffect(() => {
     debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
   }, [debouncedValue])
 
-  const setPage = useCallback(pageNumber => {
-    onPageChange && onPageChange(pageNumber)
-  }, [])
+  const setPage = useCallback(
+    pageNumber => {
+      onPageChange && onPageChange(pageNumber)
+    },
+    [onPageChange]
+  )
 
   const showPagesInMiddle = direction => {
-    return direction === 'before'
-      ? Array.from({ length: prevLength }).map((_, index) => {
-          const pagesBefore = page - (prevLength - index)
-          return (
-            <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
-              {pagesBefore}
-            </ButtonPage>
-          )
-        })
-      : Array.from({ length: nextLength }).map((_, index) => {
-          const pagesAfter = page + index + 1
-          return (
-            <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
-              {pagesAfter}
-            </ButtonPage>
-          )
-        })
+    if (direction === 'before') {
+      return Array.from({ length: prevLength }).map((_, index) => {
+        const pagesBefore = page - (prevLength - index)
+        return (
+          <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
+            {pagesBefore}
+          </ButtonPage>
+        )
+      })
+    } else if (direction === 'after') {
+      return Array.from({ length: nextLength }).map((_, index) => {
+        const pagesAfter = page + index + 1
+        return (
+          <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
+            {pagesAfter}
+          </ButtonPage>
+        )
+      })
+    }
   }
 
   const getPages = useCallback(
     state => {
-      const prevLength = getLowerValue(MIDDLE, page - 1)
-      const nextLength = getLowerValue(MIDDLE, pageSize - page)
+      const prevLength = getLowerValue(middle, page - 1)
+      const nextLength = getLowerValue(middle, pageSize - page)
       if (state === 'prev') {
-        return pageSize > minPagesToShowDots ? getLowerValue(MIDDLE + MIDDLE - nextLength, page - 1) : page - 1
+        return pageSize > minPagesToShowDots ? getLowerValue(middle + middle - nextLength, page - 1) : page - 1
       }
 
       return pageSize > minPagesToShowDots
-        ? getLowerValue(MIDDLE + MIDDLE - prevLength, pageSize - page)
+        ? getLowerValue(middle + middle - prevLength, pageSize - page)
         : pageSize - page
     },
     [page, pageSize]
   )
 
-  const MIDDLE = useMemo(() => Math.trunc(pagesShownedBetweenDots / 2), [pagesShownedBetweenDots])
+  const middle = useMemo(() => Math.trunc(pagesShownedBetweenDots / 2), [pagesShownedBetweenDots])
   const prevLength = useMemo(() => getPages('prev'), [getPages])
   const nextLength = useMemo(() => getPages('next'), [getPages])
 
