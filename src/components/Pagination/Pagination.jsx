@@ -31,34 +31,39 @@ const Pagination = ({
 
   useEffect(() => {
     variant === 'input' && (inputRef.current.value = page)
-  }, [page])
+  }, [page, variant, inputRef])
 
   useEffect(() => {
     debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
   }, [debouncedValue])
 
-  const setPage = useCallback(pageNumber => {
-    onPageChange && onPageChange(pageNumber)
-  }, [])
+  const setPage = useCallback(
+    pageNumber => {
+      onPageChange && onPageChange(pageNumber)
+    },
+    [onPageChange]
+  )
 
   const showPagesInMiddle = direction => {
-    return direction === 'before'
-      ? Array.from({ length: prevLength }).map((_, index) => {
-          const pagesBefore = page - (prevLength - index)
-          return (
-            <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
-              {pagesBefore}
-            </ButtonPage>
-          )
-        })
-      : Array.from({ length: nextLength }).map((_, index) => {
-          const pagesAfter = page + index + 1
-          return (
-            <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
-              {pagesAfter}
-            </ButtonPage>
-          )
-        })
+    if (direction === 'before') {
+      return Array.from({ length: prevLength }).map((_, index) => {
+        const pagesBefore = page - (prevLength - index)
+        return (
+          <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
+            {pagesBefore}
+          </ButtonPage>
+        )
+      })
+    } else if (direction === 'after') {
+      return Array.from({ length: nextLength }).map((_, index) => {
+        const pagesAfter = page + index + 1
+        return (
+          <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
+            {pagesAfter}
+          </ButtonPage>
+        )
+      })
+    }
   }
 
   const getPages = useCallback(
