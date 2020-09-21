@@ -7,7 +7,7 @@ import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
 
 const TextArea = forwardRef(({ label, caption, placeholder, disabled, name, ...props }, ref) => {
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(false)
 
   return (
     <Wrapper disabled={disabled} {...props}>
@@ -137,14 +137,13 @@ const CaptionMessage = styled(Caption)`
 `
 
 TextArea.defaultProps = {
-  label: undefined,
   caption: undefined,
   placeholder: undefined,
   disabled: false,
 }
 
 TextArea.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   caption: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
