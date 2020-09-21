@@ -5,16 +5,16 @@ import PropTypes from 'prop-types'
 import { Flex, Box } from '../Grid'
 import Typography from '../Typography'
 
-const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, checked, ...props }, ref) => {
+const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, checked, id, ...props }, ref) => {
   const [isEnabled, setIsEnabled] = useState(defaultChecked)
   return (
     <Flex alignItems='center' {...props}>
       <SwitchContainer enabled={isEnabled} disabled={disabled}>
-        <HidenInput
+        <HiddenInput
           ref={ref}
           type='checkbox'
           name={name}
-          id={name}
+          id={id}
           value={value}
           onChange={e => {
             setIsEnabled(e.target.checked)
@@ -24,7 +24,7 @@ const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChec
           defaultChecked={defaultChecked}
           checked={checked}
         />
-        <Controller htmlFor={name} enabled={isEnabled} />
+        <Controller enabled={isEnabled} />
       </SwitchContainer>
       {label && <Typography color={disabled ? 'disabled' : 'gray.900'}>{label}</Typography>}
     </Flex>
@@ -58,25 +58,26 @@ const positionVariant = variant({
   }
 })
 
-const SwitchContainer = styled.label`
-  width: 32px;
-  height: 16px;
-  border-radius: 8px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  margin-right: 8px;
+const SwitchContainer = styled.label(
+  ({ disabled }) => css`
+    width: 32px;
+    height: 16px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-right: 8px;
 
-  ${({ disabled }) =>
-    disabled
+    ${disabled
       ? css`
-          background-color: disabled;
+          background-color: gray.400;
           cursor: not-allowed;
         `
       : colorVariants}
-`
+  `
+)
 
-const HidenInput = styled.input`
+const HiddenInput = styled.input`
   display: none;
 `
 
@@ -101,7 +102,8 @@ Switch.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   defaultChecked: PropTypes.bool,
-  checked: PropTypes.any
+  checked: PropTypes.any,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 export default Switch

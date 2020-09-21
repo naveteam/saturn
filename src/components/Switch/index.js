@@ -1,5 +1,1 @@
-import Switch from './Switch'
-
-export { Switch }
-
-export default Switch
+export { default as Switch } from './Switch'
