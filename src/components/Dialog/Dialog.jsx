@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useRef, useCallback } from 'react'
 import styled from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
@@ -43,10 +44,32 @@ const Dialog = ({
               <Button color='white' onClick={() => setClose(false)}>
                 <Icon icon='name' color='black' />
               </Button>
+=======
+import React, { useState } from 'react'
+import styled, { css, variant } from '@xstyled/styled-components'
+import { Typography } from '../'
+
+const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
+  if (!open) return null
+
+  return (
+    <>
+      <Overlay />
+      <Container>
+        <Content>
+          <LeftContent>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+          </LeftContent>
+          {closeIcon && (
+            <RightContent>
+              <button onClick={onClose}>teste</button>
+>>>>>>> feat(dialog): component and style
             </RightContent>
           )}
         </Content>
 
+<<<<<<< HEAD
         {children && <ChildrenContent>{children}</ChildrenContent>}
 
         {!withCloseIcon && (
@@ -60,6 +83,14 @@ const Dialog = ({
             </Button>
           </Buttons>
         )}
+=======
+        <ChildrenContent>{children}</ChildrenContent>
+
+        <Buttons>
+          <button onClick={onClose}>Cancelar</button>
+          <button>Adicionar</button>
+        </Buttons>
+>>>>>>> feat(dialog): component and style
       </Container>
     </>
   )
@@ -76,7 +107,11 @@ const Overlay = styled.div`
   z-index: 1000;
 `
 
+<<<<<<< HEAD
 const Container = styled(Flex)`
+=======
+const Container = styled.div`
+>>>>>>> feat(dialog): component and style
   position: fixed;
   top: 50%;
   left: 50%;
@@ -99,11 +134,29 @@ const Content = styled.div`
 
 const LeftContent = styled.div`
   width: 100%;
+<<<<<<< HEAD
+=======
+  background: red;
+>>>>>>> feat(dialog): component and style
 `
 const RightContent = styled.div`
   right: 0;
 `
 
+<<<<<<< HEAD
+=======
+const Title = styled(Typography)`
+  font-weight: 1;
+  font-size: 4;
+  line-height: 4;
+`
+const Description = styled(Typography)`
+  font-size: 3;
+  line-height: 3;
+  margin-top: 4;
+`
+
+>>>>>>> feat(dialog): component and style
 const ChildrenContent = styled.div`
   display: flex;
   margin: 32px 32px 0 32px;
@@ -121,16 +174,21 @@ const Buttons = styled.div`
   display: flex;
   align-self: flex-end;
   margin: 32px;
+<<<<<<< HEAD
 
   button {
     width: 176px;
   }
+=======
+  background: green;
+>>>>>>> feat(dialog): component and style
 
   button + button {
     margin-left: 32px;
   }
 `
 
+<<<<<<< HEAD
 Dialog.defaultProps = {
   open: false,
   withBackground: true,
@@ -151,3 +209,7 @@ Dialog.propTypes = {
 }
 
 export default Dialog
+=======
+export default Dialog
+// ${th.color('green.400')}
+>>>>>>> feat(dialog): component and style

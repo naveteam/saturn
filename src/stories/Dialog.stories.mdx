@@ -1,7 +1,13 @@
 import { useState } from 'react'
+<<<<<<< HEAD
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Dialog, TextField, Button } from '../components'
+=======
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Dialog, TextField } from '../components'
+>>>>>>> feat(dialog): component and style
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display|Dialog" component={Dialog} />
@@ -10,6 +16,7 @@ import { ThemeProvider } from '../theme'
 
 O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de actions.
 
+<<<<<<< HEAD
 export const DialogCloseIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -75,12 +82,21 @@ export const DialogDoubleInput = () => {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       >
         <TextField name='base' label='Default'  placeholder='Default' />
+=======
+export const DialogProps = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} closeIcon title="Título" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+>>>>>>> feat(dialog): component and style
         <TextField name='base' label='Default'  placeholder='Default' />
       </Dialog>
     </>
   )
 }
 
+<<<<<<< HEAD
 <Canvas>
   <Story name="Close Icon" parameters={{
     design: {
@@ -127,6 +143,10 @@ export const DialogDoubleInput = () => {
 
 <Canvas>
   <Story name="Input Duplo" parameters={{
+=======
+<Preview>
+  <Story name="Base" parameters={{
+>>>>>>> feat(dialog): component and style
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
@@ -134,6 +154,7 @@ export const DialogDoubleInput = () => {
   }}>
   
     <ThemeProvider>
+<<<<<<< HEAD
       <DialogDoubleInput />
     </ThemeProvider>
   </Story>
@@ -142,3 +163,13 @@ export const DialogDoubleInput = () => {
 
 
 <ArgsTable of={Dialog} />
+=======
+      <DialogProps />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+
+
+<Props of={Dialog} />
+>>>>>>> feat(dialog): component and style
