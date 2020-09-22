@@ -1,0 +1,41 @@
+import { useState } from 'react'
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Dialog, TextField } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title="Data Display|Dialog" component={Dialog} />
+
+# Dialog
+
+O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de actions.
+
+export const DialogProps = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} closeIcon title="Título" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+        <TextField name='base' label='Default'  placeholder='Default' />
+      </Dialog>
+    </>
+  )
+}
+
+<Preview>
+  <Story name="Base" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
+    }
+  }}>
+  
+    <ThemeProvider>
+      <DialogProps />
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+
+
+<Props of={Dialog} />
