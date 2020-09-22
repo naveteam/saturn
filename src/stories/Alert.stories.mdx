@@ -21,13 +21,11 @@ import { ThemeProvider } from '../theme'
     <ThemeProvider>
       <Alert type="info" title="Title Alert" position="top" closeIcon={false} />
       <Alert type="success" title="Title Alert" position="top" closeIcon={false} />
-      <Alert type="error" title="Title Alert" position="top" closeIcon={false} />
       <Alert type="warning" title="Title Alert" position="top" closeIcon={false} />
+      <Alert type="error" title="Title Alert" position="top" closeIcon={false} />
     </ThemeProvider>
   </Story>
 </Preview>
-
-<Props of={Alert} />
 
 <Preview>
   <Story name="Title + Text" parameters={{
@@ -46,8 +44,6 @@ import { ThemeProvider } from '../theme'
   </Story>
 </Preview>
 
-<Props of={Alert} />
-
 <Preview>
   <Story name="Title + Close Icon" parameters={{
     design: {
@@ -64,8 +60,6 @@ import { ThemeProvider } from '../theme'
     </ThemeProvider>
   </Story>
 </Preview>
-
-<Props of={Alert} />
 
 <Preview>
   <Story name="Title + Text + Close Icon" parameters={{
