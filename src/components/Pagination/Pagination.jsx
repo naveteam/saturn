@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useEffect, useRef, useState } from 'react'
+import React, { Fragment, useCallback, useMemo, useEffect, useState } from 'react'
 import { useDebounce } from '@naveteam/prometheus'
 import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
@@ -21,17 +21,17 @@ const Pagination = ({
   onPageChange,
   onPageSizeChange,
   minPagesToShowDots,
+  lastPageBeforeFirstDots,
   pagesShownedBetweenDots,
   variant,
   ...props
 }) => {
-  const inputRef = useRef(null)
   const [inputValue, setInputValue] = useState(page)
   const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
-    variant === 'input' && (inputRef.current.value = page)
-  }, [page, variant, inputRef])
+    variant === 'input' && setInputValue(page)
+  }, [page, variant])
 
   useEffect(() => {
     debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
@@ -78,15 +78,15 @@ const Pagination = ({
         ? getLowerValue(middle + middle - prevLength, pageSize - page)
         : pageSize - page
     },
-    [page, pageSize]
+    [page, pageSize, middle, minPagesToShowDots]
   )
 
   const middle = useMemo(() => Math.trunc(pagesShownedBetweenDots / 2), [pagesShownedBetweenDots])
   const prevLength = useMemo(() => getPages('prev'), [getPages])
   const nextLength = useMemo(() => getPages('next'), [getPages])
 
-  const showFirstDots = page > 3 && pageSize > minPagesToShowDots
-  const showLastDots = page < pageSize - 2 && pageSize > minPagesToShowDots
+  const showFirstDots = page > lastPageBeforeFirstDots && pageSize > minPagesToShowDots
+  const showLastDots = page < pageSize - (lastPageBeforeFirstDots - 1) && pageSize > minPagesToShowDots
 
   return (
     <Container {...props}>
@@ -99,7 +99,7 @@ const Pagination = ({
       />
       {variant === 'input' ? (
         <Fragment>
-          <Input ref={inputRef} onChange={() => setInputValue(Number(inputRef.current.value))} />
+          <Input value={inputValue} onChange={event => setInputValue(Number(event.target.value))} />
           <Typography ml={3} color='gray.800'>
             de
           </Typography>
@@ -216,6 +216,7 @@ const ButtonPage = styled(Button)`
 Pagination.defaultProps = {
   page: 1,
   minPagesToShowDots: 7,
+  lastPageBeforeFirstDots: 3,
   pagesShownedBetweenDots: 3
 }
 
@@ -223,6 +224,7 @@ Pagination.propTypes = {
   page: PropTypes.number,
   pageSize: PropTypes.number,
   minPagesToShowDots: PropTypes.number,
+  lastPageBeforeFirstDots: PropTypes.number,
   pagesShownedBetweenDots: PropTypes.number
 }
 
