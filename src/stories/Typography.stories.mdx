@@ -1,15 +1,15 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Typography, Heading, Subtitle, Paragraph, Caption } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Data Display|Typography" />
+<Meta title="Data Display/Typography" />
 
 # Typography
 
 É o componente base para a criação de todos os outros tipos de tipografia. Sua função é prover um componente flexível e seguindo a definição do [styled-system](https://styled-system.com/api). Pode ser utilizado em situações específicas onde nenhum dos componentes de tipografia previamente desenvolvidos atendam os requisitos necessários.
 
-<Preview>
+<Canvas>
   <Story name="Typography" parameters={{
     design: {
       type: 'figma',
@@ -20,15 +20,15 @@ import { ThemeProvider } from '../theme'
       <Typography>Base Typography component</Typography>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Typography} />
+<ArgsTable of={Typography} />
 
 # Headings
 
-O componente de Heading é uma extensão do componente [Typography](#typography), onde as props `fontSize` e `as` são definidas baseadas no valor de `variant`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
+O componente de Heading é uma extensão do componente [Typography](#typography), onde as props `fontSize` e `as` são definidas baseadas no valor de `variant`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as ArgsTable do Typography também são válidas no componente de Heading.
 
-<Preview>
+<Canvas>
   <Story name="Headings" parameters={{
     design: {
       type: 'figma',
@@ -42,15 +42,15 @@ O componente de Heading é uma extensão do componente [Typography](#typography)
       <Heading variant='h4'>Heading 4</Heading>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Heading} />
+<ArgsTable of={Heading} />
 
 # Subtitle
 
 O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
-<Preview>
+<Canvas>
   <Story name="Subtitle" parameters={{
     design: {
       type: 'figma',
@@ -61,17 +61,17 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
       <Subtitle>Subtitle</Subtitle>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 
-<Props of={Subtitle} />
+<ArgsTable of={Subtitle} />
 
 
 # Paragraph
 
 O componente de Paragraph é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
-<Preview>
+<Canvas>
   <Story name="Paragraph" parameters={{
     design: {
       type: 'figma',
@@ -83,16 +83,16 @@ O componente de Paragraph é uma extensão do componente [Typography](#typograph
       <Paragraph variant='sm'>Paragraph (sm)</Paragraph>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 
-<Props of={Paragraph} />
+<ArgsTable of={Paragraph} />
 
 # Caption
 
 O componente de Caption é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
-<Preview>
+<Canvas>
   <Story name="Caption" parameters={{
     design: {
       type: 'figma',
@@ -104,8 +104,8 @@ O componente de Caption é uma extensão do componente [Typography](#typography)
       <Caption variant='sm'>Caption (sm)</Caption>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 
-<Props of={Paragraph} />
+<ArgsTable of={Paragraph} />
 
