@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled, { css, variant } from '@xstyled/styled-components'
 import { Typography } from '../'
 
