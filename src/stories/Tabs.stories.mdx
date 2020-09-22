@@ -1,0 +1,34 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Tabs, Flex } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Tabs' component={Tabs} />
+
+# Tabs
+
+O component de Tabs permite o usuário navegar entre abas.
+
+<Preview>
+  <Story
+    name='temporário'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs tabs={[{label: 'teste 1'}, {label: 'teste 2'}, {label: 'teste 3'}]}>
+            <p> teste 1 body </p>
+            <p> teste 2 body </p>
+            <p> teste 3 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Tabs} />
