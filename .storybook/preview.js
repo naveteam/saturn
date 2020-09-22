@@ -6,7 +6,7 @@ export const parameters = {
   options: {
     theme
   },
-
+  
   viewport: {
     viewports: MINIMAL_VIEWPORTS
   }
