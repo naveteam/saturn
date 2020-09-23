@@ -93,10 +93,12 @@ const Label = styled(Typography)`
   font-size: 2;
   line-height: 1;
   font-weight: 1;
+  color: gray.800;
 `
 
 const Container = styled(Flex)`
-  border: 1px solid black;
+  border: 1px solid;
+  border-color: gray.500;
   border-radius: 2;
   padding: 1px;
   margin: 3 0 2 0;
@@ -131,9 +133,10 @@ const Input = styled.textarea`
   font-family: 'Open Sans', sans-serif;
   height: calc(100% - 16px);
   width: 100%;
+  color: gray.900;
 
   &::placeholder {
-    color: gray.600;
+    color: gray.500;
   }
 
   &:focus {
@@ -150,6 +153,7 @@ const Input = styled.textarea`
 const CaptionMessage = styled(Caption)`
   line-height: 1;
   font-size: 1;
+  color: gray.800;
 `
 
 TextArea.defaultProps = {
