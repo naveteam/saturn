@@ -15,8 +15,7 @@ const Dialog = ({
   description,
   cancelButton,
   actionButton,
-  children,
-  ...props
+  children
 }) => {
   const dialogRef = useRef(null)
   const setClose = useCallback(
@@ -35,7 +34,7 @@ const Dialog = ({
 
   return (
     <>
-      {!withBackground && <Overlay />}
+      <Overlay />
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
@@ -55,26 +54,13 @@ const Dialog = ({
 
         {!withCloseIcon && (
           <Buttons>
-            {cancelButton ? (
-              <Button
-                onClick={() => (cancelButton.OnClick ? cancelButton.onClick : setClose(false))}
-                variant='outlined'
-              >
-                {cancelButton.label ? cancelButton.label : 'Cancelar'}
-              </Button>
-            ) : (
-              <Button onClick={() => setClose(false)} variant='outlined'>
-                Cancelar
-              </Button>
-            )}
+            <Button onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))} variant='outlined'>
+              {cancelButton?.label ? cancelButton.label : 'Cancelar'}
+            </Button>
 
-            {actionButton ? (
-              <Button onClick={() => actionButton.onClick}>
-                {actionButton.label ? actionButton.label : 'Adicionar'}
-              </Button>
-            ) : (
-              <Button onClick={() => {}}>Adicionar</Button>
-            )}
+            <Button onClick={() => actionButton?.onClick}>
+              {actionButton?.label ? actionButton.label : 'Adicionar'}
+            </Button>
           </Buttons>
         )}
       </Container>
