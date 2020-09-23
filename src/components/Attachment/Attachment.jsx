@@ -20,15 +20,22 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
     >
       <Flex mr={24}>
         <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
-        <Link color={handleErrorColor()} forwardedAs='a' pl='8px' {...(link && { href: link, target: '_blank' })}>
-          {file ? (
-            <Flex>
-              {file?.name} {file?.size && <Typography pl='8px'>({file?.size})</Typography>}
-            </Flex>
-          ) : (
-            name
-          )}
-        </Link>
+        {file ? (
+          <Flex>
+            <Link color={handleErrorColor()} forwardedAs='a' pl='8px' {...(link && { href: link, target: '_blank' })}>
+              {file?.name}{' '}
+            </Link>
+            {file?.size && (
+              <Typography pl='8px' color='black'>
+                ({file?.size})
+              </Typography>
+            )}
+          </Flex>
+        ) : (
+          <Link color={handleErrorColor()} forwardedAs='a' pl='8px' {...(link && { href: link, target: '_blank' })}>
+            {name}
+          </Link>
+        )}
       </Flex>
 
       {variant === 'download' ? (
@@ -110,7 +117,8 @@ Attachment.defaultProps = {
   onDownload: () => alert('download'),
   onView: () => alert('view'),
   onDelete: () => alert('delete'),
-  variant: 'upload'
+  variant: 'upload',
+  backgroundColor: 'none'
 }
 
 export default Attachment
