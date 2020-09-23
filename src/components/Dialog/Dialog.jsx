@@ -45,15 +45,19 @@ const Dialog = ({
                 <Icon icon='name' color='black' />
               </Button>
 import styled, { css, variant } from '@xstyled/styled-components'
-import { Typography } from '../'
+import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 
-const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
+import { Typography, Button } from '../'
+import { Icon } from '../Iconography'
+
+const Dialog = forwardRef(({ open, onClose, closeIcon, title, description, children }, ref) => {
+  const dialogRef = useRef(null)
   if (!open) return null
 
   return (
     <>
       <Overlay />
-      <Container>
+      <Container open={open} ref={dialogRef}>
         <Content>
           <LeftContent>
             <Title>{title}</Title>
@@ -61,8 +65,14 @@ const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
           </LeftContent>
           {closeIcon && (
             <RightContent>
+<<<<<<< HEAD
               <button onClick={onClose}>teste</button>
 >>>>>>> feat(dialog): component and style
+=======
+              <Button onClick={onClose}>
+                <Icon icon='name' color='black' />
+              </Button>
+>>>>>>> feat(dialog): import components
             </RightContent>
           )}
         </Content>
@@ -83,7 +93,7 @@ const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
       </Container>
     </>
   )
-}
+})
 
 const Overlay = styled.div`
   position: fixed;
