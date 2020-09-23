@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css, variant } from '@xstyled/styled-components'
-import { Typography } from '../'
+import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 
-const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
+import { Typography, Button } from '../'
+import { Icon } from '../Iconography'
+
+const Dialog = forwardRef(({ open, onClose, closeIcon, title, description, children }, ref) => {
+  const dialogRef = useRef(null)
   if (!open) return null
 
   return (
     <>
       <Overlay />
-      <Container>
+      <Container open={open} ref={dialogRef}>
         <Content>
           <LeftContent>
             <Title>{title}</Title>
@@ -16,7 +20,9 @@ const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
           </LeftContent>
           {closeIcon && (
             <RightContent>
-              <button onClick={onClose}>teste</button>
+              <Button onClick={onClose}>
+                <Icon icon='name' color='black' />
+              </Button>
             </RightContent>
           )}
         </Content>
@@ -24,13 +30,13 @@ const Dialog = ({ open, onClose, closeIcon, title, description, children }) => {
         <ChildrenContent>{children}</ChildrenContent>
 
         <Buttons>
-          <button onClick={onClose}>Cancelar</button>
-          <button>Adicionar</button>
+          <Button onClick={onClose}>Cancelar</Button>
+          <Button>Adicionar</Button>
         </Buttons>
       </Container>
     </>
   )
-}
+})
 
 const Overlay = styled.div`
   position: fixed;
@@ -66,7 +72,6 @@ const Content = styled.div`
 
 const LeftContent = styled.div`
   width: 100%;
-  background: red;
 `
 const RightContent = styled.div`
   right: 0;
@@ -100,7 +105,6 @@ const Buttons = styled.div`
   display: flex;
   align-self: flex-end;
   margin: 32px;
-  background: green;
 
   button + button {
     margin-left: 32px;
