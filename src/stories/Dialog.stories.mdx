@@ -6,8 +6,12 @@ import { Dialog, TextField, Button } from '../components'
 =======
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
+<<<<<<< HEAD
 import { Dialog, TextField } from '../components'
 >>>>>>> feat(dialog): component and style
+=======
+import { Dialog, TextField, Button } from '../components'
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display|Dialog" component={Dialog} />
@@ -16,6 +20,7 @@ import { ThemeProvider } from '../theme'
 
 O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de actions.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 export const DialogCloseIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +34,7 @@ export const DialogCloseIcon = () => {
         title="Título"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         actionButton={{
-          label: 'Adicionar'     
+          label: 'Adicionar'
         }}
       >
       </Dialog>
@@ -90,6 +95,55 @@ export const DialogProps = () => {
       <button onClick={() => setIsOpen(true)}>Open Modal</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} closeIcon title="Título" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
 >>>>>>> feat(dialog): component and style
+=======
+export const DialogCloseIcon = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Dialog
+        open={isOpen}
+        onClose={setIsOpen}
+        withCloseIcon
+        title="Título"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        actionButton={{
+          label: 'Adicionar'
+        }}
+      >
+      </Dialog>
+    </>
+  )
+}
+
+export const DialogTitleDescription = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Dialog
+        open={isOpen}
+        onClose={setIsOpen}
+        title="Título"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      >
+      </Dialog>
+    </>
+  )
+}
+
+export const DialogInput = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Dialog
+        open={isOpen}
+        onClose={setIsOpen}
+        title="Título"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      >
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
         <TextField name='base' label='Default'  placeholder='Default' />
       </Dialog>
     </>
@@ -97,46 +151,81 @@ export const DialogProps = () => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Canvas>
+=======
+export const DialogDoubleInput = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Dialog
+        open={isOpen}
+        onClose={setIsOpen}
+        title="Título"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      >
+        <TextField name='base' label='Default'  placeholder='Default' />
+        <TextField name='base' label='Default'  placeholder='Default' />
+      </Dialog>
+    </>
+  )
+}
+
+<Preview>
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
   <Story name="Close Icon" parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
     }
   }}>
-  
+
     <ThemeProvider>
       <DialogCloseIcon />
     </ThemeProvider>
   </Story>
+<<<<<<< HEAD
 </Canvas>
 
 <Canvas>
+=======
+</Preview>
+
+<Preview>
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
   <Story name="Título e Descrição" parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
     }
   }}>
-  
+
     <ThemeProvider>
       <DialogTitleDescription />
     </ThemeProvider>
   </Story>
+<<<<<<< HEAD
 </Canvas>
 
 <Canvas>
+=======
+</Preview>
+
+<Preview>
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
   <Story name="Input" parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
     }
   }}>
-  
+
     <ThemeProvider>
       <DialogInput />
     </ThemeProvider>
   </Story>
+<<<<<<< HEAD
 </Canvas>
 
 
@@ -147,13 +236,22 @@ export const DialogProps = () => {
 <Preview>
   <Story name="Base" parameters={{
 >>>>>>> feat(dialog): component and style
+=======
+</Preview>
+
+
+
+<Preview>
+  <Story name="Input Duplo" parameters={{
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
     }
   }}>
-  
+
     <ThemeProvider>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <DialogDoubleInput />
     </ThemeProvider>
@@ -165,6 +263,9 @@ export const DialogProps = () => {
 <ArgsTable of={Dialog} />
 =======
       <DialogProps />
+=======
+      <DialogDoubleInput />
+>>>>>>> feat(dialog): inserting proptypes and editing storybook
     </ThemeProvider>
   </Story>
 </Preview>

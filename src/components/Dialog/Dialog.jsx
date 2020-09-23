@@ -1,4 +1,3 @@
-
 import React, { useRef, useCallback } from 'react'
 import styled from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
@@ -46,33 +45,57 @@ const Dialog = ({
               </Button>
 import styled, { css, variant } from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
+import PropTypes from 'prop-types'
 
 import { Typography, Button } from '../'
 import { Icon } from '../Iconography'
 
-const Dialog = forwardRef(({ open, onClose, closeIcon, title, description, children }, ref) => {
+const Dialog = ({
+  open,
+  onClose,
+  withBackground,
+  withCloseIcon,
+  title,
+  description,
+  cancelButton,
+  actionButton,
+  children,
+  ...props
+}) => {
   const dialogRef = useRef(null)
+  const setClose = useCallback(
+    closed => {
+      onClose && onClose(closed)
+
+      console.log(closed)
+    },
+    [onClose]
+  )
+
+  useClickOutside(() => setClose(false), dialogRef)
+  useHotKey(() => setClose(false), 'Escape')
+
   if (!open) return null
 
   return (
     <>
-      <Overlay />
-      <Container open={open} ref={dialogRef}>
+      {!withBackground && <Overlay />}
+      <Container ref={dialogRef}>
         <Content>
           <LeftContent>
             <Title>{title}</Title>
             <Description>{description}</Description>
           </LeftContent>
-          {closeIcon && (
+          {withCloseIcon && (
             <RightContent>
-<<<<<<< HEAD
               <button onClick={onClose}>teste</button>
->>>>>>> feat(dialog): component and style
-=======
               <Button onClick={onClose}>
+
+              <Button color='white' onClick={() => setClose(false)}>
+
                 <Icon icon='name' color='black' />
               </Button>
->>>>>>> feat(dialog): import components
+
             </RightContent>
           )}
         </Content>
@@ -93,7 +116,7 @@ const Dialog = forwardRef(({ open, onClose, closeIcon, title, description, child
       </Container>
     </>
   )
-})
+}
 
 const Overlay = styled.div`
   position: fixed;
