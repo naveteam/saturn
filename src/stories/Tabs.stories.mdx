@@ -11,7 +11,7 @@ O component de Tabs permite o usuário navegar entre abas.
 
 <Preview>
   <Story
-    name='temporário'
+    name='Icon and Label'
     parameters={{
       design: {
         type: 'figma',
@@ -21,10 +21,54 @@ O component de Tabs permite o usuário navegar entre abas.
   >
     <ThemeProvider>
       <Flex>
-        <Tabs tabs={[{label: 'teste 1'}, {label: 'teste 2'}, {label: 'teste 3'}]}>
-            <p> teste 1 body </p>
-            <p> teste 2 body </p>
-            <p> teste 3 body </p>
+        <Tabs direction="vertical" tabs={[{label: 'Tab 1', icon: 'alarm'}, {icon:'accessbility', label: 'Tab 2'}, {label: 'Tab 3', icon: 'lock', disabled: true}]}>
+            <p> Tab 1 body </p>
+            <p> Tab 2 body </p>
+            <p> Tab 3 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story
+    name='Only Label'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs tabs={[{label: 'Tab 1'}, {label: 'Tab 2'}, {label: 'Tab 3', disabled: true}]}>
+            <p> Tab 1 body </p>
+            <p> Tab 2 body </p>
+            <p> Tab 3 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story
+    name='Only Icon'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=253%3A913'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs tabs={[{icon: 'menu'}, {icon: 'mail'}, {icon: 'person', disabled: true}]}>
+            <p> Tab 1 body </p>
+            <p> Tab 2 body </p>
+            <p> Tab 3 body </p>
         </Tabs>
       </Flex>
     </ThemeProvider>
