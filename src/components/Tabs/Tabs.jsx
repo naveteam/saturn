@@ -175,8 +175,12 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
 }
 
 Tabs.defaultProps = {
+<<<<<<< HEAD
   direction: 'horizontal',
   label: `Tab`
+=======
+  direction: 'horizontal'
+>>>>>>> WIP: tabs
 }
 
 Tabs.propTypes = {
