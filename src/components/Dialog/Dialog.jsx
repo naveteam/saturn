@@ -1,42 +1,86 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, forwardRef, useCallback } from 'react'
 import styled, { css, variant } from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
+import PropTypes from 'prop-types'
 
 import { Typography, Button } from '../'
 import { Icon } from '../Iconography'
 
-const Dialog = forwardRef(({ open, onClose, closeIcon, title, description, children }, ref) => {
+const Dialog = ({
+  open,
+  onClose,
+  withBackground,
+  withCloseIcon,
+  title,
+  description,
+  cancelButton,
+  actionButton,
+  children,
+  ...props
+}) => {
   const dialogRef = useRef(null)
+  const setClose = useCallback(
+    closed => {
+      onClose && onClose(closed)
+
+      console.log(closed)
+    },
+    [onClose]
+  )
+
+  useClickOutside(() => setClose(false), dialogRef)
+  useHotKey(() => setClose(false), 'Escape')
+
   if (!open) return null
 
   return (
     <>
-      <Overlay />
-      <Container open={open} ref={dialogRef}>
+      {!withBackground && <Overlay />}
+      <Container ref={dialogRef}>
         <Content>
           <LeftContent>
             <Title>{title}</Title>
             <Description>{description}</Description>
           </LeftContent>
-          {closeIcon && (
+          {withCloseIcon && (
             <RightContent>
-              <Button onClick={onClose}>
+              <Button color='white' onClick={() => setClose(false)}>
                 <Icon icon='name' color='black' />
               </Button>
             </RightContent>
           )}
         </Content>
 
-        <ChildrenContent>{children}</ChildrenContent>
+        {children && <ChildrenContent>{children}</ChildrenContent>}
 
-        <Buttons>
-          <Button onClick={onClose}>Cancelar</Button>
-          <Button>Adicionar</Button>
-        </Buttons>
+        {!withCloseIcon && (
+          <Buttons>
+            {cancelButton ? (
+              <Button
+                onClick={() => (cancelButton.OnClick ? cancelButton.onClick : setClose(false))}
+                variant='outlined'
+              >
+                {cancelButton.label ? cancelButton.label : 'Cancelar'}
+              </Button>
+            ) : (
+              <Button onClick={() => setClose(false)} variant='outlined'>
+                Cancelar
+              </Button>
+            )}
+
+            {actionButton ? (
+              <Button onClick={() => actionButton.onClick}>
+                {actionButton.label ? actionButton.label : 'Adicionar'}
+              </Button>
+            ) : (
+              <Button onClick={() => {}}>Adicionar</Button>
+            )}
+          </Buttons>
+        )}
       </Container>
     </>
   )
-})
+}
 
 const Overlay = styled.div`
   position: fixed;
@@ -106,10 +150,32 @@ const Buttons = styled.div`
   align-self: flex-end;
   margin: 32px;
 
+  button {
+    width: 176px;
+  }
+
   button + button {
     margin-left: 32px;
   }
 `
 
+Dialog.defaultProps = {
+  open: false,
+  withBackground: true,
+  withCloseIcon: false,
+  cancelButton: { label: 'Cancelar' },
+  actionButton: { label: 'Adicionar' }
+}
+
+Dialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.bool,
+  withBackground: PropTypes.bool,
+  withCloseIcon: PropTypes.bool,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  cancelButton: PropTypes.object,
+  actionButton: PropTypes.object
+}
+
 export default Dialog
-// ${th.color('green.400')}
