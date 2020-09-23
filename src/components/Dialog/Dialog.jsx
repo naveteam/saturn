@@ -59,8 +59,7 @@ const Dialog = ({
   description,
   cancelButton,
   actionButton,
-  children,
-  ...props
+  children
 }) => {
   const dialogRef = useRef(null)
   const setClose = useCallback(
@@ -79,7 +78,7 @@ const Dialog = ({
 
   return (
     <>
-      {!withBackground && <Overlay />}
+      <Overlay />
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
