@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { RadioButton } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Input|Radio Button' component={RadioButton} />
+<Meta title='Data Input/Radio Button' component={RadioButton} />
 
 # RadioButton
 
 O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode selecionar apenas uma opção dentre uma lista de opções. Em sua versão desktop os Radio Buttons são mostrados lado a lado. No mobile, os Radio Buttons são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
 
-<Preview>
+<Canvas>
   <Story
     name='Base'
     parameters={{
@@ -22,13 +22,13 @@ O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode 
       <RadioButton label='Base' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Checked | onChange
 
 O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Radio Button`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Radio Button`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.
 
-<Preview>
+<Canvas>
   <Story
     name='Checked | onChange'
     parameters={{
@@ -45,13 +45,13 @@ O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica 
       <RadioButton checked={false} disabled={true} label='Not selected disabled' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Disabled
 
 A prop `disabled` desabilita completamente o `Radio Button`, impedindo seu uso e as cores customizadas não irão funcionar.
 
-<Preview>
+<Canvas>
   <Story
     name='Disabled'
     parameters={{
@@ -66,13 +66,13 @@ A prop `disabled` desabilita completamente o `Radio Button`, impedindo seu uso e
       <RadioButton checked={true} label='Selected disabled' disabled={true} name='radio14' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Label
 
 O `Radio Button` aceita uma label opcional para cada elemento, se não for fornecido, nada será exibido.
 
-<Preview>
+<Canvas>
   <Story
     name='label'
     parameters={{
@@ -87,6 +87,6 @@ O `Radio Button` aceita uma label opcional para cada elemento, se não for forne
       <RadioButton label='RadioButton' name='radio15' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={RadioButton} />
+<ArgsTable of={RadioButton} />
