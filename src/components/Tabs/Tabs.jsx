@@ -175,12 +175,8 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
 }
 
 Tabs.defaultProps = {
-<<<<<<< HEAD
   direction: 'horizontal',
   label: `Tab`
-=======
-  direction: 'horizontal'
->>>>>>> WIP: tabs
 }
 
 Tabs.propTypes = {
@@ -327,7 +323,6 @@ const directionVariantContainer = variant({
       overflow-x: hidden;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
       ::-webkit-scrollbar {
         display: none;
       }
