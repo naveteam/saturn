@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Pagination } from '../components'
 import { ThemeProvider } from '../theme'
@@ -19,7 +19,7 @@ export const PaginationPropsInput = () => {
 
 O componente de `Pagination` é utilizado para que o usuário possa trocar de página em sua aplicação. Sua estrutura é composta por um botões e dois ícones do tipo arrow.
 
-<Preview>
+<Canvas>
   <Story
     name='Pagination'
     parameters={{
@@ -33,12 +33,12 @@ O componente de `Pagination` é utilizado para que o usuário possa trocar de p�
       <PaginationProps />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Pagination with Input
 Caso haja mais de 100 páginas a prop `variant` deve ser passada. Neste caso a estrutura do componente será um input.
 
-<Preview>
+<Canvas>
   <Story
     name='Input'
     parameters={{
@@ -52,4 +52,6 @@ Caso haja mais de 100 páginas a prop `variant` deve ser passada. Neste caso a e
       <PaginationPropsInput />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
+
+<ArgsTable of={Pagination} />
