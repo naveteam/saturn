@@ -55,7 +55,7 @@ const disabledVariant = variant({
   default: false,
   variants: {
     true: css`
-      p {
+      p, label{
         color: disabled;
       }
       div {
