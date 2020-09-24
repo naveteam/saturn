@@ -3,11 +3,32 @@ import React, { useState } from 'react'
 import styled, { backgrounds, css, layout, space, variant } from '@xstyled/styled-components'
 import { Icon, Typography } from '../'
 
-const AccordionItem = ({ item: { title, text, divider = true } }) => {
+const Accordion = ({ accordionItems, variant }) => {
+  return (
+    <AccordionsContainer variant={variant}>
+      {accordionItems.map(({ contour, text, title, divider }, index) => (
+        <AccordionItem key={index} contour={contour} title={title} text={text} divider={divider} />
+      ))}
+    </AccordionsContainer>
+  )
+}
+
+Accordion.propTypes = {
+  accordionItems: PropTypes.array.isRequired,
+  variant: PropTypes.string
+}
+
+Accordion.defaultProps = {
+  accordionItems: [],
+  variant: 'mediumDesktop'
+}
+
+const AccordionItem = ({ contour, title, text, divider }) => {
   const [open, setOpen] = useState(false)
+
   return (
     <>
-      <StyledButton onClick={() => setOpen(current => !current)} padding={4}>
+      <StyledButton onClick={() => setOpen(current => !current)} padding={4} contour={contour}>
         <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
           {title}
         </Typography>
@@ -23,29 +44,15 @@ const AccordionItem = ({ item: { title, text, divider = true } }) => {
   )
 }
 
-const Accordion = ({ accordionItems, variant, ...props }) => {
-  return (
-    <AccordionsContainer variant={variant}>
-      {accordionItems.map((current, index) => (
-        <AccordionItem key={index} item={current} {...props} />
-      ))}
-    </AccordionsContainer>
-  )
-}
-
-Accordion.propTypes = {
-  countour: PropTypes.string,
-  divider: PropTypes.bool,
+AccordionItem.propTypes = {
+  contour: PropTypes.string,
+  title: PropTypes.string,
   text: PropTypes.string,
-  title: PropTypes.string
+  divider: PropTypes.bool
 }
 
-Accordion.defaultProps = {
-  accordionItems: [
-    { title: 'Accordion Title', text: 'Accordion Text' },
-    { title: 'Accordion Title', text: 'Accordion Text' },
-    { title: 'Accordion Title', text: 'Accordion Text' }
-  ]
+AccordionItem.defaultProps = {
+  divider: false
 }
 
 const AccordionsContainer = styled.div`
@@ -58,7 +65,6 @@ const AccordionsContainer = styled.div`
   }
 
   ${variant({
-    default: 'mediumDesktop',
     prop: 'variant',
     variants: {
       smallDesktop: css`
