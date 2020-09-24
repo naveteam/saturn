@@ -21,10 +21,26 @@ O component de Tabs permite o usuário navegar entre abas.
   >
     <ThemeProvider>
       <Flex>
-        <Tabs direction="vertical" tabs={[{label: 'Tab 1', icon: 'alarm'}, {icon:'accessbility', label: 'Tab 2'}, {label: 'Tab 3', icon: 'lock', disabled: true}]}>
-            <p> Tab 1 body </p>
-            <p> Tab 2 body </p>
-            <p> Tab 3 body </p>
+        <Tabs
+          tabs={[
+            { label: 'Tab 1', icon: 'alarm' },
+            { icon: 'accessbility', label: 'Tab 2' },
+            { label: 'Tab 3222222', icon: 'lock'},
+            { label: 'Tab 4', icon: 'lock' },
+            { label: 'Tab 5', icon: 'lock' },
+            { label: 'Tab 6', icon: 'lock' },
+            { label: 'Tab 7', icon: 'lock' },
+            { label: 'Tab 8', icon: 'lock' }
+          ]}
+        >
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+          <p> Tab 4 body </p>
+          <p> Tab 5 body </p>
+          <p> Tab 6 body </p>
+          <p> Tab 7 body </p>
+          <p> Tab 8 body </p>
         </Tabs>
       </Flex>
     </ThemeProvider>
@@ -43,10 +59,10 @@ O component de Tabs permite o usuário navegar entre abas.
   >
     <ThemeProvider>
       <Flex>
-        <Tabs tabs={[{label: 'Tab 1'}, {label: 'Tab 2'}, {label: 'Tab 3', disabled: true}]}>
-            <p> Tab 1 body </p>
-            <p> Tab 2 body </p>
-            <p> Tab 3 body </p>
+        <Tabs tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3', disabled: true }, { label: 'Tab 3', disabled: true }]}>
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
         </Tabs>
       </Flex>
     </ThemeProvider>
@@ -65,10 +81,10 @@ O component de Tabs permite o usuário navegar entre abas.
   >
     <ThemeProvider>
       <Flex>
-        <Tabs tabs={[{icon: 'menu'}, {icon: 'mail'}, {icon: 'person', disabled: true}]}>
-            <p> Tab 1 body </p>
-            <p> Tab 2 body </p>
-            <p> Tab 3 body </p>
+        <Tabs tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}>
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
         </Tabs>
       </Flex>
     </ThemeProvider>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
+import { outerWidth } from '../../utils'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
@@ -27,6 +28,12 @@ Content.propTypes = {
   value: PropTypes.any.isRequired
 }
 
+const ScrollButton = ({ to, disabled }) => (
+  <ArrowButton onClick={e => e.preventDefault()} className={`tabs__scroll-trigger_${to}`} disabled={disabled}>
+    <Icon icon={`chevron-${to}`} color='blue.400' />
+  </ArrowButton>
+)
+
 function a11yProps(index) {
   return {
     id: `tab-${index}`,
@@ -36,38 +43,113 @@ function a11yProps(index) {
 
 const Tabs = ({ direction, tabs, children, ...props }) => {
   const [activeTabValue, setActiveTab] = useState(0)
+  const [showNavigation, toggleNavigation] = useState(false)
+  const [leftArrowClickable, toggleLeftArrow] = useState(false)
+  const [rightArrowClickable, toggleRightArrow] = useState(true)
+  const [id] = useState(props.id || `tabs-${String(Math.random()).replace('.', '')}`)
 
   const handleChange = value => setActiveTab(value)
 
+  const getType = (hasLabel, hasIcon) => {
+    if (hasLabel && hasIcon) return 'full'
+    if (!hasLabel && hasIcon) return 'onlyIcon'
+    return 'onlyText'
+  }
+
+  const bindScroll = () => {
+    const tabElement = document.querySelector(`#${id} .tabs__tab-item`)
+    const tabsWrapper = document.querySelector(`#${id} .tabs__wrapper`)
+
+    const leftTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_left`)
+    const rightTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_right`)
+
+    const ITEM_SIZE = outerWidth(tabElement) // get tab width
+    const ITEMS_LENGTH = tabs.length
+    const WRAPPER_SIZE = ITEM_SIZE * ITEMS_LENGTH // total width of the wrapper
+
+    const firstViewSize = outerWidth(tabsWrapper) // gets the visible width of the wrapper
+    const firstViewLimit = firstViewSize / ITEM_SIZE // gets the max number of tabs in the visible width
+
+    let translate = 0 // scroll position 
+
+    if (ITEMS_LENGTH > firstViewLimit && direction === 'horizontal') { // check if scroll navigation is needed
+      toggleNavigation(true)
+    }
+
+    leftTrigger.addEventListener('click', () => {
+      if (translate < ITEM_SIZE) { // check if the scroll position is already on max left
+        translate += ITEM_SIZE
+        toggleRightArrow(true)
+      }
+
+      if (translate == 0) { // prevent the last left click to overflowing the wrapper
+        toggleLeftArrow(false) 
+      }
+      tabsWrapper.style.transform = `translateX(${translate}px)`
+    })
+
+    rightTrigger.addEventListener('click', e => {
+      const nonReachedView = WRAPPER_SIZE + translate // translate returns a negative value because of that we do an addition
+      const itemsPerView = WRAPPER_SIZE / ITEM_SIZE
+      const viewSize = ITEM_SIZE * itemsPerView
+      const reachedLastView = viewSize > nonReachedView
+
+      if (reachedLastView) { // check if the scroll position is already on max right
+        toggleRightArrow(false)
+      }
+
+      toggleLeftArrow(true)
+
+      translate -= ITEM_SIZE
+      tabsWrapper.style.transform = `translateX(${translate}px)`
+    })
+  }
+
+  useEffect(() => {
+    bindScroll()
+
+    window.addEventListener('resize', () => {
+      bindScroll()
+    })
+  }, [])
+
   return (
-    <Base {...props} direction={direction}>
-      <TabsContainer value={activeTabValue} direction={direction}>
-        {tabs.map((tab, index) => {
-          const { label, disabled, icon } = tab
-          return (
-            <Tab
-              tabindex={index}
-              key={index}
-              direction={direction}
-              disabled={disabled}
-              active={index === activeTabValue}
-              onClick={() => handleChange(index)}
-              {...a11yProps(index)}
-            >
-              <TabBody>
-                <TabBodyContent>
-                  {icon && (
-                    <IconContainer hasLabel={label} disabled={disabled} active={index === activeTabValue}>
-                      <Icon icon={icon} height='24px' />
-                    </IconContainer>
-                  )}
-                  {label && <Label forwardedAs='span'>{label}</Label>}
-                </TabBodyContent>
-              </TabBody>
-            </Tab>
-          )
-        })}
-      </TabsContainer>
+    <Base {...props} direction={direction} id={id}>
+      <ScrollWrapper className='tabs__scroll-wrapper' hasScroll={showNavigation}>
+        <ScrollButton to='left' disabled={!leftArrowClickable} />
+        <TabsContainer hasScroll={showNavigation} value={activeTabValue} direction={direction} className='tabs__container'>
+          <TabsWrapper className='tabs__wrapper' direction={direction}>
+            {tabs.map((tab, index) => {
+              const { label, disabled, icon } = tab
+              return (
+                <Tab
+                  type={getType(!!label, !!icon)}
+                  className='tabs__tab-item'
+                  tabindex={index}
+                  key={index}
+                  direction={direction}
+                  disabled={disabled}
+                  active={index === activeTabValue}
+                  onClick={() => handleChange(index)}
+                  {...a11yProps(index)}
+                >
+                  <TabBody>
+                    <TabBodyContent>
+                      {icon && (
+                        <IconContainer hasLabel={label} disabled={disabled} active={index === activeTabValue}>
+                          <Icon icon={icon} height='24px' />
+                        </IconContainer>
+                      )}
+                      {label && <Label forwardedAs='span'>{label}</Label>}
+                    </TabBodyContent>
+                  </TabBody>
+                </Tab>
+              )
+            })}
+          </TabsWrapper>
+        </TabsContainer>
+        <ScrollButton to='right' disabled={!rightArrowClickable} />
+      </ScrollWrapper>
       <Body>
         {children.map((JSX, index) => (
           <Content key={index} value={activeTabValue} index={index}>
@@ -109,7 +191,56 @@ const BaseVariants = variant({
 
 const Base = styled.div`
   display: block;
+  position: relative;
   ${BaseVariants};
+`
+
+const disabledArrowButton = variant({
+  prop: 'disabled',
+  variants: {
+    true: css`
+      pointer-events: none;
+      * {
+        fill: disabled;
+      }
+    `
+  }
+})
+
+const ArrowButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  ${disabledArrowButton};
+`
+
+const hasScrollVariant = variant({
+  prop: 'hasScroll',
+  variants: {
+    false: css`
+      button {
+        display: none;
+      }
+    `
+  }
+})
+
+const ScrollWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  ${hasScrollVariant};
+  @media (max-width: 1024px) {
+    button {
+      display: none;
+    }
+  }
 `
 
 const directionVariantContainer = variant({
@@ -118,20 +249,26 @@ const directionVariantContainer = variant({
     horizontal: css`
       width: 100%;
       max-width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
       flex-direction: row;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid;
+      border-bottom-color: gray.300;
 
       li:last-child {
         margin-right: 0;
       }
     `,
     vertical: css`
-      overflow-x: hidden;
-      overflow-y: auto;
       flex-direction: column;
-      border-right: 1px solid #e0e0e0;
+      border-right: 1px solid;
+      border-right-color: gray.300;
+      max-height: 400px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      ::-webkit-scrollbar {
+        display: none;
+      }
 
       li:last-child {
         margin-bottom: 0;
@@ -148,7 +285,12 @@ const directionVariantTab = variant({
       margin-right: 6;
       display: flex;
       align-items: center;
+      max-width: fit-content;
       justify-content: center;
+
+      @media (max-width: 1024px) {
+        max-width: 100%;
+      }
 
       &::after {
         bottom: -1px;
@@ -174,23 +316,53 @@ const directionVariantTab = variant({
 const TabsContainer = styled.ul`
   list-style-type: none;
   display: flex;
-  margin: 0;
+  margin: ${({ hasScroll }) => hasScroll ? '0 24px' : '0'};
   padding: 0;
+  overflow: hidden;
+  align-items: center;
   ${directionVariantContainer};
+
+  @media (max-width: 1024px) {
+    margin: 0;
+  }
 `
 
-const IconDisabledVariant = variant({
+const tabsWrapperDirectionVariant = variant({
+  prop: 'direction',
+  variants: {
+    vertical: css`
+      flex-direction: column;
+    `,
+    horizontal: css`
+      flex-direction: row;
+    `
+  }
+})
+
+const TabsWrapper = styled.div`
+  display: flex;
+  transition: 0.3s;
+  width: 100%;
+  ${tabsWrapperDirectionVariant};
+
+  @media (max-width: 1024px) {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+`
+
+const iconDisabledVariant = variant({
   prop: 'disabled',
   variants: {
     true: css`
       * {
-        fill: disabled!important;
+        fill: disabled !important;
       }
-    `,
+    `
   }
 })
 
-const IconActiveVariant = variant({
+const iconActiveVariant = variant({
   prop: 'active',
   variants: {
     true: css`
@@ -211,8 +383,8 @@ const IconContainer = styled.div(
     display: block;
     max-height: 24px;
     height: 100%;
-    ${IconDisabledVariant};
-    ${IconActiveVariant};
+    ${iconDisabledVariant};
+    ${iconActiveVariant};
     ${hasLabel && 'margin-right: 16px'};
   `
 )
@@ -264,6 +436,20 @@ const activeTabVariant = variant({
   }
 })
 
+const minWidthTabVariant = variant({
+  prop: 'type',
+  variants: {
+    full: css`
+    `,
+    onlyIcon: css`
+      min-width: 24px;
+    `,
+    onlyText: css`
+      min-width: 24px;
+    `
+  }
+})
+
 const Tab = styled.li`
   width: 100%;
   font-size: 3;
@@ -272,26 +458,38 @@ const Tab = styled.li`
   box-sizing: border-box;
   border-radius: 1;
   position: relative;
-  transition: all 0.1s;
+  transition: font-weight 0.2s ease-in-out;
   color: gray.800;
   ${directionVariantTab};
   ${disabledTabVariant};
   ${activeTabVariant};
+  ${minWidthTabVariant};
+
+  &:active {
+    &::after {
+      background-color: blue.400;
+    }
+  }
 
   &::after {
     content: '';
     display: block;
     border-radius: 1;
+    transition: background-color 0.2s linear;
     position: absolute;
   }
 `
 
 const TabBody = styled.div`
   display: table;
+  white-space: nowrap;
+  overflow-x: hidden;
 `
 
 const TabBodyContent = styled.div`
   display: flex;
+  align-items: center;
+  width: 100%;
 `
 
 const TabContent = styled.div(
