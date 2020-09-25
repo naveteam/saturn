@@ -1,24 +1,24 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { layout, variant, space, typography, color } from '@xstyled/system'
+import { layout, variant, space, typography, color, system } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
 
-const DefaultComponent = ({ children, to, ...props }) => (
-  <a href={to} {...props}>
+const DefaultComponent = ({ children, to, textDecorationLine, color, ...props }) => (
+  <StyledLink href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
     {children}
-  </a>
+  </StyledLink>
 )
 
-const Link = ({ component, propPath, children, to, as, target, color, passHref, ...props }) => {
+const Link = ({ component, propPath, children, to, as, target, color, passHref, textDecorationLine, ...props }) => {
   const Base = component ? component : DefaultComponent
   const mountPath = { [propPath]: to }
 
   return (
     <BaseStyled display='flex' {...props}>
-      <Label alignItems='center' color={color} forwardedAs={as}>
-        <Base {...mountPath} {...passHref} target={target}>
+      <Label alignItems='center' forwardedAs={as}>
+        <Base {...mountPath} {...passHref} color={color} textDecorationLine={textDecorationLine} target={target}>
           {component ? (
             <a color={color} target={target}>
               {children}
@@ -39,13 +39,39 @@ const BaseStyled = styled.div`
   ${color}
 `
 
+const StyledLink = styled.a`
+  text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
+  ${color}
+  &:hover {
+    text-decoration-line: underline;
+    color: blue.500;
+  }
+  &:active {
+    font-weight: bold;
+  }
+`
+
 const Label = styled(Typography)`
-  text-decoration-line: underline;
+  text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
   ${typography}
   ${variant}
   ${space}
   ${color}
   ${layout}
+  ${system({
+    textDecoration: true,
+    fontWeight: {
+      property: 'fontWeight',
+      scale: 'fontWeights'
+    }
+  })}
+  &:hover {
+    text-decoration-line: underline;
+    color: blue.500;
+  }
+  &:active {
+    font-weight: bold;
+  }
 `
 
 Link.defaultProps = {
@@ -54,7 +80,7 @@ Link.defaultProps = {
   target: '_self',
   to: '#',
   as: 'p',
-  color: 'gray.800'
+  color: 'blue.300'
 }
 
 Link.propTypes = {
