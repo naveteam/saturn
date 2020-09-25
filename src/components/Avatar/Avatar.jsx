@@ -1,6 +1,9 @@
 import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 
+import { Typography } from '../'
+import Flex from '../Grid'
+
 const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
   let sizeInPx = '48px'
   let color = 'pink.400'
@@ -32,11 +35,29 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
       break
   }
 
-  return <AvatarContainer avatar={avatar} color={color} size={sizeInPx} variant={variant} status={status} />
+  return (
+    <AvatarContainer
+      avatar={avatar}
+      letter={letter}
+      size={sizeInPx}
+      variant={variant}
+      status={status}
+      color={color}
+      {...props}
+    >
+      {!avatar && letter && (
+        <Typography color='white' lineHeight={6}>
+          {letter}
+        </Typography>
+      )}
+    </AvatarContainer>
+  )
 }
 
-const AvatarContainer = styled.div(
+const AvatarContainer = styled(Flex)(
   ({ size, color, variant }) => css`
+    justify-content: center;
+    align-items: center;
     border-radius: ${variant ? '4px' : '50%'};
     width: ${size};
     height: ${size};
