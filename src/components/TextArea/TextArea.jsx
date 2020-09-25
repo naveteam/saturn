@@ -105,21 +105,7 @@ const Container = styled(Flex)`
   min-height: 1;
   max-height: 90px;
   height: 100%;
-  overflow-y: scroll;
-  scrollbar-color: ${th.color('gray.500')};
-  scrollbar-width: thin;
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    display: none;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: ${th.color('gray.500')};
-    border-radius: 8px;
-    border: 4px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-  }
+  overflow-y: scroll;  
   ${focusVariant}
 `
 
@@ -134,6 +120,24 @@ const Input = styled.textarea`
   height: calc(100% - 16px);
   width: 100%;
   color: gray.900;
+
+  scrollbar-color: ${th.color('gray.500')};
+
+  scrollbar-width: thin;
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: ${th.color('gray.500')};
+    border-radius: 8px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
 
   &::placeholder {
     color: gray.500;

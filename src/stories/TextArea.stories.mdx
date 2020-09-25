@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { TextArea } from '../components'
 import { ThemeProvider } from '../theme'
@@ -9,7 +9,7 @@ import { ThemeProvider } from '../theme'
 
 O componente de `TextArea` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `caption`).
 
-<Preview>
+<Canvas>
   <Story
     name='Base'
     parameters={{
@@ -23,13 +23,13 @@ O componente de `TextArea` é utilizado para que o usuário possa inserir inform
       <TextArea name='base' label='Label' caption='Caption' placeholder='Placeholder' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Error
 
 Passando a prop de `error` para o `TextArea`, o usuário pode receber um feedback visual que existe algum ponto a ser alterado no input em questão.
 
-<Preview>
+<Canvas>
   <Story
     name='Error'
     parameters={{
@@ -43,13 +43,13 @@ Passando a prop de `error` para o `TextArea`, o usuário pode receber um feedbac
       <TextArea name='error' label='Error' placeholder='Error TextField' error caption='Required' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Disabled
 
 O `TextArea` pode receber a prop de `disabled`, que desabilita todo o seu uso.
 
-<Preview>
+<Canvas>
   <Story
     name='Disabled'
     parameters={{
@@ -69,6 +69,6 @@ O `TextArea` pode receber a prop de `disabled`, que desabilita todo o seu uso.
       />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={TextArea} />
+<ArgsTable of={TextArea} />
