@@ -105,7 +105,6 @@ const Container = styled(Flex)`
   min-height: 1;
   max-height: 90px;
   height: 100%;
-  overflow-y: scroll;  
   ${focusVariant}
 `
 
@@ -120,6 +119,7 @@ const Input = styled.textarea`
   height: calc(100% - 16px);
   width: 100%;
   color: gray.900;
+  overflow-y: scroll;  
 
   scrollbar-color: ${th.color('gray.500')};
 
