@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Avatar } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Avatar' component={Avatar} />
+
+# Avatar
+
+O componente de `Avatar` é utilizado para que o usuário possa selecionar uma ou mais opções da aplicação.
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar size='very-large' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Avatar} />
