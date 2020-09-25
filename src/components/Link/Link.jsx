@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { layout, variant, space, typography, color, system } from '@xstyled/system'
+import { layout, variant, space, typography, color } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
@@ -58,13 +58,6 @@ const Label = styled(Typography)`
   ${space}
   ${color}
   ${layout}
-  ${system({
-    textDecoration: true,
-    fontWeight: {
-      property: 'fontWeight',
-      scale: 'fontWeights'
-    }
-  })}
   &:hover {
     text-decoration-line: underline;
     color: blue.500;
