@@ -7,31 +7,38 @@ import Flex from '../Grid'
 const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
   let sizeInPx = '48px'
   let color = 'pink.400'
+  let fontSize = '24px'
 
   switch (size) {
     case 'tiny':
       sizeInPx = '24px'
       color = 'blue.400'
+      fontSize = '10px'
       break
     case 'very-small':
       sizeInPx = '32px'
       color = 'deepPurple.400'
+      fontSize = '16px'
       break
     case 'small':
       sizeInPx = '40px'
       color = 'purple.400'
+      fontSize = '20px'
       break
     case 'large':
       sizeInPx = '56px'
       color = 'red.400'
+      fontSize = '28px'
       break
     case 'very-large':
       sizeInPx = '64px'
       color = 'orange.400'
+      fontSize = '32px'
       break
     case 'huge':
       sizeInPx = '72px'
       color = 'gray.700'
+      fontSize = '36px'
       break
   }
 
@@ -46,7 +53,7 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
       {...props}
     >
       {!avatar && letter && (
-        <Typography color='white' lineHeight={6}>
+        <Typography color='white' lineHeight={6} fontSize={fontSize}>
           {letter}
         </Typography>
       )}
@@ -56,6 +63,7 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
 
 const AvatarContainer = styled(Flex)(
   ({ size, color, variant }) => css`
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     border-radius: ${variant ? '4px' : '50%'};
