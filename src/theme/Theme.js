@@ -32,6 +32,8 @@ colors.success = colors.green['400']
 colors.error = colors.red['400']
 colors.warning = colors.amber['400']
 colors.info = colors.blue['400']
+colors.support = colors.deepPurple['400']
+colors.neutral = colors.gray['700']
 
 colors.disabled = colors.gray['500']
 

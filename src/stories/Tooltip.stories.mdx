@@ -1,0 +1,30 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Tooltip } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display|Tooltip' component={Tooltip} />
+
+# Tooltip
+
+O componente `Tooltip` é utilizado para informar dicas para o usuário.
+
+<Preview>
+  <Story
+    name='Neutral'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=254%3A477'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Tooltip variant='warning' small content='Tooltip neutro grande com duas linhas'>
+        Something
+      </Tooltip>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Tooltip} />
