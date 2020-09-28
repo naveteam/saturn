@@ -41,18 +41,23 @@ const BaseStyled = styled.div`
 
 const StyledLink = styled.a`
   text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
+  border-radius: 4px;
+  padding: 2px;
   ${color}
   &:hover {
     text-decoration-line: underline;
     color: blue.500;
   }
-  &:active {
-    font-weight: bold;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4e98ed;
   }
 `
 
 const Label = styled(Typography)`
   text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
+  border-radius: 4px;
+  padding: 2px;
   ${typography}
   ${variant}
   ${space}
@@ -63,7 +68,11 @@ const Label = styled(Typography)`
     color: blue.500;
   }
   &:active {
-    font-weight: bold;
+    text-shadow: 0 0 1px #1359A8;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4E98ED;
   }
 `
 
