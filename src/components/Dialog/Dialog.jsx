@@ -1,9 +1,9 @@
-import React, { useRef, forwardRef, useCallback } from 'react'
-import styled, { css, variant } from '@xstyled/styled-components'
+import React, { useRef, useCallback } from 'react'
+import styled from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
-import { Typography, Button } from '../'
+import { Typography, Button, Flex } from '../'
 import { Icon } from '../Iconography'
 
 const Dialog = ({
@@ -21,8 +21,6 @@ const Dialog = ({
   const setClose = useCallback(
     closed => {
       onClose && onClose(closed)
-
-      console.log(closed)
     },
     [onClose]
   )
@@ -31,15 +29,14 @@ const Dialog = ({
   useHotKey(() => setClose(false), 'Escape')
 
   if (!open) return null
-
   return (
     <>
       <Overlay />
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
-            <Title>{title}</Title>
-            <Description>{description}</Description>
+            <Typography fontWeight={1} fontSize={4} lineHeight={4}>{title}</Typography>
+            <Typography fontSize={3} lineHeight={3} mt={4}>{description}</Typography>
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
@@ -79,7 +76,7 @@ const Overlay = styled.div`
   z-index: 1000;
 `
 
-const Container = styled.div`
+const Container = styled(Flex)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -105,17 +102,6 @@ const LeftContent = styled.div`
 `
 const RightContent = styled.div`
   right: 0;
-`
-
-const Title = styled(Typography)`
-  font-weight: 1;
-  font-size: 4;
-  line-height: 4;
-`
-const Description = styled(Typography)`
-  font-size: 3;
-  line-height: 3;
-  margin-top: 4;
 `
 
 const ChildrenContent = styled.div`
