@@ -1,0 +1,71 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Upload } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input/Upload' component={Upload} />
+
+# Upload
+
+O componente `Upload` é utilizado para permitir que o usuário possa realizar upload de arquivos dentro da aplicação.
+
+<Canvas>
+  <Story
+    name='Button'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload variant='button' disabled={false} />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Disabled
+
+A prop `disabled` desabilita completamente o botão, impedindo seu uso.
+
+<Canvas>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload disabled={true} />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Variant
+
+O componente `Upload` pode receber também a prop `variant`. As variants podem criar botões preenchidos, apenas contornados, drag and drops ou upload de imagem com preview.
+
+<Canvas>
+  <Story
+    name='Variants'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload variant='button' />
+      <Upload variant='button-outlined' />
+      <Upload variant='drag-drop' />
+      <Upload variant='image' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Upload} />
