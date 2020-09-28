@@ -47,7 +47,7 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
   const [leftArrowClickable, toggleLeftArrow] = useState(false)
   const [rightArrowClickable, toggleRightArrow] = useState(true)
   const [collapsedList, setCollapse] = useState(true)
-  const [id] = useState(props.id || `tabs-${String(Math.random()).replace('.', '')}`)
+  const [id] = useState(props.id || `tabs-${String(Math.random()).replace(/\./g, '')}`)
 
   const handleChange = value => setActiveTab(value)
 
