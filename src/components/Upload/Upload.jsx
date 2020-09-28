@@ -1,9 +1,12 @@
 import React, { useRef, useState } from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { space, layout, variant, th, color } from '@xstyled/system'
+import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
 import { Typography, Flex, Button, Icon } from '../'
+
+const handleAcceptedFileTypes = fileTypes => {
+  return typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes
+}
 
 const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
@@ -15,11 +18,15 @@ const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...
 
   return (
     <Wrapper {...props}>
-      <input type='file' ref={hiddenFileInput} onChange={handleChange} style={{ display: 'none' }} />
-      <Button onClick={handleClick} disabled={disabled}>
-        <Flex alignItems='center' justifyContent='center'>
-          <Icon icon='upload' color='white' mr={3} /> Upload Button
-        </Flex>
+      <HiddenInput
+        type='file'
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        multiple={multipleFiles}
+        accept={handleAcceptedFileTypes(acceptedFileTypes)}
+      />
+      <Button onClick={handleClick} disabled={disabled} icon='upload'>
+        {caption}
       </Button>
       <Typography>
         {uploadedFile?.name} {uploadedFile?.size}
@@ -29,37 +36,82 @@ const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...
 }
 
 const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+  const hiddenFileInput = useRef(null)
+  const [uploadedFile, setUploadedFile] = useState()
+
+  const handleClick = () => hiddenFileInput.current.click()
+
+  const handleChange = event => setUploadedFile(event.target.files[0])
+
   return (
     <Wrapper {...props}>
-      <Button>
-        <Flex alignItems='center' justifyContent='center'>
-          <Icon icon='upload' color='white' mr={3} /> Upload Button
-        </Flex>
+      <HiddenInput
+        type='file'
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        multiple={multipleFiles}
+        accept={handleAcceptedFileTypes(acceptedFileTypes)}
+      />
+      <Button onClick={handleClick} disabled={disabled} variant='outlined' icon='upload'>
+        {caption}
       </Button>
+      <Typography>
+        {uploadedFile?.name} {uploadedFile?.size}
+      </Typography>
     </Wrapper>
   )
 }
 
 const UploadDragAndDrop = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+  const hiddenFileInput = useRef(null)
+  const [uploadedFile, setUploadedFile] = useState()
+
+  const handleClick = () => hiddenFileInput.current.click()
+
+  const handleChange = event => setUploadedFile(event.target.files[0])
+
   return (
     <Wrapper {...props}>
-      <Button>
-        <Flex alignItems='center' justifyContent='center'>
-          <Icon icon='upload' color='white' mr={3} /> Upload Drag &amp; Drop
-        </Flex>
+      <HiddenInput
+        type='file'
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        multiple={multipleFiles}
+        accept={handleAcceptedFileTypes(acceptedFileTypes)}
+      />
+      <Button py={5} onClick={handleClick} disabled={disabled} icon='upload' direction='column' variant='outlined'>
+        {caption}
       </Button>
+      <Typography>
+        {uploadedFile?.name} {uploadedFile?.size}
+      </Typography>
     </Wrapper>
   )
 }
 
 const UploadImage = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+  const hiddenFileInput = useRef(null)
+  const [uploadedFile, setUploadedFile] = useState()
+
+  const handleClick = () => hiddenFileInput.current.click()
+
+  const handleChange = event => setUploadedFile(event.target.files[0])
+
   return (
     <Wrapper {...props}>
-      <Button>
-        <Flex alignItems='center' justifyContent='center'>
-          <Icon icon='upload' color='white' mr={3} /> Upload Image
-        </Flex>
+      <HiddenInput
+        type='file'
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        multiple={multipleFiles}
+        accept={handleAcceptedFileTypes(acceptedFileTypes)}
+      />
+      <Button py={5} onClick={handleClick} disabled={disabled} icon='upload' direction='column' variant='outlined'>
+        {caption}
       </Button>
+      <Typography>
+        {uploadedFile?.name} {uploadedFile?.size}
+      </Typography>
     </Wrapper>
   )
 }
@@ -99,7 +151,7 @@ const Upload = ({ caption, variant, acceptedFileTypes, multipleFiles, disabled, 
     return (
       <UploadImage
         caption={caption}
-        acceptedFileTypes={acceptedFileTypes}
+        acceptedFileTypes={acceptedFileTypes || 'image/*'}
         multipleFiles={multipleFiles}
         disabled={disabled}
         {...props}
@@ -107,12 +159,17 @@ const Upload = ({ caption, variant, acceptedFileTypes, multipleFiles, disabled, 
     )
 }
 
+const HiddenInput = styled.input`
+  display: none;
+`
+
 const Wrapper = styled(Flex)`
+  flex-direction: column;
   max-width: 384px;
   margin-bottom: 10px;
 `
 
-Upload.PropTypes = {
+Upload.propTypes = {
   caption: PropTypes.string,
   variant: PropTypes.oneOf(['button', 'button-primary', 'button-outlined', 'button-secondary', 'drag-drop', 'image']),
   acceptedFileTypes: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf([PropTypes.string])]),
@@ -123,9 +180,12 @@ Upload.PropTypes = {
 Upload.defaultProps = {
   caption: 'Upload',
   variant: 'button',
-  acceptedFileTypes: 'all',
   multipleFiles: false,
   disabled: false
+}
+
+UploadImage.defaultProps = {
+  acceptedFileTypes: 'image/*'
 }
 
 export default Upload

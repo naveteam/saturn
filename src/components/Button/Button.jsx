@@ -3,13 +3,24 @@ import styled, { css } from '@xstyled/styled-components'
 import { space, layout, variant, th, flexboxes } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-import { Typography } from '../'
+import { Typography, Flex } from '../'
+import { Icon } from '../Iconography'
 
-const Button = forwardRef(({ children, ...props }, ref) => (
+const Button = forwardRef(({ children, icon, direction, ...props }, ref) => (
   <Base ref={ref} {...props}>
-    <Typography fontSize={2} fontWeight={1} lineHeight={3}>
-      {children}
-    </Typography>
+    <Container flexDirection={direction}>
+      {icon && (
+        <StyledIcon
+          icon={icon}
+          mr={direction === 'row' ? 3 : '0px'}
+          ml={direction === 'row-reverse' ? 3 : '0px'}
+          fill={props.variant === 'filled' ? 'white' : props.color}
+        />
+      )}
+      <Typography fontSize={2} fontWeight={1} lineHeight={3}>
+        {children}
+      </Typography>
+    </Container>
   </Base>
 ))
 
@@ -36,6 +47,18 @@ const colorVariants = variant({
       }
     `,
     outlined: css`
+      ${StyledIcon} {
+        fill: ${({ color }) => th.color(color)};
+        &:hover {
+          fill: ${({ color }) => th.color(`${color}_hover`)};
+        }
+        &:active {
+          fill: ${({ color }) => th.color(`${color}_active`)};
+        }
+        &:disabled {
+          fill: disabled;
+        }
+      }
       background-color: transparent;
       border-color: ${({ color }) => th.color(color)};
       color: ${({ color }) => th.color(color)};
@@ -69,35 +92,46 @@ const colorVariants = variant({
   }
 })
 
-const Base = styled.button`
-  cursor: pointer;
-  padding: 2;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 2;
-  min-height: 40px;
-  ${layout}
-  ${space}
-  ${flexboxes}
+const StyledIcon = styled(Icon)`
   ${colorVariants}
-  &:disabled {
-    cursor: initial;
-  }
-  &:focus {
-    outline: none;
-  }
+`
+
+const Base = styled.button`
+cursor: pointer;
+padding: 2;
+border-width: 2px;
+border-style: solid;
+border-radius: 2;
+min-height: 40px;
+${layout}
+${space}
+${colorVariants}
+&:disabled {
+  cursor: initial;
+}
+&:focus {
+  outline: none;
+}
+`
+
+const Container = styled(Flex)`
+  justify-content: center;
+  align-items: center;
 `
 
 Button.defaultProps = {
   color: 'primary',
   variant: 'filled',
-  width: 1
+  width: 1,
+  direction: 'row'
 }
 
 Button.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
-  width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number])
+  width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number]),
+  direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
+  icon: PropTypes.string
 }
 
 export default Button
