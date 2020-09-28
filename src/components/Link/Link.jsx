@@ -67,9 +67,6 @@ const Label = styled(Typography)`
     text-decoration-line: underline;
     color: blue.500;
   }
-  &:active {
-    text-shadow: 0 0 1px #1359A8;
-  }
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #4E98ED;
