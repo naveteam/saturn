@@ -11,50 +11,62 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
   let statusSize = '14px'
   let statusBorder = '1.8px'
   let statusColor = 'green.400'
+  let statusContainer = '12.2px'
+  let statusIcon = 'avatar'
 
-  if (status === 'unavailable') statusColor = 'gray.400'
+  switch (status) {
+    case 'checked':
+      statusIcon = 'check_circle'
+      break
+  }
 
   switch (size) {
     case 'tiny':
       sizeInPx = '24px'
       color = 'blue.400'
       fontSize = 0
-      statusSize = '8px'
+      statusContainer = '8px'
+      statusSize = '6.8px'
       statusBorder = '1.2px'
       break
     case 'very-small':
       sizeInPx = '32px'
       color = 'deepPurple.400'
       fontSize = 3
-      statusSize = '10px'
+      statusContainer = '10px'
+      statusSize = '8.6px'
       statusBorder = '1.4px'
       break
     case 'small':
       sizeInPx = '40px'
       color = 'purple.400'
       fontSize = 4
-      statusSize = '12px'
+      statusContainer = '12px'
+      statusSize = '10.4px'
       statusBorder = '1.6px'
       break
     case 'large':
       sizeInPx = '56px'
       color = 'red.400'
       fontSize = '28px'
-      statusSize = '16px'
+      statusContainer = '16px'
+      statusSize = '14px'
       statusBorder = '2px'
       break
     case 'very-large':
       sizeInPx = '64px'
       color = 'orange.400'
       fontSize = 6
-      statusSize = '18px'
+      statusContainer = '18px'
+      statusSize = '15.8px'
       statusBorder = '2.2px'
       break
     case 'huge':
       sizeInPx = '72px'
       color = 'gray.700'
       fontSize = '36px'
-      statusSize = '20px'
+      statusContainer = '20px'
+      statusSize = '17.6px'
       statusBorder = '2.4px'
       break
   }
@@ -69,7 +81,11 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
         statusSize={statusSize}
         statusBorder={statusBorder}
       />
-      {status && <Status statusSize={statusSize} statusBorder={statusBorder} statusColor={statusColor} />}
+      {status && !variant && (
+        <Status statusContainer={statusContainer} statusBorder={statusBorder}>
+          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
+        </Status>
+      )}
     </AvatarContainer>
   ) : (
     <NonAvatarContainer letter={letter} size={sizeInPx} variant={variant} status={status} color={color} {...props}>
@@ -78,9 +94,18 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
           {letter}
         </Typography>
       ) : (
-        <Icon icon={variant ? 'business_center' : 'avatar_person'} height={72} width={72} color={color} />
+        <Icon
+          icon={variant ? 'avatar_business_center' : 'avatar_person'}
+          height={sizeInPx}
+          width={sizeInPx}
+          color={color}
+        />
       )}
-      {status && !variant && <Status statusSize={statusSize} statusBorder={statusBorder} statusColor={statusColor} />}
+      {status && !variant && (
+        <Status statusContainer={statusContainer} statusBorder={statusBorder}>
+          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
+        </Status>
+      )}
     </NonAvatarContainer>
   )
 }
@@ -115,14 +140,16 @@ const NonAvatarContainer = styled(Flex)(
   `
 )
 
-const Status = styled.div(
-  ({ statusColor, statusSize, statusBorder }) => css`
-    width: ${statusSize};
-    height: ${statusSize};
+const Status = styled(Flex)(
+  ({ statusContainer, statusBorder }) => css`
+    justify-content: center;
+    align-items: center;
+    width: ${statusContainer};
+    height: ${statusContainer};
     border-radius: 50%;
     border: ${statusBorder} solid white;
     box-sizing: border-box;
-    background-color: ${statusColor};
+    background-color: white;
     position: absolute;
     bottom: 0;
     right: 0;
