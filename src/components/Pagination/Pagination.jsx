@@ -21,17 +21,17 @@ const Pagination = ({
   onPageChange,
   onPageSizeChange,
   minPagesToShowDots,
+  lastPageBeforeFirstDots,
   pagesShownedBetweenDots,
   variant,
   ...props
 }) => {
-  const inputRef = useRef(null)
   const [inputValue, setInputValue] = useState(page)
   const debouncedValue = useDebounce(inputValue)
 
   useEffect(() => {
-    variant === 'input' && (inputRef.current.value = page)
-  }, [page, variant, inputRef])
+    variant === 'input' && setInputValue(page)
+  }, [page, variant])
 
   useEffect(() => {
     debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
