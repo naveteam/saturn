@@ -62,7 +62,12 @@ O componente `Upload` pode receber também a prop `variant`. As variants podem c
     <ThemeProvider>
       <Upload caption='Upload Button (Primary)' variant='button' acceptedFileTypes='image/*' />
       <Upload caption='Upload Button (Secondary)' variant='button-outlined' acceptedFileTypes='.png' />
-      <Upload caption='Upload Drag &amp; Drop' variant='drag-drop' />
+      <Upload
+        caption='Upload Drag &amp; Drop'
+        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
+        variant='drag-drop'
+        multipleFiles
+      />
       <Upload caption='Upload Image' variant='image' />
     </ThemeProvider>
   </Story>

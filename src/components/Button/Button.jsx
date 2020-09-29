@@ -6,20 +6,34 @@ import PropTypes from 'prop-types'
 import { Typography, Flex } from '../'
 import { Icon } from '../Iconography'
 
-const Button = forwardRef(({ children, icon, direction, ...props }, ref) => (
+const Button = forwardRef(({ children, icon, direction, caption, description, ...props }, ref) => (
   <Base ref={ref} {...props}>
-    <Container flexDirection={direction}>
+    <Container flexDirection={description ? 'column' : direction}>
       {icon && (
         <StyledIcon
           icon={icon}
-          mr={direction === 'row' ? 3 : '0px'}
-          ml={direction === 'row-reverse' ? 3 : '0px'}
+          mr={direction === 'row' ? 3 : 0}
+          ml={direction === 'row-reverse' ? 3 : 0}
+          mb={direction === 'column' ? 3 : 0}
           fill={props.variant === 'filled' ? 'white' : props.color}
         />
       )}
-      <Typography fontSize={2} fontWeight={1} lineHeight={3}>
-        {children}
-      </Typography>
+      {caption && (
+        <Typography
+          fontSize={2}
+          fontWeight={1}
+          lineHeight={3}
+          mb={direction === 'column' && (description || children) ? 3 : 0}
+        >
+          {caption}
+        </Typography>
+      )}
+      {description && (
+        <Typography px={7} fontSize={2} fontWeight={0} lineHeight={3}>
+          {description}
+        </Typography>
+      )}
+      {children}
     </Container>
   </Base>
 ))
@@ -131,7 +145,9 @@ Button.propTypes = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
   width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number]),
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  caption: PropTypes.string,
+  description: PropTypes.string
 }
 
 export default Button
