@@ -19,11 +19,15 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
       sizeInPx = '24px'
       color = 'blue.400'
       fontSize = 0
+      statusSize = '8px'
+      statusBorder = '1.2px'
       break
     case 'very-small':
       sizeInPx = '32px'
       color = 'deepPurple.400'
       fontSize = 3
+      statusSize = '10px'
+      statusBorder = '1.4px'
       break
     case 'small':
       sizeInPx = '40px'
@@ -43,11 +47,15 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
       sizeInPx = '64px'
       color = 'orange.400'
       fontSize = 6
+      statusSize = '18px'
+      statusBorder = '2.2px'
       break
     case 'huge':
       sizeInPx = '72px'
       color = 'gray.700'
       fontSize = '36px'
+      statusSize = '20px'
+      statusBorder = '2.4px'
       break
   }
 
