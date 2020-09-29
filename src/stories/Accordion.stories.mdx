@@ -1,12 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-import { Accordion } from '../components'
+import { Accordion, AccordionDetail, AccordionHeader } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Accordion' component={Accordion} />
 
 # Accordion
 
-O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. A sua utilização tanto na versão base, quanto em todas as sua variações é simples, você pode passar duas props, uma indicando a variant de tamanho do Accordion e a outra um array que contém todos os items do `Accordion`. Cada item neste array possui o formato de um objeto que pode conter os seguintes campos: `contour, dividertext, title`
+O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa.
 
 <Canvas>
   <Story
@@ -19,82 +19,13 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
     }}
   >
     <ThemeProvider>
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Shadow | Line
-
-O `Accordion` possui a possibilidade de adicionar uma shadow ou bordas em volta de cada item do accordion. Para fazer essa utilização é necessário passar em cada objeto do array dos items dos acordeons o campo `contour` com o valor `shadow` ou `line`. Por padrão é `shadow`. É possível utilizar diferentes tipos de contornos em diferentes items.
-
-<Canvas>
-  <Story
-    name='Shadow | Line'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Accordion
-        accordionItems={[
-          { title: 'Accordion Title', text: 'Accordion Text' },
-          { title: 'Accordion Title', text: 'Accordion Text', contour: 'line' }
-        ]}
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Divider
-
-É possível adicionar um `divider` entre os items do accordion, para fazer isso é necessário adicionar um campo de divider com o valor `true` nos items onde o divider é desejado.
-
-<Canvas>
-  <Story
-    name='Divider'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Accordion
-        accordionItems={[
-          { title: 'Accordion Title', text: 'Accordion Text', divider: true },
-          { title: 'Accordion Title', text: 'Accordion Text', divider: true }
-        ]}
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Sizes
-
-O `Accordion` possuí variações de tamanho, as quais você pode utilizar passando a prop `variant` com um dos seguintes valores: `smallDesktop`, `mediumDesktop`, `bigDesktop`, `smallTablet`, `bigTablet` e `mobile`. Por padrão o valor será `mediumDesktop`.
-
-<Canvas>
-  <Story
-    name='Sizes'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='mobile' />
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='smallTablet' />
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='bigTablet' />
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='smallDesktop' />
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='mediumDesktop' />
-      <Accordion accordionItems={[{ title: 'Accordion Title', text: 'Accordion Text' }]} variant='bigDesktop' />
+      <Accordion>
+        <AccordionHeader title='Lorem Ipsum' />
+        <AccordionDetail>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales sed
+          eros. Donec a risus a mauris pretium scelerisque.
+        </AccordionDetail>
+      </Accordion>
     </ThemeProvider>
   </Story>
 </Canvas>

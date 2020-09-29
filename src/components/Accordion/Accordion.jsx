@@ -3,57 +3,39 @@ import React, { useState } from 'react'
 import styled, { backgrounds, css, layout, space, variant } from '@xstyled/styled-components'
 import { Icon, Typography } from '../'
 
-const Accordion = ({ accordionItems, variant }) => {
-  return (
-    <AccordionsContainer variant={variant}>
-      {accordionItems.map(({ contour, text, title, divider }, index) => (
-        <AccordionItem key={index} contour={contour} title={title} text={text} divider={divider} />
-      ))}
-    </AccordionsContainer>
-  )
+const Accordion = ({ children, disabled = false }) => {
+  const [expanded, setExpanded] = useState(false)
+
+  React.useEffect(() => {
+    console.log(children)
+  }, [])
+
+  const propChildren = React.Children.map(children, current => {
+    return React.cloneElement(current, {
+      expanded
+    })
+  })
+
+  return <AccordionsContainer onClick={() => setExpanded(current => !current)}>{propChildren}</AccordionsContainer>
 }
 
-Accordion.propTypes = {
-  accordionItems: PropTypes.array.isRequired,
-  variant: PropTypes.string
-}
+const AccordionHeader = ({ expanded, title }) => (
+  <StyledButton padding={4}>
+    <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
+      {title}
+    </Typography>
+    <Icon icon={expanded ? 'expand_less' : 'expand_more'} color='gray.800' />
+  </StyledButton>
+)
 
-Accordion.defaultProps = {
-  accordionItems: [],
-  variant: 'mediumDesktop'
-}
-
-const AccordionItem = ({ contour, title, text, divider }) => {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <>
-      <StyledButton onClick={() => setOpen(current => !current)} padding={4} contour={contour}>
-        <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
-          {title}
-        </Typography>
-        <Icon icon={open ? 'expand_less' : 'expand_more'} color='gray.800' />
-      </StyledButton>
-      <AccordionContent display={open ? 'block' : 'none'} backgroundColor='gray.100'>
-        <Typography fontWeight={0} color='gray.800' fontSize={3} lineHeight={3} padding={4}>
-          {text}
-        </Typography>
-      </AccordionContent>
-      {divider ? <Divider /> : null}
-    </>
-  )
-}
-
-AccordionItem.propTypes = {
-  contour: PropTypes.string,
-  title: PropTypes.string,
-  text: PropTypes.string,
-  divider: PropTypes.bool
-}
-
-AccordionItem.defaultProps = {
-  divider: false
-}
+const AccordionDetail = ({ children, expanded }) => (
+  <>
+    <AccordionContent display={expanded ? 'block' : 'none'} backgroundColor='gray.100'>
+      {children}
+    </AccordionContent>
+    {/* {divider ? <Divider /> : null} */}
+  </>
+)
 
 const AccordionsContainer = styled.div`
   & > button:first-child {
@@ -63,30 +45,6 @@ const AccordionsContainer = styled.div`
   & > button:last-of-type {
     border-radius: 0 0 4px 4px;
   }
-
-  ${variant({
-    prop: 'variant',
-    variants: {
-      smallDesktop: css`
-        width: 384px;
-      `,
-      mediumDesktop: css`
-        width: 588px;
-      `,
-      bigDesktop: css`
-        width: 1200px;
-      `,
-      mobile: css`
-        width: 328px;
-      `,
-      smallTablet: css`
-        width: 340px;
-      `,
-      bigTablet: css`
-        width: 704px;
-      `
-    }
-  })}
 `
 
 const StyledButton = styled.button`
@@ -133,4 +91,5 @@ const Divider = styled.div`
   border-color: gray.300;
 `
 
+export { AccordionDetail, AccordionHeader }
 export default Accordion
