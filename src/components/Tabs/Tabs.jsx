@@ -14,8 +14,8 @@ const Content = ({ children, value, index, ...props }) => {
     <TabContent
       role='tabcontent'
       hidden={value !== index}
-      id={`tab-content-${index}`}
-      aria-labelledby={`tab-${index}`}
+      id={`tab-content-${props.id}-${index}`}
+      aria-labelledby={`tab-${props.id}-${index}`}
       {...props}
     >
       {value === index && <Flex>{children}</Flex>}
@@ -35,10 +35,10 @@ const ScrollButton = ({ to, disabled }) => (
   </ArrowButton>
 )
 
-function a11yProps(index) {
+function a11yProps(id, index) {
   return {
-    id: `tab-${index}`,
-    'aria-controls': `tab-content-${index}`
+    id: `tab-${id}-${index}`,
+    'aria-controls': `tab-content-${id}-${index}`
   }
 }
 
@@ -57,55 +57,58 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
   }
 
   const bindScroll = () => {
-    const tabElement = document.querySelector(`#${id} .tabs__tab-item`)
     const tabsWrapper = document.querySelector(`#${id} .tabs__wrapper`)
-
     const leftTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_left`)
     const rightTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_right`)
 
-    const ITEM_SIZE = outerWidth(tabElement) // get tab width
-    const ITEMS_LENGTH = tabs.length
-    const WRAPPER_SIZE = ITEM_SIZE * ITEMS_LENGTH // total width of the wrapper
+    const VIEW_SIZE = outerWidth(tabsWrapper) // gets the visible width of the wrapper
 
-    const firstViewSize = outerWidth(tabsWrapper) // gets the visible width of the wrapper
-    const firstViewLimit = firstViewSize / ITEM_SIZE // gets the max number of tabs in the visible width
+    const tabSizeArray = []
+    let pointer = 0
+    let translate = 0 // scroll value
 
-    let translate = 0 // scroll position
+    tabsWrapper.childNodes.forEach(el => {
+      // getting all items width
+      tabSizeArray.push(outerWidth(el))
+    })
 
-    if (ITEMS_LENGTH > firstViewLimit && direction === 'horizontal') {
+    const TOTAL_SIZE = tabSizeArray.reduce((a, b) => a + b, 0) // The sum of all items width
+
+    if (TOTAL_SIZE > VIEW_SIZE && direction === 'horizontal') {
       // check if scroll navigation is needed
       setNavigationVisible(true)
     }
 
     leftTrigger.addEventListener('click', () => {
-      if (translate < ITEM_SIZE) {
-        // check if the scroll position is already on max left
-        translate += ITEM_SIZE
+      // decrease array pointer
+      pointer--
+
+      if (translate != 0) {
+        // check if the wrapper was scrolled
+        translate += tabSizeArray[pointer]
         setRightArrowClickable(true)
+        tabsWrapper.style.transform = `translateX(${translate}px)`
       }
 
       if (translate == 0) {
         // prevent the last left click to overflowing the wrapper
         setLeftArrowClickable(false)
       }
-      tabsWrapper.style.transform = `translateX(${translate}px)`
     })
 
-    rightTrigger.addEventListener('click', e => {
-      const nonReachedView = WRAPPER_SIZE + translate // translate returns a negative value because of that we do an addition
-      const itemsPerView = WRAPPER_SIZE / ITEM_SIZE
-      const viewSize = ITEM_SIZE * itemsPerView
-      const reachedLastView = viewSize > nonReachedView
+    rightTrigger.addEventListener('click', () => {
+      const nonReachedView = TOTAL_SIZE + translate // translate returns a negative value because of that we do an addition
+      const lastView = VIEW_SIZE >= nonReachedView
 
-      if (reachedLastView) {
-        // check if the scroll position is already on max right
+      if (lastView) {
+        // check if the scroll pointer is already on max right
         setRightArrowClickable(false)
       }
 
       setLeftArrowClickable(true)
-
-      translate -= ITEM_SIZE
+      translate -= tabSizeArray[pointer]
       tabsWrapper.style.transform = `translateX(${translate}px)`
+      pointer++
     })
   }
 
@@ -136,14 +139,13 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
               return (
                 <Tab
                   type={getType(!!label, !!icon)}
-                  className='tabs__tab-item'
                   tabindex={index}
                   key={index}
                   direction={direction}
                   disabled={disabled}
                   active={index === activeTabValue}
                   onClick={() => setActiveTab(index)}
-                  {...a11yProps(index)}
+                  {...a11yProps(id, index)}
                 >
                   <TabBody>
                     <TabBodyContent>
@@ -152,7 +154,11 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
                           <Icon icon={icon} height='24px' />
                         </IconContainer>
                       )}
-                      {label && <Label forwardedAs='span'>{label}</Label>}
+                      {label && (
+                        <Label title={label} hasScroll={navigationVisible} forwardedAs='span'>
+                          {label}
+                        </Label>
+                      )}
                     </TabBodyContent>
                   </TabBody>
                 </Tab>
@@ -164,7 +170,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
       </NavigationWrapper>
       <Body>
         {children.map((JSX, index) => (
-          <Content key={index} value={activeTabValue} index={index}>
+          <Content key={index} value={activeTabValue} index={index} id={id}>
             {React.cloneElement(JSX, { ...JSX.props })}
           </Content>
         ))}
@@ -193,8 +199,7 @@ Tabs.propTypes = {
 const BaseVariants = variant({
   prop: 'direction',
   variants: {
-    horizontal: css`
-    `,
+    horizontal: css``,
     vertical: css`
       display: flex;
     `
@@ -297,8 +302,6 @@ const NavigationWrapper = styled.div`
       ${NavigationWrapperDirectionVariant};
     `
   )}
-
-
 `
 
 const directionVariantContainer = variant({
@@ -480,7 +483,7 @@ const iconDisabledVariant = variant({
   variants: {
     true: css`
       * {
-        fill: disabled !important;
+        fill: gray.400 !important;
       }
     `
   }
@@ -515,6 +518,17 @@ const IconContainer = styled.div(
 
 const Label = styled(Typography)`
   display: inline-block;
+  transition: font-weight 0.3s cubic-bezier(0.04, 1.01, 0.6, 0.57);
+
+  &::after {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 1px;
+    color: transparent;
+    overflow: hidden;
+    visibility: hidden;
+  }
 `
 
 const disabledTabVariant = variant({
@@ -555,9 +569,10 @@ const activeTabVariant = variant({
     `,
     false: css`
       &:hover {
-        color: gray.900;
-        font-weight: 1;
-
+        span {
+          color: gray.900;
+          font-weight: 1;
+        }
         * {
           fill: gray.900;
         }
@@ -587,7 +602,6 @@ const Tab = styled.li`
   box-sizing: border-box;
   border-radius: 1;
   position: relative;
-  transition: font-weight 0.2s ease-in-out;
   color: gray.800;
   ${directionVariantTab};
   ${disabledTabVariant};
