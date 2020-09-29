@@ -1,5 +1,2 @@
-import Tabs from './Tabs'
-
-export { Tabs }
-
-export default Tabs
+export { Tabs } from './Tabs'
+export { Tabs as default } from './Tabs'

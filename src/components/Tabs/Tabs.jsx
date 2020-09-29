@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import styled, { css, up, down } from '@xstyled/styled-components'
+import styled, { css, up, down, breakpoints } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
-import { outerWidth, debounce } from '../../utils'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
 import Flex from '../Grid/Flex'
+
+import { outerWidth, debounce } from '../../utils'
 
 const Content = ({ children, value, index, ...props }) => {
   return (
@@ -41,15 +42,13 @@ function a11yProps(index) {
   }
 }
 
-const Tabs = ({ direction, tabs, children, ...props }) => {
+export const Tabs = ({ direction, tabs, children, ...props }) => {
   const [activeTabValue, setActiveTab] = useState(0)
-  const [showNavigation, toggleNavigation] = useState(false)
-  const [leftArrowClickable, toggleLeftArrow] = useState(false)
-  const [rightArrowClickable, toggleRightArrow] = useState(true)
+  const [navigationVisible, setNavigationVisible] = useState(false)
+  const [leftArrowClickable, setLeftArrowClickable] = useState(false)
+  const [rightArrowClickable, setRightArrowClickable] = useState(true)
   const [collapsedList, setCollapse] = useState(true)
   const [id] = useState(props.id || `tabs-${String(Math.random()).replace(/\./g, '')}`)
-
-  const handleChange = value => setActiveTab(value)
 
   const getType = (hasLabel, hasIcon) => {
     if (hasLabel && hasIcon) return 'full'
@@ -75,19 +74,19 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
 
     if (ITEMS_LENGTH > firstViewLimit && direction === 'horizontal') {
       // check if scroll navigation is needed
-      toggleNavigation(true)
+      setNavigationVisible(true)
     }
 
     leftTrigger.addEventListener('click', () => {
       if (translate < ITEM_SIZE) {
         // check if the scroll position is already on max left
         translate += ITEM_SIZE
-        toggleRightArrow(true)
+        setRightArrowClickable(true)
       }
 
       if (translate == 0) {
         // prevent the last left click to overflowing the wrapper
-        toggleLeftArrow(false)
+        setLeftArrowClickable(false)
       }
       tabsWrapper.style.transform = `translateX(${translate}px)`
     })
@@ -100,10 +99,10 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
 
       if (reachedLastView) {
         // check if the scroll position is already on max right
-        toggleRightArrow(false)
+        setRightArrowClickable(false)
       }
 
-      toggleLeftArrow(true)
+      setLeftArrowClickable(true)
 
       translate -= ITEM_SIZE
       tabsWrapper.style.transform = `translateX(${translate}px)`
@@ -123,14 +122,14 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
 
   return (
     <Base {...props} direction={direction} id={id}>
-      <NavigationWrapper hasScroll={showNavigation} collapsed={collapsedList} direction={direction}>
+      <NavigationWrapper hasScroll={navigationVisible} collapsed={collapsedList} direction={direction}>
         <MobileMenu direction={direction}>
           <HamburgerButton onClick={() => setCollapse(!collapsedList)}>
             <Icon icon='menu' color='blue.400' />
           </HamburgerButton>
         </MobileMenu>
         <ScrollButton to='left' disabled={!leftArrowClickable} />
-        <TabsContainer hasScroll={showNavigation} value={activeTabValue} direction={direction}>
+        <TabsContainer hasScroll={navigationVisible} value={activeTabValue} direction={direction}>
           <TabsWrapper className='tabs__wrapper' direction={direction}>
             {tabs.map((tab, index) => {
               const { label, disabled, icon } = tab
@@ -143,7 +142,7 @@ const Tabs = ({ direction, tabs, children, ...props }) => {
                   direction={direction}
                   disabled={disabled}
                   active={index === activeTabValue}
-                  onClick={() => handleChange(index)}
+                  onClick={() => setActiveTab(index)}
                   {...a11yProps(index)}
                 >
                   <TabBody>
@@ -298,6 +297,8 @@ const NavigationWrapper = styled.div`
       ${NavigationWrapperDirectionVariant};
     `
   )}
+
+
 `
 
 const directionVariantContainer = variant({
@@ -630,5 +631,3 @@ const Body = styled.div`
   width: 100%;
   height: 100%;
 `
-
-export default Tabs
