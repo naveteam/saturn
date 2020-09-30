@@ -110,6 +110,19 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "devSiso",
+      "name": "Matheus Cruz",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/33552730?v=4",
+      "profile": "https://www.linkedin.com/in/matheus-cruz-54204b185/",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
