@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled, { css } from '@xstyled/styled-components'
+import PropTypes from 'prop-types'
 
 import { Icon, Typography } from '../'
 import Flex from '../Grid'
 
-const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
+const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
   let sizeInPx = '48px'
   let color = 'pink.400'
   let fontSize = 5
@@ -160,5 +161,18 @@ const Status = styled(Flex)(
     right: 0;
   `
 )
+
+Avatar.defaultProps = {
+  size: 'medium',
+  variant: false
+}
+
+Avatar.propTypes = {
+  avatar: PropTypes.string,
+  letter: PropTypes.string,
+  size: PropTypes.oneOf(['tiny', 'very-small', 'small', 'medium', 'large', 'very-large', 'huge']),
+  status: PropTypes.oneOf(['available', 'away', 'approved', 'busy', 'denied']),
+  variant: PropTypes.bool
+}
 
 export default Avatar
