@@ -109,6 +109,48 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
   </Story>
 </Canvas>
 
+# Divider
+
+É possível adicionar um pequeno divider entre os Accordions para que tenha uma melhor visualização entre cada `Accordion`.
+
+<Canvas>
+  <Story
+    name='Divider'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper divider={true}>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+            sed eros. Donec a risus a mauris pretium scelerisque.
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+            sed eros. Donec a risus a mauris pretium scelerisque.
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+            sed eros. Donec a risus a mauris pretium scelerisque.
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
 # Disabled
 
 É possível passar a prop disabled para o `Accordion`, quando isto ocorre o componente não irá mudar o seu estado de expanded, será mantido o valor inicial.
@@ -132,7 +174,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
             sed eros. Donec a risus a mauris pretium scelerisque.
           </AccordionDetail>
         </Accordion>
-        <Accordion disabled={false}>
+        <Accordion disabled={true}>
           <AccordionHeader title='Lorem Ipsum' />
           <AccordionDetail>
             Lorem ipsum dolot sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales

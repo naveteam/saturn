@@ -1,5 +1,5 @@
-import Accordion, { AccordionDetail, AccordionHeader } from './Accordion'
+import Accordion, { AccordionDetail, AccordionHeader, AccordionsWrapper } from './Accordion'
 
-export { Accordion, AccordionDetail, AccordionHeader }
+export { Accordion, AccordionDetail, AccordionHeader, AccordionsWrapper }
 
 export default Accordion

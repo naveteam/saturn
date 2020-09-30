@@ -1,54 +1,74 @@
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import styled, { backgrounds, css, layout, space, variant } from '@xstyled/styled-components'
+import React, { cloneElement, Children, useState } from 'react'
+import styled, { backgrounds, css, space, variant } from '@xstyled/styled-components'
+import { th } from '@xstyled/system'
 import { Icon, Typography } from '../'
 
-const Accordion = ({ children, disabled = false }) => {
-  const [expanded, setExpanded] = useState(false)
+const Accordion = ({ children, disabled, expanded: propsExpanded }) => {
+  const [expanded, setExpanded] = useState(propsExpanded)
 
-  React.useEffect(() => {
-    console.log(children)
-  }, [])
-
-  const propChildren = React.Children.map(children, current => {
-    return React.cloneElement(current, {
+  const propChildren = Children.map(children, current => {
+    return cloneElement(current, {
       expanded
     })
   })
 
-  return <AccordionsContainer onClick={() => setExpanded(current => !current)}>{propChildren}</AccordionsContainer>
+  return <div onClick={() => (!disabled ? setExpanded(current => !current) : '')}>{propChildren}</div>
 }
 
-const AccordionHeader = ({ expanded, title }) => (
-  <StyledButton padding={4}>
+Accordion.propTypes = {
+  children: PropTypes.array,
+  disabled: PropTypes.bool
+}
+
+Accordion.defaultValues = {
+  disabled: true,
+  propsExpanded: false
+}
+
+const AccordionHeader = ({ border, expanded, expandIcon = 'expand_more', title }) => (
+  <StyledHeader padding={4} border={border}>
     <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
       {title}
     </Typography>
-    <Icon icon={expanded ? 'expand_less' : 'expand_more'} color='gray.800' />
-  </StyledButton>
+    <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
+  </StyledHeader>
 )
+
+AccordionHeader.propTypes = {
+  border: PropTypes.string,
+  expandIcon: PropTypes.string,
+  title: PropTypes.string.isRequired
+}
 
 const AccordionDetail = ({ children, expanded }) => (
-  <>
-    <AccordionContent display={expanded ? 'block' : 'none'} backgroundColor='gray.100'>
-      {children}
-    </AccordionContent>
-    {/* {divider ? <Divider /> : null} */}
-  </>
+  <AccordionContent expanded={expanded} backgroundColor='gray.100'>
+    {children}
+  </AccordionContent>
 )
 
-const AccordionsContainer = styled.div`
-  & > button:first-child {
+const StyledIcon = styled(Icon)`
+  transition: all 0.3s;
+  transform: ${props => (props.expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
+`
+
+const AccordionsWrapper = styled.div`
+  & > div:nth-child(1) > ${StyledHeader}:first-child {
     border-radius: 4px 4px 0 0;
   }
 
-  & > button:last-of-type {
+  & > div:last-of-type > ${StyledHeader}:first-child {
     border-radius: 0 0 4px 4px;
+  }
+
+  & > div:not(:last-of-type) {
+    border-color: gray.300 !important;
+    ${({ divider }) => (divider ? { borderBottom: '1px solid' } : '')}
   }
 `
 
-const StyledButton = styled.button`
-  background: #fff;
+const StyledHeader = styled.div`
+  background: white;
   height: 56px;
   width: 100%;
   display: block;
@@ -59,10 +79,11 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: space-between;
   outline: none;
+  box-sizing: border-box;
 
   ${variant({
     default: 'shadow',
-    prop: 'contour',
+    prop: 'border',
     variants: {
       shadow: css`
         box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
@@ -78,18 +99,17 @@ const StyledButton = styled.button`
 `
 
 const AccordionContent = styled.div`
-  display: none;
+  opacity: 0;
   width: 100%;
+  transition: all 0.3s;
+  box-sizing: border-box;
 
+  padding: ${props => (props.expanded ? '16px' : '0px 16px')};
+  height: ${props => (props.expanded ? '100%' : '0')};
+  opacity: ${props => (props.expanded ? 1 : 0)};
+  ${space}
   ${backgrounds}
-  ${layout}
 `
 
-const Divider = styled.div`
-  border-top: 1px solid;
-  height: 0;
-  border-color: gray.300;
-`
-
-export { AccordionDetail, AccordionHeader }
+export { AccordionDetail, AccordionHeader, AccordionsWrapper }
 export default Accordion
