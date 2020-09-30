@@ -1,14 +1,15 @@
 import React, { forwardRef } from 'react'
-import styled, { css, down, typography } from '@xstyled/styled-components'
+import styled, { typography } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'
+import { Flex } from '../Grid'
 import { Icon } from '../Iconography'
 
-const RadioButton = forwardRef(({ color, label, ...props }, ref) => {
+const RadioButton = forwardRef(({ color, label, disabled, checked, name, onChange, ...props }, ref) => {
   return (
-    <LabelContainer color={color}>
-      <Input type='radio' ref={ref} {...props} />
+    <LabelContainer as='label' color={color} minHeight={24} {...props}>
+      <Input type='radio' ref={ref} disabled={disabled} checked={checked} name={name} onChange={onChange} />
       <CheckedIcon icon='radio_button_checked' color='primary' />
       <UncheckedIcon icon='radio_button_outline' />
       {label && (
@@ -28,24 +29,10 @@ const UncheckedIcon = styled(Icon)`
     fill: gray.700;
   }
 `
-const LabelContainer = styled.label`
-  display: inline-flex;
-  vertical-align: top;
-  position: relative;
-  user-select: none;
+const LabelContainer = styled(Flex)`
   color: gray.800;
-  min-height: 24px;
 
-  ${down(
-    'sm',
-    css`
-      display: flex;
-    `
-  )}
-
-  & >
-    input:checked:enabled
-    ~ p {
+  & > input:checked:enabled ~ p {
     color: gray.900;
     ${typography}
   }

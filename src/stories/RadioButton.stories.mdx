@@ -19,7 +19,7 @@ O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode 
     }}
   >
     <ThemeProvider>
-      <RadioButton label='Base' />
+      <RadioButton label='Base'/>
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -39,7 +39,6 @@ O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica 
     }}
   >
     <ThemeProvider>
-      <RadioButton checked={true} onChange={() => {}} label='Selected' />
       <RadioButton checked={false} onChange={() => {}} label='Not selected' />
       <RadioButton checked={true} disabled={true} label='Selected disabled' />
       <RadioButton checked={false} disabled={true} label='Not selected disabled' />
@@ -74,7 +73,7 @@ O `Radio Button` aceita uma label opcional para cada elemento, se não for forne
 
 <Canvas>
   <Story
-    name='label'
+    name='Label'
     parameters={{
       design: {
         type: 'figma',
@@ -84,7 +83,7 @@ O `Radio Button` aceita uma label opcional para cada elemento, se não for forne
   >
     <ThemeProvider>
       <RadioButton label='RadioButton Label' name='radio15' />
-      <RadioButton label='RadioButton' name='radio15' />
+      <RadioButton name='radio15' />
     </ThemeProvider>
   </Story>
 </Canvas>
