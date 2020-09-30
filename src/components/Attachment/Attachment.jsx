@@ -7,6 +7,14 @@ import { Typography } from '../'
 import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
 
+const bytesToSize = bytes => {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB']
+  if (bytes === 0) return ''
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+  if (i === 0) return `${bytes} ${sizes[i]}`
+  return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
+}
+
 const Attachment = ({ name, link, onDownload, onView, onDelete, file, backgroundColor, error, variant, ...props }) => {
   const handleName = () => {
     if (name) return name
@@ -16,14 +24,6 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
 
   const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'primary')
 
-  const bytesToSize = bytes => {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB']
-    if (bytes === 0) return ''
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-    if (i === 0) return `${bytes} ${sizes[i]}`
-    return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
-  }
-
   return (
     <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
       {(link || name || file) && (
@@ -32,7 +32,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
             <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
             <Flex>
               <Link color={handleErrorColor()} forwardedAs='a' pl={3} {...(link && { href: link, target: '_blank' })}>
-                {handleName()}{' '}
+                {handleName()}
               </Link>
               {file?.size && (
                 <Typography pl={3} color='gray.800'>
