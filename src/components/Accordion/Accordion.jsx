@@ -17,13 +17,14 @@ const Accordion = ({ children, disabled = false, expanded: propsExpanded = false
 }
 
 Accordion.propTypes = {
+  border: PropTypes.string,
   children: PropTypes.array,
   disabled: PropTypes.bool,
   expanded: PropTypes.bool
 }
 
-const AccordionHeader = ({ border, disabled, expanded, expandIcon = 'expand_more', title }) => (
-  <StyledHeader disabled={disabled} padding={4} border={border}>
+const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', title }) => (
+  <StyledHeader disabled={disabled} padding={4}>
     <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
       {title}
     </Typography>
@@ -32,7 +33,6 @@ const AccordionHeader = ({ border, disabled, expanded, expandIcon = 'expand_more
 )
 
 AccordionHeader.propTypes = {
-  border: PropTypes.string,
   expandIcon: PropTypes.string,
   title: PropTypes.string.isRequired
 }
@@ -60,6 +60,31 @@ const AccordionsWrapper = styled.div`
     border-radius: 0 0 4px 4px;
   }
 
+  & > div > ${StyledHeader}:first-child ${AccordionContent} {
+    box-shadow: 0px 3px 4px
+      ${({ border }) => (border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none')};
+  }
+
+  & > div:first-child > ${StyledHeader}:first-child {
+    ${({ border }) =>
+      border === 'line'
+        ? {
+            borderTop: '1px',
+            borderStyle: 'solid'
+          }
+        : {}}
+  }
+
+  & > div > ${StyledHeader}:first-child {
+    ${({ border }) =>
+      border === 'line'
+        ? {
+            borderWidth: '0px 1px 1px',
+            borderStyle: 'solid'
+          }
+        : {}}
+  }
+
   & > div:not(:last-of-type) {
     border-color: gray.300 !important;
     ${({ divider }) => (divider ? { borderBottom: '1px solid' } : '')}
@@ -79,20 +104,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   outline: none;
   box-sizing: border-box;
-
-  ${variant({
-    default: 'shadow',
-    prop: 'border',
-    variants: {
-      shadow: css`
-        box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
-      `,
-      line: css`
-        border: 1px solid;
-        border-color: gray.300;
-      `
-    }
-  })}
+  border-color: gray.300 !important;
 
   ${space}
 `
