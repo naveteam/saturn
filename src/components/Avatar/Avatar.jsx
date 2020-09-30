@@ -8,15 +8,25 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
   let sizeInPx = '48px'
   let color = 'pink.400'
   let fontSize = 5
-  let statusSize = '14px'
   let statusBorder = '1.8px'
   let statusColor = 'green.400'
-  let statusContainer = '12.2px'
-  let statusIcon = 'avatar'
+  let statusSize = '14px'
+  let statusIcon = 'circle'
 
   switch (status) {
-    case 'checked':
+    case 'away':
+      statusColor = 'gray.400'
+      break
+    case 'approved':
       statusIcon = 'check_circle'
+      break
+    case 'busy':
+      statusIcon = 'busy_circle'
+      statusColor = 'red.400'
+      break
+    case 'denied':
+      statusIcon = 'clear_circle'
+      statusColor = 'red.400'
       break
   }
 
@@ -25,54 +35,60 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
       sizeInPx = '24px'
       color = 'blue.400'
       fontSize = 0
-      statusContainer = '8px'
-      statusSize = '6.8px'
+      statusSize = '8px'
       statusBorder = '1.2px'
       break
     case 'very-small':
       sizeInPx = '32px'
       color = 'deepPurple.400'
       fontSize = 3
-      statusContainer = '10px'
-      statusSize = '8.6px'
+      statusSize = '10px'
       statusBorder = '1.4px'
       break
     case 'small':
       sizeInPx = '40px'
       color = 'purple.400'
       fontSize = 4
-      statusContainer = '12px'
-      statusSize = '10.4px'
+      statusSize = '12px'
       statusBorder = '1.6px'
       break
     case 'large':
       sizeInPx = '56px'
       color = 'red.400'
       fontSize = '28px'
-      statusContainer = '16px'
-      statusSize = '14px'
+      statusSize = '16px'
       statusBorder = '2px'
       break
     case 'very-large':
       sizeInPx = '64px'
       color = 'orange.400'
       fontSize = 6
-      statusContainer = '18px'
-      statusSize = '15.8px'
+      statusSize = '18px'
+
       statusBorder = '2.2px'
       break
     case 'huge':
       sizeInPx = '72px'
       color = 'gray.700'
       fontSize = '36px'
-      statusContainer = '20px'
-      statusSize = '17.6px'
+      statusSize = '20px'
+
       statusBorder = '2.4px'
       break
   }
 
+  const showStatus = (status, variant) => {
+    if (status && !variant) {
+      return (
+        <Status statusSize={statusSize} statusBorder={statusBorder}>
+          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
+        </Status>
+      )
+    }
+  }
+
   return avatar ? (
-    <AvatarContainer size={sizeInPx} statusSize={statusSize} statusBorder={statusBorder}>
+    <AvatarContainer size={sizeInPx} statusSize={statusSize} statusBorder={statusBorder} {...props}>
       <AvatarImage
         src={avatar}
         size={sizeInPx}
@@ -81,11 +97,7 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
         statusSize={statusSize}
         statusBorder={statusBorder}
       />
-      {status && !variant && (
-        <Status statusContainer={statusContainer} statusBorder={statusBorder}>
-          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
-        </Status>
-      )}
+      {showStatus(status, variant)}
     </AvatarContainer>
   ) : (
     <NonAvatarContainer letter={letter} size={sizeInPx} variant={variant} status={status} color={color} {...props}>
@@ -101,11 +113,7 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
           color={color}
         />
       )}
-      {status && !variant && (
-        <Status statusContainer={statusContainer} statusBorder={statusBorder}>
-          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
-        </Status>
-      )}
+      {showStatus(status, variant)}
     </NonAvatarContainer>
   )
 }
@@ -124,6 +132,9 @@ const AvatarImage = styled.img(
     width: ${size};
     height: ${size};
     border-radius: ${variant ? 2 : '50%'};
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   `
 )
 
@@ -141,11 +152,11 @@ const NonAvatarContainer = styled(Flex)(
 )
 
 const Status = styled(Flex)(
-  ({ statusContainer, statusBorder }) => css`
+  ({ statusSize, statusBorder }) => css`
     justify-content: center;
     align-items: center;
-    width: ${statusContainer};
-    height: ${statusContainer};
+    width: ${statusSize};
+    height: ${statusSize};
     border-radius: 50%;
     border: ${statusBorder} solid white;
     box-sizing: border-box;
