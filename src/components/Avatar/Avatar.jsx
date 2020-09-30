@@ -89,14 +89,7 @@ const Avatar = ({ avatar, letter, size, variant, status, ...props }) => {
 
   return avatar ? (
     <AvatarContainer size={sizeInPx} statusSize={statusSize} statusBorder={statusBorder} {...props}>
-      <AvatarImage
-        src={avatar}
-        size={sizeInPx}
-        variant={variant}
-        status={status}
-        statusSize={statusSize}
-        statusBorder={statusBorder}
-      />
+      <AvatarImage avatar={avatar} size={sizeInPx} variant={variant} />
       {showStatus(status, variant)}
     </AvatarContainer>
   ) : (
@@ -126,8 +119,8 @@ const AvatarContainer = styled.div(
   `
 )
 
-const AvatarImage = styled.img(
-  ({ size, variant }) => css`
+const AvatarImage = styled.div(
+  ({ avatar, size, variant }) => css`
     cursor: pointer;
     width: ${size};
     height: ${size};
@@ -135,6 +128,7 @@ const AvatarImage = styled.img(
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url(${avatar});
   `
 )
 
