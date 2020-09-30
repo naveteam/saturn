@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Typography from './../Typography/Typography'
 
 const DefaultComponent = ({ children, to, textDecorationLine, color, ...props }) => (
-  <StyledLink href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
+  <StyledLink p={1} href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
     {children}
   </StyledLink>
 )
@@ -42,7 +42,7 @@ const BaseStyled = styled.div`
 const StyledLink = styled.a`
   text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
   border-radius: 4px;
-  padding: 2px;
+  ${space}
   ${color}
   &:hover {
     text-decoration-line: underline;
@@ -57,11 +57,7 @@ const StyledLink = styled.a`
 const Label = styled(Typography)`
   text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
   border-radius: 4px;
-  padding: 2px;
-  ${typography}
   ${variant}
-  ${space}
-  ${color}
   ${layout}
   &:hover {
     text-decoration-line: underline;
@@ -69,7 +65,7 @@ const Label = styled(Typography)`
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4E98ED;
+    box-shadow: 0 0 0 2px #4e98ed;
   }
 `
 
