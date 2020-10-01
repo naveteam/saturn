@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
-import { Flex, Button, Icon } from '../'
+import { Typography, Flex, Button, Icon } from '../'
 
 const handleAcceptedFileTypes = fileTypes => {
   return typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes
@@ -104,9 +104,15 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
   const handleClickImageUpload = () => hiddenFileInput.current.click()
 
   const handleChange = event => {
-    setUploadedImage(event.target.files[0])
-    setImagePreview(URL.createObjectURL(event.target.files[0]))
-    event.target.value = null
+    try {
+      setUploadedImage(event.target.files[0])
+      setImagePreview(URL.createObjectURL(event.target.files[0]))
+    } catch (err) {
+      console.log(err)
+      setError(true)
+    } finally {
+      event.target.value = null
+    }
   }
 
   return (
@@ -117,10 +123,17 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
         onChange={handleChange}
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
-      {imagePreview ? (
-        <ImageContainer p={3}>
+      {imagePreview || error ? (
+        <ImageContainer error={error} p={3}>
           <ImageOverlay>
-            <Icon icon='visibility-outline' color='white' mr={2} onClick={() => window.open(imagePreview, '_blank')} />
+            {!error && (
+              <Icon
+                icon='visibility-outline'
+                color='white'
+                mr={2}
+                onClick={() => window.open(imagePreview, '_blank')}
+              />
+            )}
             <Icon
               icon='delete-outline'
               color='white'
@@ -128,22 +141,32 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
               onClick={() => {
                 setImagePreview(null)
                 setUploadedImage(null)
+                setError(false)
               }}
             />
           </ImageOverlay>
-          <StyledImage src={imagePreview} />
+          {error ? (
+            <ImageErrorContainer flexDirection='column'>
+              <Icon icon='broken-image' color='error' />
+              <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
+                Upload Error
+              </Typography>
+            </ImageErrorContainer>
+          ) : (
+            <StyledImage src={imagePreview} />
+          )}
         </ImageContainer>
       ) : (
         <ImageUpload
           py={5}
-          onClick={handleClickImageUpload}
+          error={error}
+          onClick={!error && handleClickImageUpload}
           disabled={disabled}
-          icon='upload'
+          icon={'upload'}
           direction='column'
           variant='outlined'
           caption={caption}
-          error={error}
-          color={error ? 'error' : 'primary'}
+          color={'primary'}
         />
       )}
     </Wrapper>
@@ -193,27 +216,34 @@ const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFile
     )
 }
 
+const ImageErrorContainer = styled(Flex)`
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  color: ${props => props.theme.colors.error};
+`
+
 const ImageOverlay = styled(Flex)`
   margin: auto;
   justify-content: center;
   align-items: center;
-  background: #212121;
+  background: ${props => props.theme.colors.gray[900]};
+  opacity: 0;
   border-radius: 4px;
   width: 262px;
   height: 262px;
   position: absolute;
-  opacity: 0;
   transition: 0.2s ease;
 `
 
 const ImageContainer = styled(Flex)`
   width: 282px;
   height: 282px;
-  border: 2px #1565c0 dashed;
+  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary)} dashed;
   border-radius: 4px;
   margin: auto;
   :hover {
-    border: 2px #114d91 dashed;
+    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_hover)} dashed;
     ${ImageOverlay} {
       opacity: 0.8;
       ${Icon} {
@@ -223,7 +253,7 @@ const ImageContainer = styled(Flex)`
     }
   }
   :active {
-    border: 2px #0c3563 dashed;
+    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_active)} dashed;
   }
 `
 
@@ -234,10 +264,11 @@ const StyledImage = styled.img`
 `
 
 const StyledButton = styled(Button)`
-  border: 2px #1565c0 dashed;
+  border: 2px ${props => props.theme.colors.primary} dashed;
 `
 const ImageUpload = styled(Button)`
-  border: ${props => (props.error ? '2px #D50000 dashed' : '2px #1565c0 dashed')};
+  border: ${props =>
+    props.error ? `2px ${props.theme.colors.error} dashed` : `2px ${props.theme.colors.primary} dashed`};
   max-width: 282px;
   height: 282px;
 `
