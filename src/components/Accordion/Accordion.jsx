@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
-import styled, { backgrounds, css, space, variant } from '@xstyled/styled-components'
+import styled, { backgrounds, space } from '@xstyled/styled-components'
 import { Icon, Typography } from '../'
 
 const Accordion = ({ children, disabled = false, expanded: propsExpanded = false }) => {
