@@ -114,6 +114,7 @@ const AccordionContent = styled.div`
   width: inherit;
   transition: all 0.3s linear;
   box-sizing: border-box;
+  overflow: hidden;
 
   z-index: ${props => (props.expanded ? 0 : -1)};
   visibility: ${props => (props.expanded ? 'visible' : 'hidden')};
