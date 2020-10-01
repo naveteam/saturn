@@ -28,25 +28,26 @@ Accordion.defaultValues = {
   disabled: false
 }
 
-const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', setExpanded, title }) => (
-  <StyledHeader disabled={disabled} padding={4} onClick={() => (!disabled ? setExpanded(current => !current) : '')}>
-    <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
-      {title}
-    </Typography>
-    <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
-  </StyledHeader>
-)
+const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', setExpanded, title }) => {
+  return (
+    <StyledHeader disabled={disabled} onClick={() => (!disabled ? setExpanded(current => !current) : '')}>
+      <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
+        {title}
+      </Typography>
+      <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
+    </StyledHeader>
+  )
+}
 
 AccordionHeader.propTypes = {
+  disabled: PropTypes.bool,
+  expanded: PropTypes.number,
   expandIcon: PropTypes.string,
+  setExpanded: PropTypes.func,
   title: PropTypes.string.isRequired
 }
 
-const AccordionDetail = ({ children, expanded }) => (
-  <AccordionContent expanded={expanded} backgroundColor='gray.100'>
-    {children}
-  </AccordionContent>
-)
+const AccordionDetail = ({ children, expanded }) => <AccordionContent expanded={expanded}>{children}</AccordionContent>
 
 const StyledIcon = styled(Icon)`
   transition: all 0.3s;
@@ -97,6 +98,7 @@ const AccordionsWrapper = styled.div`
 `
 
 const StyledHeader = styled.div`
+  padding: 4;
   background: white;
   height: 56px;
   width: inherit;
@@ -120,6 +122,7 @@ const AccordionContent = styled.div`
   transition: all 0.3s linear;
   box-sizing: border-box;
   overflow: hidden;
+  background-color: gray.100;
 
   z-index: ${props => (props.expanded ? 0 : -1)};
   visibility: ${props => (props.expanded ? 'visible' : 'hidden')};
