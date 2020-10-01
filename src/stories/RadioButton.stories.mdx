@@ -2,27 +2,30 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { RadioButton } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Input/Radio Button' component={RadioButton} />
+<Meta title='Data Input/Radio Button' component={RadioButton} argTypes={{ color: { control: 'color' } }} />
+
+export const RadioButtonControl = args => (
+  <ThemeProvider>
+    <RadioButton {...args} />
+  </ThemeProvider>
+)
 
 # RadioButton
 
 O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode selecionar apenas uma opção dentre uma lista de opções. Em sua versão desktop os Radio Buttons são mostrados lado a lado. No mobile, os Radio Buttons são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
 
-<Canvas>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <RadioButton label='Base'/>
-    </ThemeProvider>
-  </Story>
-</Canvas>
+<Story
+  name='Base'
+  args={{ label: 'Base' }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
+    }
+  }}
+>
+  {RadioButtonControl.bind({})}
+</Story>
 
 # Checked | onChange
 
