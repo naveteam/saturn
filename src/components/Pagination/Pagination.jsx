@@ -34,7 +34,7 @@ const Pagination = ({
   }, [page, variant])
 
   useEffect(() => {
-    debouncedValue <= pageSize && debouncedValue > 0 ? setPage(debouncedValue) : setPage(page)
+    debouncedValue <= pageSize && debouncedValue > 0 && setPage(debouncedValue)
   }, [debouncedValue])
 
   const setPage = useCallback(
