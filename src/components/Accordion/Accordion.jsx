@@ -60,29 +60,18 @@ const StyledIcon = styled(Icon)`
 
 const AccordionsWrapper = styled.div`
   width: 100%;
-  position: relative;
 
-  & > div:nth-child(1) > ${StyledHeader}:first-child {
+  & > div:first-child > div:first-child {
     border-radius: 4px 4px 0 0;
   }
 
-  & > div:last-of-type > ${StyledHeader}:first-child {
+  & > div:last-child > div:first-child {
     border-radius: 0 0 4px 4px;
   }
 
   & > div > ${StyledHeader}:first-child ${AccordionContent} {
     box-shadow: 0px 3px 4px
       ${({ border }) => (border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none')};
-  }
-
-  & > div:first-child > ${StyledHeader}:first-child {
-    ${({ border }) =>
-      border === 'line'
-        ? {
-            borderTop: '1px',
-            borderStyle: 'solid'
-          }
-        : {}}
   }
 
   & > div > ${StyledHeader}:first-child {
