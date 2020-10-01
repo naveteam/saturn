@@ -99,6 +99,7 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
+  const [error, setError] = useState(false)
 
   const handleClickImageUpload = () => hiddenFileInput.current.click()
 
@@ -141,6 +142,8 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
           direction='column'
           variant='outlined'
           caption={caption}
+          error={error}
+          color={error ? 'error' : 'primary'}
         />
       )}
     </Wrapper>
@@ -184,7 +187,6 @@ const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFile
       <UploadImage
         caption={caption}
         acceptedFileTypes={acceptedFileTypes || 'image/*'}
-        multipleFiles={multipleFiles}
         disabled={disabled}
         {...props}
       />
@@ -235,7 +237,7 @@ const StyledButton = styled(Button)`
   border: 2px #1565c0 dashed;
 `
 const ImageUpload = styled(Button)`
-  border: 2px #1565c0 dashed;
+  border: ${props => (props.error ? '2px #D50000 dashed' : '2px #1565c0 dashed')};
   max-width: 282px;
   height: 282px;
 `
