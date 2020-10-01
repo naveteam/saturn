@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
-import styled, { space } from '@xstyled/styled-components'
+import styled, { layout } from '@xstyled/styled-components'
 
 import { Icon, Typography } from '../'
 
@@ -74,7 +74,17 @@ const AccordionsWrapper = styled.div`
       ${({ border }) => (border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none')};
   }
 
-  & > div > ${StyledHeader}:first-child {
+  & > div:first-child > div:first-child {
+    ${({ border }) =>
+      border === 'line'
+        ? {
+            borderTop: '1px',
+            borderStyle: 'solid'
+          }
+        : {}}
+  }
+
+  & > div > div:first-child {
     ${({ border }) =>
       border === 'line'
         ? {
@@ -84,10 +94,12 @@ const AccordionsWrapper = styled.div`
         : {}}
   }
 
-  & > div:not(:last-of-type) {
+  & > div:not(:last-child) {
     border-color: gray.300 !important;
     ${({ divider }) => (divider ? { borderBottom: '1px solid' } : '')}
   }
+
+  ${layout}
 `
 
 const StyledHeader = styled.div`
