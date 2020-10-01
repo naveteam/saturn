@@ -6,36 +6,39 @@ import { ThemeProvider } from '../theme'
 
 <Meta title='Data input/Pagination' component={Pagination} />
 
-# Pagination
-export const PaginationProps = () => {
-  const [page, setPage] = useState(5)
-  return <Pagination page={page} pageSize={30} onPageChange={setPage}/>
+export const PaginationControl = args => {
+  const [page, setPage] = useState(1)
+  return (
+    <ThemeProvider>
+      <Pagination {...args} page={page} onPageChange={setPage} />
+    </ThemeProvider>
+  )
 }
 
 export const PaginationPropsInput = () => {
   const [page, setPage] = useState(20)
-  return <Pagination page={page} pageSize={200} onPageChange={setPage} variant='input'/>
+  return <Pagination page={page} pageSize={200} onPageChange={setPage} variant='input' />
 }
+
+# Pagination
 
 O componente de `Pagination` é utilizado para que o usuário possa trocar de página em sua aplicação. Sua estrutura é composta por um botões e dois ícones do tipo arrow.
 
-<Canvas>
-  <Story
-    name='Pagination'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=257%3A566'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <PaginationProps />
-    </ThemeProvider>
-  </Story>
-</Canvas>
+<Story
+  name='Pagination'
+  args={{ pageSize: 30 }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=257%3A566'
+    }
+  }}
+>
+  {PaginationControl.bind({})}
+</Story>
 
 # Pagination with Input
+
 Caso haja mais de 100 páginas a prop `variant` deve ser passada. Neste caso a estrutura do componente será um input.
 
 <Canvas>
