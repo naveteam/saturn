@@ -10,22 +10,26 @@ const Accordion = ({ children, disabled = false, expanded: propsExpanded = false
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
       disabled,
-      expanded: expanded ? 1 : 0
+      expanded: expanded ? 1 : 0,
+      setExpanded
     })
   })
 
-  return <div onClick={() => (!disabled ? setExpanded(current => !current) : '')}>{propChildren}</div>
+  return <div>{propChildren}</div>
 }
 
 Accordion.propTypes = {
-  border: PropTypes.string,
   children: PropTypes.array,
   disabled: PropTypes.bool,
   expanded: PropTypes.bool
 }
 
-const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', title }) => (
-  <StyledHeader disabled={disabled} padding={4}>
+Accordion.defaultValues = {
+  disabled: false
+}
+
+const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', setExpanded, title }) => (
+  <StyledHeader disabled={disabled} padding={4} onClick={() => (!disabled ? setExpanded(current => !current) : '')}>
     <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
       {title}
     </Typography>
