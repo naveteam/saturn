@@ -49,9 +49,13 @@ AccordionHeader.propTypes = {
 
 const AccordionDetail = ({ children, expanded }) => <AccordionContent expanded={expanded}>{children}</AccordionContent>
 
+AccordionDetail.propTypes = {
+  expanded: PropTypes.number
+}
+
 const StyledIcon = styled(Icon)`
   transition: all 0.3s;
-  transform: ${props => (props.expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${({ expanded }) => (expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
 
 const AccordionsWrapper = styled.div`
