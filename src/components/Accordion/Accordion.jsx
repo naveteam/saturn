@@ -106,18 +106,12 @@ const StyledHeader = styled.div`
   background: white;
   height: 56px;
   width: inherit;
-  display: block;
-  cursor: ${({ disabled }) => (disabled ? 'auto' : 'pointer')};
-  border: none;
-  text-align: left;
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  outline: none;
   box-sizing: border-box;
   border-color: gray.300 !important;
-
-  ${space}
 `
 
 const AccordionContent = styled.div`
