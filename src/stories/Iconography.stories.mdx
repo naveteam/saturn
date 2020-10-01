@@ -3,229 +3,803 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Icon, Flex, Box, Caption } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Data Display/Iconography" component={Icon} />
+<Meta title='Data Display/Iconography' component={Icon} argTypes={{ color: { control: 'color' } }} />
+
+export const IconBase = args => (
+  <ThemeProvider>
+    <Icon {...args} />
+  </ThemeProvider>
+)
 
 # Icon
 
 O componente de `Icon` é responsável por apresentar um dos ícones definidos em nosso Design System. Ele recebe um parâmetro principal chamado `icon` que define qual icon será renderizado.
 
-<Canvas>
-  <Story name="Base" parameters={{
+<Story
+  name='Base'
+  args={{ icon: 'face' }}
+  parameters={{
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=18%3A0'
     }
-  }}>
-    <ThemeProvider>
-      <Icon icon='face' />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-<ArgsTable of={Icon} />
+  }}
+>
+{IconBase.bind({})}
+</Story>
 
 # All Icons
 
 Abaixo segue a lista com todos os ícones disponíveis no Design System até o momento.
 
 <Canvas>
-  <Story name="All Icons" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=18%3A0'
-    }
-  }}>
+  <Story
+    name='All Icons'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=18%3A0'
+      }
+    }}
+  >
     <ThemeProvider>
       <Flex flexWrap='wrap'>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='accessible' /><Caption>accessible</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='group_add' /><Caption>group_add</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='accessible_forward' /><Caption>accessible_forward</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='help' /><Caption>help</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='account_bank' /><Caption>account_bank</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='help_outline' /><Caption>help_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='account_box' /><Caption>account_box</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='history' /><Caption>history</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='account_circle' /><Caption>account_circle</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='home' /><Caption>home</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='account_wallet' /><Caption>account_wallet</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='inbox' /><Caption>inbox</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add' /><Caption>add</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='info' /><Caption>info</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add_alert' /><Caption>add_alert</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='invert_colors' /><Caption>invert_colors</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add_box' /><Caption>add_box</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='label' /><Caption>label</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add_circle' /><Caption>add_circle</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='label_important' /><Caption>label_important</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add_circle_outline' /><Caption>add_circle_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='label_off' /><Caption>label_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='add_shopping_cart' /><Caption>add_shopping_cart</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='language' /><Caption>language</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='alarm' /><Caption>alarm</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='last_page' /><Caption>last_page</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='alarm_add' /><Caption>alarm_add</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='launch' /><Caption>launch</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='alarm_off' /><Caption>alarm_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='link' /><Caption>link</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='alarm_on' /><Caption>alarm_on</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='link_off' /><Caption>link_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='all_inbox' /><Caption>all_inbox</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='list' /><Caption>list</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='announcement' /><Caption>announcement</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='lock' /><Caption>lock</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='apps' /><Caption>apps</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='lock_open' /><Caption>lock_open</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_back' /><Caption>arrow_back</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='low_priority' /><Caption>low_priority</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_back_ios' /><Caption>arrow_back_ios</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='loyalty' /><Caption>loyalty</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_downward' /><Caption>arrow_downward</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='mail' /><Caption>mail</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_drop_down' /><Caption>arrow_drop_down</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='menu' /><Caption>menu</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_drop_up' /><Caption>arrow_drop_up</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='menu_open' /><Caption>menu_open</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_forward' /><Caption>arrow_forward</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='more_horizontal' /><Caption>more_horizontal</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_forward_ios' /><Caption>arrow_forward_ios</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='more_vertical' /><Caption>more_vertical</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_left' /><Caption>arrow_left</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='note_add' /><Caption>note_add</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_right' /><Caption>arrow_right</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='notification_important' /><Caption>notification_important</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_right_alt' /><Caption>arrow_right_alt</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='notifications' /><Caption>notifications</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='arrow_upward' /><Caption>arrow_upward</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='notifications_active' /><Caption>notifications_active</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='assessment' /><Caption>assessment</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='notifications_none' /><Caption>notifications_none</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='assignment' /><Caption>assignment</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='notifications_off' /><Caption>notifications_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='assignment_ind' /><Caption>assignment_ind</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='open_in_browser' /><Caption>open_in_browser</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='attachment' /><Caption>attachment</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='outlined_flag' /><Caption>outlined_flag</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='autorenew' /><Caption>autorenew</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='person' /><Caption>person</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='block' /><Caption>block</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='person_add' /><Caption>person_add</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='book' /><Caption>book</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='person_outline' /><Caption>person_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='bookmark' /><Caption>bookmark</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='pets' /><Caption>pets</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='bookmark_border' /><Caption>bookmark_border</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='place' /><Caption>place</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='bookmarks' /><Caption>bookmarks</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='plus_one' /><Caption>plus_one</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='broken_image' /><Caption>broken_image</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='power' /><Caption>power</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='build' /><Caption>build</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='public' /><Caption>public</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='calendar_today' /><Caption>calendar_today</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='query_builder' /><Caption>query_builder</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='check' /><Caption>check</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='question_answer' /><Caption>question_answer</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='chevron_left' /><Caption>chevron_left</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='receipt' /><Caption>receipt</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='chevron_right' /><Caption>chevron_right</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='redo' /><Caption>redo</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='clear' /><Caption>clear</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='refresh' /><Caption>refresh</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud' /><Caption>cloud</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='remove' /><Caption>remove</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud_done' /><Caption>cloud_done</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='remove_circle' /><Caption>remove_circle</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud_download' /><Caption>cloud_download</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='remove_circle_outline' /><Caption>remove_circle_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud_off' /><Caption>cloud_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='remove_shopping_cart' /><Caption>remove_shopping_cart</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud_queue' /><Caption>cloud_queue</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='reply' /><Caption>reply</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='cloud_upload' /><Caption>cloud_upload</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='reply_all' /><Caption>reply_all</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='compare_arrows' /><Caption>compare_arrows</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='report' /><Caption>report</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='contactless' /><Caption>contactless</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='report_off' /><Caption>report_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='create_new_folder' /><Caption>create_new_folder</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='report_problem' /><Caption>report_problem</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='credit_card' /><Caption>credit_card</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='save' /><Caption>save</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='dashboard' /><Caption>dashboard</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='search' /><Caption>search</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='delete' /><Caption>delete</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='send' /><Caption>send</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='delete_outline' /><Caption>delete_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='settings' /><Caption>settings</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='description' /><Caption>description</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='share' /><Caption>share</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='done' /><Caption>done</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='shopping_basket' /><Caption>shopping_basket</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='done_all' /><Caption>done_all</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='shopping_cart' /><Caption>shopping_cart</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='donut_small' /><Caption>donut_small</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='sort' /><Caption>sort</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='download' /><Caption>download</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='star' /><Caption>star</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='drafts' /><Caption>drafts</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='star_half' /><Caption>star_half</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='eco' /><Caption>eco</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='star_outline' /><Caption>star_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='edit' /><Caption>edit</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='store' /><Caption>store</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='error' /><Caption>error</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='swap_horizontal' /><Caption>swap_horizontal</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='error_outline' /><Caption>error_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='swap_vertical' /><Caption>swap_vertical</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='event' /><Caption>event</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='theaters' /><Caption>theaters</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='exit_to_app' /><Caption>exit_to_app</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='thumb_down' /><Caption>thumb_down</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='expand_less' /><Caption>expand_less</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='thumb_up' /><Caption>thumb_up</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='expand_more' /><Caption>expand_more</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='timeline' /><Caption>timeline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='explore' /><Caption>explore</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='touch_app' /><Caption>touch_app</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='explore_off' /><Caption>explore_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='trending_down' /><Caption>trending_down</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='extension' /><Caption>extension</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='trending_flat' /><Caption>trending_flat</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='face' /><Caption>face</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='trending_up' /><Caption>trending_up</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='favorite' /><Caption>favorite</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='undo' /><Caption>undo</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='favorite_border' /><Caption>favorite_border</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='unfold_less' /><Caption>unfold_less</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='file_copy' /><Caption>file_copy</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='unfold_more' /><Caption>unfold_more</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='filter_list' /><Caption>filter_list</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='upload' /><Caption>upload</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='fingerprint' /><Caption>fingerprint</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='verified_user' /><Caption>verified_user</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='first_page' /><Caption>first_page</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='visibility-outline' /><Caption>visibility</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='flag' /><Caption>flag</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='visibility' /><Caption>visibility</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='flight_land' /><Caption>flight_land</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='visibility_off-outline' /><Caption>visibility_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='flight_takeoff' /><Caption>flight_takeoff</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='visibility_off' /><Caption>visibility_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='folder' /><Caption>folder</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='warning' /><Caption>warning</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='folder_open' /><Caption>folder_open</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='watch_later' /><Caption>watch_later</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='folder_shared' /><Caption>folder_shared</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='work' /><Caption>work</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='fullscreen' /><Caption>fullscreen</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='work_off' /><Caption>work_off</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='fullscreen_exit' /><Caption>fullscreen_exit</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='work_outline' /><Caption>work_outline</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='gesture' /><Caption>gesture</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='zoom_in' /><Caption>zoom_in</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='get_app' /><Caption>get_app</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='zoom_out' /><Caption>zoom_out</Caption></Flex>
-        <Flex width={1/8} alignItems='center' flexDirection='column' margin='10px 0'><Icon icon='group' /><Caption>group</Caption></Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='accessible' />
+          <Caption>accessible</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='group_add' />
+          <Caption>group_add</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='accessible_forward' />
+          <Caption>accessible_forward</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='help' />
+          <Caption>help</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='account_bank' />
+          <Caption>account_bank</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='help_outline' />
+          <Caption>help_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='account_box' />
+          <Caption>account_box</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='history' />
+          <Caption>history</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='account_circle' />
+          <Caption>account_circle</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='home' />
+          <Caption>home</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='account_wallet' />
+          <Caption>account_wallet</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='inbox' />
+          <Caption>inbox</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add' />
+          <Caption>add</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='info' />
+          <Caption>info</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add_alert' />
+          <Caption>add_alert</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='invert_colors' />
+          <Caption>invert_colors</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add_box' />
+          <Caption>add_box</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='label' />
+          <Caption>label</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add_circle' />
+          <Caption>add_circle</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='label_important' />
+          <Caption>label_important</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add_circle_outline' />
+          <Caption>add_circle_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='label_off' />
+          <Caption>label_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='add_shopping_cart' />
+          <Caption>add_shopping_cart</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='language' />
+          <Caption>language</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='alarm' />
+          <Caption>alarm</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='last_page' />
+          <Caption>last_page</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='alarm_add' />
+          <Caption>alarm_add</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='launch' />
+          <Caption>launch</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='alarm_off' />
+          <Caption>alarm_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='link' />
+          <Caption>link</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='alarm_on' />
+          <Caption>alarm_on</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='link_off' />
+          <Caption>link_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='all_inbox' />
+          <Caption>all_inbox</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='list' />
+          <Caption>list</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='announcement' />
+          <Caption>announcement</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='lock' />
+          <Caption>lock</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='apps' />
+          <Caption>apps</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='lock_open' />
+          <Caption>lock_open</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_back' />
+          <Caption>arrow_back</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='low_priority' />
+          <Caption>low_priority</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_back_ios' />
+          <Caption>arrow_back_ios</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='loyalty' />
+          <Caption>loyalty</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_downward' />
+          <Caption>arrow_downward</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='mail' />
+          <Caption>mail</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_drop_down' />
+          <Caption>arrow_drop_down</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='menu' />
+          <Caption>menu</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_drop_up' />
+          <Caption>arrow_drop_up</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='menu_open' />
+          <Caption>menu_open</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_forward' />
+          <Caption>arrow_forward</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='more_horizontal' />
+          <Caption>more_horizontal</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_forward_ios' />
+          <Caption>arrow_forward_ios</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='more_vertical' />
+          <Caption>more_vertical</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_left' />
+          <Caption>arrow_left</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='note_add' />
+          <Caption>note_add</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_right' />
+          <Caption>arrow_right</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='notification_important' />
+          <Caption>notification_important</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_right_alt' />
+          <Caption>arrow_right_alt</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='notifications' />
+          <Caption>notifications</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='arrow_upward' />
+          <Caption>arrow_upward</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='notifications_active' />
+          <Caption>notifications_active</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='assessment' />
+          <Caption>assessment</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='notifications_none' />
+          <Caption>notifications_none</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='assignment' />
+          <Caption>assignment</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='notifications_off' />
+          <Caption>notifications_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='assignment_ind' />
+          <Caption>assignment_ind</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='open_in_browser' />
+          <Caption>open_in_browser</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='attachment' />
+          <Caption>attachment</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='outlined_flag' />
+          <Caption>outlined_flag</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='autorenew' />
+          <Caption>autorenew</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='person' />
+          <Caption>person</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='block' />
+          <Caption>block</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='person_add' />
+          <Caption>person_add</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='book' />
+          <Caption>book</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='person_outline' />
+          <Caption>person_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='bookmark' />
+          <Caption>bookmark</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='pets' />
+          <Caption>pets</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='bookmark_border' />
+          <Caption>bookmark_border</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='place' />
+          <Caption>place</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='bookmarks' />
+          <Caption>bookmarks</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='plus_one' />
+          <Caption>plus_one</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='broken_image' />
+          <Caption>broken_image</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='power' />
+          <Caption>power</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='build' />
+          <Caption>build</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='public' />
+          <Caption>public</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='calendar_today' />
+          <Caption>calendar_today</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='query_builder' />
+          <Caption>query_builder</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='check' />
+          <Caption>check</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='question_answer' />
+          <Caption>question_answer</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='chevron_left' />
+          <Caption>chevron_left</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='receipt' />
+          <Caption>receipt</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='chevron_right' />
+          <Caption>chevron_right</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='redo' />
+          <Caption>redo</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='clear' />
+          <Caption>clear</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='refresh' />
+          <Caption>refresh</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud' />
+          <Caption>cloud</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='remove' />
+          <Caption>remove</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud_done' />
+          <Caption>cloud_done</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='remove_circle' />
+          <Caption>remove_circle</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud_download' />
+          <Caption>cloud_download</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='remove_circle_outline' />
+          <Caption>remove_circle_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud_off' />
+          <Caption>cloud_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='remove_shopping_cart' />
+          <Caption>remove_shopping_cart</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud_queue' />
+          <Caption>cloud_queue</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='reply' />
+          <Caption>reply</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='cloud_upload' />
+          <Caption>cloud_upload</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='reply_all' />
+          <Caption>reply_all</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='compare_arrows' />
+          <Caption>compare_arrows</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='report' />
+          <Caption>report</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='contactless' />
+          <Caption>contactless</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='report_off' />
+          <Caption>report_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='create_new_folder' />
+          <Caption>create_new_folder</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='report_problem' />
+          <Caption>report_problem</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='credit_card' />
+          <Caption>credit_card</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='save' />
+          <Caption>save</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='dashboard' />
+          <Caption>dashboard</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='search' />
+          <Caption>search</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='delete' />
+          <Caption>delete</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='send' />
+          <Caption>send</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='delete_outline' />
+          <Caption>delete_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='settings' />
+          <Caption>settings</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='description' />
+          <Caption>description</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='share' />
+          <Caption>share</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='done' />
+          <Caption>done</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='shopping_basket' />
+          <Caption>shopping_basket</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='done_all' />
+          <Caption>done_all</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='shopping_cart' />
+          <Caption>shopping_cart</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='donut_small' />
+          <Caption>donut_small</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='sort' />
+          <Caption>sort</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='download' />
+          <Caption>download</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='star' />
+          <Caption>star</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='drafts' />
+          <Caption>drafts</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='star_half' />
+          <Caption>star_half</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='eco' />
+          <Caption>eco</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='star_outline' />
+          <Caption>star_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='edit' />
+          <Caption>edit</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='store' />
+          <Caption>store</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='error' />
+          <Caption>error</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='swap_horizontal' />
+          <Caption>swap_horizontal</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='error_outline' />
+          <Caption>error_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='swap_vertical' />
+          <Caption>swap_vertical</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='event' />
+          <Caption>event</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='theaters' />
+          <Caption>theaters</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='exit_to_app' />
+          <Caption>exit_to_app</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='thumb_down' />
+          <Caption>thumb_down</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='expand_less' />
+          <Caption>expand_less</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='thumb_up' />
+          <Caption>thumb_up</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='expand_more' />
+          <Caption>expand_more</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='timeline' />
+          <Caption>timeline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='explore' />
+          <Caption>explore</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='touch_app' />
+          <Caption>touch_app</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='explore_off' />
+          <Caption>explore_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='trending_down' />
+          <Caption>trending_down</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='extension' />
+          <Caption>extension</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='trending_flat' />
+          <Caption>trending_flat</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='face' />
+          <Caption>face</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='trending_up' />
+          <Caption>trending_up</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='favorite' />
+          <Caption>favorite</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='undo' />
+          <Caption>undo</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='favorite_border' />
+          <Caption>favorite_border</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='unfold_less' />
+          <Caption>unfold_less</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='file_copy' />
+          <Caption>file_copy</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='unfold_more' />
+          <Caption>unfold_more</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='filter_list' />
+          <Caption>filter_list</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='upload' />
+          <Caption>upload</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='fingerprint' />
+          <Caption>fingerprint</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='verified_user' />
+          <Caption>verified_user</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='first_page' />
+          <Caption>first_page</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='visibility-outline' />
+          <Caption>visibility</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='flag' />
+          <Caption>flag</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='visibility' />
+          <Caption>visibility</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='flight_land' />
+          <Caption>flight_land</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='visibility_off-outline' />
+          <Caption>visibility_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='flight_takeoff' />
+          <Caption>flight_takeoff</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='visibility_off' />
+          <Caption>visibility_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='folder' />
+          <Caption>folder</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='warning' />
+          <Caption>warning</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='folder_open' />
+          <Caption>folder_open</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='watch_later' />
+          <Caption>watch_later</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='folder_shared' />
+          <Caption>folder_shared</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='work' />
+          <Caption>work</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='fullscreen' />
+          <Caption>fullscreen</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='work_off' />
+          <Caption>work_off</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='fullscreen_exit' />
+          <Caption>fullscreen_exit</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='work_outline' />
+          <Caption>work_outline</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='gesture' />
+          <Caption>gesture</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='zoom_in' />
+          <Caption>zoom_in</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='get_app' />
+          <Caption>get_app</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='zoom_out' />
+          <Caption>zoom_out</Caption>
+        </Flex>
+        <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
+          <Icon icon='group' />
+          <Caption>group</Caption>
+        </Flex>
       </Flex>
     </ThemeProvider>
   </Story>

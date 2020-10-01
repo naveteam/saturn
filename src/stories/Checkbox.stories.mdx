@@ -2,27 +2,30 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Checkbox } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Input/Checkbox' component={Checkbox} />
+<Meta title='Data Input/Checkbox' component={Checkbox} argTypes={{ color: { control: 'color' } }} />
+
+export const CheckboxBase = args => (
+  <ThemeProvider>
+    <Checkbox {...args} />
+  </ThemeProvider>
+)
 
 # Checkbox
 
 O componente `Checkbox` deve ser utilizado em casos no qual o usuário pode selecionar mais de uma opção dentre uma lista de opções. Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
 
-<Canvas>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Checkbox label='Base' />
-    </ThemeProvider>
-  </Story>
-</Canvas>
+<Story
+  name='Base'
+  args={{ label: 'Label' }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A148'
+    }
+  }}
+>
+  {CheckboxBase.bind({})}
+</Story>
 
 # Checked | onChange
 
@@ -74,7 +77,7 @@ O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido
 
 <Canvas>
   <Story
-    name='label'
+    name='Label'
     parameters={{
       design: {
         type: 'figma',
@@ -84,7 +87,7 @@ O `Checkbox` aceita uma label opcional para cada elemento, se não for fornecido
   >
     <ThemeProvider>
       <Checkbox label='Checkbox Label' name='check15' />
-      <Checkbox name='check16' />
+      <Checkbox name='check15' />
     </ThemeProvider>
   </Story>
 </Canvas>

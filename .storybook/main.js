@@ -3,6 +3,7 @@ module.exports = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-viewport',
+    '@storybook/addon-controls',
     'storybook-addon-designs/register',
     'storybook-svgr-react-component'
   ]
