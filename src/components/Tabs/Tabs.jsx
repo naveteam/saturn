@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import styled, { css, up, down, breakpoints } from '@xstyled/styled-components'
+import React, { useState, useEffect, useRef, forwardRef } from 'react'
+import styled, { css, up, down } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
@@ -7,7 +7,7 @@ import { Typography } from '../'
 import { Icon } from '../Iconography'
 import Flex from '../Grid/Flex'
 
-import { outerWidth, debounce } from '../../utils'
+import { outerWidth, debounce, useEventListener } from '../../utils'
 
 const Content = ({ children, value, index, ...props }) => {
   return (
@@ -29,17 +29,29 @@ Content.propTypes = {
   value: PropTypes.any.isRequired
 }
 
-const ScrollButton = ({ to, disabled }) => (
-  <ArrowButton onClick={e => e.preventDefault()} className={`tabs__scroll-trigger_${to}`} disabled={disabled}>
+const ScrollButton = forwardRef(({ to, disabled, clickHandler }, ref) => (
+  <ArrowButton ref={ref} onClick={() => clickHandler()} disabled={disabled}>
     <Icon icon={`chevron-${to}`} color='blue.400' />
   </ArrowButton>
-)
+))
 
-function a11yProps(id, index) {
+ScrollButton.propTypes = {
+  to: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  clickHandler: PropTypes.func.isRequired
+}
+
+const a11yProps = (id, index) => {
   return {
     id: `tab-${id}-${index}`,
     'aria-controls': `tab-content-${id}-${index}`
   }
+}
+
+const getType = (hasLabel, hasIcon) => {
+  if (hasLabel && hasIcon) return 'full'
+  if (!hasLabel && hasIcon) return 'onlyIcon'
+  return 'onlyText'
 }
 
 export const Tabs = ({ direction, tabs, children, ...props }) => {
@@ -48,80 +60,73 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
   const [leftArrowClickable, setLeftArrowClickable] = useState(false)
   const [rightArrowClickable, setRightArrowClickable] = useState(true)
   const [collapsedList, setCollapse] = useState(true)
+  const [viewSize, setViewSize] = useState(0)
+  const [totalSize, setTotalSize] = useState(0)
+  const [pointer, setPointer] = useState(0)
+  const [translate, setTranslate] = useState(0)
+  const [tabSizeArray, setTabSizeArray] = useState([])
   const [id] = useState(props.id || `tabs-${String(Math.random()).replace(/\./g, '')}`)
 
-  const getType = (hasLabel, hasIcon) => {
-    if (hasLabel && hasIcon) return 'full'
-    if (!hasLabel && hasIcon) return 'onlyIcon'
-    return 'onlyText'
+  const tabsWrapper = useRef(null)
+  const leftTrigger = useRef(null)
+  const rightTrigger = useRef(null)
+
+  const xScroll = () => {
+    tabsWrapper.current.style.transform = `translateX(${translate}px)`
   }
 
-  const bindScroll = () => {
-    const tabsWrapper = document.querySelector(`#${id} .tabs__wrapper`)
-    const leftTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_left`)
-    const rightTrigger = document.querySelector(`#${id} .tabs__scroll-trigger_right`)
+  const leftTriggerHandler = () => {
+    setPointer(pointer - 1)
+    setTranslate(translate + tabSizeArray[pointer - 1])
+    setRightArrowClickable(true)
+  }
 
-    const VIEW_SIZE = outerWidth(tabsWrapper) // gets the visible width of the wrapper
+  const rightTriggerHandler = () => {
+    setLeftArrowClickable(true)
+    setTranslate(translate - tabSizeArray[pointer])
+    setPointer(pointer + 1)
 
-    const tabSizeArray = []
-    let pointer = 0
-    let translate = 0 // scroll value
+    const nonReachedWidth = totalSize - (tabSizeArray[pointer] + Math.abs(translate))
+    const lastViewWidth = tabsWrapper.current.clientWidth
+    
+    if (nonReachedWidth <= lastViewWidth) {
+      setRightArrowClickable(false)
+    }
+  }
 
-    tabsWrapper.childNodes.forEach(el => {
-      // getting all items width
-      tabSizeArray.push(outerWidth(el))
-    })
-
-    const TOTAL_SIZE = tabSizeArray.reduce((a, b) => a + b, 0) // The sum of all items width
-
-    if (TOTAL_SIZE > VIEW_SIZE && direction === 'horizontal') {
-      // check if scroll navigation is needed
+  const checkNavigationNeed = () => {
+    if (totalSize > viewSize && direction === 'horizontal') {
       setNavigationVisible(true)
     }
-
-    leftTrigger.addEventListener('click', () => {
-      // decrease array pointer
-      pointer--
-
-      if (translate != 0) {
-        // check if the wrapper was scrolled
-        translate += tabSizeArray[pointer]
-        setRightArrowClickable(true)
-        tabsWrapper.style.transform = `translateX(${translate}px)`
-      }
-
-      if (translate == 0) {
-        // prevent the last left click to overflowing the wrapper
-        setLeftArrowClickable(false)
-      }
-    })
-
-    rightTrigger.addEventListener('click', () => {
-      const nonReachedView = TOTAL_SIZE + translate // translate returns a negative value because of that we do an addition
-      const lastView = VIEW_SIZE >= nonReachedView
-
-      if (lastView) {
-        // check if the scroll pointer is already on max right
-        setRightArrowClickable(false)
-      }
-
-      setLeftArrowClickable(true)
-      translate -= tabSizeArray[pointer]
-      tabsWrapper.style.transform = `translateX(${translate}px)`
-      pointer++
-    })
   }
 
-  useEffect(() => {
-    bindScroll()
+  useEventListener(
+    'resize',
+    debounce(() => checkNavigationNeed(), true)
+  )
 
-    window.addEventListener(
-      'resize',
-      debounce(() => {
-        bindScroll()
-      }, true)
-    )
+  useEffect(() => {
+    setViewSize(outerWidth(tabsWrapper.current))
   }, [])
+
+  useEffect(() => {
+    setTabSizeArray([...tabsWrapper.current.childNodes].map(el => outerWidth(el)))
+  }, [viewSize])
+
+  useEffect(() => {
+    setTotalSize(tabSizeArray.reduce((a, b) => a + b, 0))
+  }, [tabSizeArray])
+
+  useEffect(() => {
+    checkNavigationNeed()
+  }, [totalSize, viewSize])
+
+  useEffect(() => {
+    if (translate == 0) {
+      setLeftArrowClickable(false)
+    }
+    return xScroll()
+  }, [translate])
 
   return (
     <Base {...props} direction={direction} id={id}>
@@ -131,9 +136,9 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
             <Icon icon='menu' color='blue.400' />
           </HamburgerButton>
         </MobileMenu>
-        <ScrollButton to='left' disabled={!leftArrowClickable} />
+        <ScrollButton to='left' disabled={!leftArrowClickable} ref={leftTrigger} clickHandler={leftTriggerHandler} />
         <TabsContainer hasScroll={navigationVisible} value={activeTabValue} direction={direction}>
-          <TabsWrapper className='tabs__wrapper' direction={direction}>
+          <TabsWrapper ref={tabsWrapper} direction={direction}>
             {tabs.map((tab, index) => {
               const { label, disabled, icon } = tab
               return (
@@ -166,7 +171,12 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
             })}
           </TabsWrapper>
         </TabsContainer>
-        <ScrollButton to='right' disabled={!rightArrowClickable} />
+        <ScrollButton
+          to='right'
+          disabled={!rightArrowClickable}
+          ref={rightTrigger}
+          clickHandler={rightTriggerHandler}
+        />
       </NavigationWrapper>
       <Body>
         {children.map((JSX, index) => (

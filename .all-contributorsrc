@@ -111,17 +111,6 @@
         "maintenance"
       ]
     }
-    {
-      "login": "devSiso",
-      "name": "Matheus Cruz",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/33552730?s=460&u=94642bc3f26d455a48d7711053b208ad4e319d36&v=4",
-      "profile": "https://github.com/devSiso",
-      "contributions": [
-        "code",
-        "maintenance",
-        "review"
-      ]
-    }
   ],
   "contributorsPerLine": 7,
   "projectName": "saturn",
