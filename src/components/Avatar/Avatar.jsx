@@ -1,110 +1,163 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
-import { Icon, Typography } from '../'
-import Flex from '../Grid'
+import { Icon } from '../Iconography'
+import { Flex } from '../Grid'
+import { Typography } from '../Typography'
 
 const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
-  let sizeInPx = '48px'
-  let color = 'pink.400'
-  let fontSize = 5
-  let statusBorder = '1.8px'
-  let statusColor = 'green.400'
-  let statusSize = '14px'
-  let statusIcon = 'circle'
+  const sizeProps = useMemo(() => {
+    const props = {
+      sizeInPx: '48px',
+      color: 'pink.400',
+      fontSize: 5,
+      statusSize: '14px',
+      statusBorder: '1.8px'
+    }
 
-  switch (status) {
-    case 'away':
-      statusColor = 'gray.400'
-      break
-    case 'approved':
-      statusIcon = 'check_circle'
-      break
-    case 'busy':
-      statusIcon = 'busy_circle'
-      statusColor = 'red.400'
-      break
-    case 'denied':
-      statusIcon = 'clear_circle'
-      statusColor = 'red.400'
-      break
-  }
+    switch (size) {
+      case 'tiny':
+        return {
+          ...props,
+          sizeInPx: '24px',
+          color: 'blue.400',
+          fontSize: 0,
+          statusSize: '8px',
+          statusBorder: '1.2px'
+        }
+      case 'very-small':
+        return {
+          ...props,
+          sizeInPx: '32px',
+          color: 'deepPurple.400',
+          fontSize: 3,
+          statusSize: '10px',
+          statusBorder: '1.4px'
+        }
+      case 'small':
+        return {
+          ...props,
+          sizeInPx: '40px',
+          color: 'purple.400',
+          fontSize: 4,
+          statusSize: '12px',
+          statusBorder: '1.6px'
+        }
+      case 'medium':
+        return {
+          ...props
+        }
+      case 'large':
+        return {
+          ...props,
+          sizeInPx: '56px',
+          color: 'red.400',
+          fontSize: '28px',
+          statusSize: '16px',
+          statusBorder: '2px'
+        }
+      case 'very-large':
+        return {
+          ...props,
+          sizeInPx: '64px',
+          color: 'orange.400',
+          fontSize: 6,
+          statusSize: '18px',
+          statusBorder: '2.2px'
+        }
+      case 'huge':
+        return {
+          ...props,
+          sizeInPx: '72px',
+          color: 'gray.700',
+          fontSize: '36px',
+          statusSize: '20px',
+          statusBorder: '2.4px'
+        }
+    }
+  }, [size])
 
-  switch (size) {
-    case 'tiny':
-      sizeInPx = '24px'
-      color = 'blue.400'
-      fontSize = 0
-      statusSize = '8px'
-      statusBorder = '1.2px'
-      break
-    case 'very-small':
-      sizeInPx = '32px'
-      color = 'deepPurple.400'
-      fontSize = 3
-      statusSize = '10px'
-      statusBorder = '1.4px'
-      break
-    case 'small':
-      sizeInPx = '40px'
-      color = 'purple.400'
-      fontSize = 4
-      statusSize = '12px'
-      statusBorder = '1.6px'
-      break
-    case 'large':
-      sizeInPx = '56px'
-      color = 'red.400'
-      fontSize = '28px'
-      statusSize = '16px'
-      statusBorder = '2px'
-      break
-    case 'very-large':
-      sizeInPx = '64px'
-      color = 'orange.400'
-      fontSize = 6
-      statusSize = '18px'
+  const statusProps = useMemo(() => {
+    const props = {
+      statusColor: 'green.400',
+      statusIcon: 'circle'
+    }
 
-      statusBorder = '2.2px'
-      break
-    case 'huge':
-      sizeInPx = '72px'
-      color = 'gray.700'
-      fontSize = '36px'
-      statusSize = '20px'
-
-      statusBorder = '2.4px'
-      break
-  }
+    switch (status) {
+      case 'available':
+        return {
+          ...props
+        }
+      case 'away':
+        return {
+          ...props,
+          statusColor: 'gray.400'
+        }
+      case 'approved':
+        return {
+          ...props,
+          statusIcon: 'check_circle'
+        }
+      case 'busy':
+        return {
+          ...props,
+          statusIcon: 'busy_circle',
+          statusColor: 'red.400'
+        }
+      case 'denied':
+        return {
+          ...props,
+          statusIcon: 'clear_circle',
+          statusColor: 'red.400'
+        }
+    }
+  }, [status])
 
   const showStatus = (status, variant) => {
     if (status && !variant) {
       return (
-        <Status statusSize={statusSize} statusBorder={statusBorder}>
-          <Icon icon={statusIcon} height={statusSize} width={statusSize} color={statusColor} />
+        <Status statusSize={sizeProps.statusSize} statusBorder={sizeProps.statusBorder}>
+          <Icon
+            icon={statusProps.statusIcon}
+            height={sizeProps.statusSize}
+            width={sizeProps.statusSize}
+            color={statusProps.statusColor}
+          />
         </Status>
       )
     }
   }
 
   return avatar ? (
-    <AvatarContainer size={sizeInPx} statusSize={statusSize} statusBorder={statusBorder} {...props}>
-      <AvatarImage avatar={avatar} size={sizeInPx} variant={variant} />
+    <AvatarContainer
+      size={sizeProps.sizeInPx}
+      statusSize={sizeProps.statusSize}
+      statusBorder={sizeProps.statusBorder}
+      {...props}
+    >
+      <AvatarImage avatar={avatar} size={sizeProps.sizeInPx} variant={variant} />
       {showStatus(status, variant)}
     </AvatarContainer>
   ) : (
-    <NonAvatarContainer letter={letter} size={sizeInPx} variant={variant} status={status} color={color} {...props}>
+    <NonAvatarContainer
+      letter={letter}
+      size={sizeProps.sizeInPx}
+      variant={variant}
+      status={status}
+      color={sizeProps.color}
+      {...props}
+    >
       {letter ? (
-        <Typography color='white' lineHeight={6} fontSize={fontSize}>
+        <Typography color='white' lineHeight={6} fontSize={sizeProps.fontSize}>
           {letter}
         </Typography>
       ) : (
         <Icon
           icon={variant ? 'avatar_business_center' : 'avatar_person'}
-          height={sizeInPx}
-          width={sizeInPx}
-          color={color}
+          height={sizeProps.sizeInPx}
+          width={sizeProps.sizeInPx}
+          color={sizeProps.color}
         />
       )}
       {showStatus(status, variant)}
