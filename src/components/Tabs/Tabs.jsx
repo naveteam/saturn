@@ -88,7 +88,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
 
     const nonReachedWidth = totalSize - (tabSizeArray[pointer] + Math.abs(translate))
     const lastViewWidth = tabsWrapper.current.clientWidth
-
+    
     if (nonReachedWidth <= lastViewWidth) {
       setRightArrowClickable(false)
     }
