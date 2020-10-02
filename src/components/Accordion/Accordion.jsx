@@ -69,7 +69,7 @@ const AccordionsWrapper = styled.div`
     border-radius: 0 0 4px 4px;
   }
 
-  & > div > ${StyledHeader}:first-child ${AccordionContent} {
+  & > div {
     box-shadow: 0px 3px 4px
       ${({ border }) => (border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none')};
   }
