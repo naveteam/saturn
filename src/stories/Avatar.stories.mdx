@@ -5,25 +5,30 @@ import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Avatar' component={Avatar} />
 
+export const AvatarControl = args => (
+  <ThemeProvider>
+    <Avatar {...args} />
+  </ThemeProvider>
+)
+
 # Avatar
 
 O componente de `Avatar` é utilizado para mostrar o avatar de um usuário.
 
-<Canvas>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Avatar avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg' />
-    </ThemeProvider>
-  </Story>
-</Canvas>
+<Story
+  name='Base'
+  args={{
+    avatar: 'https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+  }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+    }
+  }}
+>
+  {AvatarControl.bind({})}
+</Story>
 
 # Variant
 

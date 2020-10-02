@@ -8,18 +8,9 @@ import { Typography } from '../Typography'
 
 const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
   const sizeProps = useMemo(() => {
-    const props = {
-      sizeInPx: '48px',
-      color: 'pink.400',
-      fontSize: 5,
-      statusSize: '14px',
-      statusBorder: '1.8px'
-    }
-
     switch (size) {
       case 'tiny':
         return {
-          ...props,
           sizeInPx: '24px',
           color: 'blue.400',
           fontSize: 0,
@@ -28,7 +19,6 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         }
       case 'very-small':
         return {
-          ...props,
           sizeInPx: '32px',
           color: 'deepPurple.400',
           fontSize: 3,
@@ -37,7 +27,6 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         }
       case 'small':
         return {
-          ...props,
           sizeInPx: '40px',
           color: 'purple.400',
           fontSize: 4,
@@ -46,11 +35,14 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         }
       case 'medium':
         return {
-          ...props
+          sizeInPx: '48px',
+          color: 'pink.400',
+          fontSize: 5,
+          statusSize: '14px',
+          statusBorder: '1.8px'
         }
       case 'large':
         return {
-          ...props,
           sizeInPx: '56px',
           color: 'red.400',
           fontSize: '28px',
@@ -59,7 +51,6 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         }
       case 'very-large':
         return {
-          ...props,
           sizeInPx: '64px',
           color: 'orange.400',
           fontSize: 6,
@@ -68,7 +59,6 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         }
       case 'huge':
         return {
-          ...props,
           sizeInPx: '72px',
           color: 'gray.700',
           fontSize: '36px',
@@ -79,35 +69,29 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
   }, [size])
 
   const statusProps = useMemo(() => {
-    const props = {
-      statusColor: 'green.400',
-      statusIcon: 'circle'
-    }
-
     switch (status) {
       case 'available':
         return {
-          ...props
+          statusColor: 'green.400',
+          statusIcon: 'circle'
         }
       case 'away':
         return {
-          ...props,
-          statusColor: 'gray.400'
+          statusColor: 'gray.400',
+          statusIcon: 'circle'
         }
       case 'approved':
         return {
-          ...props,
+          statusColor: 'green.400',
           statusIcon: 'check_circle'
         }
       case 'busy':
         return {
-          ...props,
           statusIcon: 'busy_circle',
           statusColor: 'red.400'
         }
       case 'denied':
         return {
-          ...props,
           statusIcon: 'clear_circle',
           statusColor: 'red.400'
         }
