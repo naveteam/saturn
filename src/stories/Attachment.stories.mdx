@@ -21,12 +21,12 @@ O component de Attachment sinaliza arquivos que passaram por um processo de uplo
     }}
   >
     {() => {
-      const [attachmentFile, setAttachmentFile] = useState()
-      const handleChange = event => setAttachmentFile(event.target?.files[0])
+      const [uploadedFile, setUploadedFile] = useState()
+      const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
         <ThemeProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={attachmentFile} />
+          <Attachment file={uploadedFile} />
         </ThemeProvider>
       )
     }}
@@ -48,12 +48,12 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
     }}
   >
     {() => {
-      const [attachmentFile, setAttachmentFile] = useState()
-      const handleChange = event => setAttachmentFile(event.target?.files[0])
+      const [uploadedFile, setUploadedFile] = useState()
+      const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
         <ThemeProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={attachmentFile} />
+          <Attachment file={uploadedFile} />
         </ThemeProvider>
       )
     }}
@@ -75,7 +75,11 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
     }}
   >
     <ThemeProvider>
-      <Attachment name='download.jpg' variant='download' />
+      <Attachment
+        name='download.jpg'
+        variant='download'
+        link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+      />
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -93,28 +97,51 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
     }}
   >
     {() => {
-      const [attachmentFile, setAttachmentFile] = useState()
-      const downloadMockFile = { name: 'download.jpg', size: '531531' }
-      const handleChange = event => setAttachmentFile(event.target?.files[0])
+      const [uploadedFile, setUploadedFile] = useState()
+      const downloadMockFile = { name: 'download_mocked_file.jpg', size: '531531' }
+      const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
         <ThemeProvider>
           <Typography fontWeight='600' mb={10}>
-            Sem file
+            Download
           </Typography>
-          <Attachment mb={10} name='with_background' backgroundColor='gray.200' />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
           <Attachment
             mb={10}
             name='Example PDF link'
+            variant='download'
             link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
           />
-          <Attachment mb={10} name='sem_file_error' error={true} />
-          <Typography fontWeight='600' mb={10}>
-            Com file
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File
+          </Typography>
+          <Attachment my={10} file={downloadMockFile} variant='download' />
+          <Typography fontWeight='600' mt={20} mb={10}>
+            Upload
+          </Typography>
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
+          <Attachment
+            mb={10}
+            name='with_background'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            backgroundColor='gray.200'
+          />
+          <Attachment
+            mb={10}
+            name='link_upload_error'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            error={true}
+          />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File (Adicione um arquivo)
           </Typography>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment my={10} variant='download' file={downloadMockFile} />
-          <Attachment mb={10} file={attachmentFile} variant='upload' />
-          <Attachment mb={10} error={true} file={attachmentFile} />
+          <Attachment my={10} file={uploadedFile} />
+          <Attachment mb={10} file={uploadedFile} error={true} />
         </ThemeProvider>
       )
     }}

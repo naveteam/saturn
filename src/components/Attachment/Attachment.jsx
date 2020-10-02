@@ -3,9 +3,10 @@ import React from 'react'
 import styled from '@xstyled/styled-components'
 import { space, layout } from '@xstyled/system'
 
-import { Typography } from '../'
+import { Typography } from '../Typography'
 import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
+import { Link } from '../Link'
 
 const bytesToSize = bytes => {
   const sizes = ['Bytes', 'KB', 'MB', 'GB']
@@ -24,46 +25,68 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
 
   const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'primary')
 
-  return (
-    <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
-      {(link || name || file) && (
-        <Container>
-          <Flex mr={5}>
-            <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
-            <Flex>
-              <Link color={handleErrorColor()} forwardedAs='a' pl={3} {...(link && { href: link, target: '_blank' })}>
-                {handleName()}
-              </Link>
-              {file?.size && (
-                <Typography pl={3} color='gray.800'>
-                  ({bytesToSize(file?.size)})
-                </Typography>
-              )}
+  if (variant === 'upload')
+    return (
+      <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
+        {(link || file) && (
+          <Container>
+            <Flex mr={5}>
+              <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
+              <Flex>
+                {error ? (
+                  <Typography color='error' pl={3}>
+                    {handleName()}
+                  </Typography>
+                ) : (
+                  <Link pl={3} {...(link && { to: link, target: '_blank' })}>
+                    {handleName()}
+                  </Link>
+                )}
+                {file?.size && !error && (
+                  <Typography pl={3} color='gray.800'>
+                    ({bytesToSize(file?.size)})
+                  </Typography>
+                )}
+              </Flex>
             </Flex>
-          </Flex>
 
-          {variant === 'download' ? (
+            <Flex>
+              {!error && <StyledIcon icon='visibility-outline' onClick={onView} />}
+              <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
+            </Flex>
+          </Container>
+        )}
+      </Wrapper>
+    )
+
+  if (variant === 'download')
+    return (
+      <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
+        {(link || file) && (
+          <Container>
+            <Flex mr={5}>
+              <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
+              <Flex>
+                <Link pl={3} {...(link && !file && { to: link, target: '_blank' })} {...(file && { onClick: onView })}>
+                  {handleName()}
+                </Link>
+                {file?.size && (
+                  <Typography pl={3} color='gray.800'>
+                    ({bytesToSize(file?.size)})
+                  </Typography>
+                )}
+              </Flex>
+            </Flex>
+
             <Flex>
               <StyledIcon icon='download' onClick={onDownload} />
               <StyledIcon icon='visibility-outline' onClick={onView} />
               <StyledIcon icon='delete-outline' onClick={onDelete} />
             </Flex>
-          ) : (
-            <Flex>
-              {error && variant === 'upload' ? (
-                <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
-              ) : (
-                <Flex>
-                  <StyledIcon icon='visibility-outline' onClick={onView} />
-                  <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
-                </Flex>
-              )}
-            </Flex>
-          )}
-        </Container>
-      )}
-    </Wrapper>
-  )
+          </Container>
+        )}
+      </Wrapper>
+    )
 }
 
 const Container = styled(Flex)`
@@ -103,15 +126,6 @@ const Wrapper = styled(Flex)`
   padding-left: 4px;
   ${layout}
   ${space}
-`
-
-const Link = styled(Typography)`
-  cursor: pointer;
-  text-decoration: none;
-
-  :hover {
-    text-decoration: underline;
-  }
 `
 
 const AttachmentIcon = styled(Icon)`
