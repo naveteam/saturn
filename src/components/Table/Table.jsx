@@ -35,10 +35,11 @@ const Container = styled.table`
 
   td:first-of-type,
   th:first-of-type {
-    p label {
+    display: flex;
+    label {
       margin-right: 12px;
     }
-    p span {
+    span {
       margin-right: 8px;
     }
   }
@@ -59,8 +60,6 @@ const Container = styled.table`
       font-size: 1;
       height: 16px;
       padding: 4px 0;
-      align-items: center;
-      justify-content: center;
       background: ${th.color('blue.400')};
       color: ${th.color('white')};
     }
