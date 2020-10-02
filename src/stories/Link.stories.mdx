@@ -1,15 +1,15 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Link } from '../../src/components/Link'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Display|Link' />
+<Meta title='Data Display/Link' />
 
 # Link
 
 O compomente de Link é uma extensão do componente de Typography, com um grande diferencial: ele pode ser utilizado com qualquer tipo de link, seja ele um a, ou um Link do Gatsby ou do Next.
 
-<Preview>
+<Canvas>
   <Story
     name='Link'
     parameters={{
@@ -25,6 +25,6 @@ O compomente de Link é uma extensão do componente de Typography, com um grande
       </Link>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Link} />
+<ArgsTable of={Link} />
