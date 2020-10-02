@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Table, TableContent, TableData, TableRow, Checkbox, Typography } from '../components'
 import { ThemeProvider } from '../theme'
@@ -11,7 +11,7 @@ O componente `Table` permite que sejam criadas tabelas estilizadas para apresent
 
 O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponível devido a borda externa que a compõe.
 
-<Preview>
+<Canvas>
   <Story name="Regular" parameters={{
     design: {
       type: 'figma',
@@ -52,16 +52,13 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
       </Table>
     </ThemeProvider>
   </Story>
-</Preview>
-
-<Props of={Table} />
-
+</Canvas>
 
 # Quiet Table
 
 A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não possuindo bordas externas.
 
-<Preview>
+<Canvas>
   <Story name="Quiet" parameters={{
     design: {
       type: 'figma',
@@ -102,7 +99,6 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
       </Table>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-
-<Props of={Table} />
+<ArgsTable of={Table} />
