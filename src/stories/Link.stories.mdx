@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Link } from '../../src/components/Link'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Link' />
+
+# Link
+
+O compomente de Link é uma extensão do componente de Typography, com um grande diferencial: ele pode ser utilizado com qualquer tipo de link, seja ele um a, ou um Link do Gatsby ou do Next.
+
+<Canvas>
+  <Story
+    name='Link'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=18%3A1'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Link to='https://nave.rs' target='_blank' as='p' propPath='href'>
+        Lorem Ipsum dolor
+      </Link>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Link} />
