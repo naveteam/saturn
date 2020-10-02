@@ -45,6 +45,10 @@ const Container = styled.table`
 
   td {
     align-items: center;
+
+    p {
+      color: ${th.color('gray.800')};
+    }
   }
 
   tr td:last-child {
