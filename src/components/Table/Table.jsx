@@ -51,7 +51,12 @@ const Container = styled.table`
     p {
       text-align: center;
       border-radius: 2;
-      padding: 4px;
+      font-weight: 1;
+      font-size: 1;
+      height: 16px;
+      padding: 4px 0;
+      align-items: center;
+      justify-content: center;
       background: ${th.color('blue.400')};
       color: ${th.color('white')};
     }

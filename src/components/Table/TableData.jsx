@@ -1,7 +1,9 @@
 import styled from '@xstyled/styled-components'
 
 const TableData = styled.td`
-  padding: 12px 16px;
+  min-height: 48px;
+
+  padding: 0 16px;
 `
 
 export default TableData
