@@ -3,7 +3,7 @@ import styled, { css, up, down } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-import { Typography } from '../'
+import { Typography } from '../Typography'
 import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
 
