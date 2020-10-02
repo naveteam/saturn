@@ -30,7 +30,7 @@ Content.propTypes = {
 }
 
 const ScrollButton = forwardRef(({ to, disabled, clickHandler }, ref) => (
-  <ArrowButton ref={ref} onClick={() => clickHandler()} disabled={disabled}>
+  <ArrowButton ref={ref} onClick={clickHandler} disabled={disabled}>
     <Icon icon={`chevron-${to}`} color='blue.400' />
   </ArrowButton>
 ))
@@ -88,7 +88,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
 
     const nonReachedWidth = totalSize - (tabSizeArray[pointer] + Math.abs(translate))
     const lastViewWidth = tabsWrapper.current.clientWidth
-    
+
     if (nonReachedWidth <= lastViewWidth) {
       setRightArrowClickable(false)
     }
@@ -153,7 +153,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
                   {...a11yProps(id, index)}
                 >
                   <TabBody>
-                    <TabBodyContent>
+                    <Flex alignItems='center'>
                       {icon && (
                         <IconContainer hasLabel={label} disabled={disabled} active={index === activeTabValue}>
                           <Icon icon={icon} height='24px' />
@@ -164,7 +164,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
                           {label}
                         </Label>
                       )}
-                    </TabBodyContent>
+                    </Flex>
                   </TabBody>
                 </Tab>
               )
@@ -637,12 +637,6 @@ const TabBody = styled.div`
   display: table;
   white-space: nowrap;
   overflow-x: hidden;
-`
-
-const TabBodyContent = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
 `
 
 const TabContent = styled.div(

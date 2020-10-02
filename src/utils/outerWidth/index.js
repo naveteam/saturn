@@ -1,9 +1,6 @@
-export function outerWidth(el) {
-  let width = el.offsetWidth
-
+export const outerWidth = el => {
   const style = getComputedStyle(el)
-
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight)
+  const width = el.offsetWidth + (parseInt(style.marginLeft) + parseInt(style.marginRight))
   return width
 }
 
