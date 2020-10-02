@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { Typography } from '../'
 import { Icon } from '../Iconography'
-import Flex from '../Grid/Flex'
+import { Flex } from '../Grid'
 
 import { outerWidth, debounce, useEventListener } from '../../utils'
 
