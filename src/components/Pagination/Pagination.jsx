@@ -4,9 +4,8 @@ import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-import { Button, Icon } from '..'
+import { Button, Icon, Paragraph } from '..'
 import { Flex as Container } from '../Grid'
-import Typography from '../Typography'
 
 const getLowerValue = (valueA, valueB) => {
   if (valueA > valueB) {
@@ -92,21 +91,21 @@ const Pagination = ({
     <Container {...props}>
       <Icon
         mr={2}
-        color='gray.800'
+        color='gray.700'
         cursor='pointer'
         onClick={() => page != 1 && setPage(page - 1)}
         icon='chevron-left'
       />
       {variant === 'input' ? (
-        <Fragment>
+        <Container alignItems='center'>
           <Input value={inputValue} onChange={event => setInputValue(Number(event.target.value))} />
-          <Typography ml={3} color='gray.800'>
+          <Paragraph variant='sm' ml={3} color='gray.800'>
             de
-          </Typography>
-          <Typography ml={2} mr={2} color='gray.800'>
+          </Paragraph>
+          <Paragraph variant='sm' ml={2} mr={2} color='gray.800'>
             {pageSize}
-          </Typography>
-        </Fragment>
+          </Paragraph>
+        </Container>
       ) : (
         <Fragment>
           {showFirstDots && (
@@ -158,7 +157,7 @@ const Pagination = ({
       )}
 
       <Icon
-        color='gray.800'
+        color='gray.700'
         cursor='pointer'
         icon='chevron-right'
         onClick={() => page != pageSize && setPage(page + 1)}
@@ -174,7 +173,7 @@ const Input = styled.input`
   font-family: 'Open Sans';
   padding: 1px;
   text-align: center;
-  border: 1px solid ${th.color('gray.600')};
+  border: 1px solid ${th.color('gray.500')};
   border-radius: 2px;
   &:focus {
     outline: none;
@@ -192,10 +191,10 @@ const ButtonPage = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${th.color('gray.900')};
+  color: ${th.color('gray.800')};
 
   p {
-    font-size: ${th.fontSize(1)};
+    font-size: ${th.fontSize(2)};
     line-height: ${th.lineHeight(1)};
   }
 
