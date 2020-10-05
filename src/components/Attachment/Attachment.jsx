@@ -52,7 +52,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
 
             <Flex>
               {!error && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
+              <StyledIcon error={error} icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
             </Flex>
           </Container>
         )}
@@ -117,7 +117,7 @@ const StyledIcon = styled(Icon)`
 
 const Wrapper = styled(Flex)`
   ${StyledIcon} {
-    display: ${props => props.variant === 'download' && 'block'};
+    display: ${props => (props.variant === 'download' || props.error) && 'block'};
   }
   :hover {
     ${StyledIcon} {
