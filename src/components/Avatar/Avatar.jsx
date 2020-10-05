@@ -73,27 +73,32 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
       case 'available':
         return {
           statusColor: 'green.400',
-          statusIcon: 'circle'
+          statusIcon: 'circle',
+          statusStroke: '0px'
         }
       case 'away':
         return {
           statusColor: 'gray.400',
-          statusIcon: 'circle'
+          statusIcon: 'circle',
+          statusStroke: '0px'
         }
       case 'approved':
         return {
           statusColor: 'green.400',
-          statusIcon: 'check_circle'
+          statusIcon: 'check_circle',
+          statusStroke: '1.3px'
         }
       case 'busy':
         return {
           statusIcon: 'busy_circle',
-          statusColor: 'red.400'
+          statusColor: 'red.400',
+          statusStroke: '0px',
         }
       case 'denied':
         return {
           statusIcon: 'clear_circle',
-          statusColor: 'red.400'
+          statusColor: 'red.400',
+          statusStroke: '1.2px'
         }
     }
   }, [status])
@@ -109,8 +114,9 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           height={sizeProps.statusSize}
           bg='white'
         >
-          <Icon
+          <StatusIcon
             icon={statusProps.statusIcon}
+            statusStroke={statusProps.statusStroke}
             height={sizeProps.statusSize}
             width={sizeProps.statusSize}
             color={statusProps.statusColor}
@@ -132,7 +138,6 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
     </AvatarContainer>
   ) : (
     <NonAvatarContainer
-      size={sizeProps.sizeInPx}
       status={status}
       variant={variant}
       width={sizeProps.sizeInPx}
@@ -196,6 +201,13 @@ const Status = styled(Flex)(
     position: absolute;
     bottom: 0;
     right: 0;
+  `
+)
+
+const StatusIcon = styled(Icon)(
+  ({ statusStroke }) => css`
+    stroke-width: ${statusStroke};
+    stroke: white;
   `
 )
 
