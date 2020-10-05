@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
-import styled, { layout } from '@xstyled/styled-components'
+import styled, { css, layout } from '@xstyled/styled-components'
 
 import { Icon, Typography } from '../'
 
@@ -115,18 +115,20 @@ const StyledHeader = styled.div`
   border-color: gray.300 !important;
 `
 
-const AccordionContent = styled.div`
-  width: inherit;
-  transition: all 0.3s linear;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color: gray.100;
+const AccordionContent = styled.div(
+  ({ expanded }) => css`
+    width: inherit;
+    transition: all 0.3s linear;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: gray.100;
 
-  visibility: ${({ expanded }) => (expanded ? 'visible' : 'hidden')};
-  padding: ${({ expanded }) => (expanded ? '16px' : '0px 16px')};
-  height: ${({ expanded }) => (expanded ? '100%' : '0')};
-  opacity: ${({ expanded }) => (expanded ? 1 : 0)};
-`
+    visibility: ${expanded ? 'visible' : 'hidden'};
+    padding: ${expanded ? '16px' : '0px 16px'};
+    height: ${expanded ? '100%' : '0'};
+    opacity: ${expanded => (expanded ? 1 : 0)};
+  `
+)
 
 export { AccordionDetail, AccordionHeader, AccordionsWrapper }
 export default Accordion
