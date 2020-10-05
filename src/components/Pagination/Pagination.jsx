@@ -184,7 +184,7 @@ const Input = styled.input`
 `
 
 const ButtonPage = styled(Button)`
-  margin-right: 2px;
+  margin-right: 4px;
   width: 24px;
   height: 24px;
   min-height: 24px;
