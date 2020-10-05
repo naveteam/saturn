@@ -23,27 +23,27 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
     if (link) return link.substring(link.lastIndexOf('/') + 1)
   }
 
-  const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'primary')
+  const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'blue.300')
 
   if (variant === 'upload')
     return (
       <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
         {(link || file) && (
           <Container>
-            <Flex mr={5}>
+            <Flex mr={5} alignItems='center'>
               <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
               <Flex>
                 {error ? (
-                  <Typography color='error' pl={3}>
+                  <Typography color='error' pl={3} fontSize={2}>
                     {handleName()}
                   </Typography>
                 ) : (
-                  <Link pl={3} {...(link && { to: link, target: '_blank' })}>
+                  <Link fontSize={2} pl={3} {...(link && { to: link, target: '_blank' })}>
                     {handleName()}
                   </Link>
                 )}
                 {file?.size && !error && (
-                  <Typography pl={3} color='gray.800'>
+                  <Typography color='gray.800' pl={3} fontSize={2}>
                     ({bytesToSize(file?.size)})
                   </Typography>
                 )}
@@ -64,14 +64,19 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
       <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
         {(link || file) && (
           <Container>
-            <Flex mr={5}>
+            <Flex mr={5} alignItems='center'>
               <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
               <Flex>
-                <Link pl={3} {...(link && !file && { to: link, target: '_blank' })} {...(file && { onClick: onView })}>
+                <Link
+                  fontSize={2}
+                  pl={3}
+                  {...(link && !file && { to: link, target: '_blank' })}
+                  {...(file && { onClick: onView })}
+                >
                   {handleName()}
                 </Link>
                 {file?.size && (
-                  <Typography pl={3} color='gray.800'>
+                  <Typography color='gray.800' pl={3} fontSize={2}>
                     ({bytesToSize(file?.size)})
                   </Typography>
                 )}
@@ -96,7 +101,7 @@ const Container = styled(Flex)`
 
 const StyledIcon = styled(Icon)`
   display: none;
-  fill: primary;
+  fill: blue.300;
   width: 16px;
   height: 24px;
   padding-right: 8px;
@@ -130,7 +135,7 @@ const Wrapper = styled(Flex)`
 
 const AttachmentIcon = styled(Icon)`
   transform: rotate(-45deg);
-  fill: primary;
+  fill: blue.300;
 `
 
 Attachment.propTypes = {
