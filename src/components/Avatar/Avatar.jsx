@@ -101,7 +101,14 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
   const showStatus = (status, variant) => {
     if (status && !variant) {
       return (
-        <Status statusSize={sizeProps.statusSize} statusBorder={sizeProps.statusBorder}>
+        <Status
+          statusBorder={sizeProps.statusBorder}
+          justifyContent='center'
+          alignItems='center'
+          width={sizeProps.statusSize}
+          height={sizeProps.statusSize}
+          bg='white'
+        >
           <Icon
             icon={statusProps.statusIcon}
             height={sizeProps.statusSize}
@@ -125,11 +132,14 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
     </AvatarContainer>
   ) : (
     <NonAvatarContainer
-      letter={letter}
       size={sizeProps.sizeInPx}
-      variant={variant}
       status={status}
-      color={sizeProps.color}
+      variant={variant}
+      width={sizeProps.sizeInPx}
+      height={sizeProps.sizeInPx}
+      justifyContent='center'
+      alignItems='center'
+      bg={letter ? sizeProps.color : 'white'}
       {...props}
     >
       {letter ? (
@@ -171,28 +181,18 @@ const AvatarImage = styled.div(
 )
 
 const NonAvatarContainer = styled(Flex)(
-  ({ color, size, variant, letter }) => css`
+  ({ variant }) => css`
     cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    width: ${size};
-    height: ${size};
-    background-color: ${letter ? color : 'white'};
     border-radius: ${variant ? 2 : '50%'};
     position: relative;
   `
 )
 
 const Status = styled(Flex)(
-  ({ statusSize, statusBorder }) => css`
-    justify-content: center;
-    align-items: center;
-    width: ${statusSize};
-    height: ${statusSize};
+  ({ statusBorder }) => css`
     border-radius: 50%;
     border: ${statusBorder} solid white;
     box-sizing: border-box;
-    background-color: white;
     position: absolute;
     bottom: 0;
     right: 0;
