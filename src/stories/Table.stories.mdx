@@ -3,7 +3,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Table, TableContent, TableData, TableRow, Checkbox, Typography } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Data Display|Table" />
+<Meta title='Data Display|Table' />
 
 # Regular Table
 
@@ -12,20 +12,25 @@ O componente `Table` permite que sejam criadas tabelas estilizadas para apresent
 O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponível devido a borda externa que a compõe.
 
 <Canvas>
-  <Story name="Regular" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
-    }
-  }}>
+  <Story
+    name='Regular'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
+      }
+    }}
+  >
     <ThemeProvider>
-      <Table type="regular">
+      <Table type='regular'>
         <TableContent as='thead'>
           <TableData>
             <Checkbox />
-            <Typography fontWeight={1} fontSize={3} lineHeight={3}>Content</Typography>
+            <Typography fontWeight={1} fontSize={3} lineHeight={3}>
+              Content
+            </Typography>
           </TableData>
-          {['Teste' , 'Teste1'].map((header, index) => (
+          {['Teste', 'Teste1'].map((header, index) => (
             <TableData key={index}>
               <Typography fontWeight={1} fontSize={3} lineHeight={3}>
                 {header}
@@ -39,13 +44,23 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
               <Checkbox />
               <Typography>Content</Typography>
             </TableData>
-            <TableData><Typography>Content</Typography></TableData>
-            <TableData><Typography>Content</Typography></TableData>
+            <TableData>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography>Content</Typography>
+            </TableData>
           </TableRow>
           <TableRow>
-            <TableData as='td'><Typography>Content</Typography></TableData>
-            <TableData as='td'><Typography>Content</Typography></TableData>
-            <TableData as='td'><Typography>Content</Typography></TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
           </TableRow>
         </TableContent>
       </Table>
@@ -58,20 +73,25 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
 A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não possuindo bordas externas.
 
 <Canvas>
-  <Story name="Quiet" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
-    }
-  }}>
+  <Story
+    name='Quiet'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=484%3A8489'
+      }
+    }}
+  >
     <ThemeProvider>
-      <Table type="quiet">
+      <Table type='quiet'>
         <TableContent as='thead'>
           <TableData>
             <Checkbox />
-            <Typography fontWeight={1} fontSize={3} lineHeight={3}>Content</Typography>
+            <Typography fontWeight={1} fontSize={3} lineHeight={3}>
+              Content
+            </Typography>
           </TableData>
-          {['Teste' , 'Teste1'].map((header, index) => (
+          {['Teste', 'Teste1'].map((header, index) => (
             <TableData key={index}>
               <Typography fontWeight={1} fontSize={3} lineHeight={3}>
                 {header}
@@ -85,13 +105,23 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
               <Checkbox />
               <Typography>Content</Typography>
             </TableData>
-            <TableData><Typography>Content</Typography></TableData>
-            <TableData><Typography>Content</Typography></TableData>
+            <TableData>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography>Content</Typography>
+            </TableData>
           </TableRow>
           <TableRow>
-            <TableData as='td'><Typography>Content</Typography></TableData>
-            <TableData as='td'><Typography>Content</Typography></TableData>
-            <TableData as='td'><Typography>Content</Typography></TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
+            <TableData as='td'>
+              <Typography>Content</Typography>
+            </TableData>
           </TableRow>
         </TableContent>
       </Table>

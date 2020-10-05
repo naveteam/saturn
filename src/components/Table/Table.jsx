@@ -46,7 +46,6 @@ const Container = styled.table`
 
   td {
     align-items: center;
-
     p {
       color: ${th.color('gray.800')};
     }
@@ -65,10 +64,6 @@ const Container = styled.table`
     }
   }
 `
-
-Table.defaultProps = {
-  type: 'regular'
-}
 
 Table.defaultProps = {
   type: 'regular'
