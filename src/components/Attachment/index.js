@@ -1,5 +1,1 @@
-import Attachment from './Attachment'
-
-export { Attachment }
-
-export default Attachment
+export { default as Attachment } from './Attachment'
