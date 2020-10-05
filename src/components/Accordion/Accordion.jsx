@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
 import styled, { css, layout } from '@xstyled/styled-components'
 
-import { Icon, Typography } from '../'
+import { Flex, Icon, Typography } from '../'
 
 const Accordion = ({ children, disabled = false, expanded: propsExpanded = false }) => {
   const [expanded, setExpanded] = useState(propsExpanded)
@@ -30,7 +30,13 @@ Accordion.defaultValues = {
 
 const AccordionHeader = ({ disabled, expanded, expandIcon = 'expand_more', setExpanded, title }) => {
   return (
-    <StyledHeader disabled={disabled} onClick={() => (!disabled ? setExpanded(current => !current) : '')}>
+    <StyledHeader
+      display='flex'
+      alignItems='center'
+      justifyContent='space-between'
+      disabled={disabled}
+      onClick={() => (!disabled ? setExpanded(current => !current) : '')}
+    >
       <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
         {title}
       </Typography>
@@ -102,18 +108,17 @@ const AccordionsWrapper = styled.div`
   ${layout}
 `
 
-const StyledHeader = styled.div`
-  padding: 4;
-  background: white;
-  height: 56px;
-  width: inherit;
-  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  border-color: gray.300 !important;
-`
+const StyledHeader = styled(Flex)(
+  ({ disabled }) => css`
+    padding: 4;
+    background: white;
+    height: 56px;
+    width: inherit;
+    cursor: ${disabled ? 'default' : 'pointer'};
+    box-sizing: border-box;
+    border-color: gray.300 !important;
+  `
+)
 
 const AccordionContent = styled.div(
   ({ expanded }) => css`
