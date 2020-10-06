@@ -1,0 +1,151 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+import { useState } from 'react'
+
+import { Attachment, Flex, Typography } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Attachment' component={Attachment} />
+
+# Attachment
+
+O component de Attachment sinaliza arquivos que passaram por um processo de upload ou estão prontos para passar por um processo de download.
+
+<Canvas>
+  <Story
+    name='Default'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    {() => {
+      const [uploadedFile, setUploadedFile] = useState()
+      const handleChange = event => setUploadedFile(event.target?.files[0])
+      return (
+        <ThemeProvider>
+          <input type='file' onChange={e => handleChange(e)} />
+          <Attachment file={uploadedFile} />
+        </ThemeProvider>
+      )
+    }}
+  </Story>
+</Canvas>
+
+# Upload
+
+A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado. O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
+
+<Canvas>
+  <Story
+    name='Upload'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    {() => {
+      const [uploadedFile, setUploadedFile] = useState()
+      const handleChange = event => setUploadedFile(event.target?.files[0])
+      return (
+        <ThemeProvider>
+          <input type='file' onChange={e => handleChange(e)} />
+          <Attachment file={uploadedFile} />
+        </ThemeProvider>
+      )
+    }}
+  </Story>
+</Canvas>
+
+# Download
+
+A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode efetuar três ações: efetuar o download, visualizar ou excluir o arquivo.
+
+<Canvas>
+  <Story
+    name='Download'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Attachment
+        name='download.jpg'
+        variant='download'
+        link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Variants
+
+<Canvas>
+  <Story
+    name='Variants'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    {() => {
+      const [uploadedFile, setUploadedFile] = useState()
+      const downloadMockFile = { name: 'download_mocked_file.jpg', size: '531531' }
+      const handleChange = event => setUploadedFile(event.target?.files[0])
+      return (
+        <ThemeProvider>
+          <Typography fontWeight='600' mb={10}>
+            Download
+          </Typography>
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
+          <Attachment
+            mb={10}
+            name='Example PDF link'
+            variant='download'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+          />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File
+          </Typography>
+          <Attachment my={10} file={downloadMockFile} variant='download' />
+          <Typography fontWeight='600' mt={20} mb={10}>
+            Upload
+          </Typography>
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
+          <Attachment
+            mb={10}
+            name='with_background'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            backgroundColor='gray.200'
+          />
+          <Attachment
+            mb={10}
+            name='link_upload_error'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            error={true}
+          />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File (Adicione um arquivo)
+          </Typography>
+          <input type='file' onChange={e => handleChange(e)} />
+          <Attachment my={10} file={uploadedFile} />
+          <Attachment mb={10} file={uploadedFile} error={true} />
+        </ThemeProvider>
+      )
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Attachment} />
