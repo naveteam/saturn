@@ -134,6 +134,18 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "vitorwtavares",
+      "name": "Vítor Tavares",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/60239852?v=4",
+      "profile": "https://github.com/vitorwtavares",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
