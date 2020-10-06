@@ -35,8 +35,12 @@ const Dialog = ({
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
-            <Typography fontWeight={1} fontSize={4} lineHeight={4}>{title}</Typography>
-            <Typography fontSize={3} lineHeight={3} mt={4}>{description}</Typography>
+            <Typography fontWeight={1} fontSize={4} lineHeight={4}>
+              {title}
+            </Typography>
+            <Typography fontSize={3} lineHeight={3} mt={4}>
+              {description}
+            </Typography>
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
@@ -94,7 +98,7 @@ const Container = styled(Flex)`
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 32px 32px 0 32px;
+  margin: 24px 24px 0 24px;
 `
 
 const LeftContent = styled.div`
@@ -106,28 +110,28 @@ const RightContent = styled.div`
 
 const ChildrenContent = styled.div`
   display: flex;
-  margin: 32px 32px 0 32px;
+  margin: 24px 24px 0 24px;
 
   div {
     width: 100%;
   }
 
   div + div {
-    margin-left: 32px;
+    margin-left: 24px;
   }
 `
 
 const Buttons = styled.div`
   display: flex;
   align-self: flex-end;
-  margin: 32px;
+  margin: 24px;
 
   button {
     width: 176px;
   }
 
   button + button {
-    margin-left: 32px;
+    margin-left: 24px;
   }
 `
 
