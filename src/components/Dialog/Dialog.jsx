@@ -35,12 +35,17 @@ const Dialog = ({
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
+<<<<<<< HEAD
             <Typography fontWeight={1} fontSize={4} lineHeight={4}>
               {title}
             </Typography>
             <Typography fontSize={3} lineHeight={3} mt={4}>
               {description}
             </Typography>
+=======
+            <Typography fontWeight={1} fontSize={4} lineHeight={4}>{title}</Typography>
+            <Typography fontSize={3} lineHeight={3} mt={4}>{description}</Typography>
+>>>>>>> 0f999546cda878fc313aa6747580248cac080da6
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
@@ -50,15 +55,25 @@ const Dialog = ({
             </RightContent>
           )}
         </Content>
+<<<<<<< HEAD
 
         {children && <ChildrenContent>{children}</ChildrenContent>}
 
+=======
+​
+        {children && <ChildrenContent>{children}</ChildrenContent>}
+​
+>>>>>>> 0f999546cda878fc313aa6747580248cac080da6
         {!withCloseIcon && (
           <Buttons>
             <Button onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))} variant='outlined'>
               {cancelButton?.label ? cancelButton.label : 'Cancelar'}
             </Button>
+<<<<<<< HEAD
 
+=======
+​
+>>>>>>> 0f999546cda878fc313aa6747580248cac080da6
             <Button onClick={() => actionButton?.onClick}>
               {actionButton?.label ? actionButton.label : 'Adicionar'}
             </Button>

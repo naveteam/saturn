@@ -1,29 +1,32 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Flex, TextField } from '../components'
+import { TextField } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data input/TextField' component={TextField} />
+<Meta title='Data input/TextField' component={TextField} argTypes={{ error: { controls: 'boolean' } }} />
+
+export const TextFieldControls = args => (
+  <ThemeProvider>
+    <TextField {...args} />
+  </ThemeProvider>
+)
 
 # TextField
 
 O componente de `TextField` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
 
-<Canvas>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <TextField name='base' label='Label' message='Message' placeholder='Placeholder' />
-    </ThemeProvider>
-  </Story>
-</Canvas>
+<Story
+  name='Base'
+  args={{ label: 'Label', message: 'Message', placeholder: 'Placeholder', error: false, disabled: false }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}
+>
+  {TextFieldControls.bind({})}
+</Story>
 
 # Affixes
 

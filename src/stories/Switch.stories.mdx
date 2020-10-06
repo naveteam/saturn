@@ -1,0 +1,54 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+
+import { Flex, Switch } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data input/Switch' component={Switch} />
+
+# Switch
+
+O componente de `Switch` é utilizado para a seleção de dados na aplicação, assim o usuário pode interagir com seus estados de seleção e não seleção. Sua estrutura é feita com base em um input de `checkbox` recebendo então props de um checkbox padrão html.
+
+<Preview>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=248%3A643'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Switch name='base' defaultChecked />
+        <Switch name='disabled_on' disabled defaultChecked />
+        <Switch name='disabled_off' disabled />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+Ele pode receber também, através da propriedade `label` um texto.
+
+<Preview>
+  <Story
+    name='Base + text'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=248%3A643'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Switch name='base_text' label='Label' defaultChecked mr={12} />
+        <Switch name='disabled_on_text' label='Disabled selecionado' disabled defaultChecked mr={12} />
+        <Switch name='disabled_off_text' label='Disabled descelecionado' disabled mr={12} />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Preview>
+
+<Props of={Switch} />
