@@ -131,7 +131,7 @@ const AccordionContent = styled.div(
     visibility: ${expanded ? 'visible' : 'hidden'};
     padding: ${expanded ? '16px' : '0px 16px'};
     height: ${expanded ? '100%' : '0'};
-    opacity: ${expanded => (expanded ? 1 : 0)};
+    opacity: ${expanded ? 1 : 0};
   `
 )
 
