@@ -35,17 +35,17 @@ const Dialog = ({
       <Container ref={dialogRef}>
         <Content>
           <LeftContent>
-            <Typography fontWeight={1} fontSize={4} lineHeight={4}>
+            <Typography color='gray.800' fontWeight={1} fontSize={4} lineHeight={4}>
               {title}
             </Typography>
-            <Typography fontSize={3} lineHeight={3} mt={4}>
+            <Typography color='gray.800' fontSize={3} lineHeight={3} mt={4}>
               {description}
             </Typography>
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
               <Button color='white' onClick={() => setClose(false)}>
-                <Icon icon='name' color='black' />
+                <Icon mt={'-8px'} mr={'-8px'} color='gray.800' icon='name' color='black' />
               </Button>
             </RightContent>
           )}
