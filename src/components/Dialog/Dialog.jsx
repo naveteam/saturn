@@ -18,15 +18,15 @@ const Dialog = ({
   children
 }) => {
   const dialogRef = useRef(null)
-  const setClose = useCallback(
-    closed => {
-      onClose && onClose(closed)
+  const closeModal = useCallback(
+    () => {
+      onClose && onClose(false)
     },
     [onClose]
   )
 
-  useClickOutside(() => setClose(false), dialogRef)
-  useHotKey(() => setClose(false), 'Escape')
+  useClickOutside(() => closeModal(), dialogRef)
+  useHotKey(() => closeModal(), 'Escape')
 
   if (!open) return null
   return (
@@ -44,7 +44,7 @@ const Dialog = ({
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
-              <Button color='white' onClick={() => setClose(false)}>
+              <Button color='white' onClick={() => closeModal()}>
                 <Icon color='gray.800' icon='name' />
               </Button>
             </RightContent>
@@ -55,7 +55,7 @@ const Dialog = ({
 
         {!withCloseIcon && (
           <Buttons>
-            <Button onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))} variant='outlined'>
+            <Button onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : closeModal())} variant='outlined'>
               {cancelButton?.label ? cancelButton.label : 'Cancelar'}
             </Button>
             <Button onClick={() => actionButton?.onClick}>
@@ -110,7 +110,7 @@ const RightContent = styled.div`
 
 const ChildrenContent = styled.div`
   display: flex;
-  margin: 24px 24px 0 24px;
+  margin: 32px 24px 0 24px;
 
   div {
     width: 100%;
