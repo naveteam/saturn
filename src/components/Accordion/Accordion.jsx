@@ -53,7 +53,7 @@ AccordionDetail.propTypes = {
 }
 
 const AccordionsWrapper = styled.div(
-  ({ border, divider }) => css`
+  ({ border }) => css`
     width: 100%;
 
     & > div {
@@ -110,7 +110,7 @@ const AccordionsWrapper = styled.div(
 
     & > div:not(:last-child) {
       border-color: gray.300 !important;
-      ${divider && border !== 'line' ? { borderBottom: '1px solid' } : {}}
+      ${border !== 'line' ? { borderBottom: '1px solid' } : {}}
     }
 
     ${layout}
@@ -118,8 +118,7 @@ const AccordionsWrapper = styled.div(
 )
 
 AccordionsWrapper.defaultProps = {
-  border: 'shadow',
-  divider: true
+  border: 'shadow'
 }
 
 const StyledIcon = styled(Icon)(
