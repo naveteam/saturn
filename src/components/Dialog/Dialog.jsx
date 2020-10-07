@@ -38,14 +38,14 @@ const Dialog = ({
             <Typography color='gray.800' fontWeight={1} fontSize={4} lineHeight={4}>
               {title}
             </Typography>
-            <Typography color='gray.800' fontSize={3} lineHeight={3} mt={4}>
+            <Typography color='gray.800' fontSize={3} mt={4}>
               {description}
             </Typography>
           </LeftContent>
           {withCloseIcon && (
             <RightContent>
               <Button color='white' onClick={() => setClose(false)}>
-                <Icon mt={'-8px'} mr={'-8px'} color='gray.800' icon='name' color='black' />
+                <Icon color='gray.800' icon='name' />
               </Button>
             </RightContent>
           )}
@@ -88,7 +88,7 @@ const Container = styled(Flex)`
   display: flex;
   flex-direction: column;
   width: 656px;
-  min-height: 136px;
+  min-height: 124px;
   background: white;
   border-radius: 2;
   box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
@@ -105,6 +105,7 @@ const LeftContent = styled.div`
 `
 const RightContent = styled.div`
   right: 0;
+  margin: -8px -8px 0 0;
 `
 
 const ChildrenContent = styled.div`
@@ -123,7 +124,7 @@ const ChildrenContent = styled.div`
 const Buttons = styled.div`
   display: flex;
   align-self: flex-end;
-  margin: 24px;
+  margin: 32px 24px 24px 24px;
 
   button {
     width: 176px;
