@@ -52,13 +52,6 @@ AccordionDetail.propTypes = {
   expanded: PropTypes.number
 }
 
-const StyledIcon = styled(Icon)(
-  ({ expanded }) => css`
-    transition: all 0.3s;
-    transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
-  `
-)
-
 const AccordionsWrapper = styled.div(
   ({ border, divider }) => css`
     width: 100%;
@@ -117,7 +110,7 @@ const AccordionsWrapper = styled.div(
     & > div:last-child > div:nth-child(2) {
       ${border === 'line'
         ? {
-            display: 'none',
+            visibility: 'hidden',
             borderBottomLeftRadius: '4px',
             borderBottomRightRadius: '4px'
           }
@@ -136,6 +129,13 @@ const AccordionsWrapper = styled.div(
 AccordionsWrapper.defaultProps = {
   divider: true
 }
+
+const StyledIcon = styled(Icon)(
+  ({ expanded }) => css`
+    transition: all 0.3s;
+    transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+  `
+)
 
 const StyledHeader = styled(Flex)(
   ({ expanded }) => css`
@@ -167,11 +167,9 @@ const AccordionContent = styled.div(
     color: gray.800;
     border-color: gray.300;
 
-    ${expanded ? { display: 'block !important' } : ''}
-    /* visibility: ${expanded ? 'visible' : 'hidden'}; */
+    ${expanded ? { visibility: 'visible !important' } : ''};
     padding: ${expanded ? '16px' : '0px 16px'};
     height: ${expanded ? '100%' : '0'};
-    /* opacity: ${expanded ? 1 : 0}; */
   `
 )
 
