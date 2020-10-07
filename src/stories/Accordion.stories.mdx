@@ -152,7 +152,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
 
 # Divider
 
-É possível adicionar um pequeno divider entre os Accordions para que tenha uma melhor visualização entre cada `Accordion`.
+Por padrão, é adicionado um pequeno divider entre os accordions na sua variant `shadow` para que tenha uma melhor visualização entre cada um deles, caso queira desativar é necessário passsar a prop `divider` como `false`.
 
 <Canvas>
   <Story
@@ -165,7 +165,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
     }}
   >
     <ThemeProvider>
-      <AccordionsWrapper divider={true}>
+      <AccordionsWrapper divider={false}>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
           <AccordionDetail>

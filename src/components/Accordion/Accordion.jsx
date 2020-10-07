@@ -28,6 +28,7 @@ const AccordionHeader = ({ expanded, expandIcon = 'expand_more', setExpanded, ti
       display='flex'
       alignItems='center'
       justifyContent='space-between'
+      expanded={expanded}
       onClick={() => setExpanded(current => !current)}
     >
       <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
@@ -70,6 +71,7 @@ const AccordionsWrapper = styled.div(
     & > div:last-child > div:first-child {
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
+      border-bottom-width: 1px;
     }
 
     & > div {
@@ -88,30 +90,72 @@ const AccordionsWrapper = styled.div(
     & > div > div:first-child {
       ${border === 'line'
         ? {
+            borderWidth: '0px 1px 0px',
+            borderStyle: 'solid'
+          }
+        : {}}
+    }
+
+    & > div > div:first-child {
+      ${border === 'line'
+        ? {
+            borderWidth: '0px 1px 0px',
+            borderStyle: 'solid'
+          }
+        : {}}
+    }
+
+    & > div > div:nth-child(2) {
+      ${border === 'line'
+        ? {
             borderWidth: '0px 1px 1px',
             borderStyle: 'solid'
           }
         : {}}
     }
 
+    & > div:last-child > div:nth-child(2) {
+      ${border === 'line'
+        ? {
+            display: 'none',
+            borderBottomLeftRadius: '4px',
+            borderBottomRightRadius: '4px'
+          }
+        : {}}
+    }
+
     & > div:not(:last-child) {
       border-color: gray.300 !important;
-      ${divider ? { borderBottom: '1px solid' } : ''}
+      ${divider && border !== 'line' ? { borderBottom: '1px solid' } : ''}
     }
 
     ${layout}
   `
 )
 
-const StyledHeader = styled(Flex)`
-  padding: 4;
-  background: white;
-  height: 56px;
-  width: inherit;
-  cursor: pointer;
-  box-sizing: border-box;
-  border-color: gray.300 !important;
-`
+AccordionsWrapper.defaultProps = {
+  divider: true
+}
+
+const StyledHeader = styled(Flex)(
+  ({ expanded }) => css`
+    padding: 4;
+    background: white;
+    height: 56px;
+    width: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-color: gray.300 !important;
+
+    ${expanded
+      ? {
+          borderBottomLeftRadius: '0px !important',
+          borderBottomRightRadius: '0px !important',
+          borderBottomWidth: '0px !important'
+        }
+      : ''}
+  `
+)
 
 const AccordionContent = styled.div(
   ({ expanded }) => css`
@@ -121,11 +165,13 @@ const AccordionContent = styled.div(
     overflow: hidden;
     background-color: gray.100;
     color: gray.800;
+    border-color: gray.300;
 
-    visibility: ${expanded ? 'visible' : 'hidden'};
+    ${expanded ? { display: 'block !important' } : ''}
+    /* visibility: ${expanded ? 'visible' : 'hidden'}; */
     padding: ${expanded ? '16px' : '0px 16px'};
     height: ${expanded ? '100%' : '0'};
-    opacity: ${expanded ? 1 : 0};
+    /* opacity: ${expanded ? 1 : 0}; */
   `
 )
 
