@@ -63,13 +63,13 @@ const AccordionsWrapper = styled.div(
     width: 100%;
 
     & > div:first-child > div:first-child {
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
     }
 
     & > div:last-child > div:first-child {
-      border-bottom-left-radius: 40px;
-      border-bottom-right-radius: 40px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
 
     & > div {
