@@ -56,6 +56,10 @@ const AccordionsWrapper = styled.div(
   ({ border, divider }) => css`
     width: 100%;
 
+    & > div {
+      border-radius: 4px;
+    }
+
     & > div:first-child > div:first-child {
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
@@ -99,13 +103,9 @@ const AccordionsWrapper = styled.div(
     }
 
     & > div:last-child > div:nth-child(2) {
-      ${border === 'line'
-        ? {
-            visibility: 'hidden',
-            borderBottomLeftRadius: '4px',
-            borderBottomRightRadius: '4px'
-          }
-        : {}}
+      visibility: hidden;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
 
     & > div:not(:last-child) {
