@@ -2,7 +2,11 @@ import React, { useRef, useState, useEffect } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
-import { Typography, Flex, Button, Icon } from '../'
+import { Typography } from '../Typography'
+import { Flex } from '../Grid'
+import { Button } from '../Button'
+import { Icon } from '../Iconography'
+import { Attachment } from '../Attachment'
 
 const handleAcceptedFileTypes = fileTypes => {
   return typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes
@@ -26,6 +30,7 @@ const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <Button onClick={handleClick} disabled={disabled} icon='upload' caption={caption} />
+      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
     </Wrapper>
   )
 }
@@ -48,6 +53,7 @@ const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disab
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <Button onClick={handleClick} disabled={disabled} variant='outlined' icon='upload' caption={caption} />
+      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
     </Wrapper>
   )
 }
@@ -91,6 +97,7 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
         caption={caption}
         description={description}
       />
+      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
     </Wrapper>
   )
 }

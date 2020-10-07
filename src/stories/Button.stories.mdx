@@ -3,36 +3,12 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Button } from '../components'
 import { ThemeProvider } from '../theme'
 
-<<<<<<< HEAD
-
-<Meta title='Data Input/Button' component={Button} argTypes={{ width: { control: 'number' } }} />
-
-export const ButtonControl = args => (
-  <ThemeProvider>
-    <Button {...args}>Base</Button>
-  </ThemeProvider>
-)
-=======
 <Meta title='Data Input/Button' component={Button} />
->>>>>>> feat(button, upload): adjust button, add drag and drop and image upload
+
 # Button
 
 O componente `Button` é utilizado para permitir que o usuário possa realizar ações dentro da aplicação.
 
-<<<<<<< HEAD
-
-<Story
-  name='Base'
-  parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
-    }
-  }}
->
-  {ButtonControl.bind({})}
-</Story>
-=======
 <Canvas>
   <Story
     name='Base'
@@ -48,7 +24,6 @@ O componente `Button` é utilizado para permitir que o usuário possa realizar a
     </ThemeProvider>
   </Story>
 </Canvas>
->>>>>>> feat(button, upload): adjust button, add drag and drop and image upload
 
 # Color
 
