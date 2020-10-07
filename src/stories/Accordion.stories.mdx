@@ -36,7 +36,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
 
 # Expanded
 
-É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `expanded` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado, se você deseja controlar isso externamete é necessário que também utilize a prop `disabled`, desta forma o componente não irá mais mudar o seu estado, ficando a seu cargo passar o valor através da prop `expanded`
+É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `expanded` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado.
 
 <Canvas>
   <Story
@@ -189,45 +189,6 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
           <AccordionDetail>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
-              sed eros. Donec a risus a mauris pretium scelerisque.
-            </Typography>
-          </AccordionDetail>
-        </Accordion>
-      </AccordionsWrapper>
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Disabled
-
-É possível passar a prop disabled para o `Accordion`, quando isto ocorre o componente não irá mudar o seu estado de expanded, será mantido o valor inicial.
-
-<Canvas>
-  <Story
-    name='Disabled'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <AccordionsWrapper>
-        <Accordion expanded={true} disabled={true}>
-          <AccordionHeader title='Lorem Ipsum' />
-          <AccordionDetail>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
-              sed eros. Donec a risus a mauris pretium scelerisque.
-            </Typography>
-          </AccordionDetail>
-        </Accordion>
-        <Accordion disabled={true}>
-          <AccordionHeader title='Lorem Ipsum' />
-          <AccordionDetail>
-            <Typography>
-              Lorem ipsum dolot sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
             </Typography>
           </AccordionDetail>
