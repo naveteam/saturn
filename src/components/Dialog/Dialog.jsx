@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react'
 import styled from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
 
 import { Typography, Button, Flex } from '../'
 import { Icon } from '../Iconography'
@@ -9,6 +10,7 @@ import { Icon } from '../Iconography'
 const Dialog = ({
   open,
   onClose,
+  portalRef = document.body,
   withBackground,
   withCloseIcon,
   title,
@@ -28,43 +30,49 @@ const Dialog = ({
   useClickOutside(() => setClose(false), dialogRef)
   useHotKey(() => setClose(false), 'Escape')
 
-  if (!open) return null
   return (
-    <>
-      <Overlay />
-      <Container ref={dialogRef}>
-        <Content>
-          <LeftContent>
-            <Typography color='gray.800' fontWeight={1} fontSize={4} lineHeight={4}>
-              {title}
-            </Typography>
-            <Typography color='gray.800' fontSize={3} mt={4}>
-              {description}
-            </Typography>
-          </LeftContent>
-          {withCloseIcon && (
-            <RightContent>
-              <Button color='white' onClick={() => setClose(false)}>
-                <Icon color='gray.800' icon='name' />
+    open &&
+    ReactDOM.createPortal(
+      <>
+        <Overlay />
+        <Container ref={dialogRef}>
+          <Content>
+            <LeftContent>
+              <Typography color='gray.800' fontWeight={1} fontSize={4} lineHeight={4}>
+                {title}
+              </Typography>
+              <Typography color='gray.800' fontSize={3} mt={4}>
+                {description}
+              </Typography>
+            </LeftContent>
+            {withCloseIcon && (
+              <RightContent>
+                <Button color='white' onClick={() => setClose(false)}>
+                  <Icon color='gray.800' icon='name' />
+                </Button>
+              </RightContent>
+            )}
+          </Content>
+
+          {children && <ChildrenContent>{children}</ChildrenContent>}
+
+          {!withCloseIcon && (
+            <Buttons>
+              <Button
+                onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))}
+                variant='outlined'
+              >
+                {cancelButton?.label ? cancelButton.label : 'Cancelar'}
               </Button>
-            </RightContent>
+              <Button onClick={() => actionButton?.onClick}>
+                {actionButton?.label ? actionButton.label : 'Adicionar'}
+              </Button>
+            </Buttons>
           )}
-        </Content>
-
-        {children && <ChildrenContent>{children}</ChildrenContent>}
-
-        {!withCloseIcon && (
-          <Buttons>
-            <Button onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))} variant='outlined'>
-              {cancelButton?.label ? cancelButton.label : 'Cancelar'}
-            </Button>
-            <Button onClick={() => actionButton?.onClick}>
-              {actionButton?.label ? actionButton.label : 'Adicionar'}
-            </Button>
-          </Buttons>
-        )}
-      </Container>
-    </>
+        </Container>
+      </>,
+      portalRef
+    )
   )
 }
 
