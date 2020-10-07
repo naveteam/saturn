@@ -59,54 +59,55 @@ AccordionDetail.propTypes = {
   expanded: PropTypes.number
 }
 
-const StyledIcon = styled(Icon)`
-  transition: all 0.3s;
-  transform: ${({ expanded }) => (expanded ? 'rotate(180deg)' : 'rotate(0deg)')};
-`
+const StyledIcon = styled(Icon)(
+  ({ expanded }) => css`
+    transition: all 0.3s;
+    transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+  `
+)
 
-const AccordionsWrapper = styled.div`
-  width: 100%;
+const AccordionsWrapper = styled.div(
+  ({ border, divider }) => css`
+    width: 100%;
 
-  & > div:first-child > div:first-child {
-    border-radius: 4px 4px 0 0;
-  }
+    & > div:first-child > div:first-child {
+      border-radius: 4px 4px 0 0;
+    }
 
-  & > div:last-child > div:first-child {
-    border-radius: 0 0 4px 4px;
-  }
+    & > div:last-child > div:first-child {
+      border-radius: 0 0 4px 4px;
+    }
 
-  & > div {
-    box-shadow: 0px 3px 4px
-      ${({ border }) => (border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none')};
-  }
+    & > div {
+      box-shadow: 0px 3px 4px ${border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none'};
+    }
 
-  & > div:first-child > div:first-child {
-    ${({ border }) =>
-      border === 'line'
+    & > div:first-child > div:first-child {
+      ${border === 'line'
         ? {
             borderTop: '1px',
             borderStyle: 'solid'
           }
         : {}}
-  }
+    }
 
-  & > div > div:first-child {
-    ${({ border }) =>
-      border === 'line'
+    & > div > div:first-child {
+      ${border === 'line'
         ? {
             borderWidth: '0px 1px 1px',
             borderStyle: 'solid'
           }
         : {}}
-  }
+    }
 
-  & > div:not(:last-child) {
-    border-color: gray.300 !important;
-    ${({ divider }) => (divider ? { borderBottom: '1px solid' } : '')}
-  }
+    & > div:not(:last-child) {
+      border-color: gray.300 !important;
+      ${divider ? { borderBottom: '1px solid' } : ''}
+    }
 
-  ${layout}
-`
+    ${layout}
+  `
+)
 
 const StyledHeader = styled(Flex)(
   ({ disabled }) => css`
@@ -127,6 +128,7 @@ const AccordionContent = styled.div(
     box-sizing: border-box;
     overflow: hidden;
     background-color: gray.100;
+    color: gray.800;
 
     visibility: ${expanded ? 'visible' : 'hidden'};
     padding: ${expanded ? '16px' : '0px 16px'};
