@@ -15,7 +15,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'blue.400',
           fontSize: 0,
           statusSize: '8px',
-          statusBorder: '1.2px'
+          statusBorder: '1px'
         }
       case 'very-small':
         return {
@@ -23,7 +23,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'deepPurple.400',
           fontSize: 3,
           statusSize: '10px',
-          statusBorder: '1.4px'
+          statusBorder: '1.2px'
         }
       case 'small':
         return {
@@ -31,7 +31,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'purple.400',
           fontSize: 4,
           statusSize: '12px',
-          statusBorder: '1.6px'
+          statusBorder: '1.4px'
         }
       case 'medium':
         return {
@@ -39,7 +39,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'pink.400',
           fontSize: 5,
           statusSize: '14px',
-          statusBorder: '1.8px'
+          statusBorder: '1.6px'
         }
       case 'large':
         return {
@@ -47,7 +47,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'red.400',
           fontSize: '28px',
           statusSize: '16px',
-          statusBorder: '2px'
+          statusBorder: '1.8px'
         }
       case 'very-large':
         return {
@@ -55,7 +55,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'orange.400',
           fontSize: 6,
           statusSize: '18px',
-          statusBorder: '2.2px'
+          statusBorder: '2px'
         }
       case 'huge':
         return {
@@ -63,7 +63,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
           color: 'gray.700',
           fontSize: '36px',
           statusSize: '20px',
-          statusBorder: '2.4px'
+          statusBorder: '2.2px'
         }
     }
   }, [size])
@@ -74,25 +74,25 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
         return {
           statusColor: 'green.400',
           statusIcon: 'circle',
-          statusStroke: '0px'
+          statusStroke: '1.2px'
         }
       case 'away':
         return {
           statusColor: 'gray.400',
           statusIcon: 'circle',
-          statusStroke: '0px'
+          statusStroke: '1.2px'
         }
       case 'approved':
         return {
           statusColor: 'green.400',
           statusIcon: 'check_circle',
-          statusStroke: '1.3px'
+          statusStroke: '1.2px'
         }
       case 'busy':
         return {
           statusIcon: 'busy_circle',
           statusColor: 'red.400',
-          statusStroke: '0px',
+          statusStroke: '1.2px'
         }
       case 'denied':
         return {
