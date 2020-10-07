@@ -1,0 +1,168 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Avatar } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Avatar' component={Avatar} />
+
+export const AvatarControl = args => (
+  <ThemeProvider>
+    <Avatar {...args} />
+  </ThemeProvider>
+)
+
+# Avatar
+
+O componente de `Avatar` é utilizado para mostrar o avatar de um usuário.
+
+<Story
+  name='Base'
+  args={{
+    avatar: 'https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+  }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+    }
+  }}
+>
+  {AvatarControl.bind({})}
+</Story>
+
+# Variant
+
+a variação `Variant` é utilizada quando o avatar mostrado é de uma empresa.
+
+<Canvas>
+  <Story
+    name='Variant'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar
+        avatar='https://media-exp1.licdn.com/dms/image/C560BAQGq-lKIZo0SCA/company-logo_200_200/0?e=2159024400&v=beta&t=ZAVpCtjjoaiTpyrISmf35otQwtHzPrVHzOJunnGi61E'
+        variant
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Iniciais
+
+Caso não seja passado um atributo `avatar` é possível passar as iniciais do nome do avatar, através da propriedade `letter`.
+
+<Canvas>
+  <Story
+    name='Inicial'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar letter='A' />
+      <Avatar letter='AB' size='large' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Default
+
+Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone padrão para usuário e para empresa.
+
+<Canvas>
+  <Story
+    name='Default'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar />
+      <Avatar variant />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Status
+
+É possível definir diferentes status para um avatar, através do atributo `status`.
+
+<Canvas>
+  <Story
+    name='Status'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar
+        avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+        status='available'
+        size='huge'
+      />
+      <Avatar
+        avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+        status='away'
+        size='huge'
+      />
+      <Avatar
+        avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+        status='approved'
+        size='huge'
+      />
+      <Avatar
+        avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+        status='busy'
+        size='huge'
+      />
+      <Avatar
+        avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
+        status='denied'
+        size='huge'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Size
+
+É possível definir diferentes tamanhos para um avatar, através do atributo `size`.
+
+<Canvas>
+  <Story
+    name='Size'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=915%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Avatar size='tiny' />
+      <Avatar size='very-small' />
+      <Avatar size='small' />
+      <Avatar size='medium' />
+      <Avatar size='large' />
+      <Avatar size='very-large' />
+      <Avatar size='huge' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Avatar} />
