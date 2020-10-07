@@ -110,7 +110,7 @@ const AccordionsWrapper = styled.div(
 
     & > div:not(:last-child) {
       border-color: gray.300 !important;
-      ${divider && border !== 'line' ? { borderBottom: '10px solid' } : {}}
+      ${divider && border !== 'line' ? { borderBottom: '1px solid' } : {}}
     }
 
     ${layout}
