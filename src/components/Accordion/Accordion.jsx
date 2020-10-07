@@ -68,22 +68,13 @@ const AccordionsWrapper = styled.div(
     }
 
     & > div {
-      box-shadow: 0px 3px 4px ${border === 'shadow' || border === undefined ? ' rgba(33, 33, 33, 0.2)' : 'none'};
+      box-shadow: 0px 3px 4px ${border === 'shadow' ? ' rgba(33, 33, 33, 0.2)' : 'none'};
     }
 
     & > div:first-child > div:first-child {
       ${border === 'line'
         ? {
             borderTop: '1px',
-            borderStyle: 'solid'
-          }
-        : {}}
-    }
-
-    & > div > div:first-child {
-      ${border === 'line'
-        ? {
-            borderWidth: '0px 1px 0px',
             borderStyle: 'solid'
           }
         : {}}
@@ -119,7 +110,7 @@ const AccordionsWrapper = styled.div(
 
     & > div:not(:last-child) {
       border-color: gray.300 !important;
-      ${divider && border !== 'line' ? { borderBottom: '1px solid' } : ''}
+      ${divider && border !== 'line' ? { borderBottom: '10px solid' } : {}}
     }
 
     ${layout}
@@ -127,6 +118,7 @@ const AccordionsWrapper = styled.div(
 )
 
 AccordionsWrapper.defaultProps = {
+  border: 'shadow',
   divider: true
 }
 
@@ -167,9 +159,9 @@ const AccordionContent = styled.div(
     color: gray.800;
     border-color: gray.300;
 
-    ${expanded ? { visibility: 'visible !important' } : ''};
-    padding: ${expanded ? '16px' : '0px 16px'};
-    height: ${expanded ? '100%' : '0'};
+    ${expanded
+      ? { height: '100%', padding: '16px', visibility: 'visible !important' }
+      : { height: 0, padding: '0px 16px' }};
   `
 )
 
