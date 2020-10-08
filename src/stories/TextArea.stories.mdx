@@ -1,0 +1,74 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { TextArea } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data input/TextArea' component={TextArea} />
+
+# TextArea
+
+O componente de `TextArea` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `caption`).
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1598%3A5'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextArea name='base' label='Label' caption='Caption' placeholder='Placeholder' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Error
+
+Passando a prop de `error` para o `TextArea`, o usuário pode receber um feedback visual que existe algum ponto a ser alterado no input em questão.
+
+<Canvas>
+  <Story
+    name='Error'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1598%3A29'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextArea name='error' label='Error' placeholder='Error TextField' error caption='Required' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Disabled
+
+O `TextArea` pode receber a prop de `disabled`, que desabilita todo o seu uso.
+
+<Canvas>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1679%3A15089'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextArea
+        name='disabled'
+        label='Disabled'
+        placeholder='Disabled TextField'
+        disabled
+        caption='Disabled'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={TextArea} />

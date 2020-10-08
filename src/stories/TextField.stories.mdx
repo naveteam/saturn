@@ -1,35 +1,38 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Flex, TextField } from '../components'
+import { TextField } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data input|TextField' component={TextField} />
+<Meta title='Data input/TextField' component={TextField} argTypes={{ error: { controls: 'boolean' } }} />
+
+export const TextFieldControls = args => (
+  <ThemeProvider>
+    <TextField {...args} />
+  </ThemeProvider>
+)
 
 # TextField
 
 O componente de `TextField` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
 
-<Preview>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <TextField name='base' label='Label' message='Message' placeholder='Placeholder' />
-    </ThemeProvider>
-  </Story>
-</Preview>
+<Story
+  name='Base'
+  args={{ label: 'Label', message: 'Message', placeholder: 'Placeholder', error: false, disabled: false }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+    }
+  }}
+>
+  {TextFieldControls.bind({})}
+</Story>
 
 # Affixes
 
 O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas.
 
-<Preview>
+<Canvas>
   <Story
     name='Affixes'
     parameters={{
@@ -44,13 +47,13 @@ O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usu
       <TextField name='suffix' label='Suffix' placeholder='Suffix' suffix='reais' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Error
 
 Passando a prop de `error` para o `TextField`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado no input em questão.
 
-<Preview>
+<Canvas>
   <Story
     name='Error'
     parameters={{
@@ -64,13 +67,13 @@ Passando a prop de `error` para o `TextField`, o usuário pode receber um feedba
       <TextField name='error' label='Error' placeholder='Error TextField' error message='Required' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Disabled
 
 O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
 
-<Preview>
+<Canvas>
   <Story
     name='Disabled'
     parameters={{
@@ -92,6 +95,6 @@ O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
       />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={TextField} />
+<ArgsTable of={TextField} />

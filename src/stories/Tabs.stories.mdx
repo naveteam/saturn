@@ -1,0 +1,199 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Tabs, Flex } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Tabs' component={Tabs} />
+
+# Tabs
+
+O component de Tabs recebe uma lista de tabs como propriedade. A lista pode ser renderizada em um dos dois eixos, você define isso utilizando a propriedade `direction`
+que aceita como valor `vertical` e, `horizontal`, que é o seu valor padrão.
+
+Cada tab na lista deve ser um objeto que pode conter as seguintes propriedades: `label`, `icon` e `disabled (que desabilita a aba)`.
+Por padrão o valor de `icon` é `false` e o valor de `label` é `Tab`.
+
+O conteúdo de caba tab deve ser passado como `children` e deve estar na mesma ordem das `Tabs`.
+
+Na versão mobile de `Tabs` verticais é renderizado uma `Tablist` como menu, estando alinhada à esquerda e
+com o seu conteúdo escondido.
+
+A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de menu.
+
+# Icon and label:
+<Canvas>
+  <Story
+    name='Icon and Label'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=5040%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs
+          tabs={[
+            { label: 'Tab 1', icon: 'alarm' },
+            { icon: 'accessbility', label: 'Tab 2' },
+            { label: 'Tab nome extenso', icon: 'lock'},
+            { label: 'Tab 4', icon: 'lock' },
+            { label: 'Tab 5', icon: 'lock' },
+            { label: 'Tab 6', icon: 'lock' },
+            { label: 'Tab 7', icon: 'lock' },
+            { label: 'Tab 8', icon: 'lock' },
+          ]}
+        >
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+          <p> Tab 4 body </p>
+          <p> Tab 5 body </p>
+          <p> Tab 6 body </p>
+          <p> Tab 7 body </p>
+          <p> Tab 8 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Icon and label vertical:
+<Canvas>
+  <Story
+    name='Icon and Label vertical'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=5042%3A29'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs
+          direction="vertical"
+          tabs={[
+            { label: 'Tab 1', icon: 'alarm' },
+            { label: 'Tab 2', icon: 'accessbility' },
+            { label: 'Tab 3', icon: 'lock'},
+            { label: 'Tab 4', icon: 'menu' },
+            { label: 'Tab 5', icon: 'lock' },
+            { label: 'Tab 6', icon: 'lock' },
+            { label: 'Tab 7', icon: 'lock' },
+            { label: 'Tab 8', icon: 'lock' }
+          ]}
+        >
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+          <p> Tab 4 body </p>
+          <p> Tab 5 body </p>
+          <p> Tab 6 body </p>
+          <p> Tab 7 body </p>
+          <p> Tab 8 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Only label:
+<Canvas>
+  <Story
+    name='Only Label'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=719%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3', disabled: true }, { label: 'Tab 4', disabled: true }]}>
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+          <p> Tab 4 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Only label vertical: 
+<Canvas>
+  <Story
+    name='Only Label vertical'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=793%3A36'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs direction="vertical" tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3', disabled: true }, { label: 'Tab 4', disabled: true }]}>
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+          <p> Tab 4 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Only icon:
+<Canvas>
+  <Story
+    name='Only Icon'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=755%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}>
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Only icon vertical:
+<Canvas>
+  <Story
+    name='Only Icon vertical'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=755%3A483'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Tabs
+          direction="vertical"
+          tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}
+        >
+          <p> Tab 1 body </p>
+          <p> Tab 2 body </p>
+          <p> Tab 3 body </p>
+        </Tabs>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Tabs} />

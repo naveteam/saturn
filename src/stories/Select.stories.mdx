@@ -1,42 +1,39 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Select } from '../components'
 import { optionsSelect } from '../utils'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data input|Select' component={Select} />
+<Meta title='Data input/Select' component={Select} />
+
+export const SelectControls = args => (
+  <ThemeProvider>
+    <Select {...args} />
+  </ThemeProvider>
+)
 
 # Select
 
 O componente de `Select` é utilizado para que o usuário possa selecionar uma ou mais opções da aplicação.
 
-<Preview>
-  <Story
-    name='Base'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Select
-        label='Label'
-        options={optionsSelect}
-        optionLabel='description'
-        optionValue='name'
-        caption='Caption'
-      />
-    </ThemeProvider>
-  </Story>
-</Preview>
+<Story
+  name='Base'
+  args={{ options: optionsSelect, optionLabel: 'description', optionValue: 'name', caption: 'Caption' }}
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+    }
+  }}
+>
+  {SelectControls.bind({})}
+</Story>
 
 # Error
 
 Passando a prop de `error` para o `Select`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado na option em questão.
 
-<Preview>
+<Canvas>
   <Story
     name='Error'
     parameters={{
@@ -57,13 +54,13 @@ Passando a prop de `error` para o `Select`, o usuário pode receber um feedback 
       />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Disabled
 
 O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
 
-<Preview>
+<Canvas>
   <Story
     name='Disabled'
     parameters={{
@@ -77,6 +74,6 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
       <Select label='Disabled' optionLabel='Disabled' disabled caption='Disabled' />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Select} />
+<ArgsTable of={Select} />

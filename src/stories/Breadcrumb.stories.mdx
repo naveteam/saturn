@@ -1,9 +1,9 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Breadcrumb, Flex, Box } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Display|Breadcrumb' component={Breadcrumb} />
+<Meta title='Data Display/Breadcrumb' component={Breadcrumb} />
 
 # Breadcrumb
 
@@ -11,7 +11,7 @@ O component de Breadcrumb permite o usuário à enxergar o caminho percorrido al
 
 A variante padrão é `responsive`, ou seja, no desktop conta com sua visualização completa e no mobile irá ser reduzido, apontando para a página anterior.
 
-<Preview>
+<Canvas>
   <Story
     name='Responsive'
     parameters={{
@@ -42,13 +42,13 @@ A variante padrão é `responsive`, ou seja, no desktop conta com sua visualiza�
       </Flex>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Condensed
 
 A variante `condensed` irá sempre apontar para à página anterior, tanto em resoluções maiores quanto menores.
 
-<Preview>
+<Canvas>
   <Story
     name='Condensed'
     parameters={{
@@ -62,13 +62,13 @@ A variante `condensed` irá sempre apontar para à página anterior, tanto em re
       <Breadcrumb variant='condensed' path={[{ label: 'Página anterior', link: '/' }]} />
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 # Expanded
 
 A variante `expanded` segue o mesmo caminho da anterior. Porém, nesse caso, irá mostrar sempre todo o caminho percorrido.
 
-<Preview>
+<Canvas>
   <Story
     name='Expanded'
     parameters={{
@@ -100,6 +100,6 @@ A variante `expanded` segue o mesmo caminho da anterior. Porém, nesse caso, ir�
       </Flex>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Breadcrumb} />
+<ArgsTable of={Breadcrumb} />

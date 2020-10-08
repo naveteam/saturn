@@ -1,16 +1,16 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Flex, Box, Typography } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title="Layout|Grid" component={Flex} />
+<Meta title="Layout/Grid" component={Flex} />
 
 # Flex | Box
 
 O Componente Flex é o componente que encapsula todos os filhos `Box` e os delimita dentro do layout. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado.
 O componente Box é responsável por encapsular uma porção de conteúdo, afim de posicioná-lo na tela. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado. Sua principal diferença está na forma de definir a width do componente, onde um array de larguras pode ser inserido, seguindo os breakpoints disponíveis no `theme` definido.
 
-<Preview>
+<Canvas>
   <Story name="Flex | Box">
     <ThemeProvider>
       <Flex flexWrap='wrap' backgroundColor='gray.400'>
@@ -50,12 +50,12 @@ O componente Box é responsável por encapsular uma porção de conteúdo, afim 
       </Flex>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
 ### Proptypes Flex
 
-<Props of={Flex} />
+<ArgsTable of={Flex} />
 
 ### Proptypes Box
 
-<Props of={Box} />
+<ArgsTable of={Box} />
