@@ -1,16 +1,15 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Canvas, Preview, Props, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Tooltip } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Display|Tooltip' component={Tooltip} />
+<Meta title='Data Display/Tooltip' component={Tooltip} />
 
 # Tooltip
 
 O componente `Tooltip` é utilizado para informar dicas para o usuário.
 
-<Preview>
-  <Story
+<Story
     name='Neutral'
     parameters={{
       design: {
@@ -20,11 +19,39 @@ O componente `Tooltip` é utilizado para informar dicas para o usuário.
     }}
   >
     <ThemeProvider>
-      <Tooltip variant='warning' small content='Tooltip neutro grande com duas linhas'>
-        Something
+      <Tooltip content='Tooltip neutro grande com duas linhas'>
+        Hover It!
+      </Tooltip>
+    </ThemeProvider>
+</Story>
+
+# Variant
+
+O `Tooltip` pode receber a prop `variant`, para mostrar informações fundamentais para o usuário. Essa prop também é utilizada para identificar a cor do componente, cujo nome referencia a sua necessidade.
+<Canvas>
+  <Story
+    name='Variant'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=254%3A477'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Tooltip variant="success" content='Tooltip neutro grande com duas linhas'>
+        Success!
+      </Tooltip>
+      <br/>
+      <Tooltip variant="warning" content='Tooltip neutro grande com duas linhas'>
+        Warning!
+      </Tooltip>
+      <br/>
+      <Tooltip variant="error" content='Tooltip neutro grande com duas linhas'>
+        Error!
       </Tooltip>
     </ThemeProvider>
   </Story>
-</Preview>
+</Canvas>
 
-<Props of={Tooltip} />
+<ArgsTable of={Tooltip} />
