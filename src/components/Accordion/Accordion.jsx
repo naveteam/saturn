@@ -4,7 +4,7 @@ import styled, { css, layout } from '@xstyled/styled-components'
 
 import { Flex, Icon, Typography } from '../'
 
-const Accordion = ({ children, expanded: propsExpanded = false }) => {
+const Accordion = ({ children, expanded: propsExpanded }) => {
   const [expanded, setExpanded] = useState(propsExpanded)
 
   const propChildren = Children.map(children, current => {
@@ -22,7 +22,11 @@ Accordion.propTypes = {
   expanded: PropTypes.bool
 }
 
-const AccordionHeader = ({ expanded, expandIcon = 'expand_more', setExpanded, title }) => {
+Accordion.defaultProps = {
+  expanded: false
+}
+
+const AccordionHeader = ({ expanded, expandIcon, setExpanded, title }) => {
   return (
     <StyledHeader
       display='flex'
@@ -44,6 +48,10 @@ AccordionHeader.propTypes = {
   expandIcon: PropTypes.string,
   setExpanded: PropTypes.func,
   title: PropTypes.string.isRequired
+}
+
+AccordionHeader.defaultProps = {
+  expandIcon: 'expand_more'
 }
 
 const AccordionDetail = ({ children, expanded }) => <AccordionContent expanded={expanded}>{children}</AccordionContent>
