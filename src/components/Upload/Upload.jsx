@@ -8,9 +8,7 @@ import { Button } from '../Button'
 import { Icon } from '../Iconography'
 import { Attachment } from '../Attachment'
 
-const handleAcceptedFileTypes = fileTypes => {
-  return typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes
-}
+const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
 const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
@@ -30,7 +28,18 @@ const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <Button onClick={handleClick} disabled={disabled} icon='upload' caption={caption} />
-      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
+      {uploadedFiles &&
+        Object.values(uploadedFiles).map((file, index) => (
+          <Attachment
+            key={index}
+            file={file}
+            onView={() => window.open(URL.createObjectURL(file))}
+            onDelete={() => {
+              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+              hiddenFileInput.current.value = null
+            }}
+          />
+        ))}
     </Wrapper>
   )
 }
@@ -53,7 +62,18 @@ const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disab
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <Button onClick={handleClick} disabled={disabled} variant='outlined' icon='upload' caption={caption} />
-      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
+      {uploadedFiles &&
+        Object.values(uploadedFiles).map((file, index) => (
+          <Attachment
+            key={index}
+            file={file}
+            onView={() => window.open(URL.createObjectURL(file))}
+            onDelete={() => {
+              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+              hiddenFileInput.current.value = null
+            }}
+          />
+        ))}
     </Wrapper>
   )
 }
@@ -61,11 +81,18 @@ const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disab
 const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
   const [uploadedFiles, setUploadedFiles] = useState()
-  const [fileHover, setFileHover] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleClick = () => hiddenFileInput.current.click()
 
-  const handleChange = event => setUploadedFiles(event.target.files)
+  const handleChange = event => {
+    try {
+      setUploadedFiles(event.target.files)
+    } catch (err) {
+      console.log(err)
+      setError(true)
+    }
+  }
 
   return (
     <Wrapper {...props}>
@@ -77,15 +104,11 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <StyledButton
-        onDragEnter={() => setFileHover(true)}
-        onDragLeave={() => setFileHover(false)}
         onDragOver={e => {
           e.preventDefault()
         }}
         onDrop={e => {
           e.preventDefault()
-          setFileHover(false)
-          console.log(e.dataTransfer.files)
           setUploadedFiles(e.dataTransfer.files)
         }}
         py={5}
@@ -97,7 +120,19 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
         caption={caption}
         description={description}
       />
-      {uploadedFiles && Array.from(uploadedFiles).map((file, index) => <Attachment key={index} file={file} />)}
+      {uploadedFiles &&
+        Object.values(uploadedFiles).map((file, index) => (
+          <Attachment
+            key={index}
+            file={file}
+            error={error}
+            onView={() => window.open(URL.createObjectURL(file))}
+            onDelete={() => {
+              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+              hiddenFileInput.current.value = null
+            }}
+          />
+        ))}
     </Wrapper>
   )
 }
@@ -169,7 +204,7 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
           error={error}
           onClick={!error && handleClickImageUpload}
           disabled={disabled}
-          icon={'upload'}
+          icon='upload'
           direction='column'
           variant='outlined'
           caption={caption}

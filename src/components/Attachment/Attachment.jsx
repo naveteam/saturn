@@ -37,8 +37,12 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
                   <Typography color='error' pl={3} fontSize={2}>
                     {handleName()}
                   </Typography>
-                ) : (
+                ) : link ? (
                   <Link fontSize={2} pl={3} {...(link && { to: link, target: '_blank' })}>
+                    {handleName()}
+                  </Link>
+                ) : (
+                  <Link fontSize={2} pl={3} onClick={onView}>
                     {handleName()}
                   </Link>
                 )}
