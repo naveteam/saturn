@@ -7,7 +7,6 @@ import { Caption } from '../'
 import Icon from '../Iconography'
 
 const Tooltip = forwardRef(({ children, variant, direction, ...props }, ref) => {
-  console.log('props', props, 'variant:', variant, 'direction:', direction)
   return (
     <Wrapper ref={ref} {...props}>
       {children}
@@ -47,6 +46,8 @@ const directionVariants = variant({
       }
     `,
     left: css`
+      top: -100%;
+      right: 75%;
       :before {
         top: calc(50% - 6px);
         left: -10px;
@@ -54,6 +55,8 @@ const directionVariants = variant({
       }
     `,
     right: css`
+      top: -100%;
+      left: 75%;
       :before {
         top: calc(50% - 6px);
         right: -10px;
@@ -61,6 +64,7 @@ const directionVariants = variant({
       }
     `,
     'lower-left': css`
+      bottom: 100%;
       :before {
         top: calc(100%);
         left: calc(25% - 8px);
@@ -68,6 +72,7 @@ const directionVariants = variant({
       }
     `,
     down: css`
+      bottom: 100%;
       :before {
         top: calc(100%);
         left: calc(50% - 8px);
@@ -75,6 +80,7 @@ const directionVariants = variant({
       }
     `,
     'lower-right': css`
+      bottom: 100%;
       :before {
         top: calc(100%);
         left: calc(75% - 8px);
