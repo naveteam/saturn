@@ -139,7 +139,8 @@ Tooltip.propTypes = {
   color: PropTypes.string,
   content: PropTypes.string,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right', 'upper-left', 'upper-right', 'lower-left', 'lower-right']),
-  variant: PropTypes.oneOf(['neutral', 'smaller', 'informative', 'success', 'warning', 'error', 'support'])
+  variant: PropTypes.oneOf(['neutral', 'informative', 'success', 'warning', 'error', 'support']),
+  small: PropTypes.bool
 }
 
 export default Tooltip

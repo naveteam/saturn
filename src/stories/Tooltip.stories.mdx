@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, Preview, Props, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Tooltip } from '../components'
+import { Tooltip, Icon } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Tooltip' component={Tooltip} />
@@ -19,8 +19,8 @@ O componente `Tooltip` é utilizado para informar dicas para o usuário.
     }}
   >
     <ThemeProvider>
-      <Tooltip direction="lower-left" variant="error" content='Tooltip neutro grande com duas linhas'>
-        Hover It!
+      <Tooltip content='Tooltip neutro grande com duas linhas'>
+        Hover this, please.
       </Tooltip>
     </ThemeProvider>
 </Story>
@@ -39,17 +39,82 @@ O `Tooltip` pode receber a prop `variant`, para mostrar informações fundamenta
     }}
   >
     <ThemeProvider>
-      <Tooltip variant="success" content='Tooltip neutro grande com duas linhas'>
-        Success!
+      <Tooltip variant="success" content='Tooltip de sucesso com duas linhas'>
+        Hover this for a Success Tooltip!
       </Tooltip>
       <br/>
-      <Tooltip variant="warning" content='Tooltip neutro grande com duas linhas'>
-        Warning!
+      <br/>
+      <Tooltip variant="warning" content='Tooltip de aviso com duas linhas'>
+        Hover this for a Warning Tooltip!
       </Tooltip>
       <br/>
-      <Tooltip variant="error" content='Tooltip neutro grande com duas linhas'>
-        Error!
+      <br/>
+      <Tooltip variant="error" content='Tooltip de erro com duas linhas'>
+        Hover this for a Error Tooltip!
       </Tooltip>
+      <br/>
+      <br/>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Small
+
+O `Tooltip` pode também receber a prop `small`, possuindo um tamanho reduzido, utilizado geralmente em informações menores, e/ou de palavra única.
+<Canvas>
+  <Story
+    name='Small'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=254%3A477'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Tooltip small variant="success" content='Tooltip pequeno'>
+        Hover this for a small Success Tooltip!
+      </Tooltip>
+      <br/>
+      <br/>
+      <Tooltip small content='Tooltip neutro pequeno'>
+        Hover this for a small Neutral Tooltip!
+      </Tooltip>
+      <br/>
+      <br/>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Direction
+
+A prop `direction` serve para representar aonde ficará a direção da sua seta, assim também influenciando em sua posição.
+<Canvas>
+  <Story
+    name='Direction'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=254%3A477'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Tooltip  direction="left" content='Tooltip pequeno'>
+        <p>Hover this for a right-sided tooltip</p>
+      </Tooltip>
+      <br/>
+      <br/>
+      <Tooltip small direction="upper-left" variant="success" content='Tooltip de sucesso pequeno'>
+        Hover this for a small sucess upper-left Tooltip!
+      </Tooltip>
+      <br/>
+      <br/>
+      <Tooltip small direction="down" variant="error" content='Erro pequeno'>
+        <Icon icon="error" />
+      </Tooltip>
+      <br/>
+      <br/>
     </ThemeProvider>
   </Story>
 </Canvas>
