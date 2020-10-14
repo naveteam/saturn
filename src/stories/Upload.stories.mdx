@@ -40,7 +40,14 @@ A prop `disabled` desabilita completamente o botão, impedindo seu uso.
     }}
   >
     <ThemeProvider>
-      <Upload disabled={true} />
+      <Upload caption='Upload Button (Primary)' disabled={true} />
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true} />
+      <Upload
+        caption='Upload Drag &amp; Drop'
+        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
+        variant='drag-drop' disabled={true}
+      />
+      <Upload caption='Upload Image' variant='image' disabled={true} />
     </ThemeProvider>
   </Story>
 </Canvas>

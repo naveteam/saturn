@@ -80,7 +80,7 @@ const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disab
 
 const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
-  const [uploadedFiles, setUploadedFiles] = useState()
+  const [uploadedFiles, setUploadedFiles] = useState([])
   const [error, setError] = useState(false)
 
   const handleClick = () => hiddenFileInput.current.click()
@@ -104,6 +104,7 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       <StyledButton
+        uploadedFiles={uploadedFiles}
         onDragOver={e => {
           e.preventDefault()
         }}
@@ -166,7 +167,7 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
       {imagePreview || error ? (
-        <ImageContainer error={error} p={3}>
+        <ImageContainer imagePreview={imagePreview} error={error} p={3}>
           <ImageOverlay>
             {!error && (
               <Icon
@@ -281,11 +282,11 @@ const ImageOverlay = styled(Flex)`
 const ImageContainer = styled(Flex)`
   width: 282px;
   height: 282px;
-  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary)} dashed;
+  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary)} solid;
   border-radius: 4px;
   margin: auto;
   :hover {
-    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_hover)} dashed;
+    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_hover)} solid;
     ${ImageOverlay} {
       opacity: 0.8;
       ${Icon} {
@@ -295,7 +296,7 @@ const ImageContainer = styled(Flex)`
     }
   }
   :active {
-    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_active)} dashed;
+    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_active)} solid;
   }
 `
 
@@ -306,7 +307,9 @@ const StyledImage = styled.img`
 `
 
 const StyledButton = styled(Button)`
-  border: 2px ${props => props.theme.colors.primary} dashed;
+  border-color: ${props => props.theme.colors.primary};
+  border-width: 2px;
+  border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
 `
 const ImageUpload = styled(Button)`
   border: ${props =>

@@ -18,9 +18,39 @@ const bytesToSize = bytes => {
 
 const Attachment = ({ name, link, onDownload, onView, onDelete, file, backgroundColor, error, variant, ...props }) => {
   const handleName = () => {
-    if (name) return name
-    if (file) return file?.name
-    if (link) return link.substring(link.lastIndexOf('/') + 1)
+    if (name) {
+      if (name.length > 7) return name.slice(0, 7).concat('...')
+      return name
+    }
+
+    if (file) {
+      if (file.name.length > 11) {
+        const extension = file.name.substring(file.name.lastIndexOf('.'))
+        const slicedName = file.name.substring(0, file.name.lastIndexOf('.'))
+        const maxNameLength = 11 - extension.length
+        const maxSlicedNameLength = maxNameLength - 3
+        if (slicedName.length > maxSlicedNameLength) {
+          return slicedName.slice(0, maxSlicedNameLength).concat(`..${extension}`)
+        }
+        return slicedName.concat(`..${extension}`)
+      }
+      return file.name
+    }
+
+    if (link) {
+      const linkFileName = link.substring(link.lastIndexOf('/') + 1)
+      const extension = linkFileName.substring(linkFileName.lastIndexOf('.'))
+      const slicedLinkName = linkFileName.slice(0, linkFileName.lastIndexOf('.'))
+      if (linkFileName.length > 11) {
+        const maxLinkNameLength = 11 - extension.length
+        const maxSlicedLinkLength = maxLinkNameLength - 3
+        if (slicedLinkName.length > maxSlicedLinkLength) {
+          return slicedLinkName.slice(0, maxSlicedLinkLength).concat(`..${extension}`)
+        }
+        return slicedLinkName.concat(`..${extension}`)
+      }
+      return linkFileName
+    }
   }
 
   const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'blue.300')
@@ -32,7 +62,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
           <Container>
             <Flex mr={5} alignItems='center'>
               <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
-              <Flex>
+              <Flex flexWrap='wrap'>
                 {error ? (
                   <Typography color='error' pl={3} fontSize={2}>
                     {handleName()}
