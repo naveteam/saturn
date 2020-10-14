@@ -1,0 +1,153 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+import { Accordion, AccordionDetail, AccordionHeader, AccordionsWrapper, Typography } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Display/Accordion' component={Accordion} />
+
+# Accordion
+
+O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. A Sua utilização baseia-se na importação e utilização de 4 componentes. O `AccordionsWrapper` deve ser o container em volta de todos os Accordions, cada item consiste (Nesta Ordem) de um componente `Accordion` que você deve colocar como filhos dele o componente `AccordionHeader` que define o seu título e o conteúdo (children) do Accordion sendo definido no componente `AccordionDetail`.
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Expanded
+
+É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `expanded` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado.
+
+<Canvas>
+  <Story
+    name='Expanded'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem Ipsum dolot sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion expanded={true}>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem Ipsum dolot sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Shadow | Line
+
+É possível adicionar contornos em volta do accordion. Para isso, basta passar a prop `border` com o valor `shadow` ou `line`. O padrão utilizado é o valor `shadow`.
+
+<Canvas>
+  <Story
+    name='Shadow | Line'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+      <AccordionsWrapper border='line'>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Accordion} />
