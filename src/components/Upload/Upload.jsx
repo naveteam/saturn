@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
@@ -10,7 +10,7 @@ import { Attachment } from '../Attachment'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
-const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
   const hiddenFileInput = useRef(null)
   const [uploadedFiles, setUploadedFiles] = useState()
 
@@ -27,41 +27,13 @@ const UploadButton = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...
         multiple={multipleFiles}
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
-      <Button onClick={handleClick} disabled={disabled} icon='upload' caption={caption} />
-      {uploadedFiles &&
-        Object.values(uploadedFiles).map((file, index) => (
-          <Attachment
-            key={index}
-            file={file}
-            onView={() => window.open(URL.createObjectURL(file))}
-            onDelete={() => {
-              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
-              hiddenFileInput.current.value = null
-            }}
-          />
-        ))}
-    </Wrapper>
-  )
-}
-
-const UploadButtonOutlined = ({ caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
-  const hiddenFileInput = useRef(null)
-  const [uploadedFiles, setUploadedFiles] = useState()
-
-  const handleClick = () => hiddenFileInput.current.click()
-
-  const handleChange = event => setUploadedFiles(event.target.files)
-
-  return (
-    <Wrapper {...props}>
-      <HiddenInput
-        type='file'
-        ref={hiddenFileInput}
-        onChange={handleChange}
-        multiple={multipleFiles}
-        accept={handleAcceptedFileTypes(acceptedFileTypes)}
+      <Button
+        onClick={handleClick}
+        disabled={disabled}
+        variant={variant === 'button' || variant === 'button-primary' ? 'filled' : 'outlined'}
+        icon='upload'
+        caption={caption}
       />
-      <Button onClick={handleClick} disabled={disabled} variant='outlined' icon='upload' caption={caption} />
       {uploadedFiles &&
         Object.values(uploadedFiles).map((file, index) => (
           <Attachment
@@ -217,19 +189,15 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
 }
 
 const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
-  if (variant === 'button' || variant === 'button-primary')
+  if (
+    variant === 'button' ||
+    variant === 'button-primary' ||
+    variant === 'button-outlined' ||
+    variant === 'button-secondary'
+  )
     return (
       <UploadButton
-        caption={caption}
-        acceptedFileTypes={acceptedFileTypes}
-        multipleFiles={multipleFiles}
-        disabled={disabled}
-        {...props}
-      />
-    )
-  if (variant === 'button-outlined' || variant === 'button-secondary')
-    return (
-      <UploadButtonOutlined
+        variant={variant}
         caption={caption}
         acceptedFileTypes={acceptedFileTypes}
         multipleFiles={multipleFiles}
