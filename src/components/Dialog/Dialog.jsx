@@ -11,7 +11,7 @@ const Dialog = ({
   open,
   onClose,
   portalRef = document.body,
-  withoutOverlay,
+  withBackground,
   withCloseIcon,
   title,
   description,
@@ -20,9 +20,12 @@ const Dialog = ({
   children
 }) => {
   const dialogRef = useRef(null)
-  const closeModal = useCallback(() => {
-    onClose && onClose(false)
-  }, [onClose])
+  const closeModal = useCallback(
+    () => {
+      onClose && onClose(false)
+    },
+    [onClose]
+  )
 
   useClickOutside(() => closeModal(), dialogRef)
   useHotKey(() => closeModal(), 'Escape')
@@ -31,7 +34,7 @@ const Dialog = ({
     open &&
     ReactDOM.createPortal(
       <>
-        {!withoutOverlay && <Overlay />}
+        <Overlay />
         <Container ref={dialogRef}>
           <Content>
             <LeftContent>
@@ -44,7 +47,7 @@ const Dialog = ({
             </LeftContent>
             {withCloseIcon && (
               <RightContent>
-                <Button color='white' onClick={closeModal}>
+                <Button color='white' onClick={() => setClose(false)}>
                   <Icon color='gray.800' icon='name' />
                 </Button>
               </RightContent>
@@ -55,7 +58,10 @@ const Dialog = ({
 
           {!withCloseIcon && (
             <Buttons>
-              <Button onClick={cancelButton?.OnClick ? () => cancelButton.onClick : closeModal} variant='outlined'>
+              <Button
+                onClick={() => (cancelButton?.OnClick ? cancelButton.onClick : setClose(false))}
+                variant='outlined'
+              >
                 {cancelButton?.label ? cancelButton.label : 'Cancelar'}
               </Button>
               <Button onClick={() => actionButton?.onClick}>
@@ -87,6 +93,7 @@ const Container = styled(Flex)`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  display: flex;
   flex-direction: column;
   width: 656px;
   min-height: 124px;
@@ -152,8 +159,7 @@ Dialog.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   cancelButton: PropTypes.object,
-  actionButton: PropTypes.object,
-  portalRef: PropTypes.object
+  actionButton: PropTypes.object
 }
 
 export default Dialog
