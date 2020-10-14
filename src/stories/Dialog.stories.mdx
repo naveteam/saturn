@@ -1,14 +1,10 @@
-import { useState } from 'react'
+mport { useState } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Dialog, TextField, Button } from '../components'
 import { ThemeProvider } from '../theme'
-
 <Meta title="Data Display/Dialog" component={Dialog} />
-
 # Dialog
-
 O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de actions.
-
 export const DialogCloseIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -27,7 +23,6 @@ export const DialogCloseIcon = () => {
     </>
   )
 }
-
 export const DialogTitleDescription = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -42,7 +37,6 @@ export const DialogTitleDescription = () => {
     </>
   )
 }
-
 export const DialogInput = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -59,7 +53,6 @@ export const DialogInput = () => {
     </>
   )
 }
-
 export const DialogDoubleInput = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -77,7 +70,6 @@ export const DialogDoubleInput = () => {
     </>
   )
 }
-
 <Canvas>
   <Story name="Close Icon" parameters={{
     design: {
@@ -91,7 +83,6 @@ export const DialogDoubleInput = () => {
     </ThemeProvider>
   </Story>
 </Canvas>
-
 <Canvas>
   <Story name="Título e Descrição" parameters={{
     design: {
@@ -105,7 +96,6 @@ export const DialogDoubleInput = () => {
     </ThemeProvider>
   </Story>
 </Canvas>
-
 <Canvas>
   <Story name="Input" parameters={{
     design: {
@@ -119,9 +109,6 @@ export const DialogDoubleInput = () => {
     </ThemeProvider>
   </Story>
 </Canvas>
-
-
-
 <Canvas>
   <Story name="Input Duplo" parameters={{
     design: {

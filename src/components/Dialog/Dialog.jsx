@@ -2,11 +2,10 @@ import React, { useRef, useCallback } from 'react'
 import styled from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
-
+​
 import { Typography, Button, Flex } from '../'
 import { Icon } from '../Iconography'
-
+​
 const Dialog = ({
   open,
   onClose,
@@ -20,13 +19,17 @@ const Dialog = ({
   children
 }) => {
   const dialogRef = useRef(null)
-  const closeModal = useCallback(() => {
-    onClose && onClose(false)
-  }, [onClose])
-
-  useClickOutside(() => closeModal(), dialogRef)
-  useHotKey(() => closeModal(), 'Escape')
-
+  const setClose = useCallback(
+    closed => {
+      onClose && onClose(closed)
+    },
+    [onClose]
+  )
+​
+  useClickOutside(() => setClose(false), dialogRef)
+  useHotKey(() => setClose(false), 'Escape')
+​
+  if (!open) return null
   return (
     open &&
     ReactDOM.createPortal(
@@ -69,7 +72,7 @@ const Dialog = ({
     )
   )
 }
-
+​
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -80,7 +83,7 @@ const Overlay = styled.div`
   opacity: 0.7;
   z-index: 1000;
 `
-
+​
 const Container = styled(Flex)`
   position: fixed;
   top: 50%;
@@ -94,13 +97,13 @@ const Container = styled(Flex)`
   border-radius: 2;
   box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
 `
-
+​
 const Content = styled.div`
   display: flex;
   flex-direction: row;
   margin: 24px 24px 0 24px;
 `
-
+​
 const LeftContent = styled.div`
   width: 100%;
 `
@@ -108,7 +111,7 @@ const RightContent = styled.div`
   right: 0;
   margin: -8px -8px 0 0;
 `
-
+​
 const ChildrenContent = styled.div`
   display: flex;
   margin: 32px 24px 0 24px;
@@ -121,7 +124,7 @@ const ChildrenContent = styled.div`
     margin-left: 24px;
   }
 `
-
+​
 const Buttons = styled.div`
   display: flex;
   align-self: flex-end;
@@ -135,7 +138,7 @@ const Buttons = styled.div`
     margin-left: 24px;
   }
 `
-
+​
 Dialog.defaultProps = {
   open: false,
   withBackground: true,
@@ -143,7 +146,7 @@ Dialog.defaultProps = {
   cancelButton: { label: 'Cancelar' },
   actionButton: { label: 'Adicionar' }
 }
-
+​
 Dialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.bool,
@@ -155,5 +158,5 @@ Dialog.propTypes = {
   actionButton: PropTypes.object,
   portalRef: PropTypes.object
 }
-
+​
 export default Dialog
