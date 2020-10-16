@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import styled from '@xstyled/styled-components'
+import styled, { css } from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
@@ -9,6 +9,7 @@ const Dialog = ({
   open,
   onClose,
   portalRef = document.body,
+  width,
   withoutOverlay,
   withCloseIcon,
   title,
@@ -29,7 +30,7 @@ const Dialog = ({
     ReactDOM.createPortal(
       <>
         {!withoutOverlay && <Overlay />}
-        <Container ref={dialogRef}>
+        <Container ref={dialogRef} width={width}>
           <Content>
             <LeftContent>
               <Typography color='gray.800' fontWeight={1} fontSize={4} lineHeight={4}>
@@ -78,19 +79,22 @@ const Overlay = styled.div`
   opacity: 0.7;
   z-index: 1000;
 `
-const Container = styled(Flex)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  flex-direction: column;
-  width: 656px;
-  min-height: 124px;
-  background: white;
-  border-radius: 2;
-  box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
-`
+const Container = styled(Flex)(
+  ({ width }) => css`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    flex-direction: column;
+    width: ${width};
+    min-height: 124px;
+    background: white;
+    border-radius: 2;
+    box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
+  `
+)
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -123,6 +127,7 @@ const Buttons = styled.div`
 `
 Dialog.defaultProps = {
   open: false,
+  width: '656px',
   withBackground: true,
   withCloseIcon: false,
   cancelButton: { label: 'Cancelar' },
@@ -137,6 +142,7 @@ Dialog.propTypes = {
   description: PropTypes.string,
   cancelButton: PropTypes.object,
   actionButton: PropTypes.object,
+  colorButton: PropTypes.string,
   portalRef: PropTypes.object
 }
 export default Dialog
