@@ -15,6 +15,7 @@ const Dialog = ({
   description,
   cancelButton,
   actionButton,
+  colorButton,
   children
 }) => {
   const dialogRef = useRef(null)
@@ -49,10 +50,14 @@ const Dialog = ({
           {children && <ChildrenContent>{children}</ChildrenContent>}
           {!withCloseIcon && (
             <Buttons>
-              <Button onClick={cancelButton?.OnClick ? () => cancelButton.onClick : closeModal} variant='outlined'>
+              <Button
+                onClick={cancelButton?.OnClick ? () => cancelButton.onClick : closeModal}
+                color={colorButton}
+                variant='outlined'
+              >
                 {cancelButton?.label ? cancelButton.label : 'Cancelar'}
               </Button>
-              <Button onClick={() => actionButton?.onClick}>
+              <Button color={colorButton} onClick={() => actionButton?.onClick}>
                 {actionButton?.label ? actionButton.label : 'Adicionar'}
               </Button>
             </Buttons>
@@ -103,9 +108,6 @@ const ChildrenContent = styled.div`
   margin: 32px 24px 0 24px;
   div {
     width: 100%;
-  }
-  div + div {
-    margin-left: 24px;
   }
 `
 const Buttons = styled.div`
