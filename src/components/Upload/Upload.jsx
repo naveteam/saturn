@@ -276,12 +276,12 @@ const StyledImage = styled.img`
 
 const StyledButton = styled(Button)`
   border-color: ${props => props.theme.colors.primary};
-  border-width: 2px;
+  border-width: 1px;
   border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
 `
 const ImageUpload = styled(Button)`
   border: ${props =>
-    props.error ? `2px ${props.theme.colors.error} dashed` : `2px ${props.theme.colors.primary} dashed`};
+    props.error ? `1px ${props.theme.colors.error} dashed` : `1px ${props.theme.colors.primary} dashed`};
   max-width: 282px;
   height: 282px;
 `

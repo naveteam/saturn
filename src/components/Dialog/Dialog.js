@@ -55,12 +55,13 @@ const Dialog = ({
                 onClick={cancelButton?.OnClick ? () => cancelButton.onClick : closeModal}
                 color={colorButton}
                 variant='outlined'
-              >
-                {cancelButton?.label ? cancelButton.label : 'Cancelar'}
-              </Button>
-              <Button color={colorButton} onClick={() => actionButton?.onClick}>
-                {actionButton?.label ? actionButton.label : 'Adicionar'}
-              </Button>
+                caption={cancelButton?.label ? cancelButton.label : 'Cancelar'}
+              />
+              <Button
+                caption={actionButton?.label ? actionButton.label : 'Adicionar'}
+                color={colorButton}
+                onClick={() => actionButton?.onClick}
+              />
             </Buttons>
           )}
         </Container>

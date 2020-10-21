@@ -113,7 +113,7 @@ const StyledIcon = styled(Icon)`
 const Base = styled.button`
   cursor: pointer;
   padding: 2;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-radius: 2;
   min-height: 40px;
