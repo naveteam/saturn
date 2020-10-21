@@ -276,7 +276,7 @@ const StyledImage = styled.img`
 
 const StyledButton = styled(Button)`
   border-color: ${props => props.theme.colors.primary};
-  border-width: 2px;
+  border-width: 1px;
   border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
 `
 const ImageUpload = styled(Button)`

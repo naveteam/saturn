@@ -14,7 +14,7 @@ export const DialogCloseIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Button caption='Open Modal' caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
       <Dialog
         open={isOpen}
         onClose={setIsOpen}
@@ -32,8 +32,8 @@ export const DialogCloseIcon = () => {
 export const DialogTitleDescription = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <>
-      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+    <>slack
+      <Button caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
       <Dialog
         open={isOpen}
         onClose={setIsOpen}
@@ -48,7 +48,7 @@ export const DialogInput = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Button caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
       <Dialog
         open={isOpen}
         onClose={setIsOpen}
@@ -65,7 +65,7 @@ export const DialogDoubleInput = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Button width={'150px'} onClick={() => setIsOpen(true)}>Open Modal</Button >
+      <Button caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
       <Dialog
         width={792}
         open={isOpen}
