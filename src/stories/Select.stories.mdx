@@ -45,6 +45,7 @@ Passando a prop de `error` para o `Select`, o usuário pode receber um feedback 
   >
     <ThemeProvider>
       <Select
+        name='Error'
         label='Error'
         options={optionsSelect}
         optionLabel='description'
@@ -71,7 +72,7 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
     }}
   >
     <ThemeProvider>
-      <Select label='Disabled' optionLabel='Disabled' disabled caption='Disabled' />
+      <Select name='disabled' label='Disabled' optionLabel='Disabled' disabled caption='Disabled' />
     </ThemeProvider>
   </Story>
 </Canvas>
