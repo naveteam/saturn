@@ -40,9 +40,11 @@ const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, h
         <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
           {title}
         </Typography>
-        <Subtitle ml={5} color='gray.500'>
-          {subtitle}
-        </Subtitle>
+        {subtitle && (
+          <Subtitle ml={5} color='gray.500'>
+            {subtitle}
+          </Subtitle>
+        )}
       </Flex>
       <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
     </StyledHeader>
@@ -59,18 +61,23 @@ AccordionHeader.propTypes = {
 }
 
 AccordionHeader.defaultProps = {
-  expandIcon: 'expand_more'
+  expandIcon: 'expand_more',
+  headerColor: 'white'
 }
 
-const AccordionDetail = ({ children, expanded, contentColor }) => (
-  <AccordionContent expanded={expanded} contentColor={contentColor}>
+const AccordionDetail = ({ children, expanded, detailColor }) => (
+  <AccordionContent expanded={expanded} detailColor={detailColor}>
     {children}
   </AccordionContent>
 )
 
 AccordionDetail.propTypes = {
   expanded: PropTypes.number,
-  contentColor: PropTypes.string
+  detailColor: PropTypes.string
+}
+
+AccordionDetail.defaultProps = {
+  detailColor: 'gray.100'
 }
 
 const AccordionsWrapper = styled.div(
@@ -169,12 +176,12 @@ const StyledHeader = styled(Flex)(
 )
 
 const AccordionContent = styled.div(
-  ({ expanded, contentColor }) => css`
+  ({ expanded, detailColor }) => css`
     width: inherit;
     transition: all 0.3s linear;
     box-sizing: border-box;
     overflow: hidden;
-    background-color: ${contentColor};
+    background-color: ${detailColor};
     color: gray.800;
     border-color: gray.300;
 
