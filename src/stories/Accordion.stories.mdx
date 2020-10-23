@@ -22,7 +22,67 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail >
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Subtitle
+
+É possível passar um subtitle para `Accordion` enviando uma string através da propriedade `subtitle`.
+
+<Canvas>
+  <Story
+    name='Subtitle'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' subtitle='Lorem Ipsum' />
           <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Color
+
+É possível definir cores para o Header e o Content do `Accordion` atavés das propriedades `headerColor` e `detailColor`.
+
+<Canvas>
+  <Story
+    name='Color'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' headerColor='gray.100' />
+          <AccordionDetail detailColor='white' >
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
