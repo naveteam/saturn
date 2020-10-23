@@ -1,5 +1,4 @@
 import { Meta, Story, Canvas, Preview, Props, ArgsTable } from '@storybook/addon-docs/blocks'
-
 import { Tooltip, Icon } from '../components'
 import { ThemeProvider } from '../theme'
 
@@ -100,7 +99,17 @@ A prop `direction` serve para representar aonde ficará a direção da sua seta,
     }}
   >
     <ThemeProvider>
-      <Tooltip  direction="left" content='Tooltip pequeno'>
+      <Tooltip  direction="left" content='Tooltip'>
+        <p>Hover ABLUBLE</p>
+      </Tooltip>
+      <br/>
+      <br/>
+      <Tooltip small direction="upper-left" variant="success" content='Tooltip de sucesso pequeno'>
+        Hover this for a small sucess upper-left Tooltip!
+      </Tooltip>
+      <br/>
+      <br/>
+      <Tooltip  direction="right" content='Tooltip a esquerda'>
         <p>Hover this for a right-sided tooltip</p>
       </Tooltip>
       <br/>
@@ -111,7 +120,7 @@ A prop `direction` serve para representar aonde ficará a direção da sua seta,
       <br/>
       <br/>
       <Tooltip small direction="down" variant="error" content='Erro pequeno'>
-        <Icon icon="error" />
+        <Icon icon="error"/>
       </Tooltip>
       <br/>
       <br/>

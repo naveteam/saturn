@@ -8,7 +8,7 @@ import Icon from '../Iconography'
 
 const Tooltip = forwardRef(({ children, variant, direction, ...props }, ref) => {
   return (
-    <Wrapper ref={ref} {...props}>
+    <Wrapper ref={ref} {...props} direction={direction}>
       {children}
 
       {props.small ? (
@@ -24,6 +24,24 @@ const Tooltip = forwardRef(({ children, variant, direction, ...props }, ref) => 
       )}
     </Wrapper>
   )
+})
+
+const wrapperDirectionVariants = variant({
+  default: 'up',
+  prop: 'direction',
+  variants: {
+    'upper-left': css``,
+    left: css`
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    `,
+    'lower-left': css``,
+    down: css``,
+    'upper-right': css``,
+    right: css``,
+    'lower-right': css``
+  }
 })
 
 const directionVariants = variant({
@@ -46,8 +64,9 @@ const directionVariants = variant({
       }
     `,
     left: css`
+      position: relative;
       top: -100%;
-      right: 75%;
+      right: calc(50%);
       :before {
         top: calc(50% - 6px);
         left: -10px;
@@ -56,10 +75,10 @@ const directionVariants = variant({
     `,
     right: css`
       top: -100%;
-      left: 75%;
+      left: -40%;
       :before {
         top: calc(50% - 6px);
-        right: -10px;
+        right: calc(0% - 10px);
         transform: rotate(90deg);
       }
     `,
@@ -73,6 +92,7 @@ const directionVariants = variant({
     `,
     down: css`
       bottom: 100%;
+      left: calc(-11%);
       :before {
         top: calc(100%);
         left: calc(50% - 8px);
@@ -91,7 +111,8 @@ const directionVariants = variant({
 })
 
 const Tip = styled.div`
-  visibility: hidden;
+  //visibility: hidden;
+  visibility: visible;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -109,9 +130,9 @@ const Tip = styled.div`
 
   :before {
     content: '';
+    position: absolute;
     height: 0px;
     width: 0px;
-    position: absolute;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 10px solid ${({ variant }) => th.color(variant)};
@@ -130,12 +151,14 @@ const Wrapper = styled.div`
       visibility: visible;
     }
   }
+  ${wrapperDirectionVariants}
 `
 Tooltip.defaultProps = {
   variant: 'neutral'
 }
 
 Tooltip.propTypes = {
+  children: PropTypes.node.isRequired,
   color: PropTypes.string,
   content: PropTypes.string,
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right', 'upper-left', 'upper-right', 'lower-left', 'lower-right']),
