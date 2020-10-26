@@ -10,13 +10,16 @@ import { Attachment } from '../Attachment'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
-const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }) => {
   const hiddenFileInput = useRef(null)
   const [uploadedFiles, setUploadedFiles] = useState()
 
   const handleClick = () => hiddenFileInput.current.click()
 
-  const handleChange = event => setUploadedFiles(event.target.files)
+  const handleChange = event => {
+    setUploadedFiles(event.target.files)
+    fileHandler(event)
+  }
 
   return (
     <Wrapper {...props}>
@@ -50,7 +53,15 @@ const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disa
   )
 }
 
-const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+const UploadDragAndDrop = ({
+  caption,
+  description,
+  acceptedFileTypes,
+  multipleFiles,
+  disabled,
+  fileHandler,
+  ...props
+}) => {
   const hiddenFileInput = useRef(null)
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [error, setError] = useState(false)
@@ -60,6 +71,7 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
   const handleChange = event => {
     try {
       setUploadedFiles(event.target.files)
+      fileHandler(event)
     } catch (err) {
       console.log(err)
       setError(true)
@@ -110,7 +122,7 @@ const UploadDragAndDrop = ({ caption, description, acceptedFileTypes, multipleFi
   )
 }
 
-const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
+const UploadImage = ({ caption, acceptedFileTypes, disabled, fileHandler, ...props }) => {
   const hiddenFileInput = useRef(null)
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
@@ -122,6 +134,7 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
     try {
       setUploadedImage(event.target.files[0])
       setImagePreview(URL.createObjectURL(event.target.files[0]))
+      fileHandler(event)
     } catch (err) {
       console.log(err)
       setError(true)
@@ -188,7 +201,16 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, ...props }) => {
   )
 }
 
-const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFiles, disabled, ...props }) => {
+const Upload = ({
+  caption,
+  description,
+  variant,
+  acceptedFileTypes,
+  multipleFiles,
+  disabled,
+  fileHandler,
+  ...props
+}) => {
   if (
     variant === 'button' ||
     variant === 'button-primary' ||
@@ -202,6 +224,7 @@ const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFile
         acceptedFileTypes={acceptedFileTypes}
         multipleFiles={multipleFiles}
         disabled={disabled}
+        fileHandler={fileHandler}
         {...props}
       />
     )
@@ -213,6 +236,7 @@ const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFile
         acceptedFileTypes={acceptedFileTypes}
         multipleFiles={multipleFiles}
         disabled={disabled}
+        fileHandler={fileHandler}
         {...props}
       />
     )
@@ -222,6 +246,7 @@ const Upload = ({ caption, description, variant, acceptedFileTypes, multipleFile
         caption={caption}
         acceptedFileTypes={acceptedFileTypes || 'image/*'}
         disabled={disabled}
+        fileHandler={fileHandler}
         {...props}
       />
     )
