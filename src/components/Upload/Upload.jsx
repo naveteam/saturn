@@ -328,7 +328,8 @@ Upload.propTypes = {
   variant: PropTypes.oneOf(['button', 'button-primary', 'button-outlined', 'button-secondary', 'drag-drop', 'image']),
   acceptedFileTypes: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf([PropTypes.string])]),
   multipleFiles: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  fileHandler: PropTypes.func
 }
 
 Upload.defaultProps = {
