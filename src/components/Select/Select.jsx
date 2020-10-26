@@ -8,13 +8,13 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ name, label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
+  ({ name, label, options = [], placeholder, caption, error, disabled, quiet, ...props }, ref) => {
     const [isOpened, setIsOpened] = useState(false)
-    const [optionSelected, setOptionSelected] = useState()
+    const [optionSelected, setOptionSelected] = useState([])
     const containerRef = useRef(null)
 
-    const handleChange = option => {
-      setOptionSelected(option)
+    const handleChange = (id, label) => {
+      setOptionSelected(id, label)
       setIsOpened(false)
     }
 
@@ -36,13 +36,13 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected} onChange={handleChange} ref={ref}>
+            <SelectBase name={name} value={placeholder} onChange={handleChange} ref={ref}>
               {disabled ? (
-                <option value=''>{optionLabel}</option>
+                <option value=''>{placeholder}</option>
               ) : (
                 options.map(option => (
-                  <option key={option[optionLabel]} value={option[optionValue]}>
-                    {optionSelected || optionLabel}
+                  <option key={option.id} value={option.id}>
+                    {optionSelected[1] || placeholder}
                   </option>
                 ))
               )}
@@ -53,11 +53,11 @@ const Select = forwardRef(
           {isOpened && (
             <OptionsContainer>
               {options.map(option => (
-                <OptionContainer key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
+                <OptionContainer key={option.id} onClick={() => handleChange([option.id, option.label])}>
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
-                    {option[optionLabel]}
+                    {option.label}
                   </Typography>
-                  {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
+                  {option.id === optionSelected[0] && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>

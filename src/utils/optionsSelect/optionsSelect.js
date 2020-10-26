@@ -1,35 +1,35 @@
 const optionsSelect = [
   {
-    name: 'Name 1',
-    description: 'Dev A1'
+    label: 'label 1',
+    id: 1
   },
   {
-    name: 'Name 2',
-    description: 'Dev A2'
+    label: 'label 2',
+    id: 2
   },
   {
-    name: 'Name 3',
-    description: 'Dev A3'
+    label: 'label 3',
+    id: 3
   },
   {
-    name: 'Name 4',
-    description: 'Dev B1'
+    label: 'label 4',
+    id: 4
   },
   {
-    name: 'Name 5',
-    description: 'Dev B2'
+    label: 'label 5',
+    id: 5
   },
   {
-    name: 'Name 6',
-    description: 'Dev B3'
+    label: 'label 6',
+    id: 6
   },
   {
-    name: 'Name 7',
-    description: 'Dev C1'
+    label: 'label 7',
+    id: 7
   },
   {
-    name: 'Name 8',
-    description: 'Dev C2'
+    label: 'label 8',
+    id: 8
   }
 ]
 
