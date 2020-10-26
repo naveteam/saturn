@@ -13,8 +13,8 @@ const Select = forwardRef(
     const [optionSelected, setOptionSelected] = useState([])
     const containerRef = useRef(null)
 
-    const handleChange = (id, label) => {
-      setOptionSelected(id, label)
+    const handleChange = (value, label) => {
+      setOptionSelected(value, label)
       setIsOpened(false)
     }
 
@@ -40,8 +40,8 @@ const Select = forwardRef(
               {disabled ? (
                 <option value=''>{placeholder}</option>
               ) : (
-                options.map(option => (
-                  <option key={option.id} value={option.id}>
+                options.map((option, index) => (
+                  <option key={`${option.value}-${index}`} value={option.value}>
                     {optionSelected[1] || placeholder}
                   </option>
                 ))
@@ -52,12 +52,15 @@ const Select = forwardRef(
 
           {isOpened && (
             <OptionsContainer>
-              {options.map(option => (
-                <OptionContainer key={option.id} onClick={() => handleChange([option.id, option.label])}>
+              {options.map((option, index) => (
+                <OptionContainer
+                  key={`${option.value}.${index}`}
+                  onClick={() => handleChange([option.value, option.label])}
+                >
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
                     {option.label}
                   </Typography>
-                  {option.id === optionSelected[0] && <Icon icon='Check' color='blue.100' />}
+                  {option.value === optionSelected[0] && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>
