@@ -36,7 +36,7 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={placeholder} onChange={handleChange} ref={ref}>
+            <SelectBase name={name} value={optionSelected[1]} onChange={handleChange} ref={ref}>
               {disabled ? (
                 <option value=''>{placeholder}</option>
               ) : (

@@ -18,7 +18,7 @@ O componente de `Select` é utilizado para que o usuário possa selecionar uma o
 
 <Story
   name='Base'
-  args={{ options: optionsSelect, placeholder: 'olá', caption: 'Caption' }}
+  args={{ options: optionsSelect, placeholder: 'Selecione uma opção', caption: 'Caption' }}
   parameters={{
     design: {
       type: 'figma',
@@ -48,8 +48,7 @@ Passando a prop de `error` para o `Select`, o usuário pode receber um feedback 
         name='Error'
         label='Error'
         options={optionsSelect}
-        optionLabel='description'
-        optionValue='name'
+        placeholder='Selecione uma opção'
         error
         caption='Error'
       />
@@ -72,7 +71,7 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
     }}
   >
     <ThemeProvider>
-      <Select name='disabled' label='Disabled' optionLabel='Disabled' disabled caption='Disabled' />
+      <Select name='disabled' label='Disabled' placeholder='Selecione uma opção' disabled caption='Disabled' />
     </ThemeProvider>
   </Story>
 </Canvas>
