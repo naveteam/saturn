@@ -10,11 +10,11 @@ import { Typography, Caption, Icon } from '..'
 const Select = forwardRef(
   ({ name, label, options = [], placeholder, caption, error, disabled, quiet, ...props }, ref) => {
     const [isOpened, setIsOpened] = useState(false)
-    const [optionSelected, setOptionSelected] = useState([])
+    const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
-    const handleChange = (value, label) => {
-      setOptionSelected(value, label)
+    const handleChange = option => {
+      setOptionSelected(option)
       setIsOpened(false)
     }
 
@@ -36,13 +36,13 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected[1]} onChange={handleChange} ref={ref}>
+            <SelectBase name={name} value={optionSelected.value} onChange={handleChange} ref={ref}>
               {disabled ? (
                 <option value=''>{placeholder}</option>
               ) : (
                 options.map((option, index) => (
                   <option key={`${option.value}-${index}`} value={option.value}>
-                    {optionSelected[1] || placeholder}
+                    {optionSelected.label || placeholder}
                   </option>
                 ))
               )}
@@ -53,14 +53,11 @@ const Select = forwardRef(
           {isOpened && (
             <OptionsContainer>
               {options.map((option, index) => (
-                <OptionContainer
-                  key={`${option.value}.${index}`}
-                  onClick={() => handleChange([option.value, option.label])}
-                >
+                <OptionContainer key={`${option.value}.${index}`} onClick={() => handleChange(option)}>
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
                     {option.label}
                   </Typography>
-                  {option.value === optionSelected[0] && <Icon icon='Check' color='blue.100' />}
+                  {option.value === optionSelected.value && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>
@@ -232,14 +229,14 @@ Select.defaultProps = {
   disabled: false,
   quiet: false,
   label: 'Select',
+  placeholder: 'Selecione uma opção',
   options: []
 }
 
 Select.propTypes = {
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
-  optionLabel: PropTypes.string,
-  optionValue: PropTypes.string,
   caption: PropTypes.string,
   error: PropTypes.bool,
   disabled: PropTypes.bool,
