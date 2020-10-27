@@ -8,7 +8,10 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ name, label, options = [], optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props }, ref) => {
+  (
+    { name, label, options = [], optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props },
+    ref
+  ) => {
     const [isOpened, setIsOpened] = useState(false)
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
@@ -37,15 +40,14 @@ const Select = forwardRef(
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
             <SelectBase name={name} value={optionSelected[optionValue]} onChange={handleChange} ref={ref}>
-              {disabled ? (
-                <option value=''>{placeholder}</option>
-              ) : (
-                options.map((option, index) => (
-                  <option key={`${option.value}-${index}`} value={option[optionValue]}>
-                    {option[optionLabel]}
-                  </option>
-                ))
-              )}
+              <option selected disabled value=''>
+                {placeholder}
+              </option>
+              {options.map((option, index) => (
+                <option key={`${option.value}-${index}`} value={option[optionValue]}>
+                  {option[optionLabel]}
+                </option>
+              ))}
             </SelectBase>
             <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
           </SelectContainer>
