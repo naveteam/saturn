@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
-import styled, { css, layout } from '@xstyled/styled-components'
+import styled, { css, layout, space } from '@xstyled/styled-components'
 
 import { Flex, Icon, Typography, Subtitle } from '../'
 
@@ -142,6 +142,7 @@ const AccordionsWrapper = styled.div(
     }
 
     ${layout}
+    ${space}
   `
 )
 
