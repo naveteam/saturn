@@ -8,7 +8,7 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ name, label, options = [], placeholder, caption, error, disabled, quiet, ...props }, ref) => {
+  ({ name, label, options = [], optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props }, ref) => {
     const [isOpened, setIsOpened] = useState(false)
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
@@ -36,13 +36,13 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected.value} onChange={handleChange} ref={ref}>
+            <SelectBase name={name} value={optionSelected[optionValue]} onChange={handleChange} ref={ref}>
               {disabled ? (
                 <option value=''>{placeholder}</option>
               ) : (
                 options.map((option, index) => (
-                  <option key={`${option.value}-${index}`} value={option.value}>
-                    {optionSelected.label || placeholder}
+                  <option key={`${option.value}-${index}`} value={option[optionValue]}>
+                    {optionSelected[optionLabel] || placeholder}
                   </option>
                 ))
               )}
@@ -55,9 +55,9 @@ const Select = forwardRef(
               {options.map((option, index) => (
                 <OptionContainer key={`${option.value}.${index}`} onClick={() => handleChange(option)}>
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
-                    {option.label}
+                    {option[optionLabel]}
                   </Typography>
-                  {option.value === optionSelected.value && <Icon icon='Check' color='blue.100' />}
+                  {option[optionValue] === optionSelected[optionValue] && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>
@@ -230,6 +230,8 @@ Select.defaultProps = {
   quiet: false,
   label: 'Select',
   placeholder: 'Selecione uma opção',
+  optionLabel: 'label',
+  optionValue: 'value',
   options: []
 }
 
@@ -237,6 +239,8 @@ Select.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
+  optionLabel: PropTypes.string,
+  optionValue: PropTypes.string,
   caption: PropTypes.string,
   error: PropTypes.bool,
   disabled: PropTypes.bool,
