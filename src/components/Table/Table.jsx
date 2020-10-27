@@ -50,19 +50,6 @@ const Container = styled.table`
       color: ${th.color('gray.800')};
     }
   }
-
-  tr td:last-child {
-    p {
-      text-align: center;
-      border-radius: 2;
-      font-weight: 1;
-      font-size: 1;
-      height: 16px;
-      padding: 4px 0;
-      background: ${th.color('blue.400')};
-      color: ${th.color('white')};
-    }
-  }
 `
 
 Table.defaultProps = {
