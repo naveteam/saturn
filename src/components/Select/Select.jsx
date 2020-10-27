@@ -42,7 +42,7 @@ const Select = forwardRef(
               ) : (
                 options.map((option, index) => (
                   <option key={`${option.value}-${index}`} value={option[optionValue]}>
-                    {optionSelected[optionLabel] || placeholder}
+                    {option[optionLabel]}
                   </option>
                 ))
               )}
