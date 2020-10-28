@@ -1,32 +1,48 @@
+import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import { borders, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
 
-const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, type, name, ...props }, ref) => {
-  const [focus, setFocus] = useState(false)
-  return (
-    <Wrapper disabled={disabled} {...props}>
-      <Label>{label}</Label>
-      <Container focus={focus}>
-        {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
-        <InputBase
-          ref={ref}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          disabled={disabled}
-        />
-        {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
-      </Container>
-      <Message>{message}</Message>
-    </Wrapper>
-  )
-})
+const TextField = forwardRef(
+  (
+    { borderColor, height, label, message, prefix, suffix, placeholder, disabled, type, name, width, ...props },
+    ref
+  ) => {
+    const [focus, setFocus] = useState(false)
+    return (
+      <Wrapper disabled={disabled} {...props}>
+        <Label>{label}</Label>
+        <Container focus={focus} borderColor={borderColor} height={height} width={width}>
+          {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
+          <InputBase
+            ref={ref}
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            disabled={disabled}
+          />
+          {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
+        </Container>
+        <Message>{message}</Message>
+      </Wrapper>
+    )
+  }
+)
+
+TextField.propTypes = {
+  borderColor: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string
+}
+
+TextField.defaultProps = {
+  borderColor: 'black'
+}
 
 const errorVariant = variant({
   prop: 'error',
@@ -83,6 +99,7 @@ const focusVariant = variant({
 const Wrapper = styled(Box)`
   ${errorVariant}
   ${disabledVariant}
+  width: fit-content;
 `
 const Label = styled(Typography)`
   font-size: 2;
@@ -93,10 +110,11 @@ const Label = styled(Typography)`
 const Container = styled(Flex)`
   border-width: 1px;
   border-style: solid;
-  border-color: black;
   border-radius: 2;
   align-items: center;
   padding: 1px;
+
+  ${borders}
   ${focusVariant}
 `
 const Affix = styled(Typography)`
@@ -112,6 +130,8 @@ const InputBase = styled.input`
   line-height: 3;
   background-color: transparent;
   padding: 6px;
+  overflow: hidden;
+
   &::placeholder {
     color: gray.600;
   }

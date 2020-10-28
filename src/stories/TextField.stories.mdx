@@ -64,7 +64,51 @@ Passando a prop de `error` para o `TextField`, o usuário pode receber um feedba
     }}
   >
     <ThemeProvider>
-      <TextField name='error' label='Error' placeholder='Error TextField' error message='Required' />
+      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
+      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
+      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Border Color
+
+Através da prop `borderColor` que pode ser passada para o `TextField`, é possível alterar a cor da borda do Input.
+
+<Canvas>
+  <Story
+    name='Border Color'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField name='borderColor' label='Border Color' placeholder='Border Color' borderColor='primary' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Height | Width
+
+Através das props `height` e `width` é possível alterar a altura e largura do input.
+
+<Canvas>
+  <Story
+    name='Height | Width'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField name='height' label='Height' placeholder='Height' height='100px' />
+      <TextField name='width' label='Width' placeholder='Width' width='200px' />
+      <TextField name='heightWidth' label='Height e Width' placeholder='Height e Width' height='100px' width='200px' />
     </ThemeProvider>
   </Story>
 </Canvas>
