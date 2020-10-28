@@ -1,35 +1,35 @@
 const optionsSelect = [
   {
     label: 'label 1',
-    value: 1
+    value: 'label_1'
   },
   {
     label: 'label 2',
-    value: 2
+    value: 'label_2'
   },
   {
     label: 'label 3',
-    value: 3
+    value: 'label_3'
   },
   {
     label: 'label 4',
-    value: 4
+    value: 'label_4'
   },
   {
     label: 'label 5',
-    value: 5
+    value: 'label_5'
   },
   {
     label: 'label 6',
-    value: 6
+    value: 'label_6'
   },
   {
     label: 'label 7',
-    value: 7
+    value: 'label_7'
   },
   {
     label: 'label 8',
-    value: 8
+    value: 'label_8'
   }
 ]
 

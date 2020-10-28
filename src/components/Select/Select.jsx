@@ -8,10 +8,7 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  (
-    { name, label, options = [], optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props },
-    ref
-  ) => {
+  ({ name, label, options, optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props }, ref) => {
     const [isOpened, setIsOpened] = useState(false)
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
@@ -204,7 +201,7 @@ const SelectBase = styled.select(
     border: 0;
     font-size: 3;
     line-height: 3;
-    background: white;
+    background: transparent;
     color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
     cursor: pointer;
     -webkit-appearance: none;
