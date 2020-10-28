@@ -16,7 +16,7 @@ const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, mu
 
   const handleChange = event => {
     setUploadedFiles(event.target.files)
-    fileHandler ? fileHandler(event) : false
+    fileHandler && fileHandler(event)
   }
 
   return (
@@ -27,7 +27,9 @@ const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, mu
         icon='upload'
         caption={caption}
         as={!disabled && 'label'}
-        style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
       >
         <HiddenInput
           type='file'
@@ -70,7 +72,7 @@ const UploadDragAndDrop = forwardRef(({
   const handleChange = event => {
     try {
       setUploadedFiles(event.target.files)
-      fileHandler ? fileHandler(event) : false
+      fileHandler && fileHandler(event)
     } catch (err) {
       console.log(err)
       setError(true)
@@ -131,7 +133,7 @@ const UploadImage = forwardRef(({ name, caption, acceptedFileTypes, disabled, fi
     try {
       setUploadedImage(event.target.files[0])
       setImagePreview(URL.createObjectURL(event.target.files[0]))
-      fileHandler(event)
+      fileHandler && fileHandler(event)
     } catch (err) {
       console.log(err)
       setError(true)
@@ -317,9 +319,7 @@ const ImageUpload = styled(Button)`
 `
 
 const HiddenInput = styled.input`
-  opacity: 0;
-  width: 0px;
-  height: 0px;
+  display: none;
 `
 
 const Wrapper = styled(Flex)`
