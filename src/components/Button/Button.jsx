@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { space, layout, variant, th, flexboxes } from '@xstyled/system'
+import { space, layout, variant, th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import { Typography, Flex } from '../'

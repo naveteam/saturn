@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, forwardRef } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
@@ -10,33 +10,34 @@ import { Attachment } from '../Attachment'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
-const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }) => {
+const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
   const hiddenFileInput = useRef(null)
   const [uploadedFiles, setUploadedFiles] = useState()
 
-  const handleClick = () => hiddenFileInput.current.click()
-
   const handleChange = event => {
     setUploadedFiles(event.target.files)
-    fileHandler(event)
+    fileHandler ? fileHandler(event) : false
   }
 
   return (
     <Wrapper {...props}>
-      <HiddenInput
-        type='file'
-        ref={hiddenFileInput}
-        onChange={handleChange}
-        multiple={multipleFiles}
-        accept={handleAcceptedFileTypes(acceptedFileTypes)}
-      />
       <Button
-        onClick={handleClick}
         disabled={disabled}
         variant={variant === 'button' || variant === 'button-primary' ? 'filled' : 'outlined'}
         icon='upload'
         caption={caption}
-      />
+        as={!disabled && 'label'}
+        style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+      >
+        <HiddenInput
+          type='file'
+          ref={ref}
+          name={name}
+          onChange={handleChange}
+          multiple={multipleFiles}
+          accept={handleAcceptedFileTypes(acceptedFileTypes)}
+        />
+      </Button>
       {uploadedFiles &&
         Object.values(uploadedFiles).map((file, index) => (
           <Attachment
@@ -51,27 +52,25 @@ const UploadButton = ({ variant, caption, acceptedFileTypes, multipleFiles, disa
         ))}
     </Wrapper>
   )
-}
+})
 
-const UploadDragAndDrop = ({
+const UploadDragAndDrop = forwardRef(({
   caption,
+  name,
   description,
   acceptedFileTypes,
   multipleFiles,
   disabled,
   fileHandler,
   ...props
-}) => {
-  const hiddenFileInput = useRef(null)
+}, ref) => {
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [error, setError] = useState(false)
-
-  const handleClick = () => hiddenFileInput.current.click()
 
   const handleChange = event => {
     try {
       setUploadedFiles(event.target.files)
-      fileHandler(event)
+      fileHandler ? fileHandler(event) : false
     } catch (err) {
       console.log(err)
       setError(true)
@@ -82,7 +81,8 @@ const UploadDragAndDrop = ({
     <Wrapper {...props}>
       <HiddenInput
         type='file'
-        ref={hiddenFileInput}
+        ref={ref}
+        name={name}
         onChange={handleChange}
         multiple={multipleFiles}
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
@@ -97,7 +97,6 @@ const UploadDragAndDrop = ({
           setUploadedFiles(e.dataTransfer.files)
         }}
         py={5}
-        onClick={handleClick}
         disabled={disabled}
         icon='upload'
         direction='column'
@@ -120,15 +119,13 @@ const UploadDragAndDrop = ({
         ))}
     </Wrapper>
   )
-}
+})
 
-const UploadImage = ({ caption, acceptedFileTypes, disabled, fileHandler, ...props }) => {
+const UploadImage = forwardRef(({ name, caption, acceptedFileTypes, disabled, fileHandler, ...props }, ref) => {
   const hiddenFileInput = useRef(null)
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [error, setError] = useState(false)
-
-  const handleClickImageUpload = () => hiddenFileInput.current.click()
 
   const handleChange = event => {
     try {
@@ -147,7 +144,8 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, fileHandler, ...pro
     <Wrapper {...props}>
       <HiddenInput
         type='file'
-        ref={hiddenFileInput}
+        ref={ref}
+        name={name}
         onChange={handleChange}
         accept={handleAcceptedFileTypes(acceptedFileTypes)}
       />
@@ -188,7 +186,6 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, fileHandler, ...pro
         <ImageUpload
           py={5}
           error={error}
-          onClick={!error && handleClickImageUpload}
           disabled={disabled}
           icon='upload'
           direction='column'
@@ -199,9 +196,10 @@ const UploadImage = ({ caption, acceptedFileTypes, disabled, fileHandler, ...pro
       )}
     </Wrapper>
   )
-}
+})
 
-const Upload = ({
+const Upload = forwardRef(({
+  name,
   caption,
   description,
   variant,
@@ -210,7 +208,7 @@ const Upload = ({
   disabled,
   fileHandler,
   ...props
-}) => {
+}, ref) => {
   if (
     variant === 'button' ||
     variant === 'button-primary' ||
@@ -221,9 +219,11 @@ const Upload = ({
       <UploadButton
         variant={variant}
         caption={caption}
+        name={name}
         acceptedFileTypes={acceptedFileTypes}
         multipleFiles={multipleFiles}
         disabled={disabled}
+        ref={ref}
         fileHandler={fileHandler}
         {...props}
       />
@@ -232,11 +232,13 @@ const Upload = ({
     return (
       <UploadDragAndDrop
         caption={caption}
+        name={name}
         description={description}
         acceptedFileTypes={acceptedFileTypes}
         multipleFiles={multipleFiles}
         disabled={disabled}
         fileHandler={fileHandler}
+        ref={ref}
         {...props}
       />
     )
@@ -244,13 +246,15 @@ const Upload = ({
     return (
       <UploadImage
         caption={caption}
+        name={name}
         acceptedFileTypes={acceptedFileTypes || 'image/*'}
         disabled={disabled}
         fileHandler={fileHandler}
+        ref={ref}
         {...props}
       />
     )
-}
+})
 
 const ImageErrorContainer = styled(Flex)`
   margin: auto;
@@ -304,6 +308,7 @@ const StyledButton = styled(Button)`
   border-width: 1px;
   border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
 `
+
 const ImageUpload = styled(Button)`
   border: ${props =>
     props.error ? `1px ${props.theme.colors.error} dashed` : `1px ${props.theme.colors.primary} dashed`};
@@ -312,7 +317,9 @@ const ImageUpload = styled(Button)`
 `
 
 const HiddenInput = styled.input`
-  display: none;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
 `
 
 const Wrapper = styled(Flex)`
@@ -329,7 +336,8 @@ Upload.propTypes = {
   acceptedFileTypes: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf([PropTypes.string])]),
   multipleFiles: PropTypes.bool,
   disabled: PropTypes.bool,
-  fileHandler: PropTypes.func
+  fileHandler: PropTypes.func,
+  name: PropTypes.string.isRequired
 }
 
 Upload.defaultProps = {
