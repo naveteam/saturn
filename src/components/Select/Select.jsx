@@ -8,9 +8,9 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ name, label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
+  ({ name, label, options, optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props }, ref) => {
     const [isOpened, setIsOpened] = useState(false)
-    const [optionSelected, setOptionSelected] = useState()
+    const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
     const handleChange = option => {
@@ -36,28 +36,27 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected} onChange={handleChange} ref={ref}>
-              {disabled ? (
-                <option value=''>{optionLabel}</option>
-              ) : (
-                options.map(option => (
-                  <option key={option[optionLabel]} value={option[optionValue]}>
-                    {optionSelected || optionLabel}
-                  </option>
-                ))
-              )}
+            <SelectBase name={name} value={optionSelected[optionValue]} onChange={handleChange} ref={ref}>
+              <option selected disabled value=''>
+                {placeholder}
+              </option>
+              {options.map((option, index) => (
+                <option key={`${option.value}-${index}`} value={option[optionValue]}>
+                  {option[optionLabel]}
+                </option>
+              ))}
             </SelectBase>
             <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
           </SelectContainer>
 
           {isOpened && (
             <OptionsContainer>
-              {options.map(option => (
-                <OptionContainer key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
+              {options.map((option, index) => (
+                <OptionContainer key={`${option.value}.${index}`} onClick={() => handleChange(option)}>
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
                     {option[optionLabel]}
                   </Typography>
-                  {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
+                  {option[optionValue] === optionSelected[optionValue] && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>
@@ -202,7 +201,7 @@ const SelectBase = styled.select(
     border: 0;
     font-size: 3;
     line-height: 3;
-    background: white;
+    background: transparent;
     color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
     cursor: pointer;
     -webkit-appearance: none;
@@ -229,11 +228,15 @@ Select.defaultProps = {
   disabled: false,
   quiet: false,
   label: 'Select',
+  placeholder: 'Selecione uma opção',
+  optionLabel: 'label',
+  optionValue: 'value',
   options: []
 }
 
 Select.propTypes = {
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
   optionLabel: PropTypes.string,
   optionValue: PropTypes.string,
