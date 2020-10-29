@@ -38,6 +38,7 @@ const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, mu
           onChange={handleChange}
           multiple={multipleFiles}
           accept={handleAcceptedFileTypes(acceptedFileTypes)}
+          {...props}
         />
       </Button>
       {uploadedFiles &&
