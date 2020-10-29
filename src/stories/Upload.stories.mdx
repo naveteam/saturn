@@ -20,7 +20,7 @@ O componente `Upload` é utilizado para permitir que o usuário possa realizar u
     }}
   >
     <ThemeProvider>
-      <Upload variant='button' />
+      <Upload variant='button' name='teste'/>
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -40,14 +40,16 @@ A prop `disabled` desabilita completamente o botão, impedindo seu uso.
     }}
   >
     <ThemeProvider>
-      <Upload caption='Upload Button (Primary)' disabled={true} />
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true} />
+      <Upload caption='Upload Button (Primary)' disabled={true} name='teste-disabled'/>
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true}  name='teste-disabled-2'/>
       <Upload
         caption='Upload Drag &amp; Drop'
         description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
-        variant='drag-drop' disabled={true}
+        variant='drag-drop'
+        disabled={true}
+        name='teste-disabled-3'
       />
-      <Upload caption='Upload Image' variant='image' disabled={true} />
+      <Upload caption='Upload Image' variant='image' disabled={true} name='teste-disabled-4'/>
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -67,15 +69,16 @@ O componente `Upload` pode receber também a prop `variant`. As variants podem c
     }}
   >
     <ThemeProvider>
-      <Upload caption='Upload Button (Primary)' variant='button' />
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' />
+      <Upload caption='Upload Button (Primary)' variant='button' name='upload-button'/>
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' name='upload-button-outlined'/>
       <Upload
         caption='Upload Drag &amp; Drop'
         description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
         variant='drag-drop'
         multipleFiles
+        name='upload-drag-and-drop'
       />
-      <Upload caption='Upload Image' variant='image' />
+      <Upload caption='Upload Image' variant='image' name='upload-image' />
     </ThemeProvider>
   </Story>
 </Canvas>

@@ -119,6 +119,7 @@ const Base = styled.button`
   min-height: 40px;
   ${layout}
   ${space}
+  ${flexboxes}
   ${colorVariants}
   &:disabled {
     cursor: initial;
