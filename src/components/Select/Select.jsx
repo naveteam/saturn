@@ -1,6 +1,6 @@
-import React, { useRef, useState, forwardRef, useEffect } from 'react'
+import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { th, variant } from '@xstyled/system'
+import { th, variant, layout } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
@@ -132,11 +132,16 @@ const isOpenedVariant = variant({
   }
 })
 
-const Wrapper = styled(Box)`
-  ${disabledVariant}
-  ${errorVariant}
-  position: relative;
-`
+const Wrapper = styled(Box)(
+  ({ bg, backgroundColor }) => css`
+    position: relative;
+    background-color: transparent;
+    ${disabledVariant}
+    ${errorVariant}
+    ${SelectContainer} {
+      background: ${bg || backgroundColor};
+    }
+`)
 
 const Message = styled(Caption)(
   ({ isOpened }) => css`
