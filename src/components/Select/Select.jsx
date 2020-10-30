@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, useState, forwardRef, useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
@@ -36,12 +36,16 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected[optionValue]} onChange={handleChange} ref={ref}>
-              <option selected disabled value=''>
+            <SelectBase name={name} ref={ref} isDirty={!!optionSelected.value}>
+              <option selected disabled value={false}>
                 {placeholder}
               </option>
               {options.map((option, index) => (
-                <option key={`${option.value}-${index}`} value={option[optionValue]}>
+                <option
+                  key={`${option.value}-${index}`}
+                  value={option[optionValue]}
+                  selected={optionSelected.value === option[optionValue] ? true : false}
+                >
                   {option[optionLabel]}
                 </option>
               ))}
@@ -196,13 +200,13 @@ const Container = styled.div`
 `
 
 const SelectBase = styled.select(
-  ({ value }) => css`
+  ({ isDirty }) => css`
     pointer-events: none;
     border: 0;
     font-size: 3;
     line-height: 3;
     background: transparent;
-    color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
+    color: ${isDirty ? th('colors.gray.900') : th('colors.gray.500')};
     cursor: pointer;
     -webkit-appearance: none;
     -moz-appearance: none;
