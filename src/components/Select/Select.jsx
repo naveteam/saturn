@@ -36,8 +36,8 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} ref={ref} isDirty={!!optionSelected.value}>
-              <option selected disabled value={false}>
+            <SelectBase name={name} ref={ref} isDirty={!!optionSelected[optionValue]}>
+              <option selected disabled value=''>
                 {placeholder}
               </option>
               {options.map((option, index) => (
