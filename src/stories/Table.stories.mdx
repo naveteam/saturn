@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Table, TableContent, TableData, TableRow, Checkbox, Typography } from '../components'
+import { Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Table' />
@@ -42,24 +42,24 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
           <TableRow>
             <TableData as='td'>
               <Checkbox />
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
           </TableRow>
           <TableRow>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Tag color='primary'>Content</Tag>
             </TableData>
           </TableRow>
         </TableContent>
@@ -103,24 +103,24 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
           <TableRow>
             <TableData as='td'>
               <Checkbox />
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
           </TableRow>
           <TableRow>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Typography color='gray.800'>Content</Typography>
             </TableData>
             <TableData as='td'>
-              <Typography>Content</Typography>
+              <Tag color='primary'>Content</Tag>
             </TableData>
           </TableRow>
         </TableContent>
