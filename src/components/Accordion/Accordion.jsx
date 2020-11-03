@@ -26,13 +26,14 @@ Accordion.defaultProps = {
   expanded: false
 }
 
-const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, headerColor }) => {
+const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, headerColor, headerHeight }) => {
   return (
     <StyledHeader
       display='flex'
       alignItems='center'
       justifyContent='space-between'
       bg={headerColor}
+      headerHeight={headerHeight}
       expanded={expanded}
       onClick={() => setExpanded(current => !current)}
     >
@@ -57,12 +58,14 @@ AccordionHeader.propTypes = {
   setExpanded: PropTypes.func,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  headerColor: PropTypes.string
+  headerColor: PropTypes.string,
+  headerHeight: PropTypes.string
 }
 
 AccordionHeader.defaultProps = {
   expandIcon: 'expand_more',
-  headerColor: 'white'
+  headerColor: 'white',
+  headerHeight: '56px'
 }
 
 const AccordionDetail = ({ children, expanded, detailColor }) => (
@@ -158,9 +161,9 @@ const StyledIcon = styled(Icon)(
 )
 
 const StyledHeader = styled(Flex)(
-  ({ expanded }) => css`
+  ({ headerHeight, expanded }) => css`
     padding: 4;
-    height: 56px;
+    height: ${headerHeight};
     width: inherit;
     cursor: pointer;
     box-sizing: border-box;

@@ -22,7 +22,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
-          <AccordionDetail >
+          <AccordionDetail>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
@@ -82,7 +82,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' headerColor='gray.100' />
-          <AccordionDetail detailColor='white' >
+          <AccordionDetail detailColor='white'>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
@@ -198,6 +198,36 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
         </Accordion>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Header Height
+
+É possível alterar o height do `AccordionHeader` através da prop `headerHeight`.
+
+<Canvas>
+  <Story
+    name='Header Height'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' headerHeight='48px' />
           <AccordionDetail>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
