@@ -44,7 +44,7 @@ const Select = forwardRef(
                 <option
                   key={`${option.value}-${index}`}
                   value={option[optionValue]}
-                  selected={optionSelected.value === option[optionValue] ? true : false}
+                  // selected={optionSelected.value === option[optionValue] ? true : false}
                 >
                   {option[optionLabel]}
                 </option>
@@ -141,7 +141,8 @@ const Wrapper = styled(Box)(
     ${SelectContainer} {
       background: ${bg || backgroundColor};
     }
-`)
+`
+)
 
 const Message = styled(Caption)(
   ({ isOpened }) => css`
