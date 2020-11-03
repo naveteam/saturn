@@ -22,7 +22,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
-          <AccordionDetail >
+          <AccordionDetail>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
@@ -82,7 +82,7 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' headerColor='gray.100' />
-          <AccordionDetail detailColor='white' >
+          <AccordionDetail detailColor='white'>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.
@@ -199,6 +199,36 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
           <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Detail Padding
+
+É possível customizar o padding interno de um `AccordionDetail`, para isto basta passar a prop `detailPadding` com o valor desejado.
+
+<Canvas>
+  <Story
+    name='Detail Padding'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail detailPadding='12px 16px 16px'>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
               sed eros. Donec a risus a mauris pretium scelerisque.

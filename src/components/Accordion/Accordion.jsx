@@ -65,19 +65,21 @@ AccordionHeader.defaultProps = {
   headerColor: 'white'
 }
 
-const AccordionDetail = ({ children, expanded, detailColor }) => (
-  <AccordionContent expanded={expanded} detailColor={detailColor}>
+const AccordionDetail = ({ children, expanded, detailColor, detailPadding }) => (
+  <AccordionContent detailPadding={detailPadding} expanded={expanded} detailColor={detailColor}>
     {children}
   </AccordionContent>
 )
 
 AccordionDetail.propTypes = {
+  detailPadding: PropTypes.string,
   expanded: PropTypes.number,
   detailColor: PropTypes.string
 }
 
 AccordionDetail.defaultProps = {
-  detailColor: 'gray.100'
+  detailColor: 'gray.100',
+  detailPadding: '0px 16px'
 }
 
 const AccordionsWrapper = styled.div(
@@ -177,7 +179,7 @@ const StyledHeader = styled(Flex)(
 )
 
 const AccordionContent = styled.div(
-  ({ expanded, detailColor }) => css`
+  ({ detailPadding, expanded, detailColor }) => css`
     width: inherit;
     transition: all 0.3s linear;
     box-sizing: border-box;
@@ -187,7 +189,7 @@ const AccordionContent = styled.div(
     border-color: gray.300;
 
     ${expanded
-      ? { height: '100%', padding: '16px', visibility: 'visible !important' }
+      ? { height: '100%', padding: detailPadding, visibility: 'visible !important' }
       : { height: 0, padding: '0px 16px' }};
   `
 )
