@@ -1,6 +1,6 @@
 import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { th, variant } from '@xstyled/system'
+import { th, variant, layout } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
@@ -36,8 +36,8 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} value={optionSelected[optionValue]} onChange={handleChange} ref={ref}>
-              <option selected disabled value=''>
+            <SelectBase name={name} ref={ref} isDirty={!!optionSelected[optionValue]}>
+              <option disabled value=''>
                 {placeholder}
               </option>
               {options.map((option, index) => (
@@ -128,11 +128,17 @@ const isOpenedVariant = variant({
   }
 })
 
-const Wrapper = styled(Box)`
-  ${disabledVariant}
-  ${errorVariant}
-  position: relative;
+const Wrapper = styled(Box)(
+  ({ bg, backgroundColor }) => css`
+    position: relative;
+    background-color: transparent;
+    ${disabledVariant}
+    ${errorVariant}
+    ${SelectContainer} {
+      background: ${bg || backgroundColor};
+    }
 `
+)
 
 const Message = styled(Caption)(
   ({ isOpened }) => css`
@@ -196,13 +202,13 @@ const Container = styled.div`
 `
 
 const SelectBase = styled.select(
-  ({ value }) => css`
+  ({ isDirty }) => css`
     pointer-events: none;
     border: 0;
     font-size: 3;
     line-height: 3;
     background: transparent;
-    color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
+    color: ${isDirty ? th('colors.gray.900') : th('colors.gray.500')};
     cursor: pointer;
     -webkit-appearance: none;
     -moz-appearance: none;
