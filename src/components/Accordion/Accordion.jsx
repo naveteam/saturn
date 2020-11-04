@@ -191,7 +191,10 @@ const AccordionContent = styled.div(
     color: gray.800;
     border-color: gray.300;
 
-    ${expanded ? [space, { height: '100%', visibility: 'visible !important' }] : { height: 0, padding: '0px 16px' }}
+    height: 0;
+    padding: 0px 16px;
+
+    ${expanded && [space, { height: '100%', visibility: 'visible !important' }]}
 
     ${backgrounds}
   `
