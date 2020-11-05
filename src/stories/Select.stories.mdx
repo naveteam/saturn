@@ -4,7 +4,7 @@ import { Select } from '../components'
 import { optionsSelect } from '../utils'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data input/Select' component={Select} argTypes={{ bg: { control: 'color' } }}/>
+<Meta title='Data input/Select' component={Select} argTypes={{ bg: { control: 'color' } }} />
 
 export const SelectControls = args => (
   <ThemeProvider>
@@ -71,7 +71,7 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
     }}
   >
     <ThemeProvider>
-      <Select name='disabled' label='Disabled' placeholder='Selecione uma opção' disabled caption='Disabled' />
+      <Select name='disabled' label='Disabled' disabled caption='Disabled' />
     </ThemeProvider>
   </Story>
 </Canvas>
