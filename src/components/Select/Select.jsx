@@ -37,12 +37,9 @@ const Select = forwardRef(
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
             <SelectBase name={name} ref={ref} isDirty={!!optionSelected[optionValue]}>
-              <option disabled value=''>
-                {placeholder}
-              </option>
               {options.map((option, index) => (
-                <option key={`${option.value}-${index}`} value={option[optionValue]}>
-                  {option[optionLabel]}
+                <option key={`${option.value}-${index}`} value={optionSelected[optionValue] || ''}>
+                  {optionSelected[optionLabel] || placeholder}
                 </option>
               ))}
             </SelectBase>
