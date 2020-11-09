@@ -8,7 +8,23 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ name, label, options, optionLabel, optionValue, placeholder, caption, error, disabled, quiet, ...props }, ref) => {
+  (
+    {
+      name,
+      label,
+      options,
+      optionLabel,
+      optionValue,
+      onOptionSelected,
+      placeholder,
+      caption,
+      error,
+      disabled,
+      quiet,
+      ...props
+    },
+    ref
+  ) => {
     const [isOpened, setIsOpened] = useState(false)
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
@@ -16,6 +32,7 @@ const Select = forwardRef(
     const handleChange = option => {
       setOptionSelected(option)
       setIsOpened(false)
+      onOptionSelected(option)
     }
 
     useClickOutside(() => isOpened && setIsOpened(false), containerRef)
@@ -247,7 +264,8 @@ Select.propTypes = {
   error: PropTypes.bool,
   disabled: PropTypes.bool,
   quiet: PropTypes.bool,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  onOptionSelected: PropTypes.func
 }
 
 export default Select
