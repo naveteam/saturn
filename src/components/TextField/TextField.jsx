@@ -68,8 +68,8 @@ const disabledVariant = variant({
   default: false,
   variants: {
     true: css`
-      p {
-        color: disabled;
+      * {
+        color: disabled !important;
       }
       div {
         border-color: gray.400;
