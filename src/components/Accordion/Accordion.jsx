@@ -185,7 +185,7 @@ const StyledHeader = styled(Flex)(
 const AccordionContent = styled.div(
   ({ expanded }) => css`
     width: inherit;
-    transition: all 0.3s linear;
+    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     box-sizing: border-box;
     overflow: hidden;
     color: gray.800;
@@ -194,7 +194,7 @@ const AccordionContent = styled.div(
     height: 0;
     padding: 0px 16px;
 
-    ${expanded && [space, { height: '100%', visibility: 'visible !important' }]}
+    ${expanded && [space, { minHeight: '100%', height: 'fit-content', visibility: 'visible !important' }]}
 
     ${backgrounds}
   `
