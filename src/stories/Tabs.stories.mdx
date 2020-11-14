@@ -21,6 +21,7 @@ com o seu conteúdo escondido.
 A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de menu.
 
 # Icon and label:
+
 <Canvas>
   <Story
     name='Icon and Label'
@@ -37,12 +38,12 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           tabs={[
             { label: 'Tab 1', icon: 'alarm' },
             { icon: 'accessbility', label: 'Tab 2' },
-            { label: 'Tab nome extenso', icon: 'lock'},
+            { label: 'Tab nome extenso', icon: 'lock' },
             { label: 'Tab 4', icon: 'lock' },
             { label: 'Tab 5', icon: 'lock' },
             { label: 'Tab 6', icon: 'lock' },
             { label: 'Tab 7', icon: 'lock' },
-            { label: 'Tab 8', icon: 'lock' },
+            { label: 'Tab 8', icon: 'lock' }
           ]}
         >
           <p> Tab 1 body </p>
@@ -60,6 +61,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
 </Canvas>
 
 # Icon and label vertical:
+
 <Canvas>
   <Story
     name='Icon and Label vertical'
@@ -73,11 +75,11 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
     <ThemeProvider>
       <Flex>
         <Tabs
-          direction="vertical"
+          direction='vertical'
           tabs={[
             { label: 'Tab 1', icon: 'alarm' },
             { label: 'Tab 2', icon: 'accessbility' },
-            { label: 'Tab 3', icon: 'lock'},
+            { label: 'Tab 3', icon: 'lock' },
             { label: 'Tab 4', icon: 'menu' },
             { label: 'Tab 5', icon: 'lock' },
             { label: 'Tab 6', icon: 'lock' },
@@ -100,6 +102,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
 </Canvas>
 
 # Only label:
+
 <Canvas>
   <Story
     name='Only Label'
@@ -112,7 +115,14 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
   >
     <ThemeProvider>
       <Flex>
-        <Tabs tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3', disabled: true }, { label: 'Tab 4', disabled: true }]}>
+        <Tabs
+          tabs={[
+            { label: 'Tab 1' },
+            { label: 'Tab 2' },
+            { label: 'Tab 3', disabled: true },
+            { label: 'Tab 4', disabled: true }
+          ]}
+        >
           <p> Tab 1 body </p>
           <p> Tab 2 body </p>
           <p> Tab 3 body </p>
@@ -123,7 +133,8 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
   </Story>
 </Canvas>
 
-# Only label vertical: 
+# Only label vertical:
+
 <Canvas>
   <Story
     name='Only Label vertical'
@@ -136,7 +147,15 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
   >
     <ThemeProvider>
       <Flex>
-        <Tabs direction="vertical" tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3', disabled: true }, { label: 'Tab 4', disabled: true }]}>
+        <Tabs
+          direction='vertical'
+          tabs={[
+            { label: 'Tab 1' },
+            { label: 'Tab 2' },
+            { label: 'Tab 3', disabled: true },
+            { label: 'Tab 4', disabled: true }
+          ]}
+        >
           <p> Tab 1 body </p>
           <p> Tab 2 body </p>
           <p> Tab 3 body </p>
@@ -148,6 +167,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
 </Canvas>
 
 # Only icon:
+
 <Canvas>
   <Story
     name='Only Icon'
@@ -171,6 +191,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
 </Canvas>
 
 # Only icon vertical:
+
 <Canvas>
   <Story
     name='Only Icon vertical'
@@ -183,10 +204,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
   >
     <ThemeProvider>
       <Flex>
-        <Tabs
-          direction="vertical"
-          tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}
-        >
+        <Tabs direction='vertical' tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}>
           <p> Tab 1 body </p>
           <p> Tab 2 body </p>
           <p> Tab 3 body </p>

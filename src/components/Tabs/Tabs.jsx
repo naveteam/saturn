@@ -31,7 +31,7 @@ Content.propTypes = {
 
 const ScrollButton = forwardRef(({ to, disabled, clickHandler }, ref) => (
   <ArrowButton ref={ref} onClick={clickHandler} disabled={disabled}>
-    <Icon icon={`chevron-${to}`} color='blue.400' />
+    <Icon icon={`chevron-${to}`} color='primary' />
   </ArrowButton>
 ))
 
@@ -54,8 +54,8 @@ const getType = (hasLabel, hasIcon) => {
   return 'onlyText'
 }
 
-export const Tabs = ({ direction, tabs, children, ...props }) => {
-  const [activeTabValue, setActiveTab] = useState(0)
+export const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
+  const [activeTabValue, setActiveTab] = useState(initialActiveTab || 0)
   const [navigationVisible, setNavigationVisible] = useState(false)
   const [leftArrowClickable, setLeftArrowClickable] = useState(false)
   const [rightArrowClickable, setRightArrowClickable] = useState(true)
@@ -88,7 +88,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
 
     const nonReachedWidth = totalSize - (tabSizeArray[pointer] + Math.abs(translate))
     const lastViewWidth = tabsWrapper.current.clientWidth
-    
+
     if (nonReachedWidth <= lastViewWidth) {
       setRightArrowClickable(false)
     }
@@ -133,14 +133,14 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
       <NavigationWrapper hasScroll={navigationVisible} collapsed={collapsedList} direction={direction}>
         <MobileMenu direction={direction}>
           <HamburgerButton onClick={() => setCollapse(!collapsedList)}>
-            <Icon icon='menu' color='blue.400' />
+            <Icon icon='menu' color='primary' />
           </HamburgerButton>
         </MobileMenu>
         <ScrollButton to='left' disabled={!leftArrowClickable} ref={leftTrigger} clickHandler={leftTriggerHandler} />
         <TabsContainer hasScroll={navigationVisible} value={activeTabValue} direction={direction}>
           <TabsWrapper ref={tabsWrapper} direction={direction}>
             {tabs.map((tab, index) => {
-              const { label, disabled, icon } = tab
+              const { label, disabled, onClickTab, icon } = tab
               return (
                 <Tab
                   type={getType(!!label, !!icon)}
@@ -149,7 +149,10 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
                   direction={direction}
                   disabled={disabled}
                   active={index === activeTabValue}
-                  onClick={() => setActiveTab(index)}
+                  onClick={() => {
+                    setActiveTab(index)
+                    onClickTab && onClickTab()
+                  }}
                   {...a11yProps(id, index)}
                 >
                   <TabBody>
@@ -191,7 +194,7 @@ export const Tabs = ({ direction, tabs, children, ...props }) => {
 
 Tabs.defaultProps = {
   direction: 'horizontal',
-  label: `Tab`
+  label: 'Tab'
 }
 
 Tabs.propTypes = {
@@ -203,6 +206,8 @@ Tabs.propTypes = {
       disabled: PropTypes.bool
     })
   ).isRequired,
+  initialActiveTab: PropTypes.number,
+  onClickTab: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 }
 
@@ -504,7 +509,7 @@ const iconActiveVariant = variant({
   variants: {
     true: css`
       * {
-        fill: blue.400;
+        fill: primary;
       }
     `,
     false: css`
@@ -566,15 +571,15 @@ const activeTabVariant = variant({
   prop: 'active',
   variants: {
     true: css`
-      color: blue.400;
+      color: primary;
       font-weight: 1;
 
       &:hover {
-        color: blue.400;
+        color: primary;
       }
 
       &::after {
-        background-color: blue.400;
+        background-color: primary;
       }
     `,
     false: css`
@@ -620,7 +625,7 @@ const Tab = styled.li`
 
   &:active {
     &::after {
-      background-color: blue.400;
+      background-color: primary;
     }
   }
 
