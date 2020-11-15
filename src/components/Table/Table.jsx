@@ -4,9 +4,11 @@ import { th, variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 const Table = ({ type, children, ...props }) => (
-  <Container type={type} {...props}>
-    {children}
-  </Container>
+  <OverflowWrapper>
+    <Container type={type} {...props}>
+      {children}
+    </Container>
+  </OverflowWrapper>
 )
 
 const typeVariant = variant({
@@ -21,6 +23,12 @@ const typeVariant = variant({
     `
   }
 })
+
+
+const OverflowWrapper = styled.div`
+  max-width: 100%;
+  overflow-x: auto;
+`
 
 const Container = styled.table`
   ${typeVariant}
