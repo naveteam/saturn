@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-const Table = ({ type, children, ...props }) => (
-  <OverflowWrapper>
-    <Container type={type} {...props}>
-      {children}
-    </Container>
-  </OverflowWrapper>
-)
+const Table = ({ type, ...props }) => {
+  const overflowRef = useRef()
+
+  const children = React.Children.map(props.children, child => {
+    return React.cloneElement(child, { overflowRef });
+  })
+
+  return (
+    <OverflowWrapper ref={overflowRef}>
+      <Container type={type} {...props}>
+        {children}
+      </Container>
+    </OverflowWrapper>
+  )
+}
 
 const typeVariant = variant({
   prop: 'type',
@@ -28,6 +36,7 @@ const typeVariant = variant({
 const OverflowWrapper = styled.div`
   max-width: 100%;
   overflow-x: auto;
+  position: relative;
 `
 
 const Container = styled.table`

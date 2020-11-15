@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag } from '../components'
+import { Icon, Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Table' />
@@ -39,7 +39,7 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
           ))}
         </TableContent>
         <TableContent>
-          <TableRow>
+          <TableRow actions={() => <><Icon icon='edit' /><Icon icon='delete' /></>}>
             <TableData as='td'>
               <Checkbox />
               <Typography color='gray.800'>Content</Typography>
@@ -50,8 +50,53 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
             <TableData>
               <Typography color='gray.800'>Content</Typography>
             </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
+            <TableData>
+              <Typography color='gray.800'>Content</Typography>
+            </TableData>
           </TableRow>
-          <TableRow>
+          <TableRow actions={() => <><Icon icon='edit' /><Icon icon='delete' /></>}>
             <TableData as='td'>
               <Typography color='gray.800'>Content</Typography>
             </TableData>
