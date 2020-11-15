@@ -8,7 +8,21 @@ import { Caption, Typography } from '..'
 
 const TextField = forwardRef(
   (
-    { borderColor, height, label, message, prefix, suffix, placeholder, disabled, type, name, width, ...props },
+    {
+      borderColor,
+      height,
+      label,
+      message,
+      prefix,
+      suffix,
+      placeholder,
+      disabled,
+      type,
+      name,
+      width,
+      defaultValue,
+      ...props
+    },
     ref
   ) => {
     const [focus, setFocus] = useState(false)
@@ -25,6 +39,7 @@ const TextField = forwardRef(
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
             disabled={disabled}
+            defaultValue={defaultValue}
           />
           {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
         </Container>
