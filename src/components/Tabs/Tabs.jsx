@@ -203,11 +203,11 @@ Tabs.propTypes = {
     PropTypes.shape({
       label: PropTypes.string,
       icon: PropTypes.string,
-      disabled: PropTypes.bool
+      disabled: PropTypes.bool,
+      onClickTab: PropTypes.func
     })
   ).isRequired,
   initialActiveTab: PropTypes.number,
-  onClickTab: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 }
 
