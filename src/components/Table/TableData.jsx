@@ -1,3 +1,4 @@
+import { sizes, system } from '@xstyled/system'
 import styled from '@xstyled/styled-components'
 
 const TableData = styled.td`
@@ -7,6 +8,7 @@ const TableData = styled.td`
   letter-spacing: 0.01071em;
   vertical-align: inherit;
   font-family: 'Open Sans',sans-serif;
+  ${system}
 `
 
 export default TableData
