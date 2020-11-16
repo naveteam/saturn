@@ -24,10 +24,10 @@ const typeVariant = variant({
   }
 })
 
-
 const OverflowWrapper = styled.div`
   max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
 `
 
 const Container = styled.table`
