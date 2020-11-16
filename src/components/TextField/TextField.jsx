@@ -21,6 +21,8 @@ const TextField = forwardRef(
       name,
       width,
       defaultValue,
+      value,
+      onChange,
       ...props
     },
     ref
@@ -39,6 +41,8 @@ const TextField = forwardRef(
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
             disabled={disabled}
+            value={value}
+            onChange={onChange}
             defaultValue={defaultValue}
           />
           {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
