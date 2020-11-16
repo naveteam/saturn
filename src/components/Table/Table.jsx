@@ -41,21 +41,6 @@ const Container = styled.table`
   height: 100%;
   border-collapse: collapse;
   text-align: left;
-
-  td:first-of-type,
-  th:first-of-type {
-    display: flex;
-    label {
-      margin-right: 12px;
-    }
-    span {
-      margin-right: 8px;
-    }
-  }
-
-  td {
-    align-items: center;
-  }
 `
 
 Table.defaultProps = {
