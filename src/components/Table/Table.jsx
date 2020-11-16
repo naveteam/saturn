@@ -37,6 +37,7 @@ const Container = styled.table`
 
   min-width: 328px;
   max-width: 100%;
+  width: 100%;
   height: 100%;
   border-collapse: collapse;
   text-align: left;

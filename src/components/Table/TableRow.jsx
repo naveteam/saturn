@@ -8,6 +8,7 @@ const TableRow = styled.tr`
   border-bottom: 1px solid ${th.color('gray.300')};
   align-items: center;
   justify-content: center;
+  color: ${th.color('gray.800')};
 `
 
 export default TableRow
