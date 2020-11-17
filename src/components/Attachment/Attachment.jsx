@@ -85,8 +85,10 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
             </Flex>
 
             <Flex>
-              {!error && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              <StyledIcon error={error} icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
+              {!error && onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
+              {onDelete && (
+                <StyledIcon error={error} icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
+              )}
             </Flex>
           </Container>
         )}
@@ -118,9 +120,9 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
             </Flex>
 
             <Flex>
-              <StyledIcon icon='download' onClick={onDownload} />
-              <StyledIcon icon='visibility-outline' onClick={onView} />
-              <StyledIcon icon='delete-outline' onClick={onDelete} />
+              {onDownload && <StyledIcon icon='download' onClick={onDownload} />}
+              {onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
+              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} />}
             </Flex>
           </Container>
         )}
@@ -186,9 +188,6 @@ Attachment.propTypes = {
 
 Attachment.defaultProps = {
   error: false,
-  onDownload: () => alert('download'),
-  onView: () => alert('view'),
-  onDelete: () => alert('delete'),
   variant: 'upload',
   backgroundColor: 'none'
 }
