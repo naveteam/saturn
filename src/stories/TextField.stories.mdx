@@ -64,7 +64,7 @@ Passando a prop de `error` para o `TextField`, o usuário pode receber um feedba
     }}
   >
     <ThemeProvider>
-      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
+      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' error />
       <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
       <TextField name='error' label='Error' placeholder='Error TextField' message='Required' />
     </ThemeProvider>
@@ -86,7 +86,13 @@ Através da prop `borderColor` que pode ser passada para o `TextField`, é poss�
     }}
   >
     <ThemeProvider>
-      <TextField name='borderColor' label='Border Color' placeholder='Border Color' borderColor='primary' />
+      <TextField
+        name='borderColor'
+        label='Border Color'
+        placeholder='Border Color'
+        borderColor='primary'
+        inputProps={{ maxLength: '5' }}
+      />
     </ThemeProvider>
   </Story>
 </Canvas>
