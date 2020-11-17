@@ -48,7 +48,13 @@ const Pagination = ({
       return Array.from({ length: prevLength }).map((_, index) => {
         const pagesBefore = page - (prevLength - index)
         return (
-          <ButtonPage caption={pagesBefore} key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)} />
+          <ButtonPage
+            caption={pagesBefore}
+            key={pagesBefore}
+            hover
+            variant='text'
+            onClick={() => setPage(pagesBefore)}
+          />
         )
       })
     } else if (direction === 'after') {
@@ -170,6 +176,7 @@ const ButtonPage = styled(Button)`
   justify-content: center;
   align-items: center;
   color: ${th.color('gray.800')};
+  padding: 0;
 
   p {
     font-size: ${th.fontSize(2)};
