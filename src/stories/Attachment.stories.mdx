@@ -26,7 +26,7 @@ O component de Attachment sinaliza arquivos que passaram por um processo de uplo
       return (
         <ThemeProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={uploadedFile} />
+          <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
         </ThemeProvider>
       )
     }}
@@ -53,7 +53,7 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       return (
         <ThemeProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={uploadedFile} />
+          <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
         </ThemeProvider>
       )
     }}
@@ -78,7 +78,8 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
       <Attachment
         name='download.jpg'
         variant='download'
-        link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+        onDownload={() => alert('download')}
+        link='https:// www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
       />
     </ThemeProvider>
   </Story>
@@ -134,6 +135,7 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
             mb={10}
             name='link_upload_error'
             link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            onDelete={() => alert('Delete')}
             error={true}
           />
           <Typography fontSize={2} fontWeight='600' mb={10}>
