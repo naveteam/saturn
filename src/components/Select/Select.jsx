@@ -32,7 +32,7 @@ const Select = forwardRef(
     const handleChange = option => {
       setOptionSelected(option)
       setIsOpened(false)
-      onOptionSelected(option)
+      onOptionSelected && onOptionSelected(option)
     }
 
     useClickOutside(() => isOpened && setIsOpened(false), containerRef)
