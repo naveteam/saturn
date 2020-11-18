@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { borders, variant } from '@xstyled/system'
+import { borders, layout, space, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
@@ -120,7 +120,9 @@ const focusVariant = variant({
 const Wrapper = styled(Box)`
   ${errorVariant}
   ${disabledVariant}
-  width: fit-content;
+  width: 100%;
+  ${layout}
+  ${space}
 `
 const Label = styled(Typography)`
   font-size: 2;
