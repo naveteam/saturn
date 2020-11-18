@@ -23,6 +23,7 @@ const TextField = forwardRef(
       defaultValue,
       value,
       onChange,
+      inputProps,
       ...props
     },
     ref
@@ -44,6 +45,7 @@ const TextField = forwardRef(
             value={value}
             onChange={onChange}
             defaultValue={defaultValue}
+            {...inputProps}
           />
           {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
         </Container>
