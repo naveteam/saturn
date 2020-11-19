@@ -9,7 +9,16 @@ import { Icon } from '../Iconography'
 const RadioButton = forwardRef(({ color, label, disabled, checked, name, onChange, value, ...props }, ref) => {
   return (
     <LabelContainer as='label' color={color} minHeight={24} {...props}>
-      <Input type='radio' value={value} ref={ref} disabled={disabled} checked={checked} name={name} onChange={onChange} {...props}/>
+      <Input
+        type='radio'
+        value={value}
+        ref={ref}
+        disabled={disabled}
+        checked={checked}
+        name={name}
+        onChange={onChange}
+        {...props}
+      />
       <CheckedIcon icon='radio_button_checked' color='primary' />
       <UncheckedIcon icon='radio_button_outline' />
       {label && (
@@ -77,7 +86,7 @@ RadioButton.propTypes = {
   onChange: PropTypes.func,
   label: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string,PropTypes.number, PropTypes.bool])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
 }
 
 export default RadioButton

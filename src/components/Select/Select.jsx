@@ -21,6 +21,7 @@ const Select = forwardRef(
       error,
       disabled,
       quiet,
+      defaultValue,
       ...props
     },
     ref
@@ -53,10 +54,16 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase name={name} ref={ref} isDirty={!!optionSelected[optionValue]}>
+            <Typography lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
+              {optionSelected[optionLabel] || placeholder}
+            </Typography>
+            <SelectBase name={name} ref={ref} defaultValue={defaultValue}>
+              <option value='' disabled>
+                {placeholder}
+              </option>
               {options.map((option, index) => (
-                <option key={`${option.value}-${index}`} value={optionSelected[optionValue] || ''}>
-                  {optionSelected[optionLabel] || placeholder}
+                <option key={index} value={option[optionValue]}>
+                  {option[optionLabel]}
                 </option>
               ))}
             </SelectBase>
@@ -215,19 +222,9 @@ const Container = styled.div`
   }
 `
 
-const SelectBase = styled.select(
-  ({ isDirty }) => css`
-    pointer-events: none;
-    border: 0;
-    font-size: 3;
-    line-height: 3;
-    background: transparent;
-    color: ${isDirty ? th('colors.gray.900') : th('colors.gray.500')};
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  `
-)
+const SelectBase = styled.select`
+  display: none;
+`
 
 const SelectContainer = styled(Flex)(
   ({ quiet, error }) => css`
@@ -238,6 +235,7 @@ const SelectContainer = styled(Flex)(
     padding: ${quiet && !error ? '8px' : '7px'};
     justify-content: space-between;
     align-items: center;
+    height: 40px;
     cursor: pointer;
   `,
   isOpenedVariant
@@ -265,7 +263,8 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   quiet: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  onOptionSelected: PropTypes.func
+  onOptionSelected: PropTypes.func,
+  defaultValue: PropTypes.string
 }
 
 export default Select
