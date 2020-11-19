@@ -147,7 +147,7 @@ Button.propTypes = {
   width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number]),
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   icon: PropTypes.string,
-  caption: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  caption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   description: PropTypes.string
 }
 

@@ -237,7 +237,8 @@ const disabledArrowButton = variant({
       * {
         fill: disabled;
       }
-    `
+    `,
+    false: css``
   }
 })
 
@@ -500,7 +501,8 @@ const iconDisabledVariant = variant({
       * {
         fill: gray.400 !important;
       }
-    `
+    `,
+    false: css``
   }
 })
 
