@@ -1,6 +1,6 @@
 import React, { useRef, useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { th, variant, layout } from '@xstyled/system'
+import { th, variant } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
@@ -54,9 +54,9 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <Typography lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
+            <OverflowText lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
               {optionSelected[optionLabel] || placeholder}
-            </Typography>
+            </OverflowText>
             <SelectBase name={name} ref={ref} defaultValue={defaultValue}>
               <option value='' disabled>
                 {placeholder}
@@ -240,6 +240,13 @@ const SelectContainer = styled(Flex)(
   `,
   isOpenedVariant
 )
+
+const OverflowText = styled(Typography)`
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: calc(100% - 24px);
+  text-overflow: ellipsis;
+`
 
 Select.defaultProps = {
   error: false,
