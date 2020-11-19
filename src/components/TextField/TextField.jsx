@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { borders, layout, space, variant } from '@xstyled/system'
+import { borders, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
@@ -10,7 +10,6 @@ const TextField = forwardRef(
   (
     {
       borderColor,
-      height,
       label,
       message,
       prefix,
@@ -19,7 +18,6 @@ const TextField = forwardRef(
       disabled,
       type,
       name,
-      width,
       defaultValue,
       value,
       onChange,
@@ -32,7 +30,7 @@ const TextField = forwardRef(
     return (
       <Wrapper disabled={disabled} {...props}>
         <Label>{label}</Label>
-        <Container focus={focus} borderColor={borderColor} height={height} width={width}>
+        <Container focus={focus} borderColor={borderColor}>
           {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
           <InputBase
             ref={ref}
@@ -57,13 +55,18 @@ const TextField = forwardRef(
 
 TextField.propTypes = {
   borderColor: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.oneOfType([
-    PropTypes.arrayOf([PropTypes.number]),
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ])
+  label: PropTypes.string,
+  message: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
+  inputProps: PropTypes.object
 }
 
 TextField.defaultProps = {
@@ -125,9 +128,6 @@ const focusVariant = variant({
 const Wrapper = styled(Box)`
   ${errorVariant}
   ${disabledVariant}
-  width: 100%;
-  ${layout}
-  ${space}
 `
 const Label = styled(Typography)`
   font-size: 2;
@@ -141,7 +141,7 @@ const Container = styled(Flex)`
   border-radius: 2;
   align-items: center;
   padding: 1px;
-
+  width: 100%;
   ${borders}
   ${focusVariant}
 `
@@ -159,6 +159,7 @@ const InputBase = styled.input`
   background-color: transparent;
   padding: 6px;
   overflow: hidden;
+  width: 100%;
 
   &::placeholder {
     color: gray.600;
