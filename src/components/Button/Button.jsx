@@ -142,12 +142,12 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.string,
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
   width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number]),
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   icon: PropTypes.string,
-  caption: PropTypes.string,
+  caption: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   description: PropTypes.string
 }
 

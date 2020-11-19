@@ -58,7 +58,12 @@ const TextField = forwardRef(
 TextField.propTypes = {
   borderColor: PropTypes.string,
   height: PropTypes.string,
-  width: PropTypes.string
+  width: PropTypes.oneOfType([
+    PropTypes.arrayOf([PropTypes.number]),
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 TextField.defaultProps = {
