@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, useState, forwardRef, useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
@@ -22,6 +22,7 @@ const Select = forwardRef(
       disabled,
       quiet,
       defaultValue,
+      resetValue,
       ...props
     },
     ref
@@ -35,6 +36,20 @@ const Select = forwardRef(
       setIsOpened(false)
       onOptionSelected && onOptionSelected(option)
     }
+
+    useEffect(() => {
+      if (!resetValue) {
+        return
+      }
+
+      const selectedOption = options.find(option => option[optionValue] === resetValue)
+
+      if (!selectedOption) {
+        return
+      }
+
+      handleChange(selectedOption)
+    }, [resetValue])
 
     useClickOutside(() => isOpened && setIsOpened(false), containerRef)
     useHotKey(() => isOpened && setIsOpened(false), 'Escape')
