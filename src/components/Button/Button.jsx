@@ -144,7 +144,11 @@ Button.defaultProps = {
 Button.propTypes = {
   color: PropTypes.string,
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
-  width: PropTypes.oneOfType([PropTypes.arrayOf([PropTypes.number]), PropTypes.number]),
+  width: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.string
+  ]),
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   icon: PropTypes.string,
   caption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
