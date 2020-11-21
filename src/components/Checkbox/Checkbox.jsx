@@ -3,25 +3,39 @@ import React, { forwardRef } from 'react'
 import styled, { css, down, typography } from '@xstyled/styled-components'
 
 import { Typography } from '../'
+import { Flex } from '../Grid'
 import { Icon } from '../Iconography'
 
-const Checkbox = forwardRef(({ color, label, ...props }, ref) => {
-  return (
-    <LabelContainer color={color}>
-      <Input type='checkbox' ref={ref} {...props} />
-      <CheckedIcon icon='checkbox_checked' color='primary' />
-      <UncheckedIcon icon='checkbox_outline' />
-      {label && (
-        <Typography fontSize={3} lineHeight={3} fontWeight={0} paddingLeft={3}>
-          {label}
-        </Typography>
-      )}
-    </LabelContainer>
-  )
-})
+const Checkbox = forwardRef(
+  ({ label, color, name, disabled, onChange, value, defaultValue, checked, ...props }, ref) => {
+    return (
+      <LabelContainer as='label' color={color} {...props}>
+        <Input
+          type='checkbox'
+          ref={ref}
+          name={name}
+          onChange={onChange}
+          value={value}
+          checked={checked}
+          defaultValue={defaultValue}
+          disabled={disabled}
+        />
+        <CheckedIcon icon='checkbox_checked' color='primary' />
+        <UncheckedIcon icon='checkbox_outline' />
+        {label && (
+          <Typography fontSize={3} lineHeight={3} fontWeight={0} paddingLeft={3}>
+            {label}
+          </Typography>
+        )}
+      </LabelContainer>
+    )
+  }
+)
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   color: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
@@ -38,7 +52,7 @@ const UncheckedIcon = styled(Icon)`
   }
 `
 
-const LabelContainer = styled.label`
+const LabelContainer = styled(Flex)`
   display: inline-flex;
   vertical-align: top;
   position: relative;
