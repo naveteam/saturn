@@ -38,8 +38,12 @@ const Select = forwardRef(
     }
 
     useEffect(() => {
-      if (!resetValue && resetValue !== optionSelected[optionValue]) {
+      if (!resetValue && resetValue === optionSelected[optionValue]) {
         return
+      }
+
+      if (!resetValue) {
+        return handleChange({})
       }
 
       const selectedOption = options.find(option => option[optionValue] === resetValue)
