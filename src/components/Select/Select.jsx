@@ -31,10 +31,10 @@ const Select = forwardRef(
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
-    const handleChange = option => {
+    const handleChange = (option, shouldValidation = true) => {
       setOptionSelected(option)
       setIsOpened(false)
-      onOptionSelected && onOptionSelected(option)
+      onOptionSelected && onOptionSelected(option, shouldValidation)
     }
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Select = forwardRef(
       }
 
       if (!resetValue) {
-        return handleChange({})
+        return handleChange({}, false)
       }
 
       const selectedOption = options.find(option => option[optionValue] === resetValue)
@@ -52,7 +52,7 @@ const Select = forwardRef(
         return
       }
 
-      handleChange(selectedOption)
+      handleChange(selectedOption, false)
     }, [resetValue])
 
     useClickOutside(() => isOpened && setIsOpened(false), containerRef)
