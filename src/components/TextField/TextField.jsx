@@ -1,32 +1,77 @@
+import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import { borders, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '..'
 
-const TextField = forwardRef(({ label, message, prefix, suffix, placeholder, disabled, type, name, ...props }, ref) => {
-  const [focus, setFocus] = useState(false)
-  return (
-    <Wrapper disabled={disabled} {...props}>
-      <Label>{label}</Label>
-      <Container focus={focus}>
-        {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
-        <InputBase
-          ref={ref}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          disabled={disabled}
-        />
-        {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
-      </Container>
-      <Message>{message}</Message>
-    </Wrapper>
-  )
-})
+const TextField = forwardRef(
+  (
+    {
+      borderColor,
+      label,
+      message,
+      prefix,
+      suffix,
+      placeholder,
+      disabled,
+      type,
+      name,
+      defaultValue,
+      value,
+      onChange,
+      inputProps,
+      ...props
+    },
+    ref
+  ) => {
+    const [focus, setFocus] = useState(false)
+    return (
+      <Wrapper disabled={disabled} {...props}>
+        <Label>{label}</Label>
+        <Container focus={focus} borderColor={borderColor}>
+          {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
+          <InputBase
+            ref={ref}
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            disabled={disabled}
+            value={value}
+            onChange={onChange}
+            defaultValue={defaultValue}
+            {...inputProps}
+          />
+          {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
+        </Container>
+        <Message>{message}</Message>
+      </Wrapper>
+    )
+  }
+)
+
+TextField.propTypes = {
+  borderColor: PropTypes.string,
+  label: PropTypes.string,
+  message: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
+  inputProps: PropTypes.object
+}
+
+TextField.defaultProps = {
+  borderColor: 'black'
+}
 
 const errorVariant = variant({
   prop: 'error',
@@ -93,10 +138,11 @@ const Label = styled(Typography)`
 const Container = styled(Flex)`
   border-width: 1px;
   border-style: solid;
-  border-color: black;
   border-radius: 2;
   align-items: center;
   padding: 1px;
+  width: 100%;
+  ${borders}
   ${focusVariant}
 `
 const Affix = styled(Typography)`
@@ -112,6 +158,9 @@ const InputBase = styled.input`
   line-height: 3;
   background-color: transparent;
   padding: 6px;
+  overflow: hidden;
+  width: 100%;
+
   &::placeholder {
     color: gray.600;
   }

@@ -55,7 +55,8 @@ const disabledVariant = variant({
   default: false,
   variants: {
     true: css`
-      p, label{
+      p,
+      label {
         color: disabled;
       }
       div {
@@ -119,7 +120,7 @@ const Input = styled.textarea`
   height: calc(100% - 16px);
   width: 100%;
   color: gray.900;
-  overflow-y: scroll;  
+  overflow-y: scroll;
 
   scrollbar-color: ${th.color('gray.500')};
 
@@ -131,7 +132,7 @@ const Input = styled.textarea`
   ::-webkit-scrollbar-track {
     display: none;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: ${th.color('gray.500')};
     border-radius: 8px;

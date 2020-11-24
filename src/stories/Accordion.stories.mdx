@@ -6,7 +6,9 @@ import { ThemeProvider } from '../theme'
 
 # Accordion
 
-O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. A Sua utilização baseia-se na importação e utilização de 4 componentes. O `AccordionsWrapper` deve ser o container em volta de todos os Accordions, cada item consiste (Nesta Ordem) de um componente `Accordion` que você deve colocar como filhos dele o componente `AccordionHeader` que define o seu título e o conteúdo (children) do Accordion sendo definido no componente `AccordionDetail`.
+O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. A Sua utilização baseia-se na importação e utilização de 4 componentes. O `AccordionsWrapper` deve ser o container em volta de todos os Accordions, cada item consiste (Nesta Ordem) de um componente `Accordion` que você deve colocar como filhos dele o componente `AccordionHeader` que define o seu título, é também onde se encontra o local clicável para `abertura e fechamento do Accordion` e o conteúdo (children) do Accordion sendo definido no componente `AccordionDetail`.
+
+O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyled.dev/docs/style-props/#layout) e [layout](https://xstyled.dev/docs/style-props/#layout) do [xstyled](https://xstyled.dev/), o `AccordionDetail` extende as funções [backgrounds](https://xstyled.dev/docs/style-props/#layout) e [space](https://xstyled.dev/docs/style-props/#space).
 
 <Canvas>
   <Story
@@ -138,6 +140,36 @@ O componente `Accordion` permite que uma área seja encolhida e/ou expandida. De
         </Accordion>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
+          <AccordionDetail>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales
+              sed eros. Donec a risus a mauris pretium scelerisque.
+            </Typography>
+          </AccordionDetail>
+        </Accordion>
+      </AccordionsWrapper>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Subtitle
+
+É possível passar um subtitle para `Accordion` enviando uma string através da propriedade `subtitle`.
+
+<Canvas>
+  <Story
+    name='Subtitle'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <AccordionsWrapper>
+        <Accordion>
+          <AccordionHeader title='Lorem Ipsum' subtitle='Lorem Ipsum' />
           <AccordionDetail>
             <Typography>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ligula at lorem pretium pulvinar sodales

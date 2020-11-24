@@ -48,18 +48,20 @@ const Pagination = ({
       return Array.from({ length: prevLength }).map((_, index) => {
         const pagesBefore = page - (prevLength - index)
         return (
-          <ButtonPage key={pagesBefore} hover variant='text' onClick={() => setPage(pagesBefore)}>
-            {pagesBefore}
-          </ButtonPage>
+          <ButtonPage
+            caption={pagesBefore}
+            key={pagesBefore}
+            hover
+            variant='text'
+            onClick={() => setPage(pagesBefore)}
+          />
         )
       })
     } else if (direction === 'after') {
       return Array.from({ length: nextLength }).map((_, index) => {
         const pagesAfter = page + index + 1
         return (
-          <ButtonPage key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)}>
-            {pagesAfter}
-          </ButtonPage>
+          <ButtonPage caption={pagesAfter} key={pagesAfter} hover variant='text' onClick={() => setPage(pagesAfter)} />
         )
       })
     }
@@ -110,47 +112,29 @@ const Pagination = ({
         <Fragment>
           {showFirstDots && (
             <Fragment>
-              <ButtonPage variant='text' hover onClick={() => setPage(1)}>
-                1
-              </ButtonPage>
+              <ButtonPage variant='text' hover onClick={() => setPage(1)} caption='1' />
               {!showLastDots && (
                 <Fragment>
-                  <ButtonPage variant='text' hover onClick={() => setPage(2)}>
-                    2
-                  </ButtonPage>
-                  <ButtonPage variant='text' hover onClick={() => setPage(3)}>
-                    3
-                  </ButtonPage>
+                  <ButtonPage variant='text' hover onClick={() => setPage(2)} caption='2' />
+                  <ButtonPage variant='text' hover onClick={() => setPage(3)} caption='3' />
                 </Fragment>
               )}
-              <ButtonPage variant='text' hover onClick={() => setPage(page - prevLength - 1)}>
-                ...
-              </ButtonPage>
+              <ButtonPage variant='text' hover onClick={() => setPage(page - prevLength - 1)} caption='...' />
             </Fragment>
           )}
           {showPagesInMiddle('before')}
-          <ButtonPage selected onClick={() => setPage(page)}>
-            {page}
-          </ButtonPage>
+          <ButtonPage selected onClick={() => setPage(page)} caption={page} />
           {showPagesInMiddle('after')}
           {showLastDots && (
             <Fragment>
-              <ButtonPage variant='text' hover onClick={() => setPage(page + nextLength + 1)}>
-                ...
-              </ButtonPage>
+              <ButtonPage variant='text' hover onClick={() => setPage(page + nextLength + 1)} caption='...' />
               {!showFirstDots && (
                 <Fragment>
-                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 2)}>
-                    {pageSize - 2}
-                  </ButtonPage>
-                  <ButtonPage variant='text' hover onClick={() => setPage(pageSize - 1)}>
-                    {pageSize - 1}
-                  </ButtonPage>
+                  <ButtonPage caption={pageSize - 2} variant='text' hover onClick={() => setPage(pageSize - 2)} />
+                  <ButtonPage caption={pageSize - 1} variant='text' hover onClick={() => setPage(pageSize - 1)} />
                 </Fragment>
               )}
-              <ButtonPage variant='text' hover onClick={() => setPage(pageSize)}>
-                {pageSize}
-              </ButtonPage>
+              <ButtonPage variant='text' hover onClick={() => setPage(pageSize)} caption={pageSize} />
             </Fragment>
           )}
         </Fragment>
@@ -192,6 +176,7 @@ const ButtonPage = styled(Button)`
   justify-content: center;
   align-items: center;
   color: ${th.color('gray.800')};
+  padding: 0;
 
   p {
     font-size: ${th.fontSize(2)};

@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Upload } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input/Upload' component={Upload} />
+
+# Upload
+
+O componente `Upload` é utilizado para permitir que o usuário possa realizar upload de arquivos dentro da aplicação.
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload variant='button' name='teste'/>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Disabled
+
+A prop `disabled` desabilita completamente o botão, impedindo seu uso.
+
+<Canvas>
+  <Story
+    name='Disabled'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload caption='Upload Button (Primary)' disabled={true} name='teste-disabled'/>
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true}  name='teste-disabled-2'/>
+      <Upload
+        caption='Upload Drag &amp; Drop'
+        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
+        variant='drag-drop'
+        disabled={true}
+        name='teste-disabled-3'
+      />
+      <Upload caption='Upload Image' variant='image' disabled={true} name='teste-disabled-4'/>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Variant
+
+O componente `Upload` pode receber também a prop `variant`. As variants podem criar botões preenchidos, apenas contornados, drag and drops ou upload de imagem com preview.
+
+<Canvas>
+  <Story
+    name='Variants'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Upload caption='Upload Button (Primary)' variant='button' name='upload-button'/>
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' name='upload-button-outlined'/>
+      <Upload
+        caption='Upload Drag &amp; Drop'
+        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
+        variant='drag-drop'
+        multipleFiles
+        name='upload-drag-and-drop'
+      />
+      <Upload caption='Upload Image' variant='image' name='upload-image' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Upload} />

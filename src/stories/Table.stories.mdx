@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Table, TableContent, TableData, TableRow, Checkbox, Typography } from '../components'
+import { Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Table' />
@@ -30,36 +30,68 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
               Content
             </Typography>
           </TableData>
-          {['Teste', 'Teste1'].map((header, index) => (
-            <TableData key={index}>
-              <Typography fontWeight={1} fontSize={3} lineHeight={3}>
-                {header}
-              </Typography>
+          {['Teste', 'Teste1', 'Teste2', 'Teste3', 'Teste4', 'Teste5', 'Teste6', 'Teste7', 'Teste8', 'Teste9', 'Teste10', 'Teste11', 'Teste12', 'Teste13', 'Teste14', 'Teste15', 'Teste16'].map((header, index) => (
+            <TableData key={index}  fontWeight={1} fontSize={3} lineHeight={3}>
+              {header}
             </TableData>
           ))}
         </TableContent>
         <TableContent>
           <TableRow>
-            <TableData as='td'>
+            <TableData>
               <Checkbox />
-              <Typography>Content</Typography>
+              Content
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              Content
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              Content
             </TableData>
-          </TableRow>
-          <TableRow>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              Content
             </TableData>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              Content
             </TableData>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
+            </TableData>
+            <TableData>
+              Content
             </TableData>
           </TableRow>
         </TableContent>
@@ -101,26 +133,26 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
         </TableContent>
         <TableContent>
           <TableRow>
-            <TableData as='td'>
+            <TableData>
               <Checkbox />
-              <Typography>Content</Typography>
+              Content
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              Content
             </TableData>
             <TableData>
-              <Typography>Content</Typography>
+              Content
             </TableData>
           </TableRow>
           <TableRow>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              Content
             </TableData>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              Content
             </TableData>
-            <TableData as='td'>
-              <Typography>Content</Typography>
+            <TableData>
+              <Tag color='primary'>Content</Tag>
             </TableData>
           </TableRow>
         </TableContent>

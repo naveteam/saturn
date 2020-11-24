@@ -3,7 +3,7 @@ import styled, { css, variant } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
 
-export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
+export const Loader = ({ percentage, showPercentage, size, time, variant, ...props }) => {
   const [circleLength, setCircleLength] = useState(0)
   const externalCircleRef = useRef()
 
@@ -16,7 +16,7 @@ export const Loader = ({ percentage, showPercentage, size, time, variant }) => {
   }, [percentage])
 
   return (
-    <LoaderContainer time={time} size={size} variant={variant} circleLength={circleLength}>
+    <LoaderContainer time={time} size={size} variant={variant} circleLength={circleLength} {...props}>
       <svg>
         <circle />
         <circle ref={externalCircleRef} />

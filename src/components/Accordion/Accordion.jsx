@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { cloneElement, Children, useState } from 'react'
-import styled, { css, layout } from '@xstyled/styled-components'
+import styled, { backgrounds, css, layout, space } from '@xstyled/styled-components'
 
-import { Flex, Icon, Typography } from '../'
+import { Flex, Icon, Typography, Subtitle } from '../'
 
 const Accordion = ({ children, expanded: propsExpanded }) => {
   const [expanded, setExpanded] = useState(propsExpanded)
@@ -26,7 +26,7 @@ Accordion.defaultProps = {
   expanded: false
 }
 
-const AccordionHeader = ({ expanded, expandIcon, setExpanded, title }) => {
+const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, ...props }) => {
   return (
     <StyledHeader
       display='flex'
@@ -34,30 +34,51 @@ const AccordionHeader = ({ expanded, expandIcon, setExpanded, title }) => {
       justifyContent='space-between'
       expanded={expanded}
       onClick={() => setExpanded(current => !current)}
+      {...props}
     >
-      <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
-        {title}
-      </Typography>
+      <Flex>
+        <Typography as='span' fontWeight={1} color='gray.800' fontSize={3} lineHeight={3}>
+          {title}
+        </Typography>
+        {subtitle && (
+          <Subtitle ml={5} color='gray.500'>
+            {subtitle}
+          </Subtitle>
+        )}
+      </Flex>
       <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
     </StyledHeader>
   )
 }
 
 AccordionHeader.propTypes = {
+  backgroundColor: PropTypes.string,
   expanded: PropTypes.number,
   expandIcon: PropTypes.string,
   setExpanded: PropTypes.func,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string
 }
 
 AccordionHeader.defaultProps = {
+  backgroundColor: 'white',
   expandIcon: 'expand_more'
 }
 
-const AccordionDetail = ({ children, expanded }) => <AccordionContent expanded={expanded}>{children}</AccordionContent>
+const AccordionDetail = ({ children, expanded, ...props }) => (
+  <AccordionContent expanded={expanded} {...props}>
+    {children}
+  </AccordionContent>
+)
 
 AccordionDetail.propTypes = {
-  expanded: PropTypes.number
+  expanded: PropTypes.number,
+  backgroundColor: PropTypes.string
+}
+
+AccordionDetail.defaultProps = {
+  backgroundColor: 'gray.100',
+  padding: '16px'
 }
 
 const AccordionsWrapper = styled.div(
@@ -122,6 +143,7 @@ const AccordionsWrapper = styled.div(
     }
 
     ${layout}
+    ${space}
   `
 )
 
@@ -139,36 +161,42 @@ const StyledIcon = styled(Icon)(
 const StyledHeader = styled(Flex)(
   ({ expanded }) => css`
     padding: 4;
-    background: white;
     height: 56px;
     width: inherit;
     cursor: pointer;
     box-sizing: border-box;
     border-color: gray.300 !important;
 
-    ${expanded
-      ? {
-          borderBottomLeftRadius: '0px !important',
-          borderBottomRightRadius: '0px !important',
-          borderBottomWidth: '0px !important'
-        }
-      : ''}
+    ${
+      expanded
+        ? {
+            borderBottomLeftRadius: '0px !important',
+            borderBottomRightRadius: '0px !important',
+            borderBottomWidth: '0px !important'
+          }
+        : ''
+    }
+
+    ${backgrounds}
+    ${layout}
   `
 )
 
 const AccordionContent = styled.div(
   ({ expanded }) => css`
     width: inherit;
-    transition: all 0.3s linear;
+    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     box-sizing: border-box;
     overflow: hidden;
-    background-color: gray.100;
     color: gray.800;
     border-color: gray.300;
 
-    ${expanded
-      ? { height: '100%', padding: '16px', visibility: 'visible !important' }
-      : { height: 0, padding: '0px 16px' }};
+    height: 0;
+    padding: 0px 16px;
+
+    ${expanded && [space, { minHeight: '100%', height: 'fit-content', visibility: 'visible !important' }]}
+
+    ${backgrounds}
   `
 )
 

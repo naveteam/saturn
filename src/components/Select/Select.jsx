@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, useState, forwardRef, useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant } from '@xstyled/system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
@@ -8,15 +8,52 @@ import { Flex, Box } from '../Grid'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(
-  ({ label, options, optionLabel, optionValue, caption, error, disabled, quiet, ...props }, ref) => {
+  (
+    {
+      name,
+      label,
+      options,
+      optionLabel,
+      optionValue,
+      onOptionSelected,
+      placeholder,
+      caption,
+      error,
+      disabled,
+      quiet,
+      defaultValue,
+      resetValue,
+      ...props
+    },
+    ref
+  ) => {
     const [isOpened, setIsOpened] = useState(false)
-    const [optionSelected, setOptionSelected] = useState()
+    const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
-    const handleChange = option => {
+    const handleChange = (option, shouldValidation = true) => {
       setOptionSelected(option)
       setIsOpened(false)
+      onOptionSelected && onOptionSelected(option, shouldValidation)
     }
+
+    useEffect(() => {
+      if (!resetValue && resetValue === optionSelected[optionValue]) {
+        return
+      }
+
+      if (!resetValue) {
+        return handleChange({}, false)
+      }
+
+      const selectedOption = options.find(option => option[optionValue] === resetValue)
+
+      if (!selectedOption) {
+        return
+      }
+
+      handleChange(selectedOption, false)
+    }, [resetValue])
 
     useClickOutside(() => isOpened && setIsOpened(false), containerRef)
     useHotKey(() => isOpened && setIsOpened(false), 'Escape')
@@ -36,28 +73,30 @@ const Select = forwardRef(
             disabled={disabled}
             onClick={() => !disabled && setIsOpened(!isOpened)}
           >
-            <SelectBase value={optionSelected} onChange={handleChange} ref={ref}>
-              {disabled ? (
-                <option value=''>{optionLabel}</option>
-              ) : (
-                options.map(option => (
-                  <option key={option[optionLabel]} value={option[optionValue]}>
-                    {optionSelected || optionLabel}
-                  </option>
-                ))
-              )}
+            <OverflowText lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
+              {optionSelected[optionLabel] || placeholder}
+            </OverflowText>
+            <SelectBase name={name} ref={ref} defaultValue={defaultValue}>
+              <option value='' disabled>
+                {placeholder}
+              </option>
+              {options.map((option, index) => (
+                <option key={index} value={option[optionValue]}>
+                  {option[optionLabel]}
+                </option>
+              ))}
             </SelectBase>
             <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
           </SelectContainer>
 
           {isOpened && (
             <OptionsContainer>
-              {options.map(option => (
-                <OptionContainer key={option[optionValue]} onClick={() => handleChange(option[optionValue])}>
+              {options.map((option, index) => (
+                <OptionContainer key={`${option.value}.${index}`} onClick={() => handleChange(option)}>
                   <Typography as='span' lineHeight={3} fontSize={3} color='gray.800'>
                     {option[optionLabel]}
                   </Typography>
-                  {option[optionValue] === optionSelected && <Icon icon='Check' color='blue.100' />}
+                  {option[optionValue] === optionSelected[optionValue] && <Icon icon='Check' color='blue.100' />}
                 </OptionContainer>
               ))}
             </OptionsContainer>
@@ -129,11 +168,17 @@ const isOpenedVariant = variant({
   }
 })
 
-const Wrapper = styled(Box)`
-  ${disabledVariant}
-  ${errorVariant}
-  position: relative;
+const Wrapper = styled(Box)(
+  ({ bg, backgroundColor }) => css`
+    position: relative;
+    background-color: transparent;
+    ${disabledVariant}
+    ${errorVariant}
+    ${SelectContainer} {
+      background: ${bg || backgroundColor};
+    }
 `
+)
 
 const Message = styled(Caption)(
   ({ isOpened }) => css`
@@ -196,19 +241,9 @@ const Container = styled.div`
   }
 `
 
-const SelectBase = styled.select(
-  ({ value }) => css`
-    pointer-events: none;
-    border: 0;
-    font-size: 3;
-    line-height: 3;
-    background: white;
-    color: ${value ? th('colors.gray.900') : th('colors.gray.500')};
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  `
-)
+const SelectBase = styled.select`
+  display: none;
+`
 
 const SelectContainer = styled(Flex)(
   ({ quiet, error }) => css`
@@ -219,28 +254,43 @@ const SelectContainer = styled(Flex)(
     padding: ${quiet && !error ? '8px' : '7px'};
     justify-content: space-between;
     align-items: center;
+    height: 40px;
     cursor: pointer;
   `,
   isOpenedVariant
 )
+
+const OverflowText = styled(Typography)`
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: calc(100% - 24px);
+  text-overflow: ellipsis;
+`
 
 Select.defaultProps = {
   error: false,
   disabled: false,
   quiet: false,
   label: 'Select',
+  placeholder: 'Selecione uma opção',
+  optionLabel: 'label',
+  optionValue: 'value',
   options: []
 }
 
 Select.propTypes = {
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
   optionLabel: PropTypes.string,
   optionValue: PropTypes.string,
   caption: PropTypes.string,
   error: PropTypes.bool,
   disabled: PropTypes.bool,
-  quiet: PropTypes.bool
+  quiet: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  onOptionSelected: PropTypes.func,
+  defaultValue: PropTypes.string
 }
 
 export default Select
