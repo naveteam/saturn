@@ -1,86 +1,83 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
 import { AlertPreview as Alert } from '../components'
 import { ThemeProvider } from '../theme'
 
-<Meta title='Data Display/Alert' component={Alert} />
+<Meta title="Data Display|Alert" component={Alert} />
 
 # Alert
 
-<Canvas>
-  <Story
-    name='Title'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
-      }
-    }}
-  >
+
+<Preview>
+  
+  <Story name="Title" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
+    }
+  }}>
+  
+  
     <ThemeProvider>
-      <Alert type='info' title='Title Alert' position='top' closeIcon={false} />
-      <Alert type='success' title='Title Alert' position='top' closeIcon={false} />
-      <Alert type='warning' title='Title Alert' position='top' closeIcon={false} />
-      <Alert type='error' title='Title Alert' position='top' closeIcon={false} />
+      <Alert type="info" title="Title Alert" position="top" closeIcon={false} />
+      <Alert type="success" title="Title Alert" position="top" closeIcon={false} />
+      <Alert type="warning" title="Title Alert" position="top" closeIcon={false} />
+      <Alert type="error" title="Title Alert" position="top" closeIcon={false} />
     </ThemeProvider>
   </Story>
-</Canvas>
+</Preview>
 
-<Canvas>
-  <Story
-    name='Title + Text'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
-      }
-    }}
-  >
+<Preview>
+  <Story name="Title + Text" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
+    }
+  }}>
+  
     <ThemeProvider>
-      <Alert type='info' title='Title Alert' text='Text of the alert goes here' position='top' closeIcon={false} />
-      <Alert type='success' title='Title Alert' text='Text of the alert goes here' position='top' closeIcon={false} />
-      <Alert type='warning' title='Title Alert' text='Text of the alert goes here' position='top' closeIcon={false} />
-      <Alert type='error' title='Title Alert' text='Text of the alert goes here' position='top' closeIcon={false} />
+      <Alert type="info" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon={false} />
+      <Alert type="success" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon={false} />
+      <Alert type="warning" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon={false} />
+      <Alert type="error" title="Title Alert" text="Text of the alert goes here" position="top" closeIcon={false} />
     </ThemeProvider>
   </Story>
-</Canvas>
+</Preview>
 
-<Canvas>
-  <Story
-    name='Title + Close Icon'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
-      }
-    }}
-  >
+<Preview>
+  <Story name="Title + Close Icon" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
+    }
+  }}>
+  
     <ThemeProvider>
-      <Alert type='info' title='Title Alert' position='top' />
-      <Alert type='success' title='Title Alert' position='top' />
-      <Alert type='warning' title='Title Alert' position='top' />
-      <Alert type='error' title='Title Alert' position='top' />
+      <Alert type="info" title="Title Alert"  position="top"/>
+      <Alert type="success" title="Title Alert"  position="top"/>
+      <Alert type="warning" title="Title Alert"  position="top"/>
+      <Alert type="error" title="Title Alert"  position="top"/>
     </ThemeProvider>
   </Story>
-</Canvas>
+</Preview>
 
-<Canvas>
-  <Story
-    name='Title + Text + Close Icon'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
-      }
-    }}
-  >
+<Preview>
+  <Story name="Title + Text + Close Icon" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=412%3A7034'
+    }
+  }}>
+  
     <ThemeProvider>
-      <Alert type='info' title='Title Alert' text='Text of the alert goes here' position='top' />
-      <Alert type='success' title='Title Alert' text='Text of the alert goes here' position='top' />
-      <Alert type='warning' title='Title Alert' text='Text of the alert goes here' position='top' />
-      <Alert type='error' title='Title Alert' text='Text of the alert goes here' position='top' />
+      <Alert type="info" title="Title Alert" text="Text of the alert goes here" position="top"/>
+      <Alert type="success" title="Title Alert" text="Text of the alert goes here" position="top"/>
+      <Alert type="warning" title="Title Alert" text="Text of the alert goes here" position="top"/>
+      <Alert type="error" title="Title Alert" text="Text of the alert goes here" position="top"/>
     </ThemeProvider>
   </Story>
-</Canvas>
+</Preview>
 
-<ArgsTable of={Alert} />
+<Props of={Alert} />
+
+
