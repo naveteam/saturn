@@ -11,6 +11,7 @@ const Select = forwardRef(
   (
     {
       clearValue,
+      onClearSelect,
       name,
       label,
       options,
@@ -40,6 +41,7 @@ const Select = forwardRef(
 
     const clearValueFunction = e => {
       e.stopPropagation()
+      onClearSelect && onClearSelect()
       setOptionSelected({})
     }
 
@@ -93,7 +95,7 @@ const Select = forwardRef(
               ))}
             </SelectBase>
             <Flex justifyContent='center' alignItems='center'>
-              {clearValue && Object.keys(optionSelected).length > 0 && (
+              {clearValue && optionSelected[optionValue] && (
                 <Icon
                   icon='times'
                   pr='12px'
@@ -289,6 +291,7 @@ const OverflowText = styled(Typography)`
 `
 
 Select.defaultProps = {
+  clearValue: true,
   error: false,
   disabled: false,
   quiet: false,
@@ -301,6 +304,7 @@ Select.defaultProps = {
 
 Select.propTypes = {
   clearValue: PropTypes.bool,
+  onClearSelect: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
