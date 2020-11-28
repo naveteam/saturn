@@ -10,27 +10,70 @@ import { Attachment } from '../Attachment'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
-const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
-  const hiddenFileInput = useRef(null)
-  const [uploadedFiles, setUploadedFiles] = useState()
+const UploadButton = forwardRef(
+  ({ name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+    const [uploadedFiles, setUploadedFiles] = useState()
 
-  const handleChange = event => {
-    setUploadedFiles(event.target.files)
-    fileHandler && fileHandler(event)
+    const handleChange = event => {
+      setUploadedFiles(event.target.files)
+      fileHandler && fileHandler(event)
+    }
+
+    return (
+      <Wrapper {...props}>
+        <Button
+          disabled={disabled}
+          variant={variant === 'button' || variant === 'button-primary' ? 'filled' : 'outlined'}
+          icon='upload'
+          caption={caption}
+          as={!disabled && 'label'}
+          display='flex'
+          alignItems='center'
+          justifyContent='center'
+        >
+          <HiddenInput
+            type='file'
+            ref={ref}
+            name={name}
+            onChange={handleChange}
+            multiple={multipleFiles}
+            accept={handleAcceptedFileTypes(acceptedFileTypes)}
+          />
+        </Button>
+        {uploadedFiles &&
+          Object.values(uploadedFiles).map((file, index) => (
+            <Attachment
+              key={index}
+              file={file}
+              onView={() => window.open(URL.createObjectURL(file))}
+              onDelete={() => {
+                setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+                fileHandler && fileHandler({ target: { name } })
+              }}
+            />
+          ))}
+      </Wrapper>
+    )
   }
+)
 
-  return (
-    <Wrapper {...props}>
-      <Button
-        disabled={disabled}
-        variant={variant === 'button' || variant === 'button-primary' ? 'filled' : 'outlined'}
-        icon='upload'
-        caption={caption}
-        as={!disabled && 'label'}
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-      >
+const UploadDragAndDrop = forwardRef(
+  ({ caption, name, description, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+    const [uploadedFiles, setUploadedFiles] = useState([])
+    const [error, setError] = useState(false)
+
+    const handleChange = event => {
+      try {
+        setUploadedFiles(event.target.files)
+        fileHandler && fileHandler(event)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      }
+    }
+
+    return (
+      <Wrapper {...props}>
         <HiddenInput
           type='file'
           ref={ref}
@@ -39,92 +82,42 @@ const UploadButton = forwardRef(({ name, variant, caption, acceptedFileTypes, mu
           multiple={multipleFiles}
           accept={handleAcceptedFileTypes(acceptedFileTypes)}
         />
-      </Button>
-      {uploadedFiles &&
-        Object.values(uploadedFiles).map((file, index) => (
-          <Attachment
-            key={index}
-            file={file}
-            onView={() => window.open(URL.createObjectURL(file))}
-            onDelete={() => {
-              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
-              hiddenFileInput.current.value = null
-            }}
-          />
-        ))}
-    </Wrapper>
-  )
-})
-
-const UploadDragAndDrop = forwardRef(({
-  caption,
-  name,
-  description,
-  acceptedFileTypes,
-  multipleFiles,
-  disabled,
-  fileHandler,
-  ...props
-}, ref) => {
-  const [uploadedFiles, setUploadedFiles] = useState([])
-  const [error, setError] = useState(false)
-
-  const handleChange = event => {
-    try {
-      setUploadedFiles(event.target.files)
-      fileHandler && fileHandler(event)
-    } catch (err) {
-      console.log(err)
-      setError(true)
-    }
+        <StyledButton
+          uploadedFiles={uploadedFiles}
+          onDragOver={e => {
+            e.preventDefault()
+          }}
+          onDrop={e => {
+            e.preventDefault()
+            setUploadedFiles(e.dataTransfer.files)
+          }}
+          py={5}
+          disabled={disabled}
+          icon='upload'
+          direction='column'
+          variant='outlined'
+          caption={caption}
+          description={description}
+        />
+        {uploadedFiles &&
+          Object.values(uploadedFiles).map((file, index) => (
+            <Attachment
+              key={index}
+              file={file}
+              error={error}
+              onView={() => window.open(URL.createObjectURL(file))}
+              onDelete={() => {
+                setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+                fileHandler && fileHandler({ target: { name } })
+              }}
+            />
+          ))}
+      </Wrapper>
+    )
   }
-
-  return (
-    <Wrapper {...props}>
-      <HiddenInput
-        type='file'
-        ref={ref}
-        name={name}
-        onChange={handleChange}
-        multiple={multipleFiles}
-        accept={handleAcceptedFileTypes(acceptedFileTypes)}
-      />
-      <StyledButton
-        uploadedFiles={uploadedFiles}
-        onDragOver={e => {
-          e.preventDefault()
-        }}
-        onDrop={e => {
-          e.preventDefault()
-          setUploadedFiles(e.dataTransfer.files)
-        }}
-        py={5}
-        disabled={disabled}
-        icon='upload'
-        direction='column'
-        variant='outlined'
-        caption={caption}
-        description={description}
-      />
-      {uploadedFiles &&
-        Object.values(uploadedFiles).map((file, index) => (
-          <Attachment
-            key={index}
-            file={file}
-            error={error}
-            onView={() => window.open(URL.createObjectURL(file))}
-            onDelete={() => {
-              setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
-              hiddenFileInput.current.value = null
-            }}
-          />
-        ))}
-    </Wrapper>
-  )
-})
+)
 
 const UploadImage = forwardRef(({ name, caption, acceptedFileTypes, disabled, fileHandler, ...props }, ref) => {
-  const hiddenFileInput = useRef(null)
   const [uploadedImage, setUploadedImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [error, setError] = useState(false)
@@ -200,63 +193,55 @@ const UploadImage = forwardRef(({ name, caption, acceptedFileTypes, disabled, fi
   )
 })
 
-const Upload = forwardRef(({
-  name,
-  caption,
-  description,
-  variant,
-  acceptedFileTypes,
-  multipleFiles,
-  disabled,
-  fileHandler,
-  ...props
-}, ref) => {
-  if (
-    variant === 'button' ||
-    variant === 'button-primary' ||
-    variant === 'button-outlined' ||
-    variant === 'button-secondary'
-  )
-    return (
-      <UploadButton
-        variant={variant}
-        caption={caption}
-        name={name}
-        acceptedFileTypes={acceptedFileTypes}
-        multipleFiles={multipleFiles}
-        disabled={disabled}
-        ref={ref}
-        fileHandler={fileHandler}
-        {...props}
-      />
+const Upload = forwardRef(
+  ({ name, caption, description, variant, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+    if (
+      variant === 'button' ||
+      variant === 'button-primary' ||
+      variant === 'button-outlined' ||
+      variant === 'button-secondary'
     )
-  if (variant === 'drag-drop')
-    return (
-      <UploadDragAndDrop
-        caption={caption}
-        name={name}
-        description={description}
-        acceptedFileTypes={acceptedFileTypes}
-        multipleFiles={multipleFiles}
-        disabled={disabled}
-        fileHandler={fileHandler}
-        ref={ref}
-        {...props}
-      />
-    )
-  if (variant === 'image')
-    return (
-      <UploadImage
-        caption={caption}
-        name={name}
-        acceptedFileTypes={acceptedFileTypes || 'image/*'}
-        disabled={disabled}
-        fileHandler={fileHandler}
-        ref={ref}
-        {...props}
-      />
-    )
-})
+      return (
+        <UploadButton
+          variant={variant}
+          caption={caption}
+          name={name}
+          acceptedFileTypes={acceptedFileTypes}
+          multipleFiles={multipleFiles}
+          disabled={disabled}
+          ref={ref}
+          fileHandler={fileHandler}
+          {...props}
+        />
+      )
+    if (variant === 'drag-drop')
+      return (
+        <UploadDragAndDrop
+          caption={caption}
+          name={name}
+          description={description}
+          acceptedFileTypes={acceptedFileTypes}
+          multipleFiles={multipleFiles}
+          disabled={disabled}
+          fileHandler={fileHandler}
+          ref={ref}
+          {...props}
+        />
+      )
+    if (variant === 'image')
+      return (
+        <UploadImage
+          caption={caption}
+          name={name}
+          acceptedFileTypes={acceptedFileTypes || 'image/*'}
+          disabled={disabled}
+          fileHandler={fileHandler}
+          ref={ref}
+          {...props}
+        />
+      )
+  }
+)
 
 const ImageErrorContainer = styled(Flex)`
   margin: auto;

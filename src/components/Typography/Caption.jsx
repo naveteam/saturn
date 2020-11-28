@@ -3,7 +3,7 @@ import styled, { css } from '@xstyled/styled-components'
 import { variant } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-import { Typography } from './'
+import Typography from './Typography'
 
 const Caption = ({ as, ...props }) => <Base forwardedAs={props.as} {...props} />
 

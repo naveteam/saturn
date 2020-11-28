@@ -86,9 +86,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
 
             <Flex>
               {!error && onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              {onDelete && (
-                <StyledIcon error={error} icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />
-              )}
+              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />}
             </Flex>
           </Container>
         )}

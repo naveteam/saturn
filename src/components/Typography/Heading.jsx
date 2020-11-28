@@ -3,7 +3,7 @@ import styled, { css } from '@xstyled/styled-components'
 import { variant, breakpoints } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-import { Typography } from './'
+import Typography from './Typography'
 
 const Heading = props => <Base forwardedAs={props.variant} {...props} />
 

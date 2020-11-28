@@ -4,7 +4,7 @@ import styled, { css } from '@xstyled/styled-components'
 import { borders, variant } from '@xstyled/system'
 
 import { Flex, Box } from '../Grid'
-import { Caption, Typography } from '..'
+import { Caption, Typography } from '../Typography'
 
 const TextField = forwardRef(
   (
