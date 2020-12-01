@@ -11,7 +11,10 @@ import { Attachment } from '../Attachment'
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
 const UploadButton = forwardRef(
-  ({ name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+  (
+    { name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, defaultValue, ...props },
+    ref
+  ) => {
     const [uploadedFiles, setUploadedFiles] = useState()
 
     const handleChange = event => {
@@ -38,6 +41,7 @@ const UploadButton = forwardRef(
             onChange={handleChange}
             multiple={multipleFiles}
             accept={handleAcceptedFileTypes(acceptedFileTypes)}
+            defaultValue={defaultValue}
           />
         </Button>
         {uploadedFiles &&
@@ -58,7 +62,10 @@ const UploadButton = forwardRef(
 )
 
 const UploadDragAndDrop = forwardRef(
-  ({ caption, name, description, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+  (
+    { caption, name, description, acceptedFileTypes, multipleFiles, disabled, fileHandler, defaultValue, ...props },
+    ref
+  ) => {
     const [uploadedFiles, setUploadedFiles] = useState([])
     const [error, setError] = useState(false)
 
@@ -81,6 +88,7 @@ const UploadDragAndDrop = forwardRef(
           onChange={handleChange}
           multiple={multipleFiles}
           accept={handleAcceptedFileTypes(acceptedFileTypes)}
+          defaultValue={defaultValue}
         />
         <StyledButton
           uploadedFiles={uploadedFiles}
@@ -117,84 +125,101 @@ const UploadDragAndDrop = forwardRef(
   }
 )
 
-const UploadImage = forwardRef(({ name, caption, acceptedFileTypes, disabled, fileHandler, ...props }, ref) => {
-  const [uploadedImage, setUploadedImage] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null)
-  const [error, setError] = useState(false)
+const UploadImage = forwardRef(
+  ({ name, caption, acceptedFileTypes, disabled, fileHandler, defaultValue, ...props }, ref) => {
+    const [uploadedImage, setUploadedImage] = useState(null)
+    const [imagePreview, setImagePreview] = useState(null)
+    const [error, setError] = useState(false)
 
-  const handleChange = event => {
-    try {
-      setUploadedImage(event.target.files[0])
-      setImagePreview(URL.createObjectURL(event.target.files[0]))
-      fileHandler && fileHandler(event)
-    } catch (err) {
-      console.log(err)
-      setError(true)
-    } finally {
-      event.target.value = null
+    const handleChange = event => {
+      try {
+        setUploadedImage(event.target.files[0])
+        setImagePreview(URL.createObjectURL(event.target.files[0]))
+        fileHandler && fileHandler(event)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      } finally {
+        event.target.value = null
+      }
     }
-  }
 
-  return (
-    <Wrapper {...props}>
-      <HiddenInput
-        type='file'
-        ref={ref}
-        name={name}
-        onChange={handleChange}
-        accept={handleAcceptedFileTypes(acceptedFileTypes)}
-      />
-      {imagePreview || error ? (
-        <ImageContainer imagePreview={imagePreview} error={error} p={3}>
-          <ImageOverlay>
-            {!error && (
-              <Icon
-                icon='visibility-outline'
-                color='white'
-                mr={2}
-                onClick={() => window.open(imagePreview, '_blank')}
-              />
-            )}
-            <Icon
-              icon='delete-outline'
-              color='white'
-              ml={2}
-              onClick={() => {
-                setImagePreview(null)
-                setUploadedImage(null)
-                setError(false)
-              }}
-            />
-          </ImageOverlay>
-          {error ? (
-            <ImageErrorContainer flexDirection='column'>
-              <Icon icon='broken-image' color='error' />
-              <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
-                Upload Error
-              </Typography>
-            </ImageErrorContainer>
-          ) : (
-            <StyledImage src={imagePreview} />
-          )}
-        </ImageContainer>
-      ) : (
-        <ImageUpload
-          py={5}
-          error={error}
-          disabled={disabled}
-          icon='upload'
-          direction='column'
-          variant='outlined'
-          caption={caption}
-          color={'primary'}
+    return (
+      <Wrapper {...props}>
+        <HiddenInput
+          type='file'
+          ref={ref}
+          name={name}
+          onChange={handleChange}
+          accept={handleAcceptedFileTypes(acceptedFileTypes)}
+          defaultValue={defaultValue}
         />
-      )}
-    </Wrapper>
-  )
-})
+        {imagePreview || error ? (
+          <ImageContainer imagePreview={imagePreview} error={error} p={3}>
+            <ImageOverlay>
+              {!error && (
+                <Icon
+                  icon='visibility-outline'
+                  color='white'
+                  mr={2}
+                  onClick={() => window.open(imagePreview, '_blank')}
+                />
+              )}
+              <Icon
+                icon='delete-outline'
+                color='white'
+                ml={2}
+                onClick={() => {
+                  setImagePreview(null)
+                  setUploadedImage(null)
+                  setError(false)
+                }}
+              />
+            </ImageOverlay>
+            {error ? (
+              <ImageErrorContainer flexDirection='column'>
+                <Icon icon='broken-image' color='error' />
+                <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
+                  Upload Error
+                </Typography>
+              </ImageErrorContainer>
+            ) : (
+              <StyledImage src={imagePreview} />
+            )}
+          </ImageContainer>
+        ) : (
+          <ImageUpload
+            py={5}
+            error={error}
+            disabled={disabled}
+            icon='upload'
+            direction='column'
+            variant='outlined'
+            caption={caption}
+            color={'primary'}
+          />
+        )}
+      </Wrapper>
+    )
+  }
+)
 
 const Upload = forwardRef(
-  ({ name, caption, description, variant, acceptedFileTypes, multipleFiles, disabled, fileHandler, ...props }, ref) => {
+  (
+    {
+      name,
+      caption,
+      description,
+      variant,
+      acceptedFileTypes,
+      multipleFiles,
+      disabled,
+      fileHandler,
+      defaultValue,
+      ...props
+    },
+    ref
+  ) => {
     if (
       variant === 'button' ||
       variant === 'button-primary' ||
@@ -210,6 +235,7 @@ const Upload = forwardRef(
           multipleFiles={multipleFiles}
           disabled={disabled}
           ref={ref}
+          defaultValue={defaultValue}
           fileHandler={fileHandler}
           {...props}
         />
@@ -224,6 +250,7 @@ const Upload = forwardRef(
           multipleFiles={multipleFiles}
           disabled={disabled}
           fileHandler={fileHandler}
+          defaultValue={defaultValue}
           ref={ref}
           {...props}
         />
@@ -236,6 +263,7 @@ const Upload = forwardRef(
           acceptedFileTypes={acceptedFileTypes || 'image/*'}
           disabled={disabled}
           fileHandler={fileHandler}
+          defaultValue={defaultValue}
           ref={ref}
           {...props}
         />
