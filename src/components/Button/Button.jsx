@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Typography, Flex } from '../'
 import { Icon } from '../Iconography'
 
-const Button = forwardRef(({ children, icon, direction, caption, description, ...props }, ref) => (
+const Button = forwardRef(({ children, icon, direction, caption, captionColor, description, ...props }, ref) => (
   <Base ref={ref} {...props}>
     <Container flexDirection={description ? 'column' : direction}>
       {icon && (
@@ -20,6 +20,7 @@ const Button = forwardRef(({ children, icon, direction, caption, description, ..
       )}
       {caption && (
         <Typography
+          color={captionColor}
           fontSize={2}
           fontWeight={1}
           lineHeight={3}
