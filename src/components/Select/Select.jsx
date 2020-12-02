@@ -96,17 +96,10 @@ const Select = forwardRef(
             </SelectBase>
             <Flex justifyContent='center' alignItems='center'>
               {clearValue && optionSelected[optionValue] && (
-                <Icon
-                  icon='times'
-                  pr='12px'
-                  borderRight='1px solid'
-                  borderColor='gray.500'
-                  marginRight='3'
-                  width='16px'
-                  height='16px'
-                  color='gray.800'
-                  onClick={clearValueFunction}
-                />
+                <>
+                  <Icon icon='times' width='16px' height='16px' color='gray.800' onClick={clearValueFunction} />
+                  <Box bg='gray.500' width='1px' height='24px' margin='0 8px 0px 12px'></Box>
+                </>
               )}
               <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
             </Flex>
