@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { color, th, space, layout } from '@xstyled/system'
+import { borders, color, th, space, layout } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import * as Icons from '../../icons'
@@ -15,6 +15,7 @@ const Icon = styled(IconComponent)`
   * {
     fill: ${({ color }) => th.color(color)};
   }
+  ${borders}
   ${color}
   ${space}
   ${layout}

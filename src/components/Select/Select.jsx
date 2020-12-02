@@ -10,6 +10,8 @@ import { Typography, Caption, Icon } from '..'
 const Select = forwardRef(
   (
     {
+      clearValue,
+      onClearSelect,
       name,
       label,
       options,
@@ -35,6 +37,12 @@ const Select = forwardRef(
       setOptionSelected(option)
       setIsOpened(false)
       onOptionSelected && onOptionSelected(option, shouldValidation)
+    }
+
+    const clearValueFunction = e => {
+      e.stopPropagation()
+      onClearSelect && onClearSelect()
+      setOptionSelected({})
     }
 
     useEffect(() => {
@@ -86,7 +94,22 @@ const Select = forwardRef(
                 </option>
               ))}
             </SelectBase>
-            <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
+            <Flex justifyContent='center' alignItems='center'>
+              {clearValue && optionSelected[optionValue] && (
+                <Icon
+                  icon='times'
+                  pr='12px'
+                  borderRight='1px solid'
+                  borderColor='gray.500'
+                  marginRight='3'
+                  width='16px'
+                  height='16px'
+                  color='gray.800'
+                  onClick={clearValueFunction}
+                />
+              )}
+              <Icon icon={!disabled && isOpened ? 'ExpandLess' : 'ExpandMore'} color='gray.800' />
+            </Flex>
           </SelectContainer>
 
           {isOpened && (
@@ -177,7 +200,7 @@ const Wrapper = styled(Box)(
     ${SelectContainer} {
       background: ${bg || backgroundColor};
     }
-`
+  `
 )
 
 const Message = styled(Caption)(
@@ -268,6 +291,7 @@ const OverflowText = styled(Typography)`
 `
 
 Select.defaultProps = {
+  clearValue: true,
   error: false,
   disabled: false,
   quiet: false,
@@ -279,6 +303,8 @@ Select.defaultProps = {
 }
 
 Select.propTypes = {
+  clearValue: PropTypes.bool,
+  onClearSelect: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),

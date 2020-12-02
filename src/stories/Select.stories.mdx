@@ -76,4 +76,30 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
   </Story>
 </Canvas>
 
+# Clear Value
+
+Passando a prop `clearValue` para o `Select`, será exibido um icone no componente, ao tocar nesse icone o valor presente no `Select` será limpo.
+
+<Canvas>
+  <Story
+    name='Clear Value'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select
+        clearValue
+        name='clearValue'
+        label='Clear Value'
+        options={optionsSelect}
+        placeholder='Selecione uma opção'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
 <ArgsTable of={Select} />
