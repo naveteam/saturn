@@ -143,6 +143,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+  captionColor: PropTypes.string,
   color: PropTypes.string,
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
   width: PropTypes.oneOfType([
