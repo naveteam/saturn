@@ -33,7 +33,7 @@ const TextField = forwardRef(
       <Wrapper disabled={disabled} {...props}>
         <Label>{label}</Label>
         <Container focus={focus} borderColor={borderColor}>
-          {prefix ? <Affix forwardedAs='span'>{prefix}</Affix> : customPrefix && customPrefix}
+          {prefix ? <Affix forwardedAs='span'>{prefix}</Affix> : customPrefix}
           <InputBase
             ref={ref}
             type={type}
@@ -48,7 +48,7 @@ const TextField = forwardRef(
             {...inputProps}
           />
 
-          {suffix ? <Affix forwardedAs='span'>{suffix}</Affix> : customSuffix && customSuffix}
+          {suffix ? <Affix forwardedAs='span'>{suffix}</Affix> : customSuffix}
         </Container>
         <Message>{message}</Message>
       </Wrapper>
