@@ -10,6 +10,8 @@ const TextField = forwardRef(
   (
     {
       borderColor,
+      customPrefix,
+      customSuffix,
       label,
       message,
       prefix,
@@ -31,7 +33,7 @@ const TextField = forwardRef(
       <Wrapper disabled={disabled} {...props}>
         <Label>{label}</Label>
         <Container focus={focus} borderColor={borderColor}>
-          {prefix && <Affix forwardedAs='span'>{prefix}</Affix>}
+          {prefix ? <Affix forwardedAs='span'>{prefix}</Affix> : customPrefix && customPrefix}
           <InputBase
             ref={ref}
             type={type}
@@ -45,7 +47,8 @@ const TextField = forwardRef(
             defaultValue={defaultValue}
             {...inputProps}
           />
-          {suffix && <Affix forwardedAs='span'>{suffix}</Affix>}
+
+          {suffix ? <Affix forwardedAs='span'>{suffix}</Affix> : customSuffix && customSuffix}
         </Container>
         <Message>{message}</Message>
       </Wrapper>
@@ -57,6 +60,8 @@ TextField.propTypes = {
   borderColor: PropTypes.string,
   label: PropTypes.string,
   message: PropTypes.string,
+  customPrefix: PropTypes.object,
+  customSuffix: PropTypes.object,
   prefix: PropTypes.string,
   suffix: PropTypes.string,
   placeholder: PropTypes.string,
