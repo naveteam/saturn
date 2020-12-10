@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useState, forwardRef } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
@@ -12,10 +12,25 @@ const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fi
 
 const UploadButton = forwardRef(
   (
-    { name, variant, caption, acceptedFileTypes, multipleFiles, disabled, fileHandler, defaultValue, ...props },
+    {
+      name,
+      variant,
+      caption,
+      acceptedFileTypes,
+      multipleFiles,
+      disabled,
+      fileHandler,
+      defaultValue,
+      resetValue,
+      ...props
+    },
     ref
   ) => {
     const [uploadedFiles, setUploadedFiles] = useState()
+
+    useEffect(() => {
+      setUploadedFiles(resetValue)
+    }, [JSON.stringify(resetValue)])
 
     const handleChange = event => {
       setUploadedFiles(event.target.files)
@@ -51,7 +66,9 @@ const UploadButton = forwardRef(
               file={file}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+                setUploadedFiles(uploadedFiles =>
+                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                )
                 fileHandler && fileHandler({ target: { name } })
               }}
             />
@@ -63,11 +80,26 @@ const UploadButton = forwardRef(
 
 const UploadDragAndDrop = forwardRef(
   (
-    { caption, name, description, acceptedFileTypes, multipleFiles, disabled, fileHandler, defaultValue, ...props },
+    {
+      caption,
+      name,
+      description,
+      acceptedFileTypes,
+      multipleFiles,
+      disabled,
+      fileHandler,
+      defaultValue,
+      resetValue,
+      ...props
+    },
     ref
   ) => {
     const [uploadedFiles, setUploadedFiles] = useState([])
     const [error, setError] = useState(false)
+
+    useEffect(() => {
+      setUploadedFiles(resetValue)
+    }, [JSON.stringify(resetValue)])
 
     const handleChange = event => {
       try {
@@ -115,7 +147,9 @@ const UploadDragAndDrop = forwardRef(
               error={error}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setUploadedFiles(Object.values(uploadedFiles).filter(element => element.name !== file.name))
+                setUploadedFiles(uploadedFiles =>
+                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                )
                 fileHandler && fileHandler({ target: { name } })
               }}
             />

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@xstyled/styled-components'
-import { layout, variant, space, typography, color } from '@xstyled/system'
+import { layout, space, typography, color } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
@@ -57,7 +57,6 @@ const StyledLink = styled.a`
 const Label = styled(Typography)`
   text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
   border-radius: 4px;
-  ${variant}
   ${layout}
   &:hover {
     text-decoration-line: underline;

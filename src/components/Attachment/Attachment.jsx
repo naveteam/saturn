@@ -61,7 +61,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
         {(link || file) && (
           <Container>
             <Flex mr={5} alignItems='center'>
-              <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
+              <AttachmentIcon color={handleErrorColor()} width={24} height={24} icon='attachment' />
               <Flex flexWrap='wrap'>
                 {error ? (
                   <Typography color='error' pl={3} fontSize={2}>
@@ -99,7 +99,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
         {(link || file) && (
           <Container>
             <Flex mr={5} alignItems='center'>
-              <AttachmentIcon color={handleErrorColor()} width={16} height={24} icon='attachment' />
+              <AttachmentIcon color={handleErrorColor()} width={24} height={24} icon='attachment' />
               <Flex>
                 <Link
                   fontSize={2}
@@ -136,7 +136,7 @@ const Container = styled(Flex)`
 const StyledIcon = styled(Icon)`
   display: none;
   fill: blue.300;
-  width: 16px;
+  width: 24px;
   height: 24px;
   padding-right: 8px;
 
