@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { TextField } from '../components'
+import { TextField, Icon } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data input/TextField' component={TextField} argTypes={{ error: { controls: 'boolean' } }} />
@@ -30,7 +30,7 @@ O componente de `TextField` é utilizado para que o usuário possa inserir infor
 
 # Affixes
 
-O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas.
+O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas. Também é possível utilizar affixes customizados, elementos children podem ser passados através das props `customPrefix` e `customSuffix`.
 
 <Canvas>
   <Story
@@ -44,7 +44,9 @@ O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usu
   >
     <ThemeProvider>
       <TextField name='prefix' label='Prefix' placeholder='Prefix' prefix='R$' />
+      <TextField name='prefix' label='Prefix' placeholder='Custom Prefix' customPrefix={<Icon />} />
       <TextField name='suffix' label='Suffix' placeholder='Suffix' suffix='reais' />
+      <TextField name='suffix' label='Suffix' placeholder='Custom Suffix' customSuffix={<Icon />} />
     </ThemeProvider>
   </Story>
 </Canvas>
