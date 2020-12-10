@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import styled from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
