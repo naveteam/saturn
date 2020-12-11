@@ -79,7 +79,7 @@ Tag.defaultProps = {
 Tag.propTypes = {
   selected: PropTypes.oneOf([true, false, 'disabled']),
   close: PropTypes.bool,
-  color: PropTypes.oneOf(['primary', 'secondary'])
+  color: PropTypes.string
 }
 
 export default Tag
