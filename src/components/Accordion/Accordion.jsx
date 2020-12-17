@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { cloneElement, Children, useState } from 'react'
+import React, { cloneElement, Children, useState, useEffect, useRef } from 'react'
 import styled, { backgrounds, css, layout, space } from '@xstyled/styled-components'
 
 import { Flex, Icon, Typography, Subtitle } from '../'
@@ -65,11 +65,18 @@ AccordionHeader.defaultProps = {
   expandIcon: 'expand_more'
 }
 
-const AccordionDetail = ({ children, expanded, ...props }) => (
-  <AccordionContent expanded={expanded} {...props}>
-    {children}
-  </AccordionContent>
-)
+const AccordionDetail = ({ children, expanded, ...props }) => {
+  const [heightTransition, setHeightTransition] = useState(0)
+  const accordionContentRef = useRef(null)
+
+  useEffect(() => setHeightTransition(accordionContentRef.current.offsetHeight + 100), [accordionContentRef])
+
+  return (
+    <AccordionContent heightTransition={heightTransition} ref={accordionContentRef} expanded={expanded} {...props}>
+      {children}
+    </AccordionContent>
+  )
+}
 
 AccordionDetail.propTypes = {
   expanded: PropTypes.number,
@@ -132,7 +139,6 @@ const AccordionsWrapper = styled.div(
     }
 
     & > div:last-child > div:nth-child(2) {
-      visibility: hidden;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
@@ -153,7 +159,7 @@ AccordionsWrapper.defaultProps = {
 
 const StyledIcon = styled(Icon)(
   ({ expanded }) => css`
-    transition: all 0.3s;
+    transition: transform 0.5s ease-in-out;
     transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
   `
 )
@@ -183,20 +189,22 @@ const StyledHeader = styled(Flex)(
 )
 
 const AccordionContent = styled.div(
-  ({ expanded }) => css`
+  ({ expanded, heightTransition }) => css`
+    height: auto;
     width: inherit;
-    transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    transition: all 0.5s ease-in-out;
     box-sizing: border-box;
     overflow: hidden;
     color: gray.800;
     border-color: gray.300;
-
-    height: 0;
     padding: 0px 16px;
 
-    ${expanded && [space, { minHeight: '100%', height: 'fit-content', visibility: 'visible !important' }]}
-
     ${backgrounds}
+
+    ${heightTransition && { maxHeight: '0' }}
+
+    ${expanded && [space, { maxHeight: heightTransition }]}
+
   `
 )
 
