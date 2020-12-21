@@ -50,7 +50,7 @@ const TextField = forwardRef(
 
           {suffix ? <Affix forwardedAs='span'>{suffix}</Affix> : customSuffix}
         </Container>
-        <Message>{message}</Message>
+        {message && <Message>{message}</Message>}
       </Wrapper>
     )
   }
