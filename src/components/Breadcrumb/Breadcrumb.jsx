@@ -29,13 +29,7 @@ const Breadcrumb = ({ path, variant, ...props }) => {
       <Flex {...props}>
         {path.map(({ label, link }, index) => (
           <Flex key={index} alignItems='center'>
-            <Link
-              fowardedAs='a'
-              fontSize={3}
-              lineHeight={3}
-              {...(isNotLastElement(index) && { href: link })}
-              {...props}
-            >
+            <Link {...(isNotLastElement(index) && { href: link })} {...props}>
               {label}
             </Link>
             {isNotLastElement(index) && (
@@ -62,10 +56,13 @@ const Breadcrumb = ({ path, variant, ...props }) => {
   )
 }
 
-const Link = styled(Typography)`
+const Link = styled.a`
   cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
   color: ${({ color }) => th.color(color)};
   text-decoration: none;
+  font-family: 'Open Sans';
 
   :hover {
     text-decoration: underline;
