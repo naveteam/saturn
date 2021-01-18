@@ -1,9 +1,11 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { Fragment, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from '@xstyled/styled-components'
-import { th, up, down } from '@xstyled/system'
+import { up, down } from '@xstyled/system'
 
 import { Flex, Typography } from '../'
+import Paragraph from '../Typography'
+import { Link } from '../Link'
 
 const Breadcrumb = ({ path, variant, ...props }) => {
   const lastPage = useMemo(() => (path.length > 1 ? path[path?.length - 2] : path[0]), [path])
@@ -16,9 +18,7 @@ const Breadcrumb = ({ path, variant, ...props }) => {
         <Icon fontSize={3} lineHeight={3} mr={8} color='gray.800'>
           ‹
         </Icon>
-        <Link fowardedAs='a' fontSize={3} lineHeight={3} href={lastPage?.link} {...props}>
-          {lastPage?.label}
-        </Link>
+        <Link to={lastPage?.link}>{lastPage?.label}</Link>
       </Flex>
     ),
     [path, variant]
@@ -29,19 +29,17 @@ const Breadcrumb = ({ path, variant, ...props }) => {
       <Flex {...props}>
         {path.map(({ label, link }, index) => (
           <Flex key={index} alignItems='center'>
-            <Link
-              fowardedAs='a'
-              fontSize={3}
-              lineHeight={3}
-              {...(isNotLastElement(index) && { href: link })}
-              {...props}
-            >
-              {label}
-            </Link>
-            {isNotLastElement(index) && (
-              <Icon fontSize={3} lineHeight={3} mx={8} color='gray.800'>
-                ›
-              </Icon>
+            {isNotLastElement(index) ? (
+              <Fragment>
+                <Link to={link} {...props}>
+                  {label}
+                </Link>
+                <Icon fontSize={3} lineHeight={3} mx={8} color='gray.800'>
+                  ›
+                </Icon>
+              </Fragment>
+            ) : (
+              <Paragraph color='gray.800'>{label}</Paragraph>
             )}
           </Flex>
         ))}
@@ -61,34 +59,6 @@ const Breadcrumb = ({ path, variant, ...props }) => {
     </>
   )
 }
-
-const Link = styled(Typography)`
-  cursor: pointer;
-  color: ${({ color }) => th.color(color)};
-  text-decoration: none;
-
-  :hover {
-    text-decoration: underline;
-  }
-
-  :visited {
-    color: inherit;
-  }
-
-  :active {
-    color: inherit;
-  }
-
-  :only-child {
-    &:last-child {
-      cursor: default;
-      color: gray.800;
-      :hover {
-        text-decoration: none;
-      }
-    }
-  }
-`
 
 const Icon = styled(Typography)`
   cursor: default;
