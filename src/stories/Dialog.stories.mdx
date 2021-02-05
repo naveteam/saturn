@@ -6,9 +6,25 @@ import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display/Dialog" component={Dialog} />
 
-# Dialog
-
-O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de 'actions'.
+export const DialogDoubleInput = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <>
+      <Button caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
+      <Dialog
+        width={792}
+        open={isOpen}
+        onClose={setIsOpen}
+        title="Título"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        colorButton='#424242'
+      >
+        <TextField name='base' label='Default' placeholder='Default' mr={5} />
+        <TextField name='base' label='Default' placeholder='Default' />
+      </Dialog>
+    </>
+  )
+}
 
 export const DialogCloseIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -61,38 +77,14 @@ export const DialogInput = () => {
   )
 }
 
-export const DialogDoubleInput = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  return (
-    <>
-      <Button caption='Open Modal' width={'150px'} onClick={() => setIsOpen(true)}/>
-      <Dialog
-        width={792}
-        open={isOpen}
-        onClose={setIsOpen}
-        title="Título"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        colorButton='#424242'
-      >
-        <TextField name='base' label='Default' placeholder='Default' mr={5} />
-        <TextField name='base' label='Default' placeholder='Default' />
-      </Dialog>
-    </>
-  )
-}
+# Dialog
 
-<Canvas>
-  <Story name="Close Icon" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
-    }
-  }}>
-    <ThemeProvider>
-      <DialogCloseIcon />
-    </ThemeProvider>
-  </Story>
-</Canvas>
+O componente `Dialog` é reponsável por apresentar uma extensa variedade de conteúdos, seja na de transmissão de informações ao usuário, ou até mesmo na execução de 'actions'.
+
+
+## Uso básico
+
+Utilização básica do Dialog, utilizando as prop's de controle (`open` e `onClose`) e apresentação de conteúdo (`title` e `description`), você já conseguirá obter um dialog com o seguinte layout:
 
 <Canvas>
   <Story name="Título e Descrição" parameters={{
@@ -107,6 +99,27 @@ export const DialogDoubleInput = () => {
   </Story>
 </Canvas>
 
+## Dialog com closeIcon
+
+Através da prop `withCloseIcon`, o dialog adicionará automaticamente um botão de fechar no canto superior direito.
+
+<Canvas>
+  <Story name="Close Icon" parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=2065%3A245'
+    }
+  }}>
+    <ThemeProvider>
+      <DialogCloseIcon />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Dialog com conteúdo
+
+Através do `children` você pode passar qualquer tipo de conteúdo para esse dialog
+
 <Canvas>
   <Story name="Input" parameters={{
     design: {
@@ -120,6 +133,12 @@ export const DialogDoubleInput = () => {
   </Story>
 </Canvas>
 
+
+
+## Customização de estilos
+
+É possivel customizar a cor das ações de um dialog através da prop `colorButton`
+
 <Canvas>
   <Story name="Input Duplo" parameters={{
     design: {
@@ -132,5 +151,7 @@ export const DialogDoubleInput = () => {
     </ThemeProvider>
   </Story>
 </Canvas>
+
+
 
 <ArgsTable of={Dialog} />
