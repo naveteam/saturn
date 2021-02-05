@@ -3,7 +3,7 @@ import styled, { css, variant } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
 
-export const Loader = ({ percentage, showPercentage, size, time, variant, ...props }) => {
+export const Loader = ({ percentage, showPercentage, size, time, type, ...props }) => {
   const [circleLength, setCircleLength] = useState(0)
   const externalCircleRef = useRef()
 
@@ -16,12 +16,12 @@ export const Loader = ({ percentage, showPercentage, size, time, variant, ...pro
   }, [percentage])
 
   return (
-    <LoaderContainer time={time} size={size} variant={variant} circleLength={circleLength} {...props}>
+    <LoaderContainer time={time} size={size} type={type} circleLength={circleLength} {...props}>
       <svg>
         <circle />
         <circle ref={externalCircleRef} />
       </svg>
-      {showPercentage && percentage && size !== 'icon' && variant !== 'indeterminate' && (
+      {showPercentage && percentage && size !== 'icon' && type !== 'indeterminate' && (
         <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
           {percentage} %
         </Typography>
@@ -52,7 +52,7 @@ const LoaderContainer = styled.div`
   }
 
   ${variant({
-    prop: 'variant',
+    prop: 'type',
     variants: {
       determinate: css`
         position: relative;
@@ -125,14 +125,14 @@ Loader.propTypes = {
   showPercentage: PropTypes.bool,
   size: PropTypes.oneOf(['icon', 'major']),
   time: PropTypes.number,
-  variant: PropTypes.oneOf(['determinate', 'indeterminate'])
+  type: PropTypes.oneOf(['determinate', 'indeterminate'])
 }
 
 Loader.defaultProps = {
   showPercentage: false,
   size: 'major',
   time: 5,
-  variant: 'indeterminate'
+  type: 'indeterminate'
 }
 
 export default Loader
