@@ -5,10 +5,11 @@ import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Table' />
 
-# Regular Table
+# Tabela
 
-O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação.
+O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação. Para compor uma tabela utilizando o Saturn você deverá seguir os padrões de [sintaxe da nativos do html](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/table), para snippet's mais tangiveis, basta inspecionar um dos exemplos abaixo.
 
+## Tabela `regular`
 O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponível devido a borda externa que a compõe.
 
 <Canvas>
@@ -100,7 +101,7 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
   </Story>
 </Canvas>
 
-# Quiet Table
+## Tabela `quiet`
 
 A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não possuindo bordas externas.
 
@@ -160,5 +161,11 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
     </ThemeProvider>
   </Story>
 </Canvas>
+
+## Tabelas mais complexas
+Para funcionalidades mais complexas, como controles, filtros, paginação, dentre outras, Nós recomendamos a utilização da lib [react-table](https://react-table.tanstack.com/docs/overview) atrelado a UI que o saturn disponibiliza.
+
+Exemplo: `coming soon`
+
 
 <ArgsTable of={Table} />
