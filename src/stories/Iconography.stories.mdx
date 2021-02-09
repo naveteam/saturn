@@ -200,9 +200,11 @@ export const iconNames = [
   options: iconNames
 } }, color: { control: 'color', options: iconNames } }} />
 
-export const IconBase = args => (
+export const IconBase = args => console.log(args) || (
   <ThemeProvider>
-    <Icon {...args} />
+    <Icon {...args} size='lg' />
+    <Icon {...args} size='md' />
+    <Icon {...args} size='sm' />
   </ThemeProvider>
 )
 
@@ -215,7 +217,7 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
 
 <Story
   name='Base'
-  args={{ icon: 'face' }}
+  args={{ icon: 'face', size: 'lg' }}
   parameters={{
     design: {
       type: 'figma',
