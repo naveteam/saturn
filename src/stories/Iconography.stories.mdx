@@ -5,7 +5,7 @@ import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Iconography' component={Icon} argTypes={{ color: { control: 'color' } }} />
 
-export const IconBase = args => console.log(args) || (
+export const IconBase = args => (
   <ThemeProvider>
     <Icon {...args} size='lg' />
     <Icon {...args} size='md' />
