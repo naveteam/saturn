@@ -6,7 +6,7 @@ import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
 import { Typography } from '../Typography'
 
-const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
+const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) => {
   const sizeProps = useMemo(() => {
     switch (size) {
       case 'tiny':
@@ -144,12 +144,12 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
       height={sizeProps.sizeInPx}
       justifyContent='center'
       alignItems='center'
-      bg={letter ? sizeProps.color : 'white'}
+      bg={children || letter ? sizeProps.color : 'white'}
       {...props}
     >
-      {letter ? (
-        <Typography color='white' lineHeight={6} fontSize={sizeProps.fontSize}>
-          {letter}
+      {children || letter ? (
+        <Typography color='orange' lineHeight={6} fontSize={sizeProps.fontSize}>
+          {children || letter}
         </Typography>
       ) : (
         <Icon
@@ -166,6 +166,7 @@ const Avatar = ({ avatar, letter, size, status, variant, ...props }) => {
 
 const AvatarContainer = styled.div(
   ({ size }) => css`
+    overflow: hidden;
     width: ${size};
     height: ${size};
     position: relative;
@@ -187,6 +188,7 @@ const AvatarImage = styled.div(
 
 const NonAvatarContainer = styled(Flex)(
   ({ variant }) => css`
+    overflow: hidden;
     cursor: pointer;
     border-radius: ${variant ? 2 : '50%'};
     position: relative;
@@ -221,7 +223,8 @@ Avatar.propTypes = {
   letter: PropTypes.string,
   size: PropTypes.oneOf(['tiny', 'very-small', 'small', 'medium', 'large', 'very-large', 'huge']),
   status: PropTypes.oneOf(['available', 'away', 'approved', 'busy', 'denied']),
-  variant: PropTypes.bool
+  variant: PropTypes.bool,
+  children: PropTypes.string
 }
 
 export default Avatar
