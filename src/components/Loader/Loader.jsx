@@ -127,8 +127,7 @@ Loader.propTypes = {
   showPercentage: PropTypes.bool,
   size: PropTypes.oneOf(['icon', 'major']),
   time: PropTypes.number,
-  type: PropTypes.oneOf(['determinate', 'indeterminate']),
-  variant: PropTypes.oneOf(['determinate', 'indeterminate'])
+  type: PropTypes.oneOf(['determinate', 'indeterminate'])
 }
 
 Loader.defaultProps = {
