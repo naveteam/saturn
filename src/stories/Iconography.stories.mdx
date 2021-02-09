@@ -200,7 +200,7 @@ export const iconNames = [
   options: iconNames
 } }, color: { control: 'color', options: iconNames } }} />
 
-export const IconBase = args => console.log(args) || (
+export const IconBase = args => (
   <ThemeProvider>
     <Icon {...args} size='lg' />
     <Icon {...args} size='md' />
