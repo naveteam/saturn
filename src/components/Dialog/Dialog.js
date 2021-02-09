@@ -1,10 +1,11 @@
 import React, { useRef, useCallback } from 'react'
-import styled, { css } from '@xstyled/styled-components'
+import styled, { css, keyframes } from '@xstyled/styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import { Typography, Button, Flex } from '../'
 import { Icon } from '../Iconography'
+
 const Dialog = ({
   open,
   onClose,
@@ -20,11 +21,15 @@ const Dialog = ({
   children
 }) => {
   const dialogRef = useRef(null)
+
   const closeModal = useCallback(() => {
     onClose && onClose(false)
   }, [onClose])
+
   useClickOutside(() => closeModal(), dialogRef)
+
   useHotKey(() => closeModal(), 'Escape')
+
   return (
     open &&
     ReactDOM.createPortal(
@@ -70,6 +75,15 @@ const Dialog = ({
     )
   )
 }
+
+const overflowSmooth = keyframes`
+  from {
+    opacity: 0;
+  } to {
+    opacity: 0.7;
+  }
+`
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -77,8 +91,8 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   background: black;
-  opacity: 0.7;
   z-index: 1000;
+  animation: ${overflowSmooth} 0.2s ease forwards;
 `
 const Container = styled(Flex)(
   ({ width }) => css`
@@ -134,6 +148,7 @@ Dialog.defaultProps = {
   cancelButton: { label: 'Cancelar' },
   actionButton: { label: 'Adicionar' }
 }
+
 Dialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.bool,
