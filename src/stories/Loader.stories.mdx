@@ -30,7 +30,7 @@ O componente `Loader` é utilizado para apresentar carregamentos de forma visual
 
 # Size
 
-O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon` e `major`, que indicam o tamanho do `Loader`, por padrão é `major`.
+O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `sm`, `md` e `lg`, que indicam o tamanho do `Loader`, por padrão é `lg`.
 
 <Canvas>
   <Story
@@ -43,8 +43,9 @@ O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon
     }}
   >
     <ThemeProvider>
-      <Loader size='major' />
-      <Loader size='icon' />
+      <Loader size='lg' />
+      <Loader size='md' />
+      <Loader size='sm' />
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -53,7 +54,7 @@ O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon
 
 O `Loader` recebe a prop `type` que indica uma entre as duas variações possíveis, `determinate` e `indeterminate` - padrão.
 
-Quando for a variação `determinate`, é necessário também passar uma prop chamada `percentage`, é um valor que indica a porcentagem de carregamento já realizado e junto com esta prop opcionalmente também é possível passar uma prop chamada `showPercentage` que é um booleano que define se esta porcentagem vai ser mostrada em texto, mas este texto só será exibido quando o `size` do `Loader` também for `major`.
+Quando for a variação `determinate`, é necessário também passar uma prop chamada `percentage`, é um valor que indica a porcentagem de carregamento já realizado e junto com esta prop opcionalmente também é possível passar uma prop chamada `showPercentage` que é um booleano que define se esta porcentagem vai ser mostrada em texto, mas este texto só será exibido quando o `size` do `Loader` também for `lg`.
 
 Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão é 5 segundos, mas este valor pode ser passado passando um número pela prop `time` indicando o tempo desejado para o ciclo do loader.
 

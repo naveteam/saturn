@@ -23,7 +23,7 @@ export const Loader = ({ variant, percentage, showPercentage, size, time, type, 
         <circle />
         <circle ref={externalCircleRef} />
       </svg>
-      {showPercentage && percentage && size !== 'icon' && typeValue !== 'indeterminate' && (
+      {showPercentage && percentage && size !== 'sm' && typeValue !== 'indeterminate' && (
         <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
           {percentage} %
         </Typography>
@@ -90,32 +90,47 @@ const LoaderContainer = styled.div`
   ${variant({
     prop: 'size',
     variants: {
-      major: css`
+      lg: css`
         &,
         svg {
-          height: 96px;
-          width: 96px;
+          height: 6rem;
+          width: 6rem;
         }
         svg circle {
-          cx: 48;
-          cy: 48;
-          r: 43;
-          stroke-width: 9.6;
+          cx: 3rem;
+          cy: 3rem;
+          r: 2.688rem;
+          stroke-width: 0.6rem;
         }
       `,
-      icon: css`
+
+      md: css`
         &,
         svg {
-          height: 20px;
-          width: 20px;
-          margin: 2px;
+          height: 3rem;
+          width: 3rem;
         }
 
         svg circle {
-          cx: 10;
-          cy: 10;
-          r: 8;
-          stroke-width: 2;
+          cx: 1.5rem;
+          cy: 1.5rem;
+          r: 1rem;
+          stroke-width: 0.3rem;
+        }
+      `,
+      sm: css`
+        &,
+        svg {
+          height: 1.25rem;
+          width: 1.25rem;
+          margin: 0.125rem;
+        }
+
+        svg circle {
+          cx: 0.625rem;
+          cy: 0.625rem;
+          r: 0.5rem;
+          stroke-width: 0.125rem;
         }
       `
     }
@@ -125,14 +140,14 @@ const LoaderContainer = styled.div`
 Loader.propTypes = {
   percentage: PropTypes.number,
   showPercentage: PropTypes.bool,
-  size: PropTypes.oneOf(['icon', 'major']),
+  size: PropTypes.oneOf(['xs', 'md', 'lg']),
   time: PropTypes.number,
   type: PropTypes.oneOf(['determinate', 'indeterminate'])
 }
 
 Loader.defaultProps = {
   showPercentage: false,
-  size: 'major',
+  size: 'lg',
   time: 5,
   variant: 'indeterminate'
 }
