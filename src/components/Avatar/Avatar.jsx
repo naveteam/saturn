@@ -6,7 +6,7 @@ import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
 import { Typography } from '../Typography'
 
-const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) => {
+const Avatar = ({ avatar, letter, size, status, variant, children, fallback, ...props }) => {
   const sizeProps = useMemo(() => {
     switch (size) {
       case 'tiny':
@@ -104,7 +104,7 @@ const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) =
   }, [status])
 
   const showStatus = (status, variant) => {
-    if (status && !variant) {
+    if (status && variant === 'circle') {
       return (
         <Status
           statusBorder={sizeProps.statusBorder}
@@ -152,12 +152,7 @@ const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) =
           {children || letter}
         </Typography>
       ) : (
-        <Icon
-          icon={variant ? 'avatar_business_center' : 'avatar_person'}
-          height={sizeProps.sizeInPx}
-          width={sizeProps.sizeInPx}
-          color={sizeProps.color}
-        />
+        <Icon icon={fallback} height={sizeProps.sizeInPx} width={sizeProps.sizeInPx} color={sizeProps.color} />
       )}
       {showStatus(status, variant)}
     </NonAvatarContainer>
@@ -178,7 +173,7 @@ const AvatarImage = styled.div(
     cursor: pointer;
     width: ${size};
     height: ${size};
-    border-radius: ${variant ? 2 : '50%'};
+    border-radius: ${variant === 'circle' ? '50%' : 2};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -190,7 +185,7 @@ const NonAvatarContainer = styled(Flex)(
   ({ variant }) => css`
     overflow: hidden;
     cursor: pointer;
-    border-radius: ${variant ? 2 : '50%'};
+    border-radius: ${variant === 'circle' ? '50%' : 2};
     position: relative;
   `
 )
@@ -215,7 +210,8 @@ const StatusIcon = styled(Icon)(
 
 Avatar.defaultProps = {
   size: 'medium',
-  variant: false
+  variant: 'circle',
+  fallback: 'avatar_person'
 }
 
 Avatar.propTypes = {
@@ -223,7 +219,8 @@ Avatar.propTypes = {
   letter: PropTypes.string,
   size: PropTypes.oneOf(['tiny', 'very-small', 'small', 'medium', 'large', 'very-large', 'huge']),
   status: PropTypes.oneOf(['available', 'away', 'approved', 'busy', 'denied']),
-  variant: PropTypes.bool,
+  variant: PropTypes.oneOf(['circle', 'square']),
+  fallback: PropTypes.string,
   children: PropTypes.string
 }
 
