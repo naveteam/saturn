@@ -49,9 +49,9 @@ O `Loader` possuí a prop `size` que pode receber dois valores possíveis, `icon
   </Story>
 </Canvas>
 
-# Variants
+# Types
 
-O `Loader` recebe a prop `variant` que indica uma entre as duas variações possíveis, `determinate` e `indeterminate` - padrão.
+O `Loader` recebe a prop `type` que indica uma entre as duas variações possíveis, `determinate` e `indeterminate` - padrão.
 
 Quando for a variação `determinate`, é necessário também passar uma prop chamada `percentage`, é um valor que indica a porcentagem de carregamento já realizado e junto com esta prop opcionalmente também é possível passar uma prop chamada `showPercentage` que é um booleano que define se esta porcentagem vai ser mostrada em texto, mas este texto só será exibido quando o `size` do `Loader` também for `major`.
 
@@ -68,10 +68,10 @@ Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão 
     }}
   >
     <ThemeProvider>
-      <Loader percentage={30} showPercentage variant='determinate' />
-      <Loader percentage={30} variant='determinate' />
-      <Loader variant='indeterminate' />
-      <Loader variant='indeterminate' time={8} />
+      <Loader percentage={30} showPercentage type='determinate' />
+      <Loader percentage={30} type='determinate' />
+      <Loader type='indeterminate' />
+      <Loader type='indeterminate' time={8} />
     </ThemeProvider>
   </Story>
 </Canvas>
