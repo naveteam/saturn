@@ -1,5 +1,5 @@
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
 import styled from '@xstyled/styled-components'
 import { space, layout } from '@xstyled/system'
 
@@ -16,7 +16,21 @@ const bytesToSize = bytes => {
   return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
 }
 
-const Attachment = ({ name, link, onDownload, onView, onDelete, file, backgroundColor, error, variant, ...props }) => {
+const Attachment = ({
+  name,
+  link,
+  onDownload,
+  onView,
+  onDelete,
+  file,
+  backgroundColor,
+  error,
+  variant,
+  type: transitionType,
+  ...props
+}) => {
+  const type = useMemo(() => variant || transitionType, [transitionType, variant])
+
   const handleName = () => {
     if (name) {
       if (name.length > 7) return name.slice(0, 7).concat('...')
@@ -53,11 +67,11 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
     }
   }
 
-  const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'blue.300')
+  const handleErrorColor = () => (error && type === 'upload' ? 'error' : 'blue.300')
 
-  if (variant === 'upload')
+  if (type === 'upload')
     return (
-      <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
+      <Wrapper backgroundColor={backgroundColor} error={error} type={type} {...props}>
         {(link || file) && (
           <Container>
             <Flex mr={5} alignItems='center'>
@@ -93,9 +107,9 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
       </Wrapper>
     )
 
-  if (variant === 'download')
+  if (type === 'download')
     return (
-      <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
+      <Wrapper backgroundColor={backgroundColor} type={type} {...props}>
         {(link || file) && (
           <Container>
             <Flex mr={5} alignItems='center'>
@@ -151,7 +165,7 @@ const StyledIcon = styled(Icon)`
 
 const Wrapper = styled(Flex)`
   ${StyledIcon} {
-    display: ${props => (props.variant === 'download' || props.error) && 'block'};
+    display: ${props => (props.type === 'download' || props.error) && 'block'};
   }
   :hover {
     ${StyledIcon} {
@@ -181,12 +195,12 @@ Attachment.propTypes = {
   file: PropTypes.object,
   backgroundColor: PropTypes.string,
   error: PropTypes.bool,
-  variant: PropTypes.oneOf(['upload', 'download'])
+  type: PropTypes.oneOf(['upload', 'download'])
 }
 
 Attachment.defaultProps = {
   error: false,
-  variant: 'upload',
+  type: 'upload',
   backgroundColor: 'none'
 }
 
