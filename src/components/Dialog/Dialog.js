@@ -76,7 +76,7 @@ const Dialog = ({
   )
 }
 
-const overflowSmooth = keyframes`
+const overlay = keyframes`
   from {
     opacity: 0;
   } to {
@@ -92,7 +92,7 @@ const Overlay = styled.div`
   left: 0;
   background: black;
   z-index: 1000;
-  animation: ${overflowSmooth} 0.2s ease forwards;
+  animation: ${overlay} 0.2s ease forwards;
 `
 const Container = styled(Flex)(
   ({ width }) => css`
@@ -150,8 +150,8 @@ Dialog.defaultProps = {
 }
 
 Dialog.propTypes = {
-  open: PropTypes.bool,
-  onClose: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.bool.isRequired,
   withBackground: PropTypes.bool,
   withCloseIcon: PropTypes.bool,
   title: PropTypes.string,
@@ -161,4 +161,5 @@ Dialog.propTypes = {
   colorButton: PropTypes.string,
   portalRef: PropTypes.object
 }
+
 export default Dialog

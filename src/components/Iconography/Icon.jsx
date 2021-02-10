@@ -11,7 +11,7 @@ const IconComponent = ({ icon, size, ...props }) => {
   return IconSrc ? <IconSrc {...props} /> : <Icons.Clear {...props} />
 }
 
-const Icon = styled(IconComponent)`
+const Base = styled(IconComponent)`
   * {
     fill: ${({ color }) => th.color(color)};
   }
@@ -38,6 +38,7 @@ const Icon = styled(IconComponent)`
     }
   })}
 `
+const Icon = props => <Base {...props} />
 
 Icon.defaultProps = {
   icon: 'clear',
