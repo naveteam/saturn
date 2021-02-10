@@ -1,24 +1,53 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
+import styled, { css } from '@xstyled/styled-components'
 import { layout, space, typography, color } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
+import { hasVariantColor } from '../../utils'
 
-const DefaultComponent = ({ children, to, textDecorationLine, color, ...props }) => (
-  <StyledLink p={1} href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
+// A prop color está depreciada, na proxima versão será totalmente substituida pela prop colorScheme
+const DefaultComponent = ({ children, to, textDecorationLine, colorScheme, color, ...props }) => (
+  <StyledLink
+    p={1}
+    href={to}
+    color={color}
+    colorScheme={colorScheme}
+    textDecorationLine={textDecorationLine}
+    {...props}
+  >
     {children}
   </StyledLink>
 )
 
-const Link = ({ component, propPath, children, to, as, target, color, passHref, textDecorationLine, ...props }) => {
+// A prop color está depreciada, na proxima versão será totalmente substituida pela prop colorScheme
+const Link = ({
+  component,
+  propPath,
+  children,
+  to,
+  as,
+  target,
+  color,
+  colorScheme,
+  passHref,
+  textDecorationLine,
+  ...props
+}) => {
   const Base = component ? component : DefaultComponent
   const mountPath = { [propPath]: to }
 
   return (
     <BaseStyled display='flex' {...props}>
       <Label alignItems='center' forwardedAs={as}>
-        <Base {...mountPath} {...passHref} color={color} textDecorationLine={textDecorationLine} target={target}>
+        <Base
+          {...mountPath}
+          {...passHref}
+          color={color}
+          colorScheme={colorScheme}
+          textDecorationLine={textDecorationLine}
+          target={target}
+        >
           {component ? (
             <a color={color} target={target}>
               {children}
@@ -44,13 +73,30 @@ const StyledLink = styled.a`
   border-radius: 4px;
   ${space}
   ${color}
+
+  transition: color 0.2s ease;
+  ${({ colorScheme, theme }) => {
+    if (colorScheme)
+      return css`
+        color: ${hasVariantColor(colorScheme, '300', theme) ? `${colorScheme}.300` : 'blue.300'};
+      `
+  }};
+
   &:hover {
     text-decoration-line: underline;
-    color: blue.500;
+    color: ${({ colorScheme, theme }) => {
+      if (hasVariantColor(colorScheme, '500', theme)) return theme.colors[colorScheme]['500']
+      return theme.colors.blue['500']
+    }};
   }
+
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+    box-shadow: 0 0 0 2px
+      ${({ colorScheme, theme }) => {
+        if (hasVariantColor(colorScheme, '50', theme)) return theme.colors[colorScheme]['50']
+        return theme.colors.blue['50']
+      }};
   }
 `
 
@@ -60,11 +106,19 @@ const Label = styled(Typography)`
   ${layout}
   &:hover {
     text-decoration-line: underline;
-    color: blue.500;
+    color: ${({ colorScheme, theme }) => {
+      if (hasVariantColor(colorScheme, '500', theme)) return theme.colors[colorScheme]['500']
+      return theme.colors.blue['500']
+    }};
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+
+    box-shadow: 0 0 0 2px
+      ${({ colorScheme, theme }) => {
+        if (hasVariantColor(colorScheme, '50', theme)) return theme.colors[colorScheme]['50']
+        return theme.colors.blue['50']
+      }};
   }
 `
 
@@ -74,7 +128,7 @@ Link.defaultProps = {
   target: '_self',
   to: '#',
   as: 'p',
-  color: 'blue.300'
+  colorScheme: 'blue'
 }
 
 Link.propTypes = {
@@ -83,7 +137,7 @@ Link.propTypes = {
   target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
   to: PropTypes.string,
   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'p', 'span', 'label', 'a']),
-  color: PropTypes.string
+  colorScheme: PropTypes.string
 }
 
 export default Link
