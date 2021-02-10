@@ -4,13 +4,14 @@ import styled, { backgrounds, css, layout, space } from '@xstyled/styled-compone
 
 import { Flex, Icon, Typography, Subtitle } from '../'
 
-const Accordion = ({ children, expanded: propsExpanded }) => {
-  const [expanded, setExpanded] = useState(propsExpanded)
+// A prop expanded não será suportada na v2 o saturn
+const Accordion = ({ children, expanded, open: propsOpen }) => {
+  const [open, setOpen] = useState(propsOpen || expanded)
 
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
-      expanded: expanded ? 1 : 0,
-      setExpanded
+      open: open ? 1 : 0,
+      setOpen
     })
   })
 
@@ -19,21 +20,21 @@ const Accordion = ({ children, expanded: propsExpanded }) => {
 
 Accordion.propTypes = {
   children: PropTypes.array,
-  expanded: PropTypes.bool
+  open: PropTypes.bool
 }
 
 Accordion.defaultProps = {
-  expanded: false
+  open: false
 }
 
-const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, ...props }) => {
+const AccordionHeader = ({ open, expandIcon, setOpen, title, subtitle, ...props }) => {
   return (
     <StyledHeader
       display='flex'
       alignItems='center'
       justifyContent='space-between'
-      expanded={expanded}
-      onClick={() => setExpanded(current => !current)}
+      open={open}
+      onClick={() => setOpen(current => !current)}
       {...props}
     >
       <Flex>
@@ -46,16 +47,16 @@ const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, .
           </Subtitle>
         )}
       </Flex>
-      <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
+      <StyledIcon open={open} icon={expandIcon} color='gray.800' />
     </StyledHeader>
   )
 }
 
 AccordionHeader.propTypes = {
   backgroundColor: PropTypes.string,
-  expanded: PropTypes.number,
+  open: PropTypes.number,
   expandIcon: PropTypes.string,
-  setExpanded: PropTypes.func,
+  setOpen: PropTypes.func,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string
 }
@@ -65,21 +66,21 @@ AccordionHeader.defaultProps = {
   expandIcon: 'expand_more'
 }
 
-const AccordionDetail = ({ children, expanded, ...props }) => {
+const AccordionDetail = ({ children, open, ...props }) => {
   const [heightTransition, setHeightTransition] = useState(0)
   const accordionContentRef = useRef(null)
 
   useEffect(() => setHeightTransition(accordionContentRef.current.offsetHeight + 100), [accordionContentRef])
 
   return (
-    <AccordionContent heightTransition={heightTransition} ref={accordionContentRef} expanded={expanded} {...props}>
+    <AccordionContent heightTransition={heightTransition} ref={accordionContentRef} open={open} {...props}>
       {children}
     </AccordionContent>
   )
 }
 
 AccordionDetail.propTypes = {
-  expanded: PropTypes.number,
+  open: PropTypes.number,
   backgroundColor: PropTypes.string
 }
 
@@ -158,14 +159,14 @@ AccordionsWrapper.defaultProps = {
 }
 
 const StyledIcon = styled(Icon)(
-  ({ expanded }) => css`
+  ({ open }) => css`
     transition: transform 0.5s ease-in-out;
-    transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+    transform: ${open ? 'rotate(180deg)' : 'rotate(0deg)'};
   `
 )
 
 const StyledHeader = styled(Flex)(
-  ({ expanded }) => css`
+  ({ open }) => css`
     padding: 4;
     height: 56px;
     width: inherit;
@@ -174,7 +175,7 @@ const StyledHeader = styled(Flex)(
     border-color: gray.300 !important;
 
     ${
-      expanded
+      open
         ? {
             borderBottomLeftRadius: '0px !important',
             borderBottomRightRadius: '0px !important',
@@ -189,7 +190,7 @@ const StyledHeader = styled(Flex)(
 )
 
 const AccordionContent = styled.div(
-  ({ expanded, heightTransition }) => css`
+  ({ open, heightTransition }) => css`
     height: auto;
     width: inherit;
     transition: all 0.5s ease-in-out;
@@ -203,7 +204,7 @@ const AccordionContent = styled.div(
 
     ${heightTransition && { maxHeight: '0' }}
 
-    ${expanded && [space, { maxHeight: heightTransition }]}
+    ${open && [space, { maxHeight: heightTransition }]}
 
   `
 )

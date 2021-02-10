@@ -36,13 +36,13 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
   </Story>
 </Canvas>
 
-# Expanded
+# Controlando o accordion
 
-É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `expanded` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado.
+É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `open` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado.
 
 <Canvas>
   <Story
-    name='Expanded'
+    name='open'
     parameters={{
       design: {
         type: 'figma',
@@ -61,7 +61,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
             </Typography>
           </AccordionDetail>
         </Accordion>
-        <Accordion expanded={true}>
+        <Accordion open={true}>
           <AccordionHeader title='Lorem Ipsum' />
           <AccordionDetail>
             <Typography>
