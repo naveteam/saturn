@@ -1,36 +1,56 @@
-import React, { useState, useEffect } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th, variant, compose, color, layout, space, border } from '@xstyled/system'
 import PropTypes from 'prop-types'
-import { Typography } from '../'
-import { Icon } from '../Iconography'
 
-const Tag = ({ children, close, variant, selected, ...props }) => {
-  const [tagVariant, setTagVariant] = useState('selected')
+import { Typography, Icon } from '../'
 
-  useEffect(() => {
-    if (variant) {
-      return setTagVariant(variant)
+const Tag = ({ children, close, closable, variant, selected, disabled, value, onChange, onClose, type, ...props }) => {
+  const tagVariant = useMemo(() => {
+    if (disabled || selected === 'disabled' || variant === 'disabled') {
+      return 'disabled'
     }
 
-    if (selected === 'disabled') {
-      return setTagVariant('disabled')
+    if (type === 'selectable') {
+      if (value) {
+        return 'selected'
+      } else {
+        return 'unselected'
+      }
+    }
+
+    if (variant) {
+      return variant
     }
 
     if (selected === false || selected === 'unselected') {
-      return setTagVariant('unselected')
+      return 'unselected'
     }
 
-    return setTagVariant('selected')
-  }, [variant, selected])
+    return 'selected'
+  }, [variant, selected, type, disabled, value])
+
+  const handleClick = useCallback(() => {
+    if (disabled) {
+      return
+    }
+
+    if ((closable || close) && onClose) {
+      onClose()
+    }
+
+    if (type === 'selectable' && onChange) {
+      onChange()
+    }
+  }, [type, closable, close, onClose, onChange])
 
   return (
-    <Base selected={tagVariant} {...props}>
+    <Base selected={tagVariant} onClick={handleClick} {...props}>
       <Content>
-        <Text padding={close ? '3px 0 3px 4px' : '3px 4px 3px 4px'} lineHeight={1}>
+        <Text padding={close || closable ? '3px 0 3px 4px' : '3px 4px 3px 4px'} lineHeight={1}>
           {children}
         </Text>
-        {close && <Icon icon='clear' color='white' height='16' />}
+        {(close || closable) && <Icon icon='clear' color='white' height='16' />}
       </Content>
     </Base>
   )
@@ -60,6 +80,7 @@ const selectedVariant = variant({
     disabled: css`
       background-color: disabled;
       border-color: disabled;
+      cursor: not-allowed;
       p {
         color: white;
       }
@@ -67,11 +88,12 @@ const selectedVariant = variant({
   }
 })
 
-const Base = styled.div`
+const Base = styled.button`
   display: inline-block;
   border-radius: 1;
   border-width: 1px;
   border-style: solid;
+  outline: none;
   cursor: pointer;
   ${baseProps};
   ${selectedVariant};
@@ -93,10 +115,14 @@ Tag.defaultProps = {
 }
 
 Tag.propTypes = {
-  variant: PropTypes.oneOf(['selected', 'unselected', 'disabled']),
   close: PropTypes.bool,
   color: PropTypes.string,
-  colorScheme: PropTypes.oneOf(['primary', 'secondary'])
+  colorScheme: PropTypes.string,
+  type: PropTypes.oneOf(['info', 'selectable']),
+  value: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClose: PropTypes.func
 }
 
 export default Tag
