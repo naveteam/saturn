@@ -23,7 +23,6 @@ const Select = forwardRef(
       error,
       disabled,
       quiet,
-      defaultValue,
       resetValue,
       ...props
     },
@@ -33,10 +32,10 @@ const Select = forwardRef(
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
-    const handleChange = (option, shouldValidation = true) => {
+    const handleChange = (option, shouldValidate = true) => {
       setOptionSelected(option)
       setIsOpened(false)
-      onOptionSelected && onOptionSelected(option, shouldValidation)
+      onOptionSelected && onOptionSelected(option, shouldValidate)
     }
 
     const clearValueFunction = e => {
@@ -84,7 +83,8 @@ const Select = forwardRef(
             <OverflowText lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
               {optionSelected[optionLabel] || placeholder}
             </OverflowText>
-            <SelectBase name={name} ref={ref} defaultValue={defaultValue}>
+
+            <SelectBase name={name} ref={ref} defaultValue={optionSelected[optionValue]}>
               <option value='' disabled>
                 {placeholder}
               </option>
@@ -308,8 +308,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   quiet: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  onOptionSelected: PropTypes.func,
-  defaultValue: PropTypes.string
+  onOptionSelected: PropTypes.func
 }
 
 export default Select

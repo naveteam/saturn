@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Select } from '../components'
-import { optionsSelect } from '../utils'
+import { customOptionsSelect, optionsSelect } from '../utils'
 import { ThemeProvider } from '../theme'
 
 <Meta title='Data input/Select' component={Select} argTypes={{ bg: { control: 'color' } }} />
@@ -14,7 +14,7 @@ export const SelectControls = args => (
 
 # Select
 
-O componente de `Select` é utilizado para que o usuário possa selecionar uma ou mais opções da aplicação.
+O componente de `Select` é utilizado para que o usuário possa selecionar uma ou mais opções da aplicação. A `ref` é encaminhada para o `Select`, assim como a prop `name`.
 
 <Story
   name='Base'
@@ -56,6 +56,99 @@ Passando a prop de `error` para o `Select`, o usuário pode receber um feedback 
   </Story>
 </Canvas>
 
+# Options
+
+O array `options` deve conter as `options` em formato de objeto. Por padrão o `Select` espera a label no campo `label` e o valor no campo `value`. Com a prop `optionLabel` podemos definir outro nome para o campo da label e com a prop `optionValue` podemos definir outro nome para o campo do value do Select no array de `options`.
+
+<Canvas>
+  <Story
+    name='Options'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select name='Options' options={customOptionsSelect} optionLabel='customLabel' optionValue='customValue' />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Quiet
+
+A prop `quiet` remove as bordas do `Select`. Quando usando esta prop a `label` do `Select` não poderá ser usada, porém a `caption` poderá ser usada.
+
+<Canvas>
+  <Story
+    name='Quiet'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select name='Quiet' quiet options={optionsSelect} />
+      <Select name='QuietError' quiet error caption='quiet with error' options={optionsSelect} />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# On Option Selected
+
+O `Select` aceita a prop `onOptionSelected`. Uma função que recebe dois parâmetros, o primeiro sendo a `option` selecionado e o segundo `shouldValidate` que indica se o campo deve ser validado. Essa função é executada no momento em que uma `option` é escolhida.
+
+<Canvas>
+  <Story
+    name='OnOptionSelected'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select
+        name='OnOptionSelected'
+        label='onOptionSelected'
+        caption='onOptionSelected'
+        onOptionSelected={() => alert('onOptionSelected')}
+        options={optionsSelect}
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Reset Value
+
+O `Select` aceita a prop `resetValue` que é utilizada para mudar o valor do Select. Mas também pode ser utilizada para se ter o comportamento de `defaultValue`.
+
+<Canvas>
+  <Story
+    name='Reset Value'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=242%3A139'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Select
+        name='ResetValue'
+        label='Reset Value'
+        caption='Reset Value'
+        resetValue={optionsSelect[0].value}
+        options={optionsSelect}
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
 # Disabled
 
 O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
@@ -76,13 +169,14 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
   </Story>
 </Canvas>
 
-# Clear Value
+# Clear Value | onClearSelect
 
 Passando a prop `clearValue` para o `Select`, será exibido um icone no componente, ao tocar nesse icone o valor presente no `Select` será limpo.
+É possível passar a prop `onClearSelect`, que recebe uma função que será executada quando o `Select` for limpo.
 
 <Canvas>
   <Story
-    name='Clear Value'
+    name='Clear Value | onClearSelect'
     parameters={{
       design: {
         type: 'figma',
@@ -96,6 +190,14 @@ Passando a prop `clearValue` para o `Select`, será exibido um icone no componen
         name='clearValue'
         label='Clear Value'
         options={optionsSelect}
+        placeholder='Selecione uma opção'
+      />
+      <Select
+        clearValue
+        name='onClearSelect'
+        label='onClearSelect'
+        options={optionsSelect}
+        onClearSelect={() => alert('onClearSelect')}
         placeholder='Selecione uma opção'
       />
     </ThemeProvider>
