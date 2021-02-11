@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import { ThemeProvider as StyledProvider } from '@xstyled/styled-components'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import { Theme } from './Theme'
 
-const ThemeProvider = ({ children, theme }) => {
+import { merge } from '../utils'
+
+const ThemeProvider = ({ children, theme = {} }) => {
+  const mergedTheme = useMemo(() => merge(Theme, theme), [theme])
+
   return (
     <Fragment>
       <Helmet>
@@ -14,7 +18,7 @@ const ThemeProvider = ({ children, theme }) => {
           rel='stylesheet'
         />
       </Helmet>
-      <StyledProvider theme={theme || Theme}>{children}</StyledProvider>
+      <StyledProvider theme={mergedTheme}>{children}</StyledProvider>
     </Fragment>
   )
 }
