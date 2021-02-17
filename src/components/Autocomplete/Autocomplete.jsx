@@ -1,22 +1,25 @@
-import React, { useState, useCallback, useMemo, useRef } from 'react'
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { th } from '@xstyled/system'
 
 import { Flex } from '../Grid'
 import TextField from '../TextField'
 import { Typography } from '../Typography'
+
 import { useClickOutside } from '@naveteam/prometheus'
 
 const Autocomplete = ({
-  onChange,
   label,
   optionValue = 'value',
   optionLabel = 'label',
+  loading,
   options = [
     { label: 'TESTE', value: 1 },
     { label: 'teste2', value: 3 },
     { label: 'vacaria', value: 5 }
-  ]
+  ],
+  onChange,
+  onChangeText
 }) => {
   const [textFieldValue, setTextFieldValue] = useState('')
   const [selectedValue, setSelectedValue] = useState()
@@ -26,12 +29,20 @@ const Autocomplete = ({
 
   const filteredOptions = useMemo(() => {
     if (!textFieldValue) return options
-    return options.filter(op => op[optionLabel].toLowerCase().includes(textFieldValue.toLowerCase()))
+    return options.filter(op => op[optionLabel]?.toLowerCase().includes(textFieldValue.toLowerCase()))
   }, [textFieldValue, options])
   // Tem algum problema em usar options [] nesse array de deps?
 
+  useEffect(() => {
+    onChangeText(textFieldValue)
+  }, [textFieldValue])
+
   useClickOutside(() => {
-    if (!selectedValue) return setTextFieldValue('')
+    if (!selectedValue || !textFieldValue) {
+      setOptionsOpened(false)
+      setTextFieldValue('')
+      return selectedValue
+    }
     // Values com mesmo valor podem acarretar problemas, a solução para isso seria ter um id unico em cada opção e controlar a previamente selecionada por esse id
     const currentSelected = options.find(op => op[optionValue] === selectedValue)
     setTextFieldValue(currentSelected[optionLabel])
@@ -65,12 +76,25 @@ const Autocomplete = ({
   return (
     <Flex ref={containerRef} position='relative' flexDirection='column'>
       <TextField onFocus={handleOpenOptions} onChange={handleTextField} value={textFieldValue} label={label} />
-      {optionsOpened && <Options options={filteredOptions} optionLabel={optionLabel} onPickOption={onPickOption} />}
+      {optionsOpened && (
+        <Options options={filteredOptions} optionLabel={optionLabel} onPickOption={onPickOption} loading={loading} />
+      )}
     </Flex>
   )
 }
 
-const Options = ({ options = [], optionLabel, onPickOption }) => {
+const Options = ({ options = [], optionLabel, onPickOption, loading }) => {
+  if (loading) {
+    return (
+      <Container>
+        <OptionContainer>
+          <Typography fontStyle='italic' as='span'>
+            Carregando...
+          </Typography>
+        </OptionContainer>
+      </Container>
+    )
+  }
   return (
     <Container>
       {options.length ? (
@@ -98,11 +122,14 @@ const Container = styled.ul`
   left: 0;
   top: 100%;
   width: 100%;
+  max-height: 11.5rem;
+  overflow-y: auto;
   box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
   list-style-type: none;
 `
 
 const OptionContainer = styled.li`
+  padding: 0.5rem;
   ${({ isSelectable }) =>
     isSelectable
       ? css`
@@ -112,7 +139,7 @@ const OptionContainer = styled.li`
           }
         `
       : css`
-          text-align: center;
+          /* text-align: center; */
           opacity: 0.5;
         `}
 `

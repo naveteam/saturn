@@ -1,25 +1,175 @@
+import { useState, useEffect } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-import { Autocomplete } from '../components'
+
+import { Attachment, Autocomplete, Flex, Typography } from '../components'
 import { ThemeProvider } from '../theme'
+
+import { useDebounce } from '@naveteam/prometheus'
+
+export const AutoAsync = () => {
+  const [loading, setLoading] = useState(true)
+  const [typed, setTyped] = useState('')
+  const [options, setOptions] = useState([])
+  const debouncedTyped = useDebounce(typed)
+  useEffect(() => {
+    setLoading(true)
+    fetch("https://country.register.gov.uk/records.json?page-size=5000")
+      .then(res => res.json())
+      .then(
+        (countries) => {
+          setLoading(false);
+          setOptions(Object.keys(countries).map((key) => countries[key].item[0]))
+        },
+        (error) => {
+          setLoading(false);
+          setError(error);
+        }
+      )
+  }, [debouncedTyped])
+  useEffect(() => {
+    setLoading(true)
+  }, [typed])
+  return <Autocomplete loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} optionValue='country' optionLabel='name' label='teste' />
+}
+
 
 <Meta title='Data Input/Autocomplete' component={Autocomplete} />
 
 # Autocomplete
 
+O component de Autocomplete sinaliza arquivos que passaram por um processo de upload ou estão prontos para passar por um processo de download.
+
 <Canvas>
   <Story
-    name='Base'
+    name='Default'
     parameters={{
       design: {
         type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=560%3A0'
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
       }
     }}
   >
     <ThemeProvider>
-      <Autocomplete />
+      <AutoAsync/>
     </ThemeProvider>
   </Story>
 </Canvas>
 
-<ArgsTable of={Autocomplete} />
+# Upload
+
+A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado. O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
+
+<Canvas>
+  <Story
+    name='Upload'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    {() => {
+      const [uploadedFile, setUploadedFile] = useState()
+      const handleChange = event => setUploadedFile(event.target?.files[0])
+      return (
+        <ThemeProvider>
+          <input type='file' onChange={e => handleChange(e)} />
+          <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
+        </ThemeProvider>
+      )
+    }}
+  </Story>
+</Canvas>
+
+# Download
+
+A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode efetuar três ações: efetuar o download, visualizar ou excluir o arquivo.
+
+<Canvas>
+  <Story
+    name='Download'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Attachment
+        name='download.jpg'
+        variant='download'
+        onDownload={() => alert('download')}
+        link='https:// www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# Variants
+
+<Canvas>
+  <Story
+    name='Variants'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+      }
+    }}
+  >
+    {() => {
+      const [uploadedFile, setUploadedFile] = useState()
+      const downloadMockFile = { name: 'download_mocked_file.jpg', size: '531531' }
+      const handleChange = event => setUploadedFile(event.target?.files[0])
+      return (
+        <ThemeProvider>
+          <Typography fontWeight='600' mb={10}>
+            Download
+          </Typography>
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
+          <Attachment
+            mb={10}
+            name='Example PDF link'
+            variant='download'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+          />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File
+          </Typography>
+          <Attachment my={10} file={downloadMockFile} variant='download' />
+          <Typography fontWeight='600' mt={20} mb={10}>
+            Upload
+          </Typography>
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            Link
+          </Typography>
+          <Attachment
+            mb={10}
+            name='with_background'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            backgroundColor='gray.200'
+          />
+          <Attachment
+            mb={10}
+            name='link_upload_error'
+            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+            onDelete={() => alert('Delete')}
+            error={true}
+          />
+          <Typography fontSize={2} fontWeight='600' mb={10}>
+            File (Adicione um arquivo)
+          </Typography>
+          <input type='file' onChange={e => handleChange(e)} />
+          <Attachment my={10} file={uploadedFile} />
+          <Attachment mb={10} file={uploadedFile} error={true} />
+        </ThemeProvider>
+      )
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Attachment} />
