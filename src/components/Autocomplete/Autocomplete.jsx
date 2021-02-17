@@ -19,7 +19,8 @@ const Autocomplete = ({
   onChange,
   onChangeText,
   getOptionValue = op => op.value,
-  getOptionLabel = op => op.label
+  getOptionLabel = op => op.label,
+  ...rest
 }) => {
   const [textFieldValue, setTextFieldValue] = useState('')
   const [selectedValue, setSelectedValue] = useState()
@@ -75,7 +76,13 @@ const Autocomplete = ({
 
   return (
     <Flex ref={containerRef} position='relative' flexDirection='column'>
-      <TextField onFocus={handleOpenOptions} onChange={handleTextField} value={textFieldValue} label={label} />
+      <TextField
+        onFocus={handleOpenOptions}
+        onChange={handleTextField}
+        value={textFieldValue}
+        label={label}
+        {...rest}
+      />
       {optionsOpened && (
         <Options
           options={filteredOptions}
