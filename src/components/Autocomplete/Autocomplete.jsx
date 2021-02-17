@@ -34,7 +34,7 @@ const Autocomplete = ({
   // Tem algum problema em usar options [] nesse array de deps?
 
   useEffect(() => {
-    onChangeText(textFieldValue)
+    onChangeText && onChangeText(textFieldValue)
   }, [textFieldValue])
 
   useClickOutside(() => {
