@@ -10,8 +10,6 @@ import { useClickOutside } from '@naveteam/prometheus'
 
 const Autocomplete = ({
   label,
-  optionValue = 'value',
-  optionLabel = 'label',
   loading,
   options = [
     { label: 'TESTE', value: 1 },
@@ -19,7 +17,9 @@ const Autocomplete = ({
     { label: 'vacaria', value: 5 }
   ],
   onChange,
-  onChangeText
+  onChangeText,
+  getOptionValue = op => op.value,
+  getOptionLabel = op => op.label
 }) => {
   const [textFieldValue, setTextFieldValue] = useState('')
   const [selectedValue, setSelectedValue] = useState()
@@ -29,7 +29,7 @@ const Autocomplete = ({
 
   const filteredOptions = useMemo(() => {
     if (!textFieldValue) return options
-    return options.filter(op => op[optionLabel]?.toLowerCase().includes(textFieldValue.toLowerCase()))
+    return options.filter(op => getOptionLabel(op)?.toLowerCase().includes(textFieldValue.toLowerCase()))
   }, [textFieldValue, options])
   // Tem algum problema em usar options [] nesse array de deps?
 
@@ -44,8 +44,8 @@ const Autocomplete = ({
       return selectedValue
     }
     // Values com mesmo valor podem acarretar problemas, a solução para isso seria ter um id unico em cada opção e controlar a previamente selecionada por esse id
-    const currentSelected = options.find(op => op[optionValue] === selectedValue)
-    setTextFieldValue(currentSelected[optionLabel])
+    const currentSelected = options.find(op => getOptionValue(op) === selectedValue)
+    setTextFieldValue(getOptionLabel(currentSelected))
     setOptionsOpened(false)
   }, containerRef)
 
@@ -63,27 +63,32 @@ const Autocomplete = ({
 
   const onPickOption = useCallback(
     option => {
-      const value = option[optionValue]
-      const label = option[optionLabel]
+      const value = getOptionValue(option)
+      const label = getOptionLabel(option)
       setTextFieldValue(label)
       setSelectedValue(value)
       onChange && onChange(value)
       handleCloseOptions()
     },
-    [onChange, optionValue, optionLabel]
+    [onChange, getOptionLabel, getOptionValue]
   )
 
   return (
     <Flex ref={containerRef} position='relative' flexDirection='column'>
       <TextField onFocus={handleOpenOptions} onChange={handleTextField} value={textFieldValue} label={label} />
       {optionsOpened && (
-        <Options options={filteredOptions} optionLabel={optionLabel} onPickOption={onPickOption} loading={loading} />
+        <Options
+          options={filteredOptions}
+          getOptionLabel={getOptionLabel}
+          onPickOption={onPickOption}
+          loading={loading}
+        />
       )}
     </Flex>
   )
 }
 
-const Options = ({ options = [], optionLabel, onPickOption, loading }) => {
+const Options = ({ options = [], getOptionLabel, onPickOption, loading }) => {
   if (loading) {
     return (
       <Container>
@@ -99,8 +104,8 @@ const Options = ({ options = [], optionLabel, onPickOption, loading }) => {
     <Container>
       {options.length ? (
         options.map(option => (
-          <OptionContainer isSelectable key={option[optionLabel]} onClick={() => onPickOption(option)}>
-            <Typography as='span'>{option[optionLabel]}</Typography>
+          <OptionContainer isSelectable key={getOptionLabel(option)} onClick={() => onPickOption(option)}>
+            <Typography as='span'>{getOptionLabel(option)}</Typography>
           </OptionContainer>
         ))
       ) : (
@@ -139,7 +144,6 @@ const OptionContainer = styled.li`
           }
         `
       : css`
-          /* text-align: center; */
           opacity: 0.5;
         `}
 `

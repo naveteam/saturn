@@ -29,7 +29,7 @@ export const AutoAsync = () => {
   useEffect(() => {
     setLoading(true)
   }, [typed])
-  return <Autocomplete loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} optionValue='country' optionLabel='name' label='teste' />
+  return <Autocomplete loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.country} getOptionLabel={(e) => e.name} label='teste' />
 }
 
 
