@@ -10,7 +10,7 @@ const Accordion = ({ children, expanded, open: propsOpen }) => {
 
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
-      open: open ? 1 : 0,
+      open,
       setOpen
     })
   })
@@ -54,7 +54,7 @@ const AccordionHeader = ({ open, expandIcon, setOpen, title, subtitle, ...props 
 
 AccordionHeader.propTypes = {
   backgroundColor: PropTypes.string,
-  open: PropTypes.number,
+  open: PropTypes.bool,
   expandIcon: PropTypes.string,
   setOpen: PropTypes.func,
   title: PropTypes.string.isRequired,
@@ -80,7 +80,7 @@ const AccordionDetail = ({ children, open, ...props }) => {
 }
 
 AccordionDetail.propTypes = {
-  open: PropTypes.number,
+  open: PropTypes.bool,
   backgroundColor: PropTypes.string
 }
 

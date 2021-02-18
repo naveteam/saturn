@@ -140,7 +140,7 @@ const LoaderContainer = styled.div`
 Loader.propTypes = {
   percentage: PropTypes.number,
   showPercentage: PropTypes.bool,
-  size: PropTypes.oneOf(['xs', 'md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   time: PropTypes.number,
   type: PropTypes.oneOf(['determinate', 'indeterminate'])
 }
