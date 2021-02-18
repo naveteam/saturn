@@ -11,13 +11,13 @@ const Select = forwardRef(
   (
     {
       clearValue,
-      onClearSelect,
+      onClear,
       name,
       label,
       options,
       optionLabel,
       optionValue,
-      onOptionSelected,
+      onChange,
       placeholder,
       caption,
       error,
@@ -35,12 +35,12 @@ const Select = forwardRef(
     const handleChange = (option, shouldValidate = true) => {
       setOptionSelected(option)
       setIsOpened(false)
-      onOptionSelected && onOptionSelected(option, shouldValidate)
+      onChange && onChange(option, shouldValidate)
     }
 
     const clearValueFunction = e => {
       e.stopPropagation()
-      onClearSelect && onClearSelect()
+      onClear && onClear()
       setOptionSelected({})
     }
 
@@ -297,7 +297,7 @@ Select.defaultProps = {
 
 Select.propTypes = {
   clearValue: PropTypes.bool,
-  onClearSelect: PropTypes.func,
+  onClear: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
@@ -308,7 +308,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   quiet: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  onOptionSelected: PropTypes.func
+  onChange: PropTypes.func
 }
 
 export default Select

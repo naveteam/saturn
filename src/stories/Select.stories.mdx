@@ -97,13 +97,13 @@ A prop `quiet` remove as bordas do `Select`. Quando usando esta prop a `label` d
   </Story>
 </Canvas>
 
-# On Option Selected
+# onChange
 
-O `Select` aceita a prop `onOptionSelected`. Uma função que recebe dois parâmetros, o primeiro sendo a `option` selecionado e o segundo `shouldValidate` que indica se o campo deve ser validado. Essa função é executada no momento em que uma `option` é escolhida.
+O `Select` aceita a prop `onChange`. Uma função que recebe dois parâmetros, o primeiro sendo a `option` selecionado e o segundo `shouldValidate` que indica se o campo deve ser validado. Essa função é executada no momento em que uma `option` é escolhida.
 
 <Canvas>
   <Story
-    name='OnOptionSelected'
+    name='onChange'
     parameters={{
       design: {
         type: 'figma',
@@ -113,10 +113,10 @@ O `Select` aceita a prop `onOptionSelected`. Uma função que recebe dois parâm
   >
     <ThemeProvider>
       <Select
-        name='OnOptionSelected'
-        label='onOptionSelected'
-        caption='onOptionSelected'
-        onOptionSelected={() => alert('onOptionSelected')}
+        name='onChange'
+        label='onChange'
+        caption='onChange'
+        onChange={() => alert('onChange')}
         options={optionsSelect}
       />
     </ThemeProvider>
@@ -169,14 +169,14 @@ O `Select` pode receber a prop de `disabled`, que desabilita todo o seu uso.
   </Story>
 </Canvas>
 
-# Clear Value | onClearSelect
+# Clear Value | onClear
 
 Passando a prop `clearValue` para o `Select`, será exibido um icone no componente, ao tocar nesse icone o valor presente no `Select` será limpo.
-É possível passar a prop `onClearSelect`, que recebe uma função que será executada quando o `Select` for limpo.
+É possível passar a prop `onClear`, que recebe uma função que será executada quando o `Select` for limpo.
 
 <Canvas>
   <Story
-    name='Clear Value | onClearSelect'
+    name='Clear Value | onClear'
     parameters={{
       design: {
         type: 'figma',
@@ -194,10 +194,10 @@ Passando a prop `clearValue` para o `Select`, será exibido um icone no componen
       />
       <Select
         clearValue
-        name='onClearSelect'
-        label='onClearSelect'
+        name='onClear'
+        label='onClear'
         options={optionsSelect}
-        onClearSelect={() => alert('onClearSelect')}
+        onClear={() => alert('onClear')}
         placeholder='Selecione uma opção'
       />
     </ThemeProvider>
