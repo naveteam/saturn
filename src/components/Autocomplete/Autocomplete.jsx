@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import styled, { css } from '@xstyled/styled-components'
-import { th } from '@xstyled/system'
+import { th, positioning, layout } from '@xstyled/system'
 
 import { Flex } from '../Grid'
 import TextField from '../TextField'
@@ -25,9 +26,13 @@ const Autocomplete = ({
   const [textFieldValue, setTextFieldValue] = useState('')
   const [selectedValue, setSelectedValue] = useState()
   const [optionsOpened, setOptionsOpened] = useState(false)
+  const textFieldRef = useRef()
+  const optionsRoot = useMemo(() => document.body, [])
+  // const optionsRoot = useMemo(() => {
+  //   return textFieldRef?.current?.offsetParent
+  // }, [textFieldRef?.current])
 
   const containerRef = useRef()
-
   const filteredOptions = useMemo(() => {
     if (!textFieldValue) return options
     return options.filter(op => getOptionLabel(op)?.toLowerCase().includes(textFieldValue.toLowerCase()))
@@ -74,31 +79,44 @@ const Autocomplete = ({
     [onChange, getOptionLabel, getOptionValue]
   )
 
+  const positions = useMemo(() => {
+    if (!textFieldRef?.current) {
+      return {}
+    }
+    console.log(textFieldRef?.current.getBoundingClientRect())
+    const { top, height, left, width } = textFieldRef?.current.getBoundingClientRect()
+    return { top: `${top + height + 2}px`, left: `${left}px`, width: `${width}px` }
+  }, [textFieldRef?.current])
+
   return (
     <Flex ref={containerRef} position='relative' flexDirection='column'>
       <TextField
+        ref={textFieldRef}
         onFocus={handleOpenOptions}
         onChange={handleTextField}
         value={textFieldValue}
         label={label}
         {...rest}
       />
-      {optionsOpened && (
-        <Options
-          options={filteredOptions}
-          getOptionLabel={getOptionLabel}
-          onPickOption={onPickOption}
-          loading={loading}
-        />
-      )}
+      {optionsOpened &&
+        ReactDOM.createPortal(
+          <Options
+            positions={positions}
+            options={filteredOptions}
+            getOptionLabel={getOptionLabel}
+            onPickOption={onPickOption}
+            loading={loading}
+          />,
+          optionsRoot
+        )}
     </Flex>
   )
 }
 
-const Options = ({ options = [], getOptionLabel, onPickOption, loading }) => {
+const Options = ({ options = [], getOptionLabel, onPickOption, loading, positions }) => {
   if (loading) {
     return (
-      <Container>
+      <Container {...positions}>
         <OptionContainer>
           <Typography fontStyle='italic' as='span'>
             Carregando...
@@ -107,8 +125,9 @@ const Options = ({ options = [], getOptionLabel, onPickOption, loading }) => {
       </Container>
     )
   }
+
   return (
-    <Container>
+    <Container {...positions}>
       {options.length ? (
         options.map(option => (
           <OptionContainer isSelectable key={getOptionLabel(option)} onClick={() => onPickOption(option)}>
@@ -131,13 +150,17 @@ const Container = styled.ul`
   padding: 0;
   position: absolute;
   background-color: ${th.color('white')};
-  left: 0;
-  top: 100%;
+  /* left: 0; */
+  /* top: 100%; */
   width: 100%;
   max-height: 11.5rem;
   overflow-y: auto;
   box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
   list-style-type: none;
+  z-index: 2;
+
+  ${layout}
+  ${positioning}
 `
 
 const OptionContainer = styled.li`
