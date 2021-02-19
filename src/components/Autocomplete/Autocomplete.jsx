@@ -27,7 +27,7 @@ const Autocomplete = ({
   const [selectedValue, setSelectedValue] = useState()
   const [optionsOpened, setOptionsOpened] = useState(false)
   const textFieldRef = useRef()
-  const optionsRoot = useMemo(() => document.body, [])
+  const optionsRoot = useMemo(() => document.body, [document.body])
   // const optionsRoot = useMemo(() => {
   //   return textFieldRef?.current?.offsetParent
   // }, [textFieldRef?.current])
@@ -80,13 +80,13 @@ const Autocomplete = ({
   )
 
   const positions = useMemo(() => {
-    if (!textFieldRef?.current) {
+    if (!textFieldRef?.current || !optionsOpened) {
       return {}
     }
     console.log(textFieldRef?.current.getBoundingClientRect())
     const { top, height, left, width } = textFieldRef?.current.getBoundingClientRect()
     return { top: `${top + height + 2}px`, left: `${left}px`, width: `${width}px` }
-  }, [textFieldRef?.current])
+  }, [textFieldRef?.current, optionsOpened])
 
   return (
     <Flex ref={containerRef} position='relative' flexDirection='column'>
@@ -99,6 +99,7 @@ const Autocomplete = ({
         {...rest}
       />
       {optionsOpened &&
+        containerRef?.current &&
         ReactDOM.createPortal(
           <Options
             positions={positions}
