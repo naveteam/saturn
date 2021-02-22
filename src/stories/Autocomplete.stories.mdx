@@ -24,7 +24,6 @@ O autocomplete tem a finalidade de facilitar a seleção de opções através de
   >
     <ThemeProvider>
       <Autocomplete
-        onChange={(value) => alert(`Você selecionou a opção com id: ${value}`)}
         options={[
           {name: 'Pelotas', id: 1},
           {name: 'Arroio Grande', id: 2},
@@ -55,7 +54,6 @@ Passando a prop de `error` para o `Autocomplete` atrelada a prop `message`, o us
   >
     <ThemeProvider>
       <Autocomplete
-        onChange={(value) => alert(`Você selecionou a opção com id: ${value}`)}
         options={[
           {name: 'Pelotas', id: 1},
           {name: 'Arroio Grande', id: 2},

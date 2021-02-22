@@ -47,6 +47,7 @@ const Autocomplete = ({
     () => {
       if (!selectedValue || !textFieldValue) {
         setOptionsOpened(false)
+        setSelectedValue(null)
         setTextFieldValue('')
         return selectedValue
       }
@@ -110,8 +111,10 @@ const Autocomplete = ({
               positions={positions}
               options={filteredOptions}
               getOptionLabel={getOptionLabel}
+              getOptionValue={getOptionValue}
               onPickOption={onPickOption}
               loading={loading}
+              selectedValue={selectedValue}
             />
           </div>,
           optionsRoot
@@ -120,7 +123,7 @@ const Autocomplete = ({
   )
 }
 
-const Options = ({ options = [], getOptionLabel, onPickOption, loading, positions }) => {
+const Options = ({ options = [], getOptionLabel, getOptionValue, onPickOption, loading, positions, selectedValue }) => {
   if (loading) {
     return (
       <Container {...positions}>
@@ -137,7 +140,12 @@ const Options = ({ options = [], getOptionLabel, onPickOption, loading, position
     <Container {...positions}>
       {options.length ? (
         options.map(option => (
-          <OptionContainer isSelectable key={getOptionLabel(option)} onClick={() => onPickOption(option)}>
+          <OptionContainer
+            isSelectable
+            selected={selectedValue === getOptionValue(option)}
+            key={getOptionLabel(option)}
+            onClick={() => onPickOption(option)}
+          >
             <Typography as='span'>{getOptionLabel(option)}</Typography>
           </OptionContainer>
         ))
@@ -170,12 +178,13 @@ const Container = styled.ul`
 
 const OptionContainer = styled.li`
   padding: 0.5rem;
-  ${({ isSelectable }) =>
+  ${({ isSelectable, theme, selected }) =>
     isSelectable
       ? css`
           cursor: pointer;
+          background-color: ${selected ? theme.colors.gray['100'] : 'transparent'};
           &:hover {
-            background-color: ${({ theme }) => theme.colors.orange['50']};
+            background-color: ${theme.colors.gray['200']};
           }
         `
       : css`
