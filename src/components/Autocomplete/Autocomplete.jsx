@@ -24,15 +24,15 @@ const Autocomplete = ({
   ...rest
 }) => {
   const [textFieldValue, setTextFieldValue] = useState('')
-  const [selectedValue, setSelectedValue] = useState()
+  const [selectedValue, setSelectedValue] = useState(null)
   const [optionsOpened, setOptionsOpened] = useState(false)
-  const textFieldRef = useRef()
-  const optionsRoot = useMemo(() => document.body, [document.body])
-  // const optionsRoot = useMemo(() => {
-  //   return textFieldRef?.current?.offsetParent
-  // }, [textFieldRef?.current])
 
+  const textFieldRef = useRef()
+  const optionsRef = useRef()
   const containerRef = useRef()
+
+  const optionsRoot = useMemo(() => document.body, [document.body])
+
   const filteredOptions = useMemo(() => {
     if (!textFieldValue) return options
     return options.filter(op => getOptionLabel(op)?.toLowerCase().includes(textFieldValue.toLowerCase()))
@@ -43,17 +43,21 @@ const Autocomplete = ({
     onChangeText && onChangeText(textFieldValue)
   }, [textFieldValue])
 
-  useClickOutside(() => {
-    if (!selectedValue || !textFieldValue) {
+  useClickOutside(
+    () => {
+      if (!selectedValue || !textFieldValue) {
+        setOptionsOpened(false)
+        setTextFieldValue('')
+        return selectedValue
+      }
+      // Values com mesmo valor podem acarretar problemas, a solução para isso seria ter um id unico em cada opção e controlar a previamente selecionada por esse id
+      const currentSelected = options.find(op => getOptionValue(op) === selectedValue)
+      setTextFieldValue(getOptionLabel(currentSelected))
       setOptionsOpened(false)
-      setTextFieldValue('')
-      return selectedValue
-    }
-    // Values com mesmo valor podem acarretar problemas, a solução para isso seria ter um id unico em cada opção e controlar a previamente selecionada por esse id
-    const currentSelected = options.find(op => getOptionValue(op) === selectedValue)
-    setTextFieldValue(getOptionLabel(currentSelected))
-    setOptionsOpened(false)
-  }, containerRef)
+    },
+    optionsRef,
+    containerRef
+  )
 
   const handleOpenOptions = useCallback(() => {
     setOptionsOpened(true)
@@ -83,13 +87,13 @@ const Autocomplete = ({
     if (!textFieldRef?.current || !optionsOpened) {
       return {}
     }
-    console.log(textFieldRef?.current.getBoundingClientRect())
+    const bodyRect = document.body.getBoundingClientRect()
     const { top, height, left, width } = textFieldRef?.current.getBoundingClientRect()
-    return { top: `${top + height + 2}px`, left: `${left}px`, width: `${width}px` }
+    return { top: `${top - bodyRect.top + height + 2}px`, left: `${left}px`, width: `${width}px` }
   }, [textFieldRef?.current, optionsOpened])
 
   return (
-    <Flex ref={containerRef} position='relative' flexDirection='column'>
+    <Flex ref={containerRef} flexDirection='column'>
       <TextField
         ref={textFieldRef}
         onFocus={handleOpenOptions}
@@ -101,13 +105,15 @@ const Autocomplete = ({
       {optionsOpened &&
         containerRef?.current &&
         ReactDOM.createPortal(
-          <Options
-            positions={positions}
-            options={filteredOptions}
-            getOptionLabel={getOptionLabel}
-            onPickOption={onPickOption}
-            loading={loading}
-          />,
+          <div ref={optionsRef}>
+            <Options
+              positions={positions}
+              options={filteredOptions}
+              getOptionLabel={getOptionLabel}
+              onPickOption={onPickOption}
+              loading={loading}
+            />
+          </div>,
           optionsRoot
         )}
     </Flex>
@@ -151,8 +157,6 @@ const Container = styled.ul`
   padding: 0;
   position: absolute;
   background-color: ${th.color('white')};
-  /* left: 0; */
-  /* top: 100%; */
   width: 100%;
   max-height: 11.5rem;
   overflow-y: auto;
