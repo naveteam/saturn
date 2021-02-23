@@ -36,11 +36,11 @@ const Tag = ({ children, close, closable, variant, selected, disabled, value, on
     }
 
     if ((closable || close) && onClose) {
-      onClose()
+      return onClose()
     }
 
     if (type === 'selectable' && onChange) {
-      onChange()
+      return onChange()
     }
   }, [type, closable, close, onClose, onChange])
 
