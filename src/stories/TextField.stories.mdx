@@ -147,4 +147,82 @@ O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
   </Story>
 </Canvas>
 
+# onChange
+
+O `TextField` pode receber a prop de `onChange`, onde o seu valor é uma função que será passada para o elemento HTML `input` do `TextField` e executada no evento de `onChange`. Sendo possível de se utilizar com a prop `value` quando se busca realizar o uso como um componente controlado.
+
+<Canvas>
+  <Story
+    name='onChange'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField
+        name='onChange'
+        label='onChange'
+        placeholder='TextField with onChange'
+        message='onChange'
+        onChange={event => alert(`onChange: ${event.target.value}`)}
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# inputProps
+
+O `TextField` pode receber a prop de `inputProps`, onde o seu valor é um objeto contendo todas as props que serão utilizadas no elemento HTML `input` do `TextField`.
+
+<Canvas>
+  <Story
+    name='inputProps'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField
+        name='inputProps'
+        label='inputProps'
+        placeholder='TextField with inputProps'
+        message='inputProps'
+        inputProps={{ maxLength: 10 }}
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+# defaultValue
+
+O `TextField` pode receber a prop `defaultValue`, onde o seu valor será aplicado no elemento HTML `input` do `TextField`.
+
+<Canvas>
+  <Story
+    name='defaultValue'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <TextField
+        name='defaultValue'
+        label='defaultValue'
+        placeholder='TextField with defaultValue'
+        message='defaultValue'
+        defaultValue='defaultValue'
+      />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
 <ArgsTable of={TextField} />
