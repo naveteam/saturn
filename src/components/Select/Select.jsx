@@ -11,19 +11,18 @@ const Select = forwardRef(
   (
     {
       clearValue,
-      onClearSelect,
+      onClear,
       name,
       label,
       options,
       optionLabel,
       optionValue,
-      onOptionSelected,
+      onChange,
       placeholder,
       caption,
       error,
       disabled,
       quiet,
-      defaultValue,
       resetValue,
       ...props
     },
@@ -33,15 +32,15 @@ const Select = forwardRef(
     const [optionSelected, setOptionSelected] = useState({})
     const containerRef = useRef(null)
 
-    const handleChange = (option, shouldValidation = true) => {
+    const handleChange = (option, shouldValidate = true) => {
       setOptionSelected(option)
       setIsOpened(false)
-      onOptionSelected && onOptionSelected(option, shouldValidation)
+      onChange && onChange(option, shouldValidate)
     }
 
     const clearValueFunction = e => {
       e.stopPropagation()
-      onClearSelect && onClearSelect()
+      onClear && onClear()
       setOptionSelected({})
     }
 
@@ -84,7 +83,8 @@ const Select = forwardRef(
             <OverflowText lineHeight={3} fontSize={3} color={!!optionSelected[optionValue] ? 'gray.900' : 'gray.500'}>
               {optionSelected[optionLabel] || placeholder}
             </OverflowText>
-            <SelectBase name={name} ref={ref} defaultValue={defaultValue}>
+
+            <SelectBase name={name} ref={ref} defaultValue={optionSelected[optionValue]}>
               <option value='' disabled>
                 {placeholder}
               </option>
@@ -297,7 +297,7 @@ Select.defaultProps = {
 
 Select.propTypes = {
   clearValue: PropTypes.bool,
-  onClearSelect: PropTypes.func,
+  onClear: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
@@ -308,8 +308,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   quiet: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  onOptionSelected: PropTypes.func,
-  defaultValue: PropTypes.string
+  onChange: PropTypes.func
 }
 
 export default Select
