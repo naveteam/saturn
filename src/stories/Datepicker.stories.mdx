@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Datepicker } from '../components'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input/Datepicker' component={Datepicker} />
+
+# Datepicker
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Datepicker />
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+<ArgsTable of={Datepicker} />
