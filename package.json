@@ -86,7 +86,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "@naveteam/saturn": "^0.2.85"
-  }
+  "dependencies": {}
 }
