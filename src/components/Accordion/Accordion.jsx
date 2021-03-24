@@ -4,13 +4,13 @@ import styled, { backgrounds, css, layout, space } from '@xstyled/styled-compone
 
 import { Flex, Icon, Typography, Subtitle } from '../'
 
-const Accordion = ({ children, expanded: propsExpanded }) => {
-  const [expanded, setExpanded] = useState(propsExpanded)
+const Accordion = ({ children, isOpen: propsOpen }) => {
+  const [isOpen, setIsOpen] = useState(propsOpen)
 
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
-      expanded: expanded ? 1 : 0,
-      setExpanded
+      isOpen: isOpen ? 1 : 0,
+      setIsOpen
     })
   })
 
@@ -19,21 +19,21 @@ const Accordion = ({ children, expanded: propsExpanded }) => {
 
 Accordion.propTypes = {
   children: PropTypes.array,
-  expanded: PropTypes.bool
+  isOpen: PropTypes.bool
 }
 
 Accordion.defaultProps = {
-  expanded: false
+  isOpen: false
 }
 
-const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, ...props }) => {
+const AccordionHeader = ({ isOpen, expandIcon, setIsOpen, title, subtitle, ...props }) => {
   return (
     <StyledHeader
       display='flex'
       alignItems='center'
       justifyContent='space-between'
-      expanded={expanded}
-      onClick={() => setExpanded(current => !current)}
+      isOpen={isOpen}
+      onClick={() => setIsOpen(current => !current)}
       {...props}
     >
       <Flex>
@@ -46,16 +46,16 @@ const AccordionHeader = ({ expanded, expandIcon, setExpanded, title, subtitle, .
           </Subtitle>
         )}
       </Flex>
-      <StyledIcon expanded={expanded} icon={expandIcon} color='gray.800' />
+      <StyledIcon isOpen={isOpen} icon={expandIcon} color='gray.800' />
     </StyledHeader>
   )
 }
 
 AccordionHeader.propTypes = {
   backgroundColor: PropTypes.string,
-  expanded: PropTypes.number,
+  isOpen: PropTypes.bool,
   expandIcon: PropTypes.string,
-  setExpanded: PropTypes.func,
+  setIsOpen: PropTypes.func,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string
 }
@@ -65,21 +65,21 @@ AccordionHeader.defaultProps = {
   expandIcon: 'expand_more'
 }
 
-const AccordionDetail = ({ children, expanded, ...props }) => {
+const AccordionDetail = ({ children, isOpen, ...props }) => {
   const [heightTransition, setHeightTransition] = useState(0)
   const accordionContentRef = useRef(null)
 
   useEffect(() => setHeightTransition(accordionContentRef.current.offsetHeight + 100), [accordionContentRef])
 
   return (
-    <AccordionContent heightTransition={heightTransition} ref={accordionContentRef} expanded={expanded} {...props}>
+    <AccordionContent heightTransition={heightTransition} ref={accordionContentRef} isOpen={isOpen} {...props}>
       {children}
     </AccordionContent>
   )
 }
 
 AccordionDetail.propTypes = {
-  expanded: PropTypes.number,
+  isOpen: PropTypes.bool,
   backgroundColor: PropTypes.string
 }
 
@@ -158,14 +158,14 @@ AccordionsWrapper.defaultProps = {
 }
 
 const StyledIcon = styled(Icon)(
-  ({ expanded }) => css`
+  ({ isOpen }) => css`
     transition: transform 0.5s ease-in-out;
-    transform: ${expanded ? 'rotate(180deg)' : 'rotate(0deg)'};
+    transform: ${isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
   `
 )
 
 const StyledHeader = styled(Flex)(
-  ({ expanded }) => css`
+  ({ isOpen }) => css`
     padding: 4;
     height: 56px;
     width: inherit;
@@ -174,7 +174,7 @@ const StyledHeader = styled(Flex)(
     border-color: gray.300 !important;
 
     ${
-      expanded
+      isOpen
         ? {
             borderBottomLeftRadius: '0px !important',
             borderBottomRightRadius: '0px !important',
@@ -189,7 +189,7 @@ const StyledHeader = styled(Flex)(
 )
 
 const AccordionContent = styled.div(
-  ({ expanded, heightTransition }) => css`
+  ({ isOpen, heightTransition }) => css`
     height: auto;
     width: inherit;
     transition: all 0.5s ease-in-out;
@@ -203,7 +203,7 @@ const AccordionContent = styled.div(
 
     ${heightTransition && { maxHeight: '0' }}
 
-    ${expanded && [space, { maxHeight: heightTransition }]}
+    ${isOpen && [space, { maxHeight: heightTransition }]}
 
   `
 )
