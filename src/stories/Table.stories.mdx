@@ -7,10 +7,11 @@ import { ThemeProvider } from '../theme'
 
 # Tabela
 
-O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação. Para compor uma tabela utilizando o Saturn você deverá seguir os padrões de [sintaxe da nativos do html](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/table), para snippet's mais tangiveis, basta inspecionar um dos exemplos abaixo.
+O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação. Para compor uma tabela utilizando o Saturn você deverá seguir os padrões de [sintaxe da nativos do html](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/table). Para snippets mais tangíveis, basta inspecionar um dos exemplos abaixo.
 
 ## Tabela `regular`
-O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponível devido a borda externa que a compõe.
+
+O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo disponível devido a borda externa que a compõe.
 
 <Canvas>
   <Story
@@ -26,13 +27,30 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
       <Table type='regular'>
         <TableContent as='thead'>
           <TableData>
-            <Checkbox />
             <Typography fontWeight={1} fontSize={3} lineHeight={3}>
               Content
             </Typography>
           </TableData>
-          {['Teste', 'Teste1', 'Teste2', 'Teste3', 'Teste4', 'Teste5', 'Teste6', 'Teste7', 'Teste8', 'Teste9', 'Teste10', 'Teste11', 'Teste12', 'Teste13', 'Teste14', 'Teste15', 'Teste16'].map((header, index) => (
-            <TableData key={index}  fontWeight={1} fontSize={3} lineHeight={3}>
+          {[
+            'Teste',
+            'Teste1',
+            'Teste2',
+            'Teste3',
+            'Teste4',
+            'Teste5',
+            'Teste6',
+            'Teste7',
+            'Teste8',
+            'Teste9',
+            'Teste10',
+            'Teste11',
+            'Teste12',
+            'Teste13',
+            'Teste14',
+            'Teste15',
+            'Teste16'
+          ].map((header, index) => (
+            <TableData key={index} fontWeight={1} fontSize={3} lineHeight={3}>
               {header}
             </TableData>
           ))}
@@ -43,57 +61,23 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
               <Checkbox />
               Content
             </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
           </TableRow>
         </TableContent>
       </Table>
@@ -103,7 +87,7 @@ O tipo padrão de tabela é a `regular` que se diferencia do outro tipo disponí
 
 ## Tabela `quiet`
 
-A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não possuindo bordas externas.
+A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não possuindo bordas externas.
 
 <Canvas>
   <Story
@@ -119,7 +103,6 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
       <Table type='quiet'>
         <TableContent as='thead'>
           <TableData>
-            <Checkbox />
             <Typography fontWeight={1} fontSize={3} lineHeight={3}>
               Content
             </Typography>
@@ -138,20 +121,12 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
               <Checkbox />
               Content
             </TableData>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
           </TableRow>
           <TableRow>
-            <TableData>
-              Content
-            </TableData>
-            <TableData>
-              Content
-            </TableData>
+            <TableData>Content</TableData>
+            <TableData>Content</TableData>
             <TableData>
               <Tag color='primary'>Content</Tag>
             </TableData>
@@ -161,6 +136,5 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular apenas não p
     </ThemeProvider>
   </Story>
 </Canvas>
-
 
 <ArgsTable of={Table} />
