@@ -1,28 +1,15 @@
 import React from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { th, variant } from '@xstyled/system'
+import styled from '@xstyled/styled-components'
+import { th } from '@xstyled/system'
 import PropTypes from 'prop-types'
 
-const Table = ({ type, children, ...props }) => (
+const Table = ({ hideExternalBorder, children, ...props }) => (
   <OverflowWrapper>
-    <Container type={type} {...props}>
+    <Container hideExternalBorder={hideExternalBorder} {...props}>
       {children}
     </Container>
   </OverflowWrapper>
 )
-
-const typeVariant = variant({
-  prop: 'type',
-  default: 'regular',
-  variants: {
-    regular: css`
-      box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
-    `,
-    quiet: css`
-      border: 0;
-    `
-  }
-})
 
 const OverflowWrapper = styled.div`
   max-width: 100%;
@@ -31,7 +18,12 @@ const OverflowWrapper = styled.div`
 `
 
 const Container = styled.table`
-  ${typeVariant}
+  ${({ hideExternalBorder }) => {
+    if (hideExternalBorder) {
+      return 'border: 0;'
+    }
+    return 'box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);'
+  }}
   border-radius: 4;
   background: ${th.color('white')};
 
@@ -43,12 +35,8 @@ const Container = styled.table`
   text-align: left;
 `
 
-Table.defaultProps = {
-  type: 'regular'
-}
-
 Table.propTypes = {
-  type: PropTypes.oneOf(['regular', 'quiet'])
+  hideExternalBorder: PropTypes.bool
 }
 
 export default Table

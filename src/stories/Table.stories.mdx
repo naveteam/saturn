@@ -7,11 +7,17 @@ import { ThemeProvider } from '../theme'
 
 # Tabela
 
-O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação. Para compor uma tabela utilizando o Saturn você deverá seguir os padrões de [sintaxe da nativos do html](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/table). Para snippets mais tangíveis, basta inspecionar um dos exemplos abaixo.
+- O componente `Table` permite que sejam criadas tabelas estilizadas para apresentação de dados na aplicação. É possível passar a prop `hideExternalBorder={true}` para utilizar a variação da tabela sem a borda externa.
+  Para compor uma tabela utilizando o Saturn você deverá seguir os padrões de [sintaxe nativos do html](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/table).
+
+- O componente `TableContent` pode funcionar como as tags `thead` ou `tbody` do HTML, que definem respectivamente o cabeçalho e o corpo da tabela.
+- `TableRow` define uma linha da tabela, equivale à tag `tr` do HTML.
+- Os `TableData` ficam dentro das `TableRow` e são as células de conteúdo equivalente às tags `td` e `th` do HTML.
 
 ## Tabela `regular`
 
-O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo disponível devido a borda externa que a compõe.
+O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo disponível devido à borda externa que a compõe.
+No cabeçalho da tabela desse exemplo, os dados dos `TableData` estão sendo definidos com o método `map` dentro de um array. Existe também a opção de definir um por um, como mostrado no código da tabela seguinte.
 
 <Canvas>
   <Story
@@ -24,42 +30,43 @@ O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo dispon�
     }}
   >
     <ThemeProvider>
-      <Table type='regular'>
+      <Table>
         <TableContent as='thead'>
-          <TableData>
-            <Typography fontWeight={1} fontSize={3} lineHeight={3}>
-              Content
-            </Typography>
-          </TableData>
-          {[
-            'Teste',
-            'Teste1',
-            'Teste2',
-            'Teste3',
-            'Teste4',
-            'Teste5',
-            'Teste6',
-            'Teste7',
-            'Teste8',
-            'Teste9',
-            'Teste10',
-            'Teste11',
-            'Teste12',
-            'Teste13',
-            'Teste14',
-            'Teste15',
-            'Teste16'
-          ].map((header, index) => (
-            <TableData key={index} fontWeight={1} fontSize={3} lineHeight={3}>
-              {header}
+          <TableRow>
+            <TableData>
+              <Typography fontWeight={1} fontSize={3} lineHeight={3}>
+                Content
+              </Typography>
             </TableData>
-          ))}
+            {[
+              'Teste',
+              'Teste1',
+              'Teste2',
+              'Teste3',
+              'Teste4',
+              'Teste5',
+              'Teste6',
+              'Teste7',
+              'Teste8',
+              'Teste9',
+              'Teste10',
+              'Teste11',
+              'Teste12',
+              'Teste13',
+              'Teste14',
+              'Teste15',
+              'Teste16'
+            ].map((header, index) => (
+              <TableData key={index} fontWeight={1} fontSize={3} lineHeight={3}>
+                {header}
+              </TableData>
+            ))}
+          </TableRow>
         </TableContent>
         <TableContent>
           <TableRow>
             <TableData>
               <Checkbox />
-              Content
             </TableData>
             <TableData>Content</TableData>
             <TableData>Content</TableData>
@@ -85,13 +92,13 @@ O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo dispon�
   </Story>
 </Canvas>
 
-## Tabela `quiet`
+## Tabela `hideExternalBorder`
 
-A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não possuindo bordas externas.
+A tabela do tipo `hideExternalBorder` possui as mesmas propriedades da `regular`, exceto as bordas externas.
 
 <Canvas>
   <Story
-    name='Quiet'
+    name='hideExternalBorder'
     parameters={{
       design: {
         type: 'figma',
@@ -100,7 +107,7 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não
     }}
   >
     <ThemeProvider>
-      <Table type='quiet'>
+      <Table hideExternalBorder={true}>
         <TableContent as='thead'>
           <TableData>
             <Typography fontWeight={1} fontSize={3} lineHeight={3}>
@@ -119,13 +126,14 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não
           <TableRow>
             <TableData>
               <Checkbox />
-              Content
             </TableData>
             <TableData>Content</TableData>
             <TableData>Content</TableData>
           </TableRow>
           <TableRow>
-            <TableData>Content</TableData>
+            <TableData>
+              <Checkbox />
+            </TableData>
             <TableData>Content</TableData>
             <TableData>
               <Tag color='primary'>Content</Tag>
