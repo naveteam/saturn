@@ -4,8 +4,8 @@ import styled, { backgrounds, css, layout, space } from '@xstyled/styled-compone
 
 import { Flex, Icon, Typography, Subtitle } from '../'
 
-const Accordion = ({ children, isOpen: propsOpen }) => {
-  const [isOpen, setIsOpen] = useState(propsOpen)
+const Accordion = ({ children, isOpen: isOpenProp }) => {
+  const [isOpen, setIsOpen] = useState(isOpenProp)
 
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
