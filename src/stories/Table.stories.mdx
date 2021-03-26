@@ -11,7 +11,7 @@ O componente `Table` permite que sejam criadas tabelas estilizadas para apresent
 
 ## Tabela `regular`
 
-O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo disponível devido a borda externa que a compõe.
+O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo disponível devido à borda externa que a compõe.
 
 <Canvas>
   <Story
@@ -59,7 +59,6 @@ O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo dispon�
           <TableRow>
             <TableData>
               <Checkbox />
-              Content
             </TableData>
             <TableData>Content</TableData>
             <TableData>Content</TableData>
@@ -87,7 +86,7 @@ O tipo padrão de tabela é a `regular`, que se diferencia do outro tipo dispon�
 
 ## Tabela `quiet`
 
-A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não possuindo bordas externas.
+A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, exceto as bordas externas.
 
 <Canvas>
   <Story
@@ -119,13 +118,14 @@ A tabela do tipo `quiet` possui as mesmas propriedades da `regular`, apenas não
           <TableRow>
             <TableData>
               <Checkbox />
-              Content
             </TableData>
             <TableData>Content</TableData>
             <TableData>Content</TableData>
           </TableRow>
           <TableRow>
-            <TableData>Content</TableData>
+            <TableData>
+              <Checkbox />
+            </TableData>
             <TableData>Content</TableData>
             <TableData>
               <Tag color='primary'>Content</Tag>
