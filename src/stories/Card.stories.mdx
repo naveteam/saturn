@@ -1,12 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { ThemeProvider } from '../theme'
+import { Card } from '../components'
 
 <Meta title='Data Display/Card' component={Card} />
 
 # Card
 
-O componente `Card`...
+O componente `Card` fica envolto pelo `CardContainer`, que contém a borda com sombra. Para conteúdo de mídia, temos o `MediaContainer`.
 
 <Canvas>
   <Story
@@ -14,7 +15,7 @@ O componente `Card`...
     parameters={{
       design: {
         type: 'figma',
-        url: ''
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
       }
     }}
   >
