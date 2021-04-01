@@ -6,9 +6,10 @@ import { ThemeProvider } from '../theme'
 
 # Accordion
 
-O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. A Sua utilização baseia-se na importação e utilização de 4 componentes. O `AccordionsWrapper` deve ser o container em volta de todos os Accordions, cada item consiste (Nesta Ordem) de um componente `Accordion` que você deve colocar como filhos dele o componente `AccordionHeader` que define o seu título, é também onde se encontra o local clicável para `abertura e fechamento do Accordion` e o conteúdo (children) do Accordion sendo definido no componente `AccordionDetail`.
+O componente `Accordion` permite que uma área seja encolhida e/ou expandida. Deve ser utilizado para agrupar ou ocultar regiões complexas, mantendo a página limpa. Sua utilização se baseia na importação e utilização de 4 componentes. O `AccordionsWrapper` deve ser o container em volta de todos os Accordions e cada item do seu interior, consiste em componentes `Accordion`, que devem ser colocados como filhos.
+O componente `AccordionHeader` define o título do accordion. É também onde se encontra o local clicável para a `abertura e fechamento do Accordion`. O conteúdo (children) do Accordion é definido pelo componente `AccordionDetail`.
 
-O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyled.dev/docs/style-props/#layout) e [layout](https://xstyled.dev/docs/style-props/#layout) do [xstyled](https://xstyled.dev/), o `AccordionDetail` extende as funções [backgrounds](https://xstyled.dev/docs/style-props/#layout) e [space](https://xstyled.dev/docs/style-props/#space).
+O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyled.dev/docs/background-color/#background-color) e [layout](https://xstyled.dev/docs/table-layout/) do [xstyled](https://xstyled.dev/). O `AccordionDetail` extende as funções [backgrounds](https://xstyled.dev/docs/style-props/#layout) e [space](https://xstyled.dev/docs/margin/) (está definida como ''Spacing'' no menu geral do xstyled).
 
 <Canvas>
   <Story
@@ -36,13 +37,13 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
   </Story>
 </Canvas>
 
-# Expanded
+# isOpen
 
-É possível definir o estado inicial de aberto/fechado do accordion, para isto basta utilizar a prop `expanded` com o valor desejado, por padrão é `false`. O accordion controla o seu estado de aberto/fechado.
+É possível definir o estado inicial de aberto/fechado do accordion. Para isto, basta utilizar a prop `isOpen` com o valor desejado: por padrão é `false`. O Accordion controla o seu estado de aberto/fechado.
 
 <Canvas>
   <Story
-    name='Expanded'
+    name='isOpen'
     parameters={{
       design: {
         type: 'figma',
@@ -154,7 +155,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
 
 # Subtitle
 
-É possível passar um subtitle para `Accordion` enviando uma string através da propriedade `subtitle`.
+É possível passar um subtítulo para `Accordion` enviando uma string através da propriedade `subtitle`.
 
 <Canvas>
   <Story
