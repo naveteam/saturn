@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { ThemeProvider } from '../theme'
-import { Card } from '../components'
+import { Card, Button, Flex } from '../components'
 
 import leafImage from '../assets/leafImage.png'
 import testAvatar from '../assets/testAvatar.png'
@@ -10,7 +10,8 @@ import testAvatar from '../assets/testAvatar.png'
 
 # Card
 
-O componente Card agrupa informações e ações sobre um mesmo conteúdo em containers flexíveis. É composto por subcomponentes que podem ou não ser acrescentados por props à sua estrutura principal, de acordo com a preferência do usuário.
+O componente Card agrupa informações e ações sobre um mesmo conteúdo em containers flexíveis.
+É composto por subcomponentes que podem ou não ser acrescentados por props à sua estrutura principal, possibilitanto a criação das diversas variações possíveis, de acordo com a preferência do usuário.
 Sendo eles:
 
 - `title`: título.
@@ -18,7 +19,6 @@ Sendo eles:
 - `subtitle`: subtítulo ou legenda.
 - `avatar`: avatar ou ícone.
 - `media`: mídia.
-- `hasCallToAction`: botões com ações.
 
 # General
 
@@ -49,7 +49,8 @@ Componente Card que recebe por `props` todos os elementos mencionados acima.
 
 # General 2
 
-Componente Card que recebe por `props` todos os elementos mencionados acima.
+Componente Card completo, com adição da prop `avatarPosition`, que define a posição do avatar e de botões para ações, que podem ser adicionados a gosto do usuário.
+No caso desse exemplo, a imagem do avatar se sobrepõe à imagem contida no media.
 
 <Canvas>
   <Story
@@ -67,49 +68,24 @@ Componente Card que recebe por `props` todos os elementos mencionados acima.
         subtitle='Complementary text'
         media={leafImage}
         avatar={testAvatar}
+        avatarPosition='overlap'
         content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
-        hasCallToAction={true}
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Title + Content
-
-Componente Card que recebe por `props` apenas `title`, contendo o título e `content`, que pode ser um texto. Nessa configuração de Card, a `marginTop` do componente `content` fica reduzida a 8px, em vez do usual 24px.
-
-<Canvas>
-  <Story
-    name='Variant1'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Card title='Title here' content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.' />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Title + Subtitle + Avatar
-
-Componente Card que recebe por `props` o `title`, um `avatar` e um `subtitle`.
-
-<Canvas>
-  <Story
-    name='Variant3'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Card title='Title here' avatar={testAvatar} subtitle='Text goes here.' />
+      >
+        <Flex flexDirection={{ xs: 'column', md: 'row' }} mt='32px'>
+          <Button
+            variant='filled'
+            caption='Primary'
+            width={{ xs: '100%', md: '50%' }}
+            mb={{ xs: '4px', md: '0' }}
+          ></Button>
+          <Button
+            variant='outlined'
+            caption='Secondary'
+            width={{ xs: '100%', md: '50%' }}
+            mt={{ xs: '4px', md: '0' }}
+          ></Button>
+        </Flex>
+      </Card>
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -120,7 +96,7 @@ Nessa variação, com a prop `headerPosition` definida como `column` em vez do p
 
 <Canvas>
   <Story
-    name='Variant4'
+    name='Variant1'
     parameters={{
       design: {
         type: 'figma',
@@ -134,80 +110,6 @@ Nessa variação, com a prop `headerPosition` definida como `column` em vez do p
         avatar={testAvatar}
         content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
         headerPosition='column'
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Title + Content + Subtitle + Avatar + Media
-
-Componente Card que recebe uma imagem pela prop `media`.
-
-<Canvas>
-  <Story
-    name='Variant5'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Card
-        title='Title here'
-        subtitle='Complementary text'
-        media={leafImage}
-        avatar={testAvatar}
-        content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Title + Content + Media
-
-Componente Card que recebe uma imagem pela prop `media`.
-
-<Canvas>
-  <Story
-    name='Variant6'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Card
-        title='Title here'
-        media={leafImage}
-        content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
-      />
-    </ThemeProvider>
-  </Story>
-</Canvas>
-
-# Title + Content + CTA
-
-Componente Card com `title`, `content` e `hasCallToAction`
-
-<Canvas>
-  <Story
-    name='Variant7'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=806%3A11347'
-      }
-    }}
-  >
-    <ThemeProvider>
-      <Card
-        title='Title here'
-        content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
-        hasCallToAction={true}
       />
     </ThemeProvider>
   </Story>

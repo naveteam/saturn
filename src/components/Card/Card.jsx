@@ -1,36 +1,29 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
-import styled from '@xstyled/styled-components'
+import styled, { css } from '@xstyled/styled-components'
 
-import { Box, Flex, Avatar, Typography, Heading, Paragraph, Button } from '../'
+import { Box, Flex, Avatar, Typography, Heading, Paragraph } from '../'
 
-const Card = ({
-  media,
-  avatar,
-  title,
-  headerPosition,
-  avatarPosition,
-  subtitle,
-  content,
-  children,
-  hasCallToAction
-}) => {
+const Card = ({ media, avatar, title, headerPosition, avatarPosition, subtitle, content, children, ...props }) => {
   const isDefaultHeaderPosition = useMemo(() => headerPosition === 'row', [headerPosition])
 
   return (
-    <CardContainer flexDirection='column' justifyContent='space-between'>
+    <CardContainer flexDirection='column' justifyContent='space-between' maxWidth='280px' {...props}>
       {!!media && (
         <MediaContainer borderRadius='400'>
           <img width='100%' height='auto' src={media}></img>
-          <AvatarContainer>
-            <Avatar>{avatar}</Avatar>
-          </AvatarContainer>
+
+          {avatarPosition === 'overlap' && (
+            <AvatarContainer>
+              <Avatar avatar={avatar} size='very-large'></Avatar>
+            </AvatarContainer>
+          )}
         </MediaContainer>
       )}
 
       <Box margin='24px'>
         <Flex flexDirection={headerPosition} mb={isDefaultHeaderPosition ? 8 : 0}>
-          {!!avatar && (
+          {!!avatar && avatarPosition !== 'overlap' && (
             <Box paddingRight={!!title || !!subtitle ? 24 : 0}>
               <Avatar avatar={avatar} size='very-large'></Avatar>
             </Box>
@@ -38,7 +31,7 @@ const Card = ({
 
           <Box>
             {!!title && (
-              <Box mt={!isDefaultHeaderPosition ? 16 : 0}>
+              <Box mt={!isDefaultHeaderPosition || avatarPosition === 'overlap' ? 16 : 0}>
                 <Heading variant='h4'>{title}</Heading>
               </Box>
             )}
@@ -54,14 +47,6 @@ const Card = ({
         <Flex mt={!!title && !!subtitle && !!media && !!avatar ? 24 : 8}>
           {!!content && <Typography>{content}</Typography>}
         </Flex>
-
-        {hasCallToAction && (
-          <Flex justifyContent='space-between' align-items='left'>
-            <Button variant='filled' caption='Primary' width='50%' mr='16px' mt='24px'></Button>
-            <Button variant='outlined' caption='Secondary' width='50%' ml='16px' mt='24px'></Button>
-          </Flex>
-        )}
-
         {children}
       </Box>
     </CardContainer>
@@ -70,7 +55,6 @@ const Card = ({
 
 const CardContainer = styled(Flex)`
   width: 100%;
-  max-width: 280px;
   height: auto;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
