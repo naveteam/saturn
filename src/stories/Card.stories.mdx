@@ -11,7 +11,7 @@ import testAvatar from '../assets/testAvatar.png'
 # Card
 
 O componente Card agrupa informações e ações sobre um mesmo conteúdo em containers flexíveis.
-É composto por subcomponentes que podem ou não ser acrescentados por props à sua estrutura principal, possibilitanto a criação das diversas variações possíveis, de acordo com a preferência do usuário.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, possibilitanto a criação das diversas variações possíveis, de acordo com a preferência do usuário.
 Sendo eles:
 
 - `title`: título.
@@ -19,6 +19,8 @@ Sendo eles:
 - `subtitle`: subtítulo ou legenda.
 - `avatar`: avatar ou ícone.
 - `media`: mídia.
+- `avatarPosition`: define a posiçao do avatar em relação à imagem da área de mídia.
+- `headerPosition`: define a posição do header, que é a parte que contém o avatar, o título e o subtítulo, entre `row` e `column`.
 
 # General
 
@@ -41,7 +43,6 @@ Componente Card que recebe por `props` todos os elementos mencionados acima.
         media={leafImage}
         avatar={testAvatar}
         content='Text goes here. Lorem ipsum dolor sit amet, consectur adipiscing elit.'
-        hasCallToAction={true}
       />
     </ThemeProvider>
   </Story>
@@ -51,6 +52,8 @@ Componente Card que recebe por `props` todos os elementos mencionados acima.
 
 Componente Card completo, com adição da prop `avatarPosition`, que define a posição do avatar e de botões para ações, que podem ser adicionados a gosto do usuário.
 No caso desse exemplo, a imagem do avatar se sobrepõe à imagem contida no media.
+
+Ainda nesse exemplo, é demonstrada a possibilidade de adicionar botões para ações, de acordo com a preferência do usuário.
 
 <Canvas>
   <Story
@@ -77,12 +80,14 @@ No caso desse exemplo, a imagem do avatar se sobrepõe à imagem contida no medi
             caption='Primary'
             width={{ xs: '100%', md: '50%' }}
             mb={{ xs: '4px', md: '0' }}
+            mr={{ xs: '0', md: '8px' }}
           ></Button>
           <Button
             variant='outlined'
             caption='Secondary'
             width={{ xs: '100%', md: '50%' }}
             mt={{ xs: '4px', md: '0' }}
+            ml={{ xs: '0', md: '8px' }}
           ></Button>
         </Flex>
       </Card>

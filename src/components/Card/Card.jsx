@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
-import styled, { css } from '@xstyled/styled-components'
+import styled from '@xstyled/styled-components'
 
 import { Box, Flex, Avatar, Typography, Heading, Paragraph } from '../'
 
@@ -86,8 +86,7 @@ Card.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   content: PropTypes.string,
-  children: PropTypes.string,
-  hasCallToAction: PropTypes.bool
+  children: PropTypes.string
 }
 
 export default Card
