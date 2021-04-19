@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+
+import ProgressBar from '../components/ProgressBar'
+import { ThemeProvider } from '../theme'
+
+<Meta title='Data Input/ProgressBar' component={ProgressBar} />
+
+# Progress Bar
+
+O componente.
+
+<Canvas>
+  <Story
+    name='Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=318%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <ProgressBar barColor='#1565C0' progress={20} />
+    </ThemeProvider>
+  </Story>
+</Canvas>
