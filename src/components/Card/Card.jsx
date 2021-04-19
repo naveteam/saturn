@@ -11,11 +11,11 @@ const Card = ({ media, avatar, title, headerPosition, avatarPosition, subtitle, 
     <CardContainer flexDirection='column' justifyContent='space-between' maxWidth='280px' {...props}>
       {!!media && (
         <MediaContainer borderRadius='400'>
-          <img width='100%' height='auto' src={media}></img>
+          <img width='100%' height='auto' src={media} />
 
           {avatarPosition === 'overlap' && (
             <AvatarContainer>
-              <Avatar avatar={avatar} size='very-large'></Avatar>
+              <Avatar avatar={avatar} size='very-large' />
             </AvatarContainer>
           )}
         </MediaContainer>
@@ -25,7 +25,7 @@ const Card = ({ media, avatar, title, headerPosition, avatarPosition, subtitle, 
         <Flex flexDirection={headerPosition} mb={isDefaultHeaderPosition ? 8 : 0}>
           {!!avatar && avatarPosition !== 'overlap' && (
             <Box paddingRight={!!title || !!subtitle ? 24 : 0}>
-              <Avatar avatar={avatar} size='very-large'></Avatar>
+              <Avatar avatar={avatar} size='very-large' />
             </Box>
           )}
 
@@ -86,7 +86,9 @@ Card.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   content: PropTypes.string,
-  children: PropTypes.string
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  headerPosition: PropTypes.string,
+  avatarPosition: PropTypes.string
 }
 
 export default Card

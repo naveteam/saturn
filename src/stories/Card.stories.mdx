@@ -11,24 +11,24 @@ import testAvatar from '../assets/testAvatar.png'
 # Card
 
 O componente Card agrupa informações e ações sobre um mesmo conteúdo em containers flexíveis.
-É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, possibilitanto a criação das diversas variações possíveis, de acordo com a preferência do usuário.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, possibilitando a criação das diversas variações possíveis, de acordo com a preferência do usuário.
 Sendo eles:
 
-- `title`: título.
-- `content`: conteúdo.
-- `subtitle`: subtítulo ou legenda.
-- `avatar`: avatar ou ícone.
-- `media`: mídia.
-- `avatarPosition`: define a posiçao do avatar em relação à imagem da área de mídia.
-- `headerPosition`: define a posição do header, que é a parte que contém o avatar, o título e o subtítulo, entre `row` e `column`.
+- `title`: Título passado para o header do card. Recebe uma string que é exibida ao lado do avatar e abaixo da imagem (ou abaixo do avatar, na variação que contém a `headerPosition` definida como `column`)
+- `content`: Recebe uma string contendo algum texto a ser mostrado no card.
+- `subtitle`: Subtítulo ou legenda, recebe uma string que fica posicionada abaixo do título.
+- `avatar`: Imagem que vai ser mostrada dentro do card como ícone do usuário, seguindo as propriedades do componente `avatar`.
+- `media`: Imagem que ficará em destaque no card, acima dos outros componentes.
+- `avatarPosition`: Define a posiçao do avatar em relação à imagem da área de `media`.
+- `headerPosition`: Define a posição do header, que é a parte que contém o avatar, o título e o subtítulo, entre `row` e `column`.
 
-# General
+# Base
 
 Componente Card que recebe por `props` todos os elementos mencionados acima.
 
 <Canvas>
   <Story
-    name='General'
+    name='Base'
     parameters={{
       design: {
         type: 'figma',
@@ -48,16 +48,16 @@ Componente Card que recebe por `props` todos os elementos mencionados acima.
   </Story>
 </Canvas>
 
-# General 2
+# Avatar Overlap
 
 Componente Card completo, com adição da prop `avatarPosition`, que define a posição do avatar e de botões para ações, que podem ser adicionados a gosto do usuário.
 No caso desse exemplo, a imagem do avatar se sobrepõe à imagem contida no media.
 
-Ainda nesse exemplo, é demonstrada a possibilidade de adicionar botões para ações, de acordo com a preferência do usuário.
+Ainda nesse exemplo, é demonstrada a possibilidade do componente de receber dados por `children`. No caso, foram adicionados botões que se ajustam dinamicamente ao tamanho da tela.
 
 <Canvas>
   <Story
-    name='General2'
+    name='AvatarOverlap'
     parameters={{
       design: {
         type: 'figma',
@@ -95,13 +95,13 @@ Ainda nesse exemplo, é demonstrada a possibilidade de adicionar botões para a�
   </Story>
 </Canvas>
 
-# Title + Content + Avatar
+# Header Position
 
-Nessa variação, com a prop `headerPosition` definida como `column` em vez do padrão 'row', o título passa a ficar posicionado abaixo do avatar, em vez de ao lado.
+Nessa variação, com a prop `headerPosition` definida como `column` em vez do padrão `row`, o título passa a ficar posicionado abaixo do avatar, em vez de ao lado.
 
 <Canvas>
   <Story
-    name='Variant1'
+    name='HeaderPosition'
     parameters={{
       design: {
         type: 'figma',
