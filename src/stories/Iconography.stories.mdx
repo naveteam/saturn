@@ -102,6 +102,7 @@ export const iconNames = [
   'remove',
   'cloud_done',
   'remove_circle',
+  'check_circle',
   'cloud_download',
   'remove_circle_outline',
   'cloud_off',
@@ -195,10 +196,19 @@ export const iconNames = [
   'group'
 ]
 
-<Meta title='Data Display/Iconography' component={Icon} argTypes={{ icon: { control: {
-  type: 'select',
-  options: iconNames
-} }, color: { control: 'color', options: iconNames } }} />
+<Meta
+  title='Data Display/Iconography'
+  component={Icon}
+  argTypes={{
+    icon: {
+      control: {
+        type: 'select',
+        options: iconNames
+      }
+    },
+    color: { control: 'color', options: iconNames }
+  }}
+/>
 
 export const IconBase = args => (
   <ThemeProvider>
@@ -207,9 +217,6 @@ export const IconBase = args => (
     <Icon {...args} size='sm' />
   </ThemeProvider>
 )
-
-
-
 
 # Icon
 
@@ -225,7 +232,7 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
     }
   }}
 >
-{IconBase.bind({})}
+  {IconBase.bind({})}
 </Story>
 
 # All Icons
@@ -254,4 +261,3 @@ Abaixo segue a lista com todos os ícones disponíveis no Design System até o m
     </ThemeProvider>
   </Story>
 </Canvas>
-
