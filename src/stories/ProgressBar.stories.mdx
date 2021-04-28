@@ -58,10 +58,10 @@ ProgressBar com a prop `barSize` definida como `small`, em vez do padrão `regul
     }}
   >
     <ThemeProvider>
-      <Flex>
+      <Flex mb='5px'>
         <ProgressBar progress={20} barSize='small' />
       </Flex>
-      <Flex>
+      <Flex mb='5px'>
         <ProgressBar progress={20} barSize='small' type='withPercent' />
       </Flex>
     </ThemeProvider>
@@ -70,7 +70,7 @@ ProgressBar com a prop `barSize` definida como `small`, em vez do padrão `regul
 
 ## Success
 
-Quando a prop `progress` chega ao número `100`, a ProgressBar se torna verde, indicando sucesso da operação. Essa cor pode ser trocada por meio da prop successColor.
+Quando a prop `progress` chega ao número `100`, a ProgressBar se torna verde, indicando sucesso da operação. Essa cor pode ser trocada por meio da prop successColor. Na versão com `size` como `small`, os ícones também diminuem de tamanho, de acordo com o figma.
 
 <Canvas>
   <Story

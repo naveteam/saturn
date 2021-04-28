@@ -20,7 +20,7 @@ const ProgressBar = ({ barSize, type, successColor, loadingColor, errorColor, pr
       return successColor
     }
 
-    if (error === true) {
+    if (error) {
       return errorColor
     }
 
@@ -34,7 +34,7 @@ const ProgressBar = ({ barSize, type, successColor, loadingColor, errorColor, pr
       </BackgroundBar>
 
       {type === 'withPercent' && (
-        <Caption fontSize={barSize === 'small' ? '10px' : '12px'} marginLeft='5px' color='#757575'>
+        <Caption variant={barSize === 'small' ? 'sm' : 'md'} marginLeft='5px' color='gray.600'>
           {actualProgress}%
         </Caption>
       )}
@@ -42,10 +42,10 @@ const ProgressBar = ({ barSize, type, successColor, loadingColor, errorColor, pr
       {type === 'withIcon' && (
         <Flex>
           {error ? (
-            <Icon icon='error' fill={errorColor} size={barSize === 'small' ? 'sm' : 'md'} />
+            <Icon icon='error' color={errorColor} size={barSize === 'small' ? 'xsm' : 'sm'} ml='5px' />
           ) : (
             actualProgress === 100 && (
-              <Icon icon='check_circle' fill={successColor} size={barSize === 'small' ? 'sm' : 'md'} />
+              <Icon icon='check_circle' color={successColor} size={barSize === 'small' ? 'xsm' : 'sm'} ml='5px' />
             )
           )}
         </Flex>
@@ -55,11 +55,11 @@ const ProgressBar = ({ barSize, type, successColor, loadingColor, errorColor, pr
 }
 
 const BackgroundBar = styled(Flex)(
-  ({ barSize }) =>
+  ({ barSize, theme }) =>
     css`
       width: 282px;
       height: ${barSize === 'small' ? '4px' : '8px'};
-      background: #eeeeee;
+      background: ${theme.colors.gray['200']};
       border-radius: 4px;
       margin-right: 5px;
     `
@@ -78,9 +78,9 @@ const InsideBar = styled(Flex)(
 ProgressBar.defaultProps = {
   barSize: 'regular',
   type: 'normal',
-  successColor: '#43A047',
-  loadingColor: '#1565C0',
-  errorColor: '#D50000',
+  successColor: 'green.400',
+  loadingColor: 'blue.400',
+  errorColor: 'red.400',
   progress: 0,
   error: false
 }
