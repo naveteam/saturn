@@ -1,0 +1,27 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Carousel, ItemCarousel } from '../components'
+
+<Meta title='Data Display/Carousel' component={Carousel} />
+
+# Carousel
+
+<Canvas>
+  <Story
+    name='Carousel'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=238%3A0'
+      }
+    }}
+  >
+    <Carousel>
+      <ItemCarousel url='https://images.unsplash.com/photo-1552911126-679ae85347b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' />
+      <ItemCarousel url='https://unsplash.it/476/205' />
+      <ItemCarousel url='https://unsplash.it/477/205' />
+      <ItemCarousel url='https://unsplash.it/478/205' />
+      <ItemCarousel url='https://unsplash.it/479/205' />
+    </Carousel>
+  </Story>
+</Canvas>

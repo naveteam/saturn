@@ -73,6 +73,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-swipeable": "^6.1.0",
     "rollup": "^2.13.1",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
@@ -85,5 +86,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }
