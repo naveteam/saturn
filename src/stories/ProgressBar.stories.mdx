@@ -1,0 +1,131 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+
+import ProgressBar from '../components/ProgressBar'
+import { ThemeProvider } from '../theme'
+import { Flex } from '../'
+
+<Meta title='Data Input/ProgressBar' component={ProgressBar} />
+
+# ProgressBar
+
+O componente exibe o fluxo de uma operação, indicando seu andamento e estado. Consiste numa BackgroundBar, que é uma barra cinza que serve de plano de fundo para a InsideBar. É possível definir algumas propriedades para alterar o estilo das barras. Elas são:
+
+- `progress`: Prop que recebe um número de 0 a 100 que define a porcentagem do progresso de carregamento e consequentemente, o tamanho da InsideBar. Caso não seja definida, é mostrada apenas a barra cinza do fundo, a BackgroundBar.
+- `barSize`: Define o tamanho da BackgroundBar, que se estende para a InsideBar. O padrão é o tamanho `regular` e pode ser alternado para `small`.
+- `type`: Define o estilo da barra entre as variações com porcentagem e ícones ao lado. O padrão é o `normal`, a variação com porcentagem é a `withPercent` e com ícones é a `withIcon`.
+- `successColor`: É a cor da InsideBar que demonstra sucesso na operação. Por padrão, é verde, podendo ser alterada de acordo com a preferência do usuário.
+- `loadingColor`: É a cor da InsideBar que demonstra que a operação está carregando. Por padrão, é azul, podendo ser alterada de acordo com a preferência do usuário.
+- `errorColor`: É a cor da InsideBar que demonstra erro na operação. Por padrão, é vermelha, podendo ser alterada de acordo com a preferência do usuário.
+- `error`: Se for definido como `true`, a InsideBar ficará automaticamente com a cor vermelha.
+
+## Default
+
+ProgressBar padrão, com apenas `progress` definido.
+
+<Canvas>
+  <Story
+    name='Default'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=318%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex mb='15px'>
+        <ProgressBar progress={50} />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={50} type='withPercent' />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Small
+
+ProgressBar com a prop `barSize` definida como `small`, em vez do padrão `regular`.
+
+<Canvas>
+  <Story
+    name='Small'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=318%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex mb='5px'>
+        <ProgressBar progress={20} barSize='small' />
+      </Flex>
+      <Flex mb='5px'>
+        <ProgressBar progress={20} barSize='small' type='withPercent' />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Success
+
+Quando a prop `progress` chega ao número `100`, a ProgressBar se torna verde, indicando sucesso da operação. Essa cor pode ser trocada por meio da prop successColor. Na versão com `size` como `small`, os ícones também diminuem de tamanho, de acordo com o figma.
+
+<Canvas>
+  <Story
+    name='Success'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=318%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex mb='15px'>
+        <ProgressBar progress={100} />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={100} type='withPercent' />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={100} type='withIcon' />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={100} barSize='small' type='withIcon' />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Error
+
+Quando a prop `error` é definida como `true`, a barColor se torna vermelha, por padrão. Essa cor pode ser trocada por meio da prop `errorColor`. O ícone de exclamação pode ser adicionado com o uso da prop `type` definida como `withIcon`. A cor da barra será estendida para o ícone.
+
+<Canvas>
+  <Story
+    name='Error'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=318%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex mb='15px'>
+        <ProgressBar progress={80} error={true} />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={80} error={true} type='withPercent' />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={80} error={true} type='withIcon' />
+      </Flex>
+      <Flex mb='15px'>
+        <ProgressBar progress={80} error={true} barSize='small' type='withIcon' />
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>

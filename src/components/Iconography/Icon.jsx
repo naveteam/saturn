@@ -23,6 +23,10 @@ const Icon = styled(IconComponent)`
   ${variant({
     prop: 'size',
     variants: {
+      xsm: css`
+        width: 0.9rem;
+        height: 0.9rem;
+      `,
       sm: css`
         width: 1rem;
         height: 1rem;
@@ -47,7 +51,7 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   icon: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg'])
+  size: PropTypes.oneOf(['xsm', 'sm', 'md', 'lg'])
 }
 
 export default Icon
