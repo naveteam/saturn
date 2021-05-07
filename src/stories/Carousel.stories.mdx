@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Carousel, ItemCarousel } from '../components'
+import { Carousel, ItemCarousel, Card } from '../components'
 
 <Meta title='Data Display/Carousel' component={Carousel} />
 
@@ -16,12 +16,19 @@ import { Carousel, ItemCarousel } from '../components'
       }
     }}
   >
-    <Carousel>
-      <ItemCarousel url='https://images.unsplash.com/photo-1552911126-679ae85347b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' />
-      <ItemCarousel url='https://unsplash.it/476/205' />
-      <ItemCarousel url='https://unsplash.it/477/205' />
-      <ItemCarousel url='https://unsplash.it/478/205' />
-      <ItemCarousel url='https://unsplash.it/479/205' />
-    </Carousel>
+    <ThemeProvider>
+      <Carousel>
+        {/* <ItemCarousel width={400} height={200} url='https://unsplash.it/476/205' />
+        <ItemCarousel width={400} height={200} url='https://unsplash.it/477/205' />
+        <ItemCarousel width={400} height={200} url='https://unsplash.it/478/205' />
+        <ItemCarousel width={400} height={200} url='https://unsplash.it/479/205' />
+        <ItemCarousel width={400} height={200} url='https://unsplash.it/480/205' /> */}
+        <Card title='Teste 1' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/477/205' />
+        <Card title='Teste 2' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/478/205' />
+        <Card title='Teste 3' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/479/205' />
+        <Card title='Teste 4' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/480/205' />
+        <Card title='Teste 5' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/481/205' />
+      </Carousel>
+    </ThemeProvider>
   </Story>
 </Canvas>

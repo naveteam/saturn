@@ -13,7 +13,7 @@ const initialState = { pos: 0, sliding: false, dir: NEXT }
 const NEXT = 'NEXT'
 const PREV = 'PREV'
 
-const Carousel = ({ width = 588, height = 240, children }) => {
+const Carousel = ({ width = '100%', height = 'auto', children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const numItems = Children.count(children)
 
@@ -34,7 +34,7 @@ const Carousel = ({ width = 588, height = 240, children }) => {
   return (
     <Container width={width} height={height} {...handlers}>
       <Wrapper>
-        <Slides dir={state.dir} sliding={state.sliding}>
+        <Slides dir={state.dir} sliding={state.sliding} width={width}>
           {Children.map(children, (child, index) => (
             <CarouselSlot key={index} order={getOrder({ index: index, pos: state.pos, numItems })}>
               {child}
@@ -43,11 +43,11 @@ const Carousel = ({ width = 588, height = 240, children }) => {
         </Slides>
       </Wrapper>
       <ContainerDots>
+        <Dot active={state.pos === 3} />
+        <Dot active={state.pos === 4} />
         <Dot active={state.pos === 0} />
         <Dot active={state.pos === 1} />
         <Dot active={state.pos === 2} />
-        <Dot active={state.pos === 3} />
-        <Dot active={state.pos === 4} />
       </ContainerDots>
       <SlideButton onClick={() => slide(PREV)} float='left'>
         Prev
@@ -87,19 +87,21 @@ const reducer = (state, { type, numItems }) => {
 const Wrapper = styled(Box)`
   width: 100%;
   overflow: hidden;
+  box-shadow: 5px 5px 20px 7px rgba(168, 168, 168, 1);
 `
 
-const CarouselSlot = styled(Box)`
-  flex: 1;
-  flex-basis: 100%;
+const CarouselSlot = styled.div`
+  min-width: 100%;
+  flex: 1 0 100%;
+  flex-basis: 85%;
   order: ${props => props.order};
 `
 
 const Slides = styled(Flex)`
-  transition: ${props => (props.sliding ? 'none' : 'transform 1s ease')};
+  transition: ${props => (props.sliding ? 'none' : 'transform 0.5s ease')};
   transform: ${props => {
-    if (!props.sliding) return 'translateX(calc(-100% - 1px))'
-    if (props.dir === PREV) return 'translateX(calc(2 * (-100% - 1px)))'
+    if (!props.sliding) return 'translateX(calc(-70% - 20px))'
+    if (props.dir === PREV) return 'translateX(calc(2 * calc(-70% - 20px)))'
     return 'translateX(0%)'
   }};
 `
@@ -117,12 +119,12 @@ const Dot = styled(Box)`
   width: 8px;
   height: 8px;
   border-radius: 100%;
-  background-color: ${props => (props.active ? '#FFF' : '#010101')};
+  background-color: ${props => (props.active ? '#CDCDCD' : '#010101')};
   margin-right: 16px;
   z-index: 2px;
 `
 
-const SlideButton = styled.button`
+const SlideButton = styled(Box)`
   padding: 10px;
   background-color: #989898;
   border: 1px solid white;
@@ -132,17 +134,17 @@ const SlideButton = styled.button`
   position: absolute;
   top: 45%;
   visibility: hidden;
+  transition: 0.2s ease-in;
   ${props => (props.float === 'right' ? 'right: 10px' : 'left: 10px')};
 `
 
-const Container = styled(Box)`
-  background-color: #2378c1;
+const Container = styled(Flex)`
   position: relative;
   border-radius: 4px;
+  max-width: 280px;
   cursor: pointer;
   &:hover ${SlideButton} {
     visibility: visible;
-    transition: 0.2s ease-in;
   }
 `
 
