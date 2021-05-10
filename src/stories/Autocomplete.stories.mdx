@@ -91,12 +91,14 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       const debouncedTyped = useDebounce(typed)
       useEffect(() => {
         setLoading(true)
-        fetch("https://country.register.gov.uk/records.json?page-size=5000")
+        if(typed.length > 4)
+        fetch(`http://universities.hipolabs.com/search?name=${typed}`)
           .then(res => res.json())
           .then(
-            (countries) => {
+            (universities) => {
               setLoading(false);
-              setOptions(Object.keys(countries).map((key) => countries[key].item[0]))
+              console.log(universities)
+              setOptions(universities)
             },
             (error) => {
               setLoading(false);
@@ -107,7 +109,7 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       useEffect(() => {
         setLoading(true)
       }, [typed])
-      return <ThemeProvider><Autocomplete loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.country} getOptionLabel={(e) => e.name} label='teste' /></ThemeProvider>
+      return <ThemeProvider><Autocomplete minChar={4} loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.name} getOptionLabel={(e) => e.name} label='teste' /></ThemeProvider>
     }}
   </Story>
 </Canvas>

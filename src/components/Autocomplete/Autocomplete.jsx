@@ -21,6 +21,7 @@ const Autocomplete = ({
   onChangeText,
   getOptionValue = op => op.value,
   getOptionLabel = op => op.label,
+  minChar = 0,
   ...rest
 }) => {
   const [textFieldValue, setTextFieldValue] = useState('')
@@ -108,6 +109,8 @@ const Autocomplete = ({
         ReactDOM.createPortal(
           <div ref={optionsRef}>
             <Options
+              textFieldValue={textFieldValue}
+              minChar={minChar}
               positions={positions}
               options={filteredOptions}
               getOptionLabel={getOptionLabel}
@@ -123,7 +126,29 @@ const Autocomplete = ({
   )
 }
 
-const Options = ({ options = [], getOptionLabel, getOptionValue, onPickOption, loading, positions, selectedValue }) => {
+const Options = ({
+  options = [],
+  textFieldValue,
+  getOptionLabel,
+  getOptionValue,
+  onPickOption,
+  loading,
+  positions,
+  selectedValue,
+  minChar
+}) => {
+  if (textFieldValue.length < minChar) {
+    return (
+      <Container {...positions}>
+        <OptionContainer>
+          <Typography fontStyle='italic' as='span'>
+            Digite mais informações para realizar a busca
+          </Typography>
+        </OptionContainer>
+      </Container>
+    )
+  }
+
   if (loading) {
     return (
       <Container {...positions}>
