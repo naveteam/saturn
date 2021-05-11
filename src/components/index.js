@@ -1,3 +1,12 @@
+const service = async query => {
+  try {
+    const response = await fetch(`http://universities.hipolabs.com/search?name=${query}`)
+    return response.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export * from './Typography'
 export * from './TextField'
 export * from './TextArea'
@@ -20,3 +29,4 @@ export * from './Accordion'
 export * from './Upload'
 export * from './Dialog'
 export * from './Autocomplete'
+export { service }

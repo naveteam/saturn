@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Attachment, Autocomplete, Flex, Typography } from '../components'
+import { Attachment, Autocomplete, Flex, Typography, service } from '../components'
 import { ThemeProvider } from '../theme'
 
 import { useDebounce } from '@naveteam/prometheus'
@@ -85,31 +85,10 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
     }}
   >
     {() => {
-      const [loading, setLoading] = useState(true)
       const [typed, setTyped] = useState('')
       const [options, setOptions] = useState([])
       const debouncedTyped = useDebounce(typed)
-      useEffect(() => {
-        setLoading(true)
-        if(typed.length > 4)
-        fetch(`http://universities.hipolabs.com/search?name=${typed}`)
-          .then(res => res.json())
-          .then(
-            (universities) => {
-              setLoading(false);
-              console.log(universities)
-              setOptions(universities)
-            },
-            (error) => {
-              setLoading(false);
-              setError(error);
-            }
-          )
-      }, [debouncedTyped])
-      useEffect(() => {
-        setLoading(true)
-      }, [typed])
-      return <ThemeProvider><Autocomplete minChar={4} loading={loading} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.name} getOptionLabel={(e) => e.name} label='teste' /></ThemeProvider>
+      return <ThemeProvider><Autocomplete minChar={4} service={service} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.name} getOptionLabel={(e) => e.name} label='teste' /></ThemeProvider>
     }}
   </Story>
 </Canvas>

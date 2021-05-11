@@ -7,12 +7,11 @@ import { Flex } from '../Grid'
 import TextField from '../TextField'
 import { Typography } from '../Typography'
 
-import { useClickOutside } from '@naveteam/prometheus'
+import { useClickOutside, useDebounce } from '@naveteam/prometheus'
 
 const Autocomplete = ({
   label,
-  loading,
-  options = [
+  options: externalOptions = [
     { label: 'TESTE', value: 1 },
     { label: 'teste2', value: 3 },
     { label: 'vacaria', value: 5 }
@@ -22,11 +21,16 @@ const Autocomplete = ({
   getOptionValue = op => op.value,
   getOptionLabel = op => op.label,
   minChar = 0,
+  service,
+  handleOptions,
   ...rest
 }) => {
+  const [options, setOptions] = useState(externalOptions)
   const [textFieldValue, setTextFieldValue] = useState('')
   const [selectedValue, setSelectedValue] = useState(null)
   const [optionsOpened, setOptionsOpened] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const debouncedTextFieldValue = useDebounce(textFieldValue)
 
   const textFieldRef = useRef()
   const optionsRef = useRef()
@@ -43,6 +47,25 @@ const Autocomplete = ({
   useEffect(() => {
     onChangeText && onChangeText(textFieldValue)
   }, [textFieldValue])
+
+  useEffect(() => {
+    const handleService = async query => {
+      try {
+        setLoading(true)
+        const response = await service(query)
+        console.log(response)
+        setOptions(response)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (debouncedTextFieldValue?.length >= minChar && service) {
+      handleService(debouncedTextFieldValue)
+    }
+  }, [minChar, debouncedTextFieldValue])
 
   useClickOutside(
     () => {
