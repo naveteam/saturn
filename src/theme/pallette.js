@@ -2,7 +2,7 @@ const pallette = {
   black: '#000000',
   white: '#ffffff',
   gray: {
-    50: '#9E9E9E',
+    50: '#FAFAFA',
     100: '#F5F5F5',
     200: '#EEEEEE',
     300: '#E0E0E0',
