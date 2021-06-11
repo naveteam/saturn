@@ -1,151 +1,132 @@
-import React, { Children, useReducer } from 'react'
-import styled from '@xstyled/styled-components'
-import { useSwipeable } from 'react-swipeable'
+import React, { Children } from 'react'
+import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Box, Flex } from '../Grid'
+import 'swiper/swiper.min.css'
+import 'swiper/components/pagination/pagination.min.css'
+import 'swiper/components/navigation/navigation.min.css'
 
-const getOrder = ({ index, pos, numItems }) => {
-  return index - pos < 0 ? numItems - Math.abs(index - pos) : index - pos
-}
+import SwiperCore, { Pagination, Navigation } from 'swiper/core'
 
-const initialState = { pos: 0, sliding: false, dir: NEXT }
+import { Box, Flex, Loader } from '../Grid'
 
-const NEXT = 'NEXT'
-const PREV = 'PREV'
+const variantTypes = ['light', 'dark']
 
-const Carousel = ({ width = '100%', height = 'auto', children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+SwiperCore.use([Pagination, Navigation])
+
+const Carousel = ({ width, height, variant, children }) => {
   const numItems = Children.count(children)
 
-  const slide = dir => {
-    dispatch({ type: dir, numItems })
-    setTimeout(() => {
-      dispatch({ type: 'stopSliding' })
-    }, 50)
-  }
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => slide(NEXT),
-    onSwipedRight: () => slide(PREV),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true
-  })
+  if (numItems > 5) return
 
   return (
-    <Container width={width} height={height} {...handlers}>
+    <Container width={width} height={height}>
       <Wrapper>
-        <Slides dir={state.dir} sliding={state.sliding} width={width}>
-          {Children.map(children, (child, index) => (
-            <CarouselSlot key={index} order={getOrder({ index: index, pos: state.pos, numItems })}>
-              {child}
-            </CarouselSlot>
-          ))}
-        </Slides>
+        <SwiperComponent
+          slidesPerView={1}
+          spaceBetween={0}
+          loop={true}
+          pagination={{
+            clickable: true
+          }}
+          navigation={true}
+          className='mySwiper'
+          variant={variant}
+        >
+          {Children.map(children, (child, index) => {
+            return (
+              <Box width={1} height='100%'>
+                <SwiperSlide>{child}</SwiperSlide>
+              </Box>
+            )
+          })}
+        </SwiperComponent>
       </Wrapper>
-      <ContainerDots>
-        <Dot active={state.pos === 3} />
-        <Dot active={state.pos === 4} />
-        <Dot active={state.pos === 0} />
-        <Dot active={state.pos === 1} />
-        <Dot active={state.pos === 2} />
-      </ContainerDots>
-      <SlideButton onClick={() => slide(PREV)} float='left'>
-        Prev
-      </SlideButton>
-      <SlideButton onClick={() => slide(NEXT)} float='right'>
-        Next
-      </SlideButton>
     </Container>
   )
 }
 
-const reducer = (state, { type, numItems }) => {
-  switch (type) {
-    case 'reset':
-      return initialState
-    case PREV:
-      return {
-        ...state,
-        dir: PREV,
-        sliding: true,
-        pos: state.pos === 0 ? numItems - 1 : state.pos - 1
-      }
-    case NEXT:
-      return {
-        ...state,
-        dir: NEXT,
-        sliding: true,
-        pos: state.pos === numItems - 1 ? 0 : state.pos + 1
-      }
-    case 'stopSliding':
-      return { ...state, sliding: false }
-    default:
-      return state
-  }
-}
-
 const Wrapper = styled(Box)`
   width: 100%;
-  overflow: hidden;
-  box-shadow: 5px 5px 20px 7px rgba(168, 168, 168, 1);
+  position: relative;
+  box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
 `
 
-const CarouselSlot = styled.div`
-  min-width: 100%;
-  flex: 1 0 100%;
-  flex-basis: 85%;
-  order: ${props => props.order};
-`
+const SwiperComponent = styled(Swiper)`
+  &.swiper-container {
+    height: 100%;
+  }
 
-const Slides = styled(Flex)`
-  transition: ${props => (props.sliding ? 'none' : 'transform 0.5s ease')};
-  transform: ${props => {
-    if (!props.sliding) return 'translateX(calc(-70% - 20px))'
-    if (props.dir === PREV) return 'translateX(calc(2 * calc(-70% - 20px)))'
-    return 'translateX(0%)'
-  }};
-`
+  & .swiper-button-prev,
+  .swiper-button-next {
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+    ${props =>
+      variantTypes.includes(props.variant) &&
+      css`
+        background-color: ${props.variant === 'dark' ? '#212121' : '#FAFAFA'};
+        opacity: 0.6;
+      `};
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    border-radius: 100%;
+    visibility: hidden;
 
-const ContainerDots = styled(Flex)`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 26px;
-  width: 100%;
-`
+    &:active {
+      filter: blur(2px);
+      transition: transform 0.5s ease-in-out;
+    }
+  }
 
-const Dot = styled(Box)`
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background-color: ${props => (props.active ? '#CDCDCD' : '#010101')};
-  margin-right: 16px;
-  z-index: 2px;
-`
+  & .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 18px;
+    color: ${props => (props.variant === 'dark' ? '#FAFAFA' : '#212121')};
+  }
 
-const SlideButton = styled(Box)`
-  padding: 10px;
-  background-color: #989898;
-  border: 1px solid white;
-  text-decoration: none;
-  cursor: pointer;
-  text-decoration: none;
-  position: absolute;
-  top: 45%;
-  visibility: hidden;
-  transition: 0.2s ease-in;
-  ${props => (props.float === 'right' ? 'right: 10px' : 'left: 10px')};
+  & .swiper-pagination-bullet {
+    background-color: ${props => (props.variant === 'dark' ? '#212121' : '#FFF')};
+    opacity: ${props => (props.variant === 'dark' ? 0.3 : 0.5)};
+  }
+
+  & .swiper-pagination-bullet-active {
+    background-color: ${props => (props.variant === 'dark' ? '#212121' : '#FFF')};
+    opacity: 1;
+  }
+
+  &:hover .swiper-button-next {
+    transition: 0.5s ease-in;
+    visibility: visible;
+  }
+
+  &:hover .swiper-button-prev {
+    transition: 0.5s ease-in;
+    visibility: visible;
+  }
 `
 
 const Container = styled(Flex)`
   position: relative;
-  border-radius: 4px;
-  max-width: 280px;
   cursor: pointer;
-  &:hover ${SlideButton} {
-    visibility: visible;
-  }
+  transition: 0.2s ease-in;
 `
+
+Carousel.defaultProps = {
+  width: '100%',
+  height: 'auto',
+  variant: 'light'
+}
+
+Carousel.propTypes = {
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  variant: PropTypes.oneOf(['light', 'dark']),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+}
 
 export default Carousel
