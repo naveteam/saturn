@@ -23,7 +23,7 @@ O autocomplete tem a finalidade de facilitar a seleção de opções através de
     }}
   >
     <ThemeProvider>
-      <Autocomplete
+      {/* <Autocomplete
         options={[
           {name: 'Pelotas', id: 1},
           {name: 'Arroio Grande', id: 2},
@@ -33,7 +33,7 @@ O autocomplete tem a finalidade de facilitar a seleção de opções através de
         getOptionValue={(option) => option.id}
         getOptionLabel={(option) => option.name}
         label='Básico'
-      />
+      /> */}
     </ThemeProvider>
   </Story>
 </Canvas>
@@ -52,25 +52,41 @@ Passando a prop de `error` para o `Autocomplete` atrelada a prop `message`, o us
       }
     }}
   >
-    <ThemeProvider>
-      <Autocomplete
-        options={[
-          {name: 'Pelotas', id: 1},
-          {name: 'Arroio Grande', id: 2},
-          {name: 'São Paulo', id: 3},
-          {name: 'Rio de Janeiro', id: 4}
-        ]}
-        getOptionValue={(option) => option.id}
-        getOptionLabel={(option) => option.name}
-        label='Básico'
-        error
-        message='error message'
-      />
-    </ThemeProvider>
+    {() => {
+      const [teste, setTeste] = useState(1)
+      const toggleValue = () => {
+        if (teste === 1 ) {
+          setTeste(2)
+        } else {
+          setTeste(1)
+        }
+      }
+      console.log('External value: ', teste)
+      return (
+        <ThemeProvider>
+          <button onClick={toggleValue}>adhsudhuas</button>
+          <Autocomplete
+            onChange={(e) => setTeste(e)}
+            value={teste}
+            options={[
+              {name: 'Pelotas', id: 1},
+              {name: 'Arroio Grande', id: 2},
+              {name: 'São Paulo', id: 3},
+              {name: 'Rio de Janeiro', id: 4}
+            ]}
+            getOptionValue={(option) => option.id}
+            getOptionLabel={(option) => option.name}
+            label='Básico'
+            error
+            message='error message'
+          />
+        </ThemeProvider>
+      )
+    }}
   </Story>
 </Canvas>
 
-# Autocomplete assincrono
+<!-- # Autocomplete assincrono
 
 A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado. O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
 
@@ -88,9 +104,10 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       const [typed, setTyped] = useState('')
       const [options, setOptions] = useState([])
       const debouncedTyped = useDebounce(typed)
+      return <div />
       return <ThemeProvider><Autocomplete minChar={4} service={service} onChange={() => console.log('oi')} onChangeText={(e) => setTyped(e)} options={options} getOptionValue={(e) => e.name} getOptionLabel={(e) => e.name} label='teste' /></ThemeProvider>
     }}
   </Story>
-</Canvas>
+</Canvas> -->
 
 <ArgsTable of={Attachment} />

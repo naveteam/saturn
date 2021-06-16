@@ -23,14 +23,30 @@ const Autocomplete = ({
   minChar = 0,
   service,
   handleOptions,
+  value = null,
   ...rest
 }) => {
-  const [options, setOptions] = useState(externalOptions)
-  const [textFieldValue, setTextFieldValue] = useState('')
-  const [selectedValue, setSelectedValue] = useState(null)
+  const [options, setOptions] = useState(() =>
+    externalOptions.map(option => ({
+      label: getOptionLabel(option),
+      value: getOptionValue(option)
+    }))
+  )
+  const [textFieldValue, setTextFieldValue] = useState(() => {
+    const defaultOption = options.find(option => option.value === value)
+    if (!options || !value || !defaultOption) return ''
+    return defaultOption.label
+  })
+  const [selectedValue, setSelectedValue] = useState(value)
   const [optionsOpened, setOptionsOpened] = useState(false)
   const [loading, setLoading] = useState(false)
   const debouncedTextFieldValue = useDebounce(textFieldValue)
+
+  console.log('Internal values')
+  console.table({
+    textField: textFieldValue,
+    value: selectedValue
+  })
 
   const textFieldRef = useRef()
   const optionsRef = useRef()
@@ -40,7 +56,7 @@ const Autocomplete = ({
 
   const filteredOptions = useMemo(() => {
     if (!textFieldValue) return options
-    return options.filter(op => getOptionLabel(op)?.toLowerCase().includes(textFieldValue.toLowerCase()))
+    return options.filter(op => op.label.toLowerCase().includes(textFieldValue.toLowerCase()))
   }, [textFieldValue, options])
   // Tem algum problema em usar options [] nesse array de deps?
 
@@ -48,12 +64,12 @@ const Autocomplete = ({
     onChangeText && onChangeText(textFieldValue)
   }, [textFieldValue])
 
+  // Só vai entrar no caso de ter service
   useEffect(() => {
     const handleService = async query => {
       try {
         setLoading(true)
         const response = await service(query)
-        console.log(response)
         setOptions(response)
       } catch (err) {
         console.error(err)
@@ -65,19 +81,33 @@ const Autocomplete = ({
     if (debouncedTextFieldValue?.length >= minChar && service) {
       handleService(debouncedTextFieldValue)
     }
-  }, [minChar, debouncedTextFieldValue])
+  }, [minChar, debouncedTextFieldValue, service])
 
   useClickOutside(
     () => {
+      const currentSelected = options.find(op => op.value === selectedValue)
+      // if (value) {
+      //   console.log('SAINDO COM VALOR', value)
+      //   onChange && onChange(null)
+      //   setTextFieldValue(currentSelected))
+      //   setOptionsOpened(false)
+      //   return setOptionsOpened(false)
+      // }
       if (!selectedValue || !textFieldValue) {
+        // Apagou tudo
+        if (value && onChange) {
+          onChange(null)
+          setOptionsOpened(false)
+          setOptionsOpened(false)
+          return
+        }
         setOptionsOpened(false)
         setSelectedValue(null)
         setTextFieldValue('')
         return selectedValue
       }
       // Values com mesmo valor podem acarretar problemas, a solução para isso seria ter um id unico em cada opção e controlar a previamente selecionada por esse id
-      const currentSelected = options.find(op => getOptionValue(op) === selectedValue)
-      setTextFieldValue(getOptionLabel(currentSelected))
+      setTextFieldValue(currentSelected.label)
       setOptionsOpened(false)
     },
     optionsRef,
@@ -96,17 +126,46 @@ const Autocomplete = ({
     setTextFieldValue(e.target.value)
   }, [])
 
+  const changeValueHandler = useCallback(
+    newValue => {
+      onChange && onChange(newValue)
+      return handleCloseOptions()
+    },
+    [onChange]
+  )
+
   const onPickOption = useCallback(
     option => {
-      const value = getOptionValue(option)
-      const label = getOptionLabel(option)
-      setTextFieldValue(label)
-      setSelectedValue(value)
-      onChange && onChange(value)
-      handleCloseOptions()
+      const valuePicked = option.value
+      const label = option.label
+      if (onChange) {
+        // console.log(options.find(op => op.value === value).label)
+        if (value) {
+          const oldText = options.find(op => op.value === value).label
+          setTextFieldValue(oldText)
+        }
+        // console.log('Resetar para: ', oldText)
+        onChange(valuePicked)
+        return handleCloseOptions()
+      } else {
+        setTextFieldValue(label)
+        setSelectedValue(valuePicked)
+        return changeValueHandler(valuePicked)
+      }
     },
-    [onChange, getOptionLabel, getOptionValue]
+    [onChange, getOptionLabel, getOptionValue, value, options]
   )
+
+  useEffect(() => {
+    if (value === undefined) return
+    if (value === null) {
+      setTextFieldValue('')
+      setSelectedValue(null)
+      return
+    }
+    const controlledOption = options.find(option => option.value === value)
+    onPickOption(controlledOption)
+  }, [value, options])
 
   const positions = useMemo(() => {
     if (!textFieldRef?.current || !optionsOpened) {
@@ -190,11 +249,11 @@ const Options = ({
         options.map(option => (
           <OptionContainer
             isSelectable
-            selected={selectedValue === getOptionValue(option)}
-            key={getOptionLabel(option)}
+            selected={selectedValue === option.value}
+            key={option.label}
             onClick={() => onPickOption(option)}
           >
-            <Typography as='span'>{getOptionLabel(option)}</Typography>
+            <Typography as='span'>{option.label}</Typography>
           </OptionContainer>
         ))
       ) : (
