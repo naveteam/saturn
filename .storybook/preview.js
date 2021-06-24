@@ -1,6 +1,14 @@
 import React, { Fragment } from 'react'
-import { addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
 import { Helmet } from 'react-helmet'
+
+import { baseTheme } from './theme'
+
+addParameters({
+  options: {
+    theme: baseTheme
+  }
+})
 
 addDecorator(storyFn => (
   <Fragment>

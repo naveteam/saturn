@@ -1,6 +1,6 @@
 import { create } from '@storybook/theming'
 
-export default create({
+export const baseTheme = create({
   base: 'light',
 
   brandTitle: 'Nave Kit',
