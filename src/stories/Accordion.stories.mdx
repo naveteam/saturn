@@ -1,6 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-import { Accordion, AccordionDetail, AccordionHeader, AccordionsWrapper, Typography } from '../components'
-import { ThemeProvider } from '../theme'
+import {
+  Accordion,
+  AccordionDetail,
+  AccordionHeader,
+  AccordionsWrapper,
+  Typography,
+  SaturnProvider
+} from '../components'
 
 <Meta title='Data Display/Accordion' component={Accordion} />
 
@@ -21,7 +27,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
@@ -33,7 +39,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
           </AccordionDetail>
         </Accordion>
       </AccordionsWrapper>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -51,7 +57,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
@@ -62,7 +68,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
             </Typography>
           </AccordionDetail>
         </Accordion>
-        <Accordion expanded={true}>
+        <Accordion isOpen={true}>
           <AccordionHeader title='Lorem Ipsum' />
           <AccordionDetail>
             <Typography>
@@ -72,7 +78,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
           </AccordionDetail>
         </Accordion>
       </AccordionsWrapper>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -90,7 +96,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' />
@@ -149,7 +155,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
           </AccordionDetail>
         </Accordion>
       </AccordionsWrapper>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -167,7 +173,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <AccordionsWrapper>
         <Accordion>
           <AccordionHeader title='Lorem Ipsum' subtitle='Lorem Ipsum' />
@@ -179,7 +185,7 @@ O `AccordionHeader` extende os valores das funções [backgrounds](https://xstyl
           </AccordionDetail>
         </Accordion>
       </AccordionsWrapper>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

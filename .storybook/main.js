@@ -5,6 +5,7 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-controls',
     'storybook-addon-designs/register',
-    'storybook-svgr-react-component'
+    'storybook-svgr-react-component',
+    'themeprovider-storybook'
   ]
 }
