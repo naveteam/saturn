@@ -3,9 +3,9 @@ import { ThemeProvider } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
-import { Theme } from './Theme'
+import { Theme } from '../../theme/Theme'
 
-const SaturnThemeProvider = ({ children, theme = {} }) => {
+const SaturnProvider = ({ children, theme = {} }) => {
   return (
     <ThemeProvider theme={{ ...Theme, ...theme, colors: { ...Theme?.colors, ...theme?.colors } }}>
       <Helmet>
@@ -23,4 +23,4 @@ ThemeProvider.propTypes = {
   theme: PropTypes.object
 }
 
-export { SaturnThemeProvider }
+export default SaturnProvider
