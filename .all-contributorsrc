@@ -112,7 +112,10 @@
         "code",
         "maintenance",
         "talk",
-        "projectManagement"
+        "projectManagement",
+        "review",
+        "examples",
+        "ideas"
       ]
     },
     {
@@ -129,7 +132,10 @@
         "business",
         "ideas",
         "projectManagement",
-        "talk"
+        "talk",
+        "infra",
+        "research",
+        "bug"
       ]
     },
     {
@@ -209,9 +215,9 @@
         "review",
         "projectManagement",
         "maintenance",
-        "bug",
         "research",
-        "ideas"
+        "ideas",
+        "bug"
       ]
     }
   ],
