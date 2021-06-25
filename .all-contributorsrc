@@ -163,6 +163,19 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "jpbretanha",
+      "name": "João Pedro Bretanha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7989125?v=4",
+      "profile": "https://www.twitter.com/jpbretanha",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "maintenance",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
