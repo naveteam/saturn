@@ -103,6 +103,7 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
   </tr>
   <tr>
     <td align="center"><a href="http://glauber@brack.com.br"><img src="https://avatars.githubusercontent.com/u/57924169?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Glauber Brack</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=glauberbrack" title="Code">💻</a> <a href="#maintenance-glauberbrack" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/issues?q=author%3Aglauberbrack" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/giuliane-oliveira-a3590316b/"><img src="https://avatars.githubusercontent.com/u/38573412?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Giuliane</b></sub></a><br /><a href="#maintenance-GiulianeOliveira" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/issues?q=author%3AGiulianeOliveira" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
