@@ -153,6 +153,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "eduardaconde",
+      "name": "Eduarda Eisfeld Conde",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46696000?v=4",
+      "profile": "https://github.com/eduardaconde",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
