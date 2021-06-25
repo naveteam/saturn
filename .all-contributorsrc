@@ -146,6 +146,16 @@
         "review",
         "doc"
       ]
+    },
+    {
+      "login": "coelhomariana",
+      "name": "Mariana Coelho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42039627?v=4",
+      "profile": "https://www.linkedin.com/in/coelhomariana/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
