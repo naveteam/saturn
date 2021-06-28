@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, down, typography } from '@xstyled/styled-components'
+import styled from 'styled-components'
+import { typography } from 'styled-system'
 
 import { Typography } from '../'
 import { Flex } from '../Grid'
@@ -60,16 +61,11 @@ const LabelContainer = styled(Flex)`
   color: gray.800;
   min-height: 24px;
 
-  ${down(
-    'sm',
-    css`
-      display: flex;
-    `
-  )}
+  @media (max-width: 600px) {
+    display: flex;
+  }
 
-  & >
-    input:checked:enabled
-    ~ p {
+  & > input:checked:enabled ~ p {
     color: gray.900;
     ${typography}
   }
