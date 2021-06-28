@@ -1,0 +1,107 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Carousel, Card, Flex } from '../components'
+
+<Meta title='Data Display/Carousel' component={Carousel} />
+
+# Carousel
+
+O carousel agrupa conteúdos em um card ou outros tipos de componentes, permitindo que o usuário navegue por ele,
+podendo interagir com os demais componentes definidos na seção cards, caso ele seja utilizado. Pode ser definido no máximo 5 slides para o componente Carousel.
+
+### Props
+
+- `width`: Largura do componente Carousel.
+- `height`: Altura do componente Carousel.
+- `variant`: A cor do tema do Carousel, recebe somente valores `light` ou `dark`, por default recebe o valor `light`, sem a necessidade de ser enviado na construção do Carousel.
+
+#### Observação:
+
+- Pode ser passado qualquer conteúdo como filho para ser slide do carousel, como no exemplos abaixo, e a sua renderização só acontece com no máximo 5 slides.
+
+## Carousel com componente Card Base
+
+- Utilizando o theme `dark` este Carousel possui o `children` Card básico com imagem e texto.
+
+<Canvas>
+  <Story
+    name='Carousel with Card Base'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1269%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Carousel width={280} height={400} variant='dark'>
+          <Card
+            title='Teste 1'
+            subtitle='Lorem ipsum lorem ipsum lorem ipsum TESTE'
+            media='https://unsplash.it/476/205'
+          />
+          <Card title='Teste 2' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/477/205' />
+          <Card title='Teste 3' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/478/205' />
+          <Card title='Teste 4' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/479/205' />
+          <Card title='Teste 5' subtitle='Lorem ipsum lorem ipsum lorem ipsum' media='https://unsplash.it/480/205' />
+        </Carousel>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Carousel de imagens
+
+- Utilizando o theme `light` por default este Carousel possui o `children` com apenas imagens.
+
+<Canvas>
+  <Story
+    name='Carousel only images'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1269%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Carousel width={477} height='auto'>
+          <img width='100%' height='100%' style={{ objectFit: 'contain' }} src='https://unsplash.it/476/205' />
+          <img width='100%' height='100%' style={{ objectFit: 'contain' }} src='https://unsplash.it/477/205' />
+          <img width='100%' height='100%' style={{ objectFit: 'contain' }} src='https://unsplash.it/478/205' />
+          <img width='100%' height='100%' style={{ objectFit: 'contain' }} src='https://unsplash.it/479/205' />
+        </Carousel>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
+
+## Carousel com componente Card apenas com texto
+
+- Utilizando o theme `dark` este Carousel possui o `children` Card básico sem imagem, apenas com texto (`títle` e `subtitle`).
+
+<Canvas>
+  <Story
+    name='Carousel only text'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=1269%3A0'
+      }
+    }}
+  >
+    <ThemeProvider>
+      <Flex>
+        <Carousel width={280} height={200} variant='dark'>
+          <Card title='Teste 1' subtitle='Lorem ipsum lorem ipsum lorem ipsum' />
+          <Card title='Teste 2' subtitle='Lorem ipsum lorem ipsum lorem ipsum' />
+          <Card title='Teste 3' subtitle='Lorem ipsum lorem ipsum lorem ipsum' />
+          <Card title='Teste 4' subtitle='Lorem ipsum lorem ipsum lorem ipsum' />
+          <Card title='Teste 5' subtitle='Lorem ipsum lorem ipsum lorem ipsum' />
+        </Carousel>
+      </Flex>
+    </ThemeProvider>
+  </Story>
+</Canvas>
