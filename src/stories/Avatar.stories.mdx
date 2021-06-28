@@ -1,14 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Avatar } from '../components'
-import { ThemeProvider } from '../theme'
+import { Avatar, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Avatar' component={Avatar} />
 
 export const AvatarControl = args => (
-  <ThemeProvider>
+  <SaturnProvider>
     <Avatar {...args} />
-  </ThemeProvider>
+  </SaturnProvider>
 )
 
 
@@ -45,12 +44,12 @@ a variação `Variant` é utilizada quando o avatar mostrado é de uma empresa.
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Avatar
         avatar='https://media-exp1.licdn.com/dms/image/C560BAQGq-lKIZo0SCA/company-logo_200_200/0?e=2159024400&v=beta&t=ZAVpCtjjoaiTpyrISmf35otQwtHzPrVHzOJunnGi61E'
         variant
       />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -68,10 +67,10 @@ Caso não seja passado um atributo `avatar` é possível passar as iniciais do n
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Avatar letter='A' />
       <Avatar letter='AB' size='large' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -89,10 +88,10 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Avatar />
       <Avatar variant />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -110,7 +109,7 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Avatar
         avatar='https://ocomecodafelicidade.com/wp-content/uploads/2018/12/como-parecer-uma-pessoa-bem-sucedida.jpg'
         status='available'
@@ -136,7 +135,7 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
         status='denied'
         size='huge'
       />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -154,7 +153,7 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Avatar size='tiny' />
       <Avatar size='very-small' />
       <Avatar size='small' />
@@ -162,7 +161,7 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
       <Avatar size='large' />
       <Avatar size='very-large' />
       <Avatar size='huge' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
