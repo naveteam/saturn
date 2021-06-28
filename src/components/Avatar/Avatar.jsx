@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import styled, { css } from '@xstyled/styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from '../Iconography'
