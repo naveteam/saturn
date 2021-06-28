@@ -26,11 +26,11 @@ const Carousel = ({ width, height, variant, children }) => {
         <SwiperComponent
           slidesPerView={1}
           spaceBetween={0}
-          loop={true}
+          loop
+          navigation
           pagination={{
             clickable: true
           }}
-          navigation={true}
           className='mySwiper'
           variant={variant}
         >
