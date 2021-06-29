@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Typography, Heading, Subtitle, Paragraph, Caption } from '../components'
+import { Typography, Heading, Subtitle, Paragraph, Caption, SaturnProvider } from '../components'
 import { ThemeProvider } from '../theme'
 
 <Meta title="Data Display/Typography" />
@@ -16,9 +16,9 @@ import { ThemeProvider } from '../theme'
       url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
     }
   }}>
-    <ThemeProvider>
+    <SaturnProvider>
       <Typography>Base Typography component</Typography>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
