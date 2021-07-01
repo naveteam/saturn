@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { space, layout, variant, th, flexboxes } from '@xstyled/system'
+// import styled, { css } from '@xstyled/styled-components'
+// import { space, layout, variant, th, flexboxes } from '@xstyled/system'
 import PropTypes from 'prop-types'
+
+import styled, { css } from 'styled-components'
+import { layout, space, flexbox, variant } from 'styled-system'
 
 import { Typography, Flex } from '../'
 import { Icon } from '../Iconography'
@@ -39,73 +42,43 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
   </Base>
 ))
 
-const colorVariants = variant({
-  default: 'filled',
-  key: 'button',
-  variants: {
-    filled: css`
-      background-color: ${({ color }) => th.color(color)};
-      border-color: ${({ color }) => th.color(color)};
-      color: white;
-      &:hover {
-        background-color: ${({ color }) => th.color(`${color}_hover`)};
-        border-color: ${({ color }) => th.color(`${color}_hover`)};
+const colorVariants = props => {
+  return variant({
+    prop: 'variant',
+    variants: {
+      filled: {
+        backgroundColor: `${({ colors }) => {
+          console.log(colors[`${props.color}`])
+          return `${colors[`${props.color}`]}`
+        }}`,
+        borderColor: `${({ colors }) => {
+          console.log(colors[`${props.color}`])
+          return `${colors[`${props.color}`]}`
+        }}`,
+        color: 'white'
+      },
+      outlined: {
+        backgroundColor: 'transparent',
+        borderColor: `${({ colors }) => {
+          console.log(colors[`${props.color}`])
+          return `${colors[`${props.color}`]}`
+        }}`,
+        color: `${({ colors }) => {
+          console.log(colors[`${props.color}`])
+          return `${colors[`${props.color}`]}`
+        }}`
+      },
+      text: {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        color: `${({ colors }) => {
+          console.log(colors[`${props.color}`])
+          return `${colors[`${props.color}`]}`
+        }}`
       }
-      &:active {
-        background-color: ${({ color }) => th.color(`${color}_active`)};
-        border-color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        background-color: disabled;
-        border-color: disabled;
-        color: white;
-      }
-    `,
-    outlined: css`
-      ${StyledIcon} {
-        fill: ${({ color }) => th.color(color)};
-        &:hover {
-          fill: ${({ color }) => th.color(`${color}_hover`)};
-        }
-        &:active {
-          fill: ${({ color }) => th.color(`${color}_active`)};
-        }
-        &:disabled {
-          fill: disabled;
-        }
-      }
-      background-color: transparent;
-      border-color: ${({ color }) => th.color(color)};
-      color: ${({ color }) => th.color(color)};
-      &:hover {
-        border-color: ${({ color }) => th.color(`${color}_hover`)};
-        color: ${({ color }) => th.color(`${color}_hover`)};
-      }
-      &:active {
-        border-color: ${({ color }) => th.color(`${color}_active`)};
-        color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        border-color: disabled;
-        color: disabled;
-      }
-    `,
-    text: css`
-      background-color: transparent;
-      border-color: transparent;
-      color: ${({ color }) => th.color(color)};
-      &:hover {
-        color: ${({ color }) => th.color(`${color}_hover`)};
-      }
-      &:active {
-        color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        color: disabled;
-      }
-    `
-  }
-})
+    }
+  })
+}
 
 const StyledIcon = styled(Icon)`
   ${colorVariants}
@@ -120,13 +93,64 @@ const Base = styled.button`
   min-height: 40px;
   ${layout}
   ${space}
-  ${flexboxes}
-  ${colorVariants}
+  ${flexbox}
+  ${props => colorVariants(props)}
   &:disabled {
     cursor: initial;
   }
   &:focus {
     outline: none;
+  }
+  &:hover {
+    ${props =>
+      props.variant === 'filled' &&
+      css`
+        background-color: ${`${props.color}_hover`};
+      `}
+    ${props =>
+      props.variant !== 'text' &&
+      css`
+        border-color: ${`${props.color}_hover`};
+      `}
+    ${props =>
+      (props.variant === 'outlined' || props.variant === 'text') &&
+      css`
+        color: ${`${props.color}_hover`};
+      `}
+  }
+  &:active {
+    ${props =>
+      props.variant === 'filled' &&
+      css`
+        background-color: ${`${props.color}_active`};
+      `}
+    ${props =>
+      props.variant !== 'text' &&
+      css`
+        border-color: ${`${props.color}_active`};
+      `}
+    ${props =>
+      (props.variant === 'outlined' || props.variant === 'text') &&
+      css`
+        color: ${`${props.color}_active`};
+      `}
+  }
+  &:disabled {
+    background-color: disabled;
+    border-color: disabled;
+    color: white;
+  }
+  ${StyledIcon} {
+    /* fill: ${props.color};
+    &:hover {
+      fill: ${`${props.color}_hover`};
+    }
+    &:active {
+      fill: ${`${props.color}_active`};
+    }
+    &:disabled {
+      fill: disabled;
+    } */
   }
 `
 
