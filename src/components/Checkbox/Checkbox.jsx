@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, down, typography } from '@xstyled/styled-components'
+import styled from 'styled-components'
+import { typography } from 'styled-system'
 
 import { Typography } from '../'
 import { Flex } from '../Grid'
@@ -46,35 +47,34 @@ Checkbox.propTypes = {
 const CheckedIcon = styled(Icon)`
   display: none;
 `
-const UncheckedIcon = styled(Icon)`
+const UncheckedIcon = styled(Icon)(
+  ({ theme: { colors } }) => `
   & path {
-    fill: gray.700;
+    fill: ${colors.gray['700']};
   }
 `
+)
 
-const LabelContainer = styled(Flex)`
+const LabelContainer = styled(Flex)(
+  ({ theme: { colors, breakpoints } }) => `
   display: inline-flex;
   vertical-align: top;
   position: relative;
   user-select: none;
-  color: gray.800;
+  color: ${colors.gray['800']};
   min-height: 24px;
 
-  ${down(
-    'sm',
-    css`
-      display: flex;
-    `
-  )}
+  @media (max-width: ${breakpoints.sm}px) {
+    display: flex;
+  }
 
-  & >
-    input:checked:enabled
-    ~ p {
-    color: gray.900;
+  &:checked:enabled ~ p {
+    color: ${colors.gray['900']};
     ${typography}
   }
   ${typography}
 `
+)
 
 const Input = styled.input`
   opacity: 0;
@@ -100,7 +100,7 @@ const Input = styled.input`
   }
 
   &:disabled ~ svg path {
-    fill: gray.400;
+    fill: ${({ theme }) => theme.colors.gray['400']};
   }
 
   &:disabled ~ p {
