@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
-// import styled, { css } from '@xstyled/styled-components'
-// import { space, layout, variant, th, flexboxes } from '@xstyled/system'
+
 import PropTypes from 'prop-types'
 
 import styled, { css } from 'styled-components'
@@ -47,34 +46,19 @@ const colorVariants = props => {
     prop: 'variant',
     variants: {
       filled: {
-        backgroundColor: `${({ colors }) => {
-          console.log(colors[`${props.color}`])
-          return `${colors[`${props.color}`]}`
-        }}`,
-        borderColor: `${({ colors }) => {
-          console.log(colors[`${props.color}`])
-          return `${colors[`${props.color}`]}`
-        }}`,
+        backgroundColor: `${props.theme.colors[`${props.color}`]}`,
+        borderColor: `${props.theme.colors[`${props.color}`]}`,
         color: 'white'
       },
       outlined: {
         backgroundColor: 'transparent',
-        borderColor: `${({ colors }) => {
-          console.log(colors[`${props.color}`])
-          return `${colors[`${props.color}`]}`
-        }}`,
-        color: `${({ colors }) => {
-          console.log(colors[`${props.color}`])
-          return `${colors[`${props.color}`]}`
-        }}`
+        borderColor: `${props.theme.colors[`${props.color}`]}`,
+        color: `${props.theme.colors[`${props.color}`]}`
       },
       text: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
-        color: `${({ colors }) => {
-          console.log(colors[`${props.color}`])
-          return `${colors[`${props.color}`]}`
-        }}`
+        color: `${props.theme.colors[`${props.color}`]}`
       }
     }
   })
@@ -84,75 +68,83 @@ const StyledIcon = styled(Icon)`
   ${colorVariants}
 `
 
-const Base = styled.button`
-  cursor: pointer;
-  padding: 2;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 2;
-  min-height: 40px;
-  ${layout}
-  ${space}
-  ${flexbox}
-  ${props => colorVariants(props)}
-  &:disabled {
-    cursor: initial;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    ${props =>
-      props.variant === 'filled' &&
-      css`
-        background-color: ${`${props.color}_hover`};
-      `}
-    ${props =>
-      props.variant !== 'text' &&
-      css`
-        border-color: ${`${props.color}_hover`};
-      `}
-    ${props =>
-      (props.variant === 'outlined' || props.variant === 'text') &&
-      css`
-        color: ${`${props.color}_hover`};
-      `}
-  }
-  &:active {
-    ${props =>
-      props.variant === 'filled' &&
-      css`
-        background-color: ${`${props.color}_active`};
-      `}
-    ${props =>
-      props.variant !== 'text' &&
-      css`
-        border-color: ${`${props.color}_active`};
-      `}
-    ${props =>
-      (props.variant === 'outlined' || props.variant === 'text') &&
-      css`
-        color: ${`${props.color}_active`};
-      `}
-  }
-  &:disabled {
-    background-color: disabled;
-    border-color: disabled;
-    color: white;
-  }
-  ${StyledIcon} {
-    /* fill: ${props.color};
+const Base = styled.button(
+  props => css`
+    cursor: pointer;
+    padding: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    min-height: 40px;
+    ${layout}
+    ${space}
+    ${flexbox}
+    ${colorVariants(props)}
+    &:disabled {
+      cursor: initial;
+    }
+    &:focus {
+      outline: none;
+    }
     &:hover {
-      fill: ${`${props.color}_hover`};
+      ${props.variant === 'filled' &&
+      css`
+        background-color: ${props.theme.colors[`${props.color}_hover`]};
+      `}
+      ${props.variant !== 'text' &&
+      css`
+        border-color: ${props.theme.colors[`${props.color}_hover`]};
+      `}
+      ${(props.variant === 'outlined' || props.variant === 'text') &&
+      css`
+        color: ${props.theme.colors[`${props.color}_hover`]};
+      `}
     }
     &:active {
-      fill: ${`${props.color}_active`};
+      ${props.variant === 'filled' &&
+      css`
+        background-color: ${props.theme.colors[`${props.color}_active`]};
+      `}
+      ${props.variant !== 'text' &&
+      css`
+        border-color: ${props.theme.colors[`${props.color}_active`]};
+      `}
+      ${(props.variant === 'outlined' || props.variant === 'text') &&
+      css`
+        color: ${props.theme.colors[`${props.color}_active`]};
+      `}
     }
     &:disabled {
-      fill: disabled;
-    } */
-  }
-`
+      ${props.variant === 'filled' &&
+      css`
+        background-color: ${props.theme.colors.gray['500']};
+        border-color: ${props.theme.colors.gray['500']};
+        color: white;
+      `}
+      ${props.variant === 'outlined' &&
+      css`
+        border-color: ${props.theme.colors.gray['500']};
+        color: ${props.theme.colors.gray['500']};
+      `}
+      ${props.variant === 'text' &&
+      css`
+        color: ${props.theme.colors.gray['500']};
+      `}
+    }
+    ${StyledIcon} {
+      fill: ${props.theme.colors[`${props.color}`]};
+      &:hover {
+        fill: ${props.theme.colors[`${props.color}_hover`]};
+      }
+      &:active {
+        fill: ${props.theme.colors[`${props.color}_active`]};
+      }
+      &:disabled {
+        fill: disabled;
+      }
+    }
+  `
+)
 
 const Container = styled(Flex)`
   justify-content: center;
