@@ -1,9 +1,8 @@
 import React, { forwardRef } from 'react'
-
-import PropTypes from 'prop-types'
-
 import styled, { css } from 'styled-components'
 import { layout, space, flexbox, variant } from 'styled-system'
+
+import PropTypes from 'prop-types'
 
 import { Typography, Flex } from '../'
 import { Icon } from '../Iconography'
@@ -41,24 +40,58 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
   </Base>
 ))
 
-const colorVariants = props => {
+const colorVariants = ({ theme: { colors }, color }) => {
   return variant({
     prop: 'variant',
     variants: {
       filled: {
-        backgroundColor: `${props.theme.colors[`${props.color}`]}`,
-        borderColor: `${props.theme.colors[`${props.color}`]}`,
-        color: 'white'
+        backgroundColor: `${colors[`${color}`]}`,
+        borderColor: `${colors[`${color}`]}`,
+        color: 'white',
+        '&:hover': {
+          backgroundColor: `${colors[`${color}_hover`]}`,
+          borderColor: `${colors[`${color}_hover`]}`
+        },
+        '&:active': {
+          backgroundColor: `${colors[`${color}_active`]}`,
+          borderColor: `${colors[`${color}_active`]}`
+        },
+        '&:disabled': {
+          backgroundColor: `${colors.gray['500']}`,
+          borderColor: `${colors.gray['500']}`,
+          color: `${colors.white}`
+        }
       },
       outlined: {
         backgroundColor: 'transparent',
-        borderColor: `${props.theme.colors[`${props.color}`]}`,
-        color: `${props.theme.colors[`${props.color}`]}`
+        borderColor: `${colors[`${color}`]}`,
+        color: `${colors[`${color}`]}`,
+        '&:hover': {
+          borderColor: `${colors[`${color}_hover`]}`,
+          color: `${colors[`${color}_hover`]}`
+        },
+        '&:active': {
+          borderColor: `${colors[`${color}_active`]}`,
+          color: `${colors[`${color}_active`]}`
+        },
+        '&:disabled': {
+          borderColor: `${colors.gray['500']}`,
+          color: `${colors.gray['500']}`
+        }
       },
       text: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
-        color: `${props.theme.colors[`${props.color}`]}`
+        color: `${colors[`${color}`]}`,
+        '&:hover': {
+          color: `${colors[`${color}_hover`]}`
+        },
+        '&:active': {
+          color: `${colors[`${color}_active`]}`
+        },
+        '&:disabled': {
+          color: `${colors.gray['500']}`
+        }
       }
     }
   })
@@ -85,51 +118,6 @@ const Base = styled.button(
     }
     &:focus {
       outline: none;
-    }
-    &:hover {
-      ${props.variant === 'filled' &&
-      css`
-        background-color: ${props.theme.colors[`${props.color}_hover`]};
-      `}
-      ${props.variant !== 'text' &&
-      css`
-        border-color: ${props.theme.colors[`${props.color}_hover`]};
-      `}
-      ${(props.variant === 'outlined' || props.variant === 'text') &&
-      css`
-        color: ${props.theme.colors[`${props.color}_hover`]};
-      `}
-    }
-    &:active {
-      ${props.variant === 'filled' &&
-      css`
-        background-color: ${props.theme.colors[`${props.color}_active`]};
-      `}
-      ${props.variant !== 'text' &&
-      css`
-        border-color: ${props.theme.colors[`${props.color}_active`]};
-      `}
-      ${(props.variant === 'outlined' || props.variant === 'text') &&
-      css`
-        color: ${props.theme.colors[`${props.color}_active`]};
-      `}
-    }
-    &:disabled {
-      ${props.variant === 'filled' &&
-      css`
-        background-color: ${props.theme.colors.gray['500']};
-        border-color: ${props.theme.colors.gray['500']};
-        color: white;
-      `}
-      ${props.variant === 'outlined' &&
-      css`
-        border-color: ${props.theme.colors.gray['500']};
-        color: ${props.theme.colors.gray['500']};
-      `}
-      ${props.variant === 'text' &&
-      css`
-        color: ${props.theme.colors.gray['500']};
-      `}
     }
     ${StyledIcon} {
       fill: ${props.theme.colors[`${props.color}`]};
