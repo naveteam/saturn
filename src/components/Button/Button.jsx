@@ -40,13 +40,13 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
   </Base>
 ))
 
-const colorVariants = ({ theme: { colors }, color }) => {
-  return variant({
+const colorVariants = ({ theme: { colors }, color }) =>
+  variant({
     prop: 'variant',
     variants: {
       filled: {
-        backgroundColor: `${colors[`${color}`]}`,
-        borderColor: `${colors[`${color}`]}`,
+        backgroundColor: `${colors[color]}`,
+        borderColor: `${colors[color]}`,
         color: 'white',
         '&:hover': {
           backgroundColor: `${colors[`${color}_hover`]}`,
@@ -64,8 +64,8 @@ const colorVariants = ({ theme: { colors }, color }) => {
       },
       outlined: {
         backgroundColor: 'transparent',
-        borderColor: `${colors[`${color}`]}`,
-        color: `${colors[`${color}`]}`,
+        borderColor: `${colors[color]}`,
+        color: `${colors[color]}`,
         '&:hover': {
           borderColor: `${colors[`${color}_hover`]}`,
           color: `${colors[`${color}_hover`]}`
@@ -82,7 +82,7 @@ const colorVariants = ({ theme: { colors }, color }) => {
       text: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
-        color: `${colors[`${color}`]}`,
+        color: `${colors[color]}`,
         '&:hover': {
           color: `${colors[`${color}_hover`]}`
         },
@@ -95,7 +95,6 @@ const colorVariants = ({ theme: { colors }, color }) => {
       }
     }
   })
-}
 
 const StyledIcon = styled(Icon)`
   ${colorVariants}
@@ -109,10 +108,6 @@ const Base = styled.button(
     border-style: solid;
     border-radius: 4px;
     min-height: 40px;
-    ${layout}
-    ${space}
-    ${flexbox}
-    ${colorVariants(props)}
     &:disabled {
       cursor: initial;
     }
@@ -131,6 +126,10 @@ const Base = styled.button(
         fill: disabled;
       }
     }
+    ${layout}
+    ${space}
+    ${flexbox}
+    ${colorVariants(props)}
   `
 )
 
