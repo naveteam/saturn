@@ -45,8 +45,8 @@ const colorVariants = ({ theme: { colors }, color }) =>
     prop: 'variant',
     variants: {
       filled: {
-        backgroundColor: `${colors[color]}`,
-        borderColor: `${colors[color]}`,
+        backgroundColor: colors[color],
+        borderColor: colors[color],
         color: 'white',
         '&:hover': {
           backgroundColor: `${colors[`${color}_hover`]}`,
@@ -57,15 +57,15 @@ const colorVariants = ({ theme: { colors }, color }) =>
           borderColor: `${colors[`${color}_active`]}`
         },
         '&:disabled': {
-          backgroundColor: `${colors.gray['500']}`,
-          borderColor: `${colors.gray['500']}`,
-          color: `${colors.white}`
+          backgroundColor: colors.gray['500'],
+          borderColor: colors.gray['500'],
+          color: colors.white
         }
       },
       outlined: {
         backgroundColor: 'transparent',
-        borderColor: `${colors[color]}`,
-        color: `${colors[color]}`,
+        borderColor: colors[color],
+        color: colors[color],
         '&:hover': {
           borderColor: `${colors[`${color}_hover`]}`,
           color: `${colors[`${color}_hover`]}`
@@ -75,14 +75,14 @@ const colorVariants = ({ theme: { colors }, color }) =>
           color: `${colors[`${color}_active`]}`
         },
         '&:disabled': {
-          borderColor: `${colors.gray['500']}`,
-          color: `${colors.gray['500']}`
+          borderColor: colors.gray['500'],
+          color: colors.gray['500']
         }
       },
       text: {
         backgroundColor: 'transparent',
         borderColor: 'transparent',
-        color: `${colors[color]}`,
+        color: colors[color],
         '&:hover': {
           color: `${colors[`${color}_hover`]}`
         },
@@ -90,7 +90,7 @@ const colorVariants = ({ theme: { colors }, color }) =>
           color: `${colors[`${color}_active`]}`
         },
         '&:disabled': {
-          color: `${colors.gray['500']}`
+          color: colors.gray['500']
         }
       }
     }
@@ -109,7 +109,7 @@ const Base = styled.button(
     border-radius: 4px;
     min-height: 40px;
     &:disabled {
-      cursor: initial;
+      cursor: not-allowed;
     }
     &:focus {
       outline: none;
