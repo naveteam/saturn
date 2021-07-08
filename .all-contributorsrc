@@ -242,6 +242,17 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "Carrilhos",
+      "name": "Gabriel Oliveira Carrilhos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48035917?v=4",
+      "profile": "https://github.com/Carrilhos",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
