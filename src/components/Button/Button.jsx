@@ -49,12 +49,12 @@ const colorVariants = ({ theme: { colors }, color }) =>
         borderColor: colors[color],
         color: 'white',
         '&:hover': {
-          backgroundColor: `${colors[`${color}_hover`]}`,
-          borderColor: `${colors[`${color}_hover`]}`
+          backgroundColor: colors[`${color}_hover`],
+          borderColor: colors[`${color}_hover`]
         },
         '&:active': {
-          backgroundColor: `${colors[`${color}_active`]}`,
-          borderColor: `${colors[`${color}_active`]}`
+          backgroundColor: colors[`${color}_active`],
+          borderColor: colors[`${color}_active`]
         },
         '&:disabled': {
           backgroundColor: colors.gray['500'],
@@ -67,12 +67,12 @@ const colorVariants = ({ theme: { colors }, color }) =>
         borderColor: colors[color],
         color: colors[color],
         '&:hover': {
-          borderColor: `${colors[`${color}_hover`]}`,
-          color: `${colors[`${color}_hover`]}`
+          borderColor: colors[`${color}_hover`],
+          color: colors[`${color}_hover`]
         },
         '&:active': {
-          borderColor: `${colors[`${color}_active`]}`,
-          color: `${colors[`${color}_active`]}`
+          borderColor: colors[`${color}_active`],
+          color: colors[`${color}_active`]
         },
         '&:disabled': {
           borderColor: colors.gray['500'],
@@ -84,10 +84,10 @@ const colorVariants = ({ theme: { colors }, color }) =>
         borderColor: 'transparent',
         color: colors[color],
         '&:hover': {
-          color: `${colors[`${color}_hover`]}`
+          color: colors[`${color}_hover`]
         },
         '&:active': {
-          color: `${colors[`${color}_active`]}`
+          color: colors[`${color}_active`]
         },
         '&:disabled': {
           color: colors.gray['500']
