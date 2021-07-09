@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { space, layout, variant, th, flexboxes } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import { layout, space, flexbox, variant } from 'styled-system'
+
 import PropTypes from 'prop-types'
 
 import { Typography, Flex } from '../'
@@ -39,96 +40,98 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
   </Base>
 ))
 
-const colorVariants = variant({
-  default: 'filled',
-  key: 'button',
-  variants: {
-    filled: css`
-      background-color: ${({ color }) => th.color(color)};
-      border-color: ${({ color }) => th.color(color)};
-      color: white;
-      &:hover {
-        background-color: ${({ color }) => th.color(`${color}_hover`)};
-        border-color: ${({ color }) => th.color(`${color}_hover`)};
-      }
-      &:active {
-        background-color: ${({ color }) => th.color(`${color}_active`)};
-        border-color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        background-color: disabled;
-        border-color: disabled;
-        color: white;
-      }
-    `,
-    outlined: css`
-      ${StyledIcon} {
-        fill: ${({ color }) => th.color(color)};
-        &:hover {
-          fill: ${({ color }) => th.color(`${color}_hover`)};
+const colorVariants = ({ theme: { colors }, color }) =>
+  variant({
+    prop: 'variant',
+    variants: {
+      filled: {
+        backgroundColor: colors[color],
+        borderColor: colors[color],
+        color: 'white',
+        '&:hover': {
+          backgroundColor: colors[`${color}_hover`],
+          borderColor: colors[`${color}_hover`]
+        },
+        '&:active': {
+          backgroundColor: colors[`${color}_active`],
+          borderColor: colors[`${color}_active`]
+        },
+        '&:disabled': {
+          backgroundColor: colors.gray['500'],
+          borderColor: colors.gray['500'],
+          color: colors.white
         }
-        &:active {
-          fill: ${({ color }) => th.color(`${color}_active`)};
+      },
+      outlined: {
+        backgroundColor: 'transparent',
+        borderColor: colors[color],
+        color: colors[color],
+        '&:hover': {
+          borderColor: colors[`${color}_hover`],
+          color: colors[`${color}_hover`]
+        },
+        '&:active': {
+          borderColor: colors[`${color}_active`],
+          color: colors[`${color}_active`]
+        },
+        '&:disabled': {
+          borderColor: colors.gray['500'],
+          color: colors.gray['500']
         }
-        &:disabled {
-          fill: disabled;
+      },
+      text: {
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        color: colors[color],
+        '&:hover': {
+          color: colors[`${color}_hover`]
+        },
+        '&:active': {
+          color: colors[`${color}_active`]
+        },
+        '&:disabled': {
+          color: colors.gray['500']
         }
       }
-      background-color: transparent;
-      border-color: ${({ color }) => th.color(color)};
-      color: ${({ color }) => th.color(color)};
-      &:hover {
-        border-color: ${({ color }) => th.color(`${color}_hover`)};
-        color: ${({ color }) => th.color(`${color}_hover`)};
-      }
-      &:active {
-        border-color: ${({ color }) => th.color(`${color}_active`)};
-        color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        border-color: disabled;
-        color: disabled;
-      }
-    `,
-    text: css`
-      background-color: transparent;
-      border-color: transparent;
-      color: ${({ color }) => th.color(color)};
-      &:hover {
-        color: ${({ color }) => th.color(`${color}_hover`)};
-      }
-      &:active {
-        color: ${({ color }) => th.color(`${color}_active`)};
-      }
-      &:disabled {
-        color: disabled;
-      }
-    `
-  }
-})
+    }
+  })
 
 const StyledIcon = styled(Icon)`
   ${colorVariants}
 `
 
-const Base = styled.button`
-  cursor: pointer;
-  padding: 2;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 2;
-  min-height: 40px;
-  ${layout}
-  ${space}
-  ${flexboxes}
-  ${colorVariants}
-  &:disabled {
-    cursor: initial;
-  }
-  &:focus {
-    outline: none;
-  }
-`
+const Base = styled.button(
+  props => css`
+    cursor: pointer;
+    padding: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    min-height: 40px;
+    &:disabled {
+      cursor: not-allowed;
+    }
+    &:focus {
+      outline: none;
+    }
+    ${StyledIcon} {
+      fill: ${props.theme.colors[`${props.color}`]};
+      &:hover {
+        fill: ${props.theme.colors[`${props.color}_hover`]};
+      }
+      &:active {
+        fill: ${props.theme.colors[`${props.color}_active`]};
+      }
+      &:disabled {
+        fill: disabled;
+      }
+    }
+    ${layout}
+    ${space}
+    ${flexbox}
+    ${colorVariants(props)}
+  `
+)
 
 const Container = styled(Flex)`
   justify-content: center;
