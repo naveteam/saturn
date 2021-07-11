@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Icon, Flex, Box, Caption } from '../components'
-import { ThemeProvider } from '../theme'
+import { Icon, Flex, Box, Caption, SaturnProvider } from '../components'
 
 export const iconNames = [
   'accessible',
@@ -206,16 +205,15 @@ export const iconNames = [
         options: iconNames
       }
     },
-    color: { control: 'color', options: iconNames }
+    color: { control: 'color', options: iconNames },
+    size: { control : 'text' },
   }}
 />
 
 export const IconBase = args => (
-  <ThemeProvider>
-    <Icon {...args} size='lg' />
-    <Icon {...args} size='md' />
-    <Icon {...args} size='sm' />
-  </ThemeProvider>
+  <SaturnProvider>
+    <Icon {...args} />
+  </SaturnProvider>
 )
 
 # Icon
@@ -224,7 +222,7 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
 
 <Story
   name='Base'
-  args={{ icon: 'face', size: 'lg' }}
+  args={{ icon: 'face', variantSize: 'lg' }}
   parameters={{
     design: {
       type: 'figma',
@@ -235,6 +233,60 @@ O componente de `Icon` é responsável por apresentar um dos ícones definidos e
   {IconBase.bind({})}
 </Story>
 
+# 📐 Controlando tamanho de icone
+
+## `variantSize`
+Através da prop `variantSize`, você pode controlar o tamanho do icone com base nos presets `xsm`, `sm`, `md`, `lg`
+
+<Canvas>
+  <Story
+    name='Prop variantSize'
+  >
+    <SaturnProvider>
+      <Icon icon="face" variantSize='lg' />
+      <Icon icon="face" variantSize='md' />
+      <Icon icon="face" variantSize='sm' />
+      <Icon icon="face" variantSize='xsm' />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+## `size`
+Caso você queira ter um controle mais flexível do tamanho dos ícones, a prop `size` é indicada para isso. Ela suporta qualquer unidade do css, basicamente irá atribuir `width` e `height` com o valor passado.
+
+<Canvas>
+  <Story
+    name='Prop size'
+  >
+    <SaturnProvider>
+      <Icon icon="face" size={50} />
+      <Icon icon="face" size='25px' />
+      <Icon icon="face" size='2%' />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+
+
+### *A propriedade size tem precedencia em relaçao a variantSize*
+
+---
+# 🌈 Cores
+A cor dos icones é controladada pela prop `color`. A mesma suporta tanto cores no formato do tema (ex.: pink.500) quanto em formatos padrões do css (ex.: #FA0000)
+
+<Canvas>
+  <Story
+    name='Prop color'
+  >
+    <SaturnProvider>
+      <Icon icon="face" color="pink.200" />
+      <Icon icon="face" color="#FA0101" />
+      <Icon icon="face" color="blue" />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+---
 # All Icons
 
 Abaixo segue a lista com todos os ícones disponíveis no Design System até o momento.
@@ -249,7 +301,7 @@ Abaixo segue a lista com todos os ícones disponíveis no Design System até o m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex flexWrap='wrap'>
         {iconNames.map(iconName => (
           <Flex width={1 / 8} alignItems='center' flexDirection='column' margin='10px 0'>
@@ -258,6 +310,6 @@ Abaixo segue a lista com todos os ícones disponíveis no Design System até o m
           </Flex>
         ))}
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
