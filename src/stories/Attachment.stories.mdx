@@ -1,8 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { useState } from 'react'
 
-import { Attachment, Flex, Typography } from '../components'
-import { ThemeProvider } from '../theme'
+import { Attachment, Flex, Typography, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Attachment' component={Attachment} />
 
@@ -24,10 +23,10 @@ O component de Attachment sinaliza arquivos que passaram por um processo de uplo
       const [uploadedFile, setUploadedFile] = useState()
       const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
-        <ThemeProvider>
+        <SaturnProvider>
           <input type='file' onChange={e => handleChange(e)} />
           <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
-        </ThemeProvider>
+        </SaturnProvider>
       )
     }}
   </Story>
@@ -51,10 +50,10 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       const [uploadedFile, setUploadedFile] = useState()
       const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
-        <ThemeProvider>
+        <SaturnProvider>
           <input type='file' onChange={e => handleChange(e)} />
           <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
-        </ThemeProvider>
+        </SaturnProvider>
       )
     }}
   </Story>
@@ -74,14 +73,14 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Attachment
         name='download.jpg'
         variant='download'
         onDownload={() => alert('download')}
         link='https:// www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
       />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -102,7 +101,7 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
       const downloadMockFile = { name: 'download_mocked_file.jpg', size: '531531' }
       const handleChange = event => setUploadedFile(event.target?.files[0])
       return (
-        <ThemeProvider>
+        <SaturnProvider>
           <Typography fontWeight='600' mb={10}>
             Download
           </Typography>
@@ -144,7 +143,7 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
           <input type='file' onChange={e => handleChange(e)} />
           <Attachment my={10} file={uploadedFile} />
           <Attachment mb={10} file={uploadedFile} error={true} />
-        </ThemeProvider>
+        </SaturnProvider>
       )
     }}
   </Story>
