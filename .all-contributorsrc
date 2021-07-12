@@ -253,6 +253,17 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "ghblue",
+      "name": "Gabriel Ribeiro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45475094?v=4",
+      "profile": "https://www.linkedin.com/in/gabriel-ribeiro-8737021a6/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
