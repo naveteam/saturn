@@ -1,24 +1,26 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Typography, Heading, Subtitle, Paragraph, Caption } from '../components'
-import { ThemeProvider } from '../theme'
+import { Typography, Heading, Subtitle, Paragraph, Caption, SaturnProvider } from '../components'
 
-<Meta title="Data Display/Typography" />
+<Meta title='Data Display/Typography' />
 
 # Typography
 
 É o componente base para a criação de todos os outros tipos de tipografia. Sua função é prover um componente flexível e seguindo a definição do [styled-system](https://styled-system.com/api). Pode ser utilizado em situações específicas onde nenhum dos componentes de tipografia previamente desenvolvidos atendam os requisitos necessários.
 
 <Canvas>
-  <Story name="Typography" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
-    }
-  }}>
-    <ThemeProvider>
+  <Story
+    name='Typography'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+      }
+    }}
+  >
+    <SaturnProvider>
       <Typography>Base Typography component</Typography>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -29,18 +31,21 @@ import { ThemeProvider } from '../theme'
 O componente de Heading é uma extensão do componente [Typography](#typography), onde as props `fontSize` e `as` são definidas baseadas no valor de `variant`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as ArgsTable do Typography também são válidas no componente de Heading.
 
 <Canvas>
-  <Story name="Headings" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
-    }
-  }}>
-    <ThemeProvider>
+  <Story
+    name='Headings'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+      }
+    }}
+  >
+    <SaturnProvider>
       <Heading variant='h1'>Heading 1</Heading>
       <Heading variant='h2'>Heading 2</Heading>
       <Heading variant='h3'>Heading 3</Heading>
       <Heading variant='h4'>Heading 4</Heading>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -51,40 +56,43 @@ O componente de Heading é uma extensão do componente [Typography](#typography)
 O componente de Subtitle é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Canvas>
-  <Story name="Subtitle" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
-    }
-  }}>
-    <ThemeProvider>
+  <Story
+    name='Subtitle'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+      }
+    }}
+  >
+    <SaturnProvider>
       <Subtitle>Subtitle</Subtitle>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
-
 <ArgsTable of={Subtitle} />
-
 
 # Paragraph
 
 O componente de Paragraph é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Canvas>
-  <Story name="Paragraph" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
-    }
-  }}>
-    <ThemeProvider>
+  <Story
+    name='Paragraph'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+      }
+    }}
+  >
+    <SaturnProvider>
       <Paragraph>Paragraph (md)</Paragraph>
       <Paragraph variant='sm'>Paragraph (sm)</Paragraph>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
-
 
 <ArgsTable of={Paragraph} />
 
@@ -93,19 +101,20 @@ O componente de Paragraph é uma extensão do componente [Typography](#typograph
 O componente de Caption é uma extensão do componente [Typography](#typography), com valores definidos para `as`, `fontSize` e `fontWeight`. Todos os demais parâmetros passados para esse componente são transmitidos para o componente Typography, portanto todas as props do Typography também são válidas no componente de Heading.
 
 <Canvas>
-  <Story name="Caption" parameters={{
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
-    }
-  }}>
-    <ThemeProvider>
+  <Story
+    name='Caption'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=100%3A2'
+      }
+    }}
+  >
+    <SaturnProvider>
       <Caption>Caption (md)</Caption>
       <Caption variant='sm'>Caption (sm)</Caption>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
-
 <ArgsTable of={Paragraph} />
-

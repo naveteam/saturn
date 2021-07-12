@@ -1,6 +1,6 @@
 import React from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import styled from 'styled-components'
+import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import Typography from './Typography'
@@ -12,14 +12,14 @@ const sizeVariant = variant({
   key: 'caption',
   prop: 'variant',
   variants: {
-    md: css`
-      font-size: 1;
-      line-height: 1;
-    `,
-    sm: css`
-      font-size: 0;
-      line-height: 0;
-    `
+    md: {
+      fontSize: 1,
+      lineHeight: 1
+    },
+    sm: {
+      fontSize: 0,
+      lineHeight: 0
+    }
   }
 })
 
