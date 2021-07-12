@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { Typography, Heading, Subtitle, Paragraph, Caption, SaturnProvider } from '../components'
-import { ThemeProvider } from '../theme'
 
 <Meta title='Data Display/Typography' />
 
@@ -66,9 +65,9 @@ O componente de Subtitle é uma extensão do componente [Typography](#typography
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Subtitle>Subtitle</Subtitle>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -111,10 +110,10 @@ O componente de Caption é uma extensão do componente [Typography](#typography)
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Caption>Caption (md)</Caption>
       <Caption variant='sm'>Caption (sm)</Caption>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
