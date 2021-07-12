@@ -52,6 +52,7 @@
     "@storybook/react": "^6.0.21",
     "@storybook/storybook-deployer": "^2.8.6",
     "@storybook/theming": "^6.0.21",
+    "@styled-system/prop-types": "^5.1.5",
     "@xstyled/prop-types": "^1.17.1",
     "@xstyled/styled-components": "^1.17.1",
     "@xstyled/system": "^1.17.1",
