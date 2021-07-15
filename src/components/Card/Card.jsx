@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
-import styled from '@xstyled/styled-components'
+import styled from 'styled-components'
+import { space, layout} from 'styled-system'
 
 import { Box, Flex, Avatar, Typography, Heading, Paragraph } from '../'
 
@@ -54,10 +55,10 @@ const Card = ({ media, avatar, title, headerPosition, avatarPosition, subtitle, 
 }
 
 const CardContainer = styled(Flex)`
-  width: 100%;
-  height: auto;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
+  ${space}
+  ${layout}
 `
 
 const MediaContainer = styled(Flex)`
