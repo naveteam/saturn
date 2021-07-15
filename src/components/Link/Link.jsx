@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
-import { layout, space, typography, color } from '@xstyled/system'
+import styled from 'styled-components'
+import { layout, space, typography, color } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import Typography from './../Typography/Typography'
