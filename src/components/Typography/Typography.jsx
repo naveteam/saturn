@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
-import { space, typography, color } from '@xstyled/system'
+import styled from 'styled-components'
+import { space, typography, color } from 'styled-system'
 import PropTypes from 'prop-types'
 
 const BaseComponent = ({ as, children, ...props }) => React.createElement(as, props, children)
@@ -11,9 +11,9 @@ const StyledBase = styled(BaseComponent)`
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  ${space}
-  ${typography}
-  ${color}
+  ${space};
+  ${typography};
+  ${color};
 `
 
 Typography.defaultProps = {
