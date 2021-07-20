@@ -264,6 +264,17 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "powilliam",
+      "name": "William Porto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55867831?v=4",
+      "profile": "https://github.com/powilliam",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
