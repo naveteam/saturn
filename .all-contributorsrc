@@ -275,6 +275,17 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "Tessmer",
+      "name": "Samanta Tessmer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70981644?v=4",
+      "profile": "http://Tessmer",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
