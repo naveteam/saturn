@@ -110,6 +110,9 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
     <td align="center"><a href="https://github.com/Carrilhos"><img src="https://avatars.githubusercontent.com/u/48035917?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel Oliveira Carrilhos</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=Carrilhos" title="Code">💻</a> <a href="#maintenance-Carrilhos" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3ACarrilhos" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/gabriel-ribeiro-8737021a6/"><img src="https://avatars.githubusercontent.com/u/45475094?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel Ribeiro</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=ghblue" title="Code">💻</a> <a href="#maintenance-ghblue" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Aghblue" title="Reviewed Pull Requests">👀</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/powilliam"><img src="https://avatars.githubusercontent.com/u/55867831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>William Porto</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=powilliam" title="Code">💻</a> <a href="#maintenance-powilliam" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Apowilliam" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
