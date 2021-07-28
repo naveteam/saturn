@@ -50,7 +50,7 @@ const StyledLink = styled.a(
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+    box-shadow: 0 0 0 2px ${colors.blue['50']};
   }
 `
 )
@@ -65,7 +65,7 @@ const Label = styled(Typography)(
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+    box-shadow: 0 0 0 2px ${colors.blue['50']};
   }
 `
 )
