@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
-import { layout, space, typography, color } from '@xstyled/system'
+import styled from 'styled-components'
+import { layout, space, typography, color } from 'styled-system'
 import PropTypes from 'prop-types'
 
-import Typography from './../Typography/Typography'
+import Typography from '../Typography'
 
 const DefaultComponent = ({ children, to, textDecorationLine, color, ...props }) => (
   <StyledLink p={1} href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
@@ -39,34 +39,36 @@ const BaseStyled = styled.div`
   ${color}
 `
 
-const StyledLink = styled.a`
-  text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
+const StyledLink = styled.a(
+  ({ theme: { colors, textDecorationLine } }) => `
+  text-decoration-line: ${textDecorationLine ? textDecorationLine : 'none'};
   border-radius: 4px;
-  ${space}
-  ${color}
+  color: ${colors.blue['500']};
   &:hover {
     text-decoration-line: underline;
-    color: blue.500;
+    color: ${colors.blue['500']};
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+    box-shadow: 0 0 0 2px ${colors.blue['50']};
   }
 `
+)
 
-const Label = styled(Typography)`
-  text-decoration-line: ${({ textDecorationLine }) => (textDecorationLine ? textDecorationLine : 'none')};
+const Label = styled(Typography)(
+  ({ theme: { colors, textDecorationLine } }) => `
+  text-decoration-line: ${textDecorationLine ? textDecorationLine : 'none'};
   border-radius: 4px;
-  ${layout}
   &:hover {
     text-decoration-line: underline;
-    color: blue.500;
+    color: ${colors.blue['500']};
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #4e98ed;
+    box-shadow: 0 0 0 2px ${colors.blue['50']};
   }
 `
+)
 
 Link.defaultProps = {
   component: '',
