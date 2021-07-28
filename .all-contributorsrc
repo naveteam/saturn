@@ -286,6 +286,17 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "ffzanini",
+      "name": "Felipe Frantz Zanini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20977822?v=4",
+      "profile": "https://ffzanini.github.io/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -113,6 +113,7 @@ Obrigado a essas maravilhosas pessoas que contribuíram de alguma maneira para o
   <tr>
     <td align="center"><a href="https://github.com/powilliam"><img src="https://avatars.githubusercontent.com/u/55867831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>William Porto</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=powilliam" title="Code">💻</a> <a href="#maintenance-powilliam" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Apowilliam" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="http://Tessmer"><img src="https://avatars.githubusercontent.com/u/70981644?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Samanta Tessmer</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=Tessmer" title="Code">💻</a> <a href="#maintenance-Tessmer" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3ATessmer" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://ffzanini.github.io/"><img src="https://avatars.githubusercontent.com/u/20977822?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Felipe Frantz Zanini</b></sub></a><br /><a href="https://github.com/naveteam/saturn/commits?author=ffzanini" title="Code">💻</a> <a href="#maintenance-ffzanini" title="Maintenance">🚧</a> <a href="https://github.com/naveteam/saturn/pulls?q=is%3Apr+reviewed-by%3Affzanini" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
