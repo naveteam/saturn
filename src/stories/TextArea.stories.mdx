@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { TextArea } from '../components'
-import { ThemeProvider } from '../theme'
+import { TextArea, SaturnProvider } from '../components'
 
 <Meta title='Data input/TextArea' component={TextArea} />
 
@@ -19,9 +18,9 @@ O componente de `TextArea` é utilizado para que o usuário possa inserir inform
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <TextArea name='base' label='Label' caption='Caption' placeholder='Placeholder' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -39,9 +38,9 @@ Passando a prop de `error` para o `TextArea`, o usuário pode receber um feedbac
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <TextArea name='error' label='Error' placeholder='Error TextField' error caption='Required' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -59,15 +58,9 @@ O `TextArea` pode receber a prop de `disabled`, que desabilita todo o seu uso.
       }
     }}
   >
-    <ThemeProvider>
-      <TextArea
-        name='disabled'
-        label='Disabled'
-        placeholder='Disabled TextField'
-        disabled
-        caption='Disabled'
-      />
-    </ThemeProvider>
+    <SaturnProvider>
+      <TextArea name='disabled' label='Disabled' placeholder='Disabled TextField' disabled caption='Disabled' />
+    </SaturnProvider>
   </Story>
 </Canvas>
 

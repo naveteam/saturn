@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { space, layout} from 'styled-system'
+import { space, layout } from 'styled-system'
 
 import { Box, Flex, Avatar, Typography, Heading, Paragraph } from '../'
 

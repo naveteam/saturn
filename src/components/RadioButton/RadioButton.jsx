@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import styled, { typography } from '@xstyled/styled-components'
+import styled from 'styled-components'
+import { typography } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'

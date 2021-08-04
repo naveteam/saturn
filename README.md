@@ -44,9 +44,9 @@ import { ThemeProvider, TextField } from '@naveteam/saturn'
 
 const App = () => {
   return (
-    <ThemeProvider>
+    <SaturnProvider>
       <TextField name='base' label='Label' message='Message' placeholder='Placeholder' />
-    </ThemeProvider>
+    </SaturnProvider>
   )
 }
 

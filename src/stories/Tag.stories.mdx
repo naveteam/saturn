@@ -1,14 +1,13 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Tag, Flex, Box } from '../components'
-import { ThemeProvider } from '../theme'
+import { Tag, Flex, Box, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Tag' component={Tag} />
 
 export const TagBase = args => (
-  <ThemeProvider>
+  <SaturnProvider>
     <Tag {...args}>Base Tag</Tag>
-  </ThemeProvider>
+  </SaturnProvider>
 )
 
 # Tag
@@ -41,10 +40,10 @@ A `Tag` pode receber a prop `color`. A variant primary tem uma função de mais 
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Tag color='primary'>Primary</Tag>
       <Tag color='secondary'>Secondary</Tag>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -62,9 +61,9 @@ A `Tag` pode receber a prop `close`. Essa prop indicará se a tag deve renderiza
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Tag close>Close</Tag>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -82,7 +81,7 @@ A prop `selected` pode definir se a `Tag` está ou não selecionada. Pode ser de
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Tag color='primary' selected={true}>
         Selected
       </Tag>
@@ -92,7 +91,7 @@ A prop `selected` pode definir se a `Tag` está ou não selecionada. Pode ser de
       <Tag color='primary' selected={'disabled'}>
         Disabled
       </Tag>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

@@ -1,8 +1,7 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
 
+import { Flex, SaturnProvider } from '../components'
 import ProgressBar from '../components/ProgressBar'
-import { ThemeProvider } from '../theme'
-import { Flex } from '../'
 
 <Meta title='Data Input/ProgressBar' component={ProgressBar} />
 
@@ -32,14 +31,14 @@ ProgressBar padrão, com apenas `progress` definido.
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex mb='15px'>
         <ProgressBar progress={50} />
       </Flex>
       <Flex mb='15px'>
         <ProgressBar progress={50} type='withPercent' />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -57,14 +56,14 @@ ProgressBar com a prop `barSize` definida como `small`, em vez do padrão `regul
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex mb='5px'>
         <ProgressBar progress={20} barSize='small' />
       </Flex>
       <Flex mb='5px'>
         <ProgressBar progress={20} barSize='small' type='withPercent' />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -82,7 +81,7 @@ Quando a prop `progress` chega ao número `100`, a ProgressBar se torna verde, i
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex mb='15px'>
         <ProgressBar progress={100} />
       </Flex>
@@ -95,7 +94,7 @@ Quando a prop `progress` chega ao número `100`, a ProgressBar se torna verde, i
       <Flex mb='15px'>
         <ProgressBar progress={100} barSize='small' type='withIcon' />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -113,7 +112,7 @@ Quando a prop `error` é definida como `true`, a barColor se torna vermelha, por
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex mb='15px'>
         <ProgressBar progress={80} error={true} />
       </Flex>
@@ -126,6 +125,6 @@ Quando a prop `error` é definida como `true`, a barColor se torna vermelha, por
       <Flex mb='15px'>
         <ProgressBar progress={80} error={true} barSize='small' type='withIcon' />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>

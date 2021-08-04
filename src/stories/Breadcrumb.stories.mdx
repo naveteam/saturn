@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Breadcrumb, Flex, Box } from '../components'
-import { ThemeProvider } from '../theme'
+import { Breadcrumb, Flex, Box, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Breadcrumb' component={Breadcrumb} />
 
@@ -21,7 +20,7 @@ A variante padrão é `responsive`, ou seja, no desktop conta com sua visualiza�
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Breadcrumb
           path={[
@@ -40,7 +39,7 @@ A variante padrão é `responsive`, ou seja, no desktop conta com sua visualiza�
           ]}
         />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -58,9 +57,9 @@ A variante `condensed` irá sempre apontar para à página anterior, tanto em re
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Breadcrumb variant='condensed' path={[{ label: 'Página anterior', link: '/' }]} />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -78,7 +77,7 @@ A variante `expanded` segue o mesmo caminho da anterior. Porém, nesse caso, ir�
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Breadcrumb
           variant='expanded'
@@ -98,7 +97,7 @@ A variante `expanded` segue o mesmo caminho da anterior. Porém, nesse caso, ir�
           ]}
         />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

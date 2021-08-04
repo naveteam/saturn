@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Tabs, Flex } from '../components'
-import { ThemeProvider } from '../theme'
+import { Tabs, Flex, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Tabs' component={Tabs} />
 
@@ -32,7 +31,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs
           tabs={[
@@ -56,7 +55,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 8 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -72,7 +71,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs
           direction='vertical'
@@ -97,7 +96,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 8 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -113,7 +112,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs
           tabs={[
@@ -129,7 +128,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 4 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -145,7 +144,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs
           direction='vertical'
@@ -162,7 +161,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 4 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -178,7 +177,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}>
           <p> Tab 1 body </p>
@@ -186,7 +185,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 3 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -202,7 +201,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Tabs direction='vertical' tabs={[{ icon: 'menu' }, { icon: 'mail' }, { icon: 'person', disabled: true }]}>
           <p> Tab 1 body </p>
@@ -210,7 +209,7 @@ A visibilidade do conteúdo dessa versão é atualizada ao clicar no ícone de m
           <p> Tab 3 body </p>
         </Tabs>
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
