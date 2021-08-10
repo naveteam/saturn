@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styled, { css, variant } from '@xstyled/styled-components'
+import styled, { css, keyframes } from 'styled-components'
+import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
 
@@ -30,94 +31,104 @@ export const Loader = ({ variant, percentage, showPercentage, size, time, type, 
   )
 }
 
+const rotateAnimation = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+const sizeVariant = variant({
+  prop: 'size',
+  variants: {
+    major: {
+      height: '96px',
+      width: '96px',
+      svg: {
+        height: '96px',
+        width: '96px',
+        circle: {
+          cx: 48,
+          cy: 48,
+          r: 43,
+          strokeWidth: 9.6
+        }
+      }
+    },
+    icon: {
+      height: '20px',
+      width: '20px',
+      margin: '2px',
+      svg: {
+        height: '20px',
+        width: '20px',
+        margin: '2px',
+        circle: {
+          cx: 10,
+          cy: 10,
+          r: 8,
+          strokeWidth: 2
+        }
+      }
+    }
+  }
+})
+
+const typeVariant = ({ time, circleLength }) =>
+  variant({
+    prop: 'type',
+    variants: {
+      determinate: {
+        position: 'relative',
+        span: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)'
+        },
+        'svg circle:nth-child(2)': {
+          transform: 'rotate(-90deg) translate(0, -100%)',
+          transformOrigin: '100% 0'
+        }
+      },
+      indeterminate: {
+        svg: {
+          circle: {
+            strokeDashoffset: circleLength.offsetIndeterminate
+          }
+        }
+      }
+    }
+  })
+
 const LoaderContainer = styled.div`
   display: inline-block;
 
-  svg circle {
-    fill: none;
-    stroke-linecap: round;
-    stroke-dashoffset: ${({ circleLength }) => circleLength.offset};
-  }
+  svg {
+    /* ToDo: Mover animation para variant na v6 do styled-components */
+    ${({ type, time }) =>
+      type === 'indeterminate' &&
+      css`
+        animation: ${rotateAnimation} ${time}s infinite linear;
+      `}
 
-  svg circle {
-    stroke: ${({ theme }) => theme.colors.primary};
-  }
+    circle {
+      fill: none;
+      stroke-linecap: round;
+      stroke-dashoffset: ${({ circleLength }) => circleLength.offset};
+      stroke: ${({ theme }) => theme.colors.primary};
 
-  svg circle:nth-child(1) {
-    opacity: 0.25;
-  }
+      &:nth-child(1) {
+        opacity: 0.25;
+      }
 
-  svg circle:nth-child(2) {
-    stroke-dasharray: ${({ circleLength }) => circleLength.length};
-  }
-
-  ${variant({
-    prop: 'type',
-    variants: {
-      determinate: css`
-        position: relative;
-
-        span {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-        svg circle:nth-child(2) {
-          transform: rotate(-90deg) translate(0, -100%);
-          transform-origin: 100% 0;
-        }
-      `,
-      indeterminate: css`
-        svg {
-          animation: rotate ${({ time }) => time}s infinite linear;
-        }
-        svg circle {
-          stroke-dashoffset: ${({ circleLength }) => circleLength.offsetIndeterminate};
-        }
-
-        @keyframes rotate {
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      `
+      &:nth-child(2) {
+        stroke-dasharray: ${({ circleLength }) => circleLength.length};
+      }
     }
-  })}
+  }
 
-  ${variant({
-    prop: 'size',
-    variants: {
-      major: css`
-        &,
-        svg {
-          height: 96px;
-          width: 96px;
-        }
-        svg circle {
-          cx: 48;
-          cy: 48;
-          r: 43;
-          stroke-width: 9.6;
-        }
-      `,
-      icon: css`
-        &,
-        svg {
-          height: 20px;
-          width: 20px;
-          margin: 2px;
-        }
-
-        svg circle {
-          cx: 10;
-          cy: 10;
-          r: 8;
-          stroke-width: 2;
-        }
-      `
-    }
-  })}
+  ${sizeVariant}
+  ${typeVariant}
 `
 
 Loader.propTypes = {
