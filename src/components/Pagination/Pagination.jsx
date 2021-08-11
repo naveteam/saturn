@@ -1,7 +1,6 @@
 import React, { Fragment, useCallback, useMemo, useEffect, useState } from 'react'
 import { useDebounce } from '@naveteam/prometheus'
-import styled, { css } from '@xstyled/styled-components'
-import { th } from '@xstyled/system'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Button, Icon, Paragraph } from '..'
@@ -95,7 +94,7 @@ const Pagination = ({
         mr={2}
         color='gray.700'
         cursor='pointer'
-        onClick={() => page != 1 && setPage(page - 1)}
+        onClick={() => page !== 1 && setPage(page - 1)}
         icon='chevron-left'
       />
       {variant === 'input' ? (
@@ -144,59 +143,62 @@ const Pagination = ({
         color='gray.700'
         cursor='pointer'
         icon='chevron-right'
-        onClick={() => page != pageSize && setPage(page + 1)}
+        onClick={() => page !== pageSize && setPage(page + 1)}
       />
     </Container>
   )
 }
 
-const Input = styled.input`
-  width: 28px;
-  height: 20px;
-  font-size: ${th.fontSize(1)};
-  font-family: 'Open Sans';
-  padding: 1px;
-  text-align: center;
-  border: 1px solid ${th.color('gray.500')};
-  border-radius: 2px;
-  &:focus {
-    outline: none;
-    border-color: ${th.color('blue.50')};
-    border-width: 2px;
+const Input = styled.input(
+  ({ theme: { colors, fontSizes } }) => css`
+    width: 28px;
+    height: 20px;
+    font-size: ${fontSizes[1]}px;
+    font-family: 'Open Sans';
+    padding: 1px;
+    text-align: center;
+    border: 1px solid ${colors.gray['500']};
+    border-radius: 2px;
+    &:focus {
+      outline: none;
+      border-color: ${colors.blue['50']};
+      border-width: 2px;
+      padding: 0;
+    }
+  `
+)
+
+const ButtonPage = styled(Button)(
+  ({ selected, hover, theme: { colors, fontSizes, lineHeights } }) => css`
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+    min-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${colors.gray['800']};
     padding: 0;
-  }
-`
 
-const ButtonPage = styled(Button)`
-  margin-right: 4px;
-  width: 24px;
-  height: 24px;
-  min-height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: ${th.color('gray.800')};
-  padding: 0;
+    p {
+      font-size: ${fontSizes[2]}px;
+      line-height: ${lineHeights[1]};
+    }
 
-  p {
-    font-size: ${th.fontSize(2)};
-    line-height: ${th.lineHeight(1)};
-  }
-
-  ${props =>
-    props.selected &&
+    ${selected &&
     css`
       color: white;
     `}
 
-  ${props =>
-    props.hover &&
+    ${hover &&
     css`
       &:hover {
         background-color: rgba(78, 152, 237, 0.15);
       }
     `}
-`
+  `
+)
+
 Pagination.defaultProps = {
   page: 1,
   minPagesToShowDots: 7,
