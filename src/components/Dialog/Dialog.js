@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import styled, { css, keyframes } from '@xstyled/styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
