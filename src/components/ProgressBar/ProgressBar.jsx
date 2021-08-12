@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
-import styled, { css } from '@xstyled/styled-components'
+import styled, { css } from 'styled-components'
 
 import { Flex, Caption, Icon } from '../'
 
@@ -55,11 +55,11 @@ const ProgressBar = ({ barSize, type, successColor, loadingColor, errorColor, pr
 }
 
 const BackgroundBar = styled(Flex)(
-  ({ barSize, theme }) =>
+  ({ barSize, theme: { colors } }) =>
     css`
       width: 282px;
       height: ${barSize === 'small' ? '4px' : '8px'};
-      background: ${theme.colors.gray['200']};
+      background: ${colors.gray['200']};
       border-radius: 4px;
       margin-right: 5px;
     `
