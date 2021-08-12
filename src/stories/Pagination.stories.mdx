@@ -1,17 +1,16 @@
 import { useState } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Pagination } from '../components'
-import { ThemeProvider } from '../theme'
+import { Pagination, SaturnProvider } from '../components'
 
 <Meta title='Data input/Pagination' component={Pagination} />
 
 export const PaginationControl = args => {
   const [page, setPage] = useState(1)
   return (
-    <ThemeProvider>
+    <SaturnProvider>
       <Pagination {...args} page={page} onPageChange={setPage} />
-    </ThemeProvider>
+    </SaturnProvider>
   )
 }
 
@@ -51,9 +50,9 @@ Caso haja mais de 100 páginas a prop `variant` deve ser passada. Neste caso a e
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <PaginationPropsInput />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

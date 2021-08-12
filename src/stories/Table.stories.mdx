@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag } from '../components'
-import { ThemeProvider } from '../theme'
+import { Table, TableContent, TableData, TableRow, Checkbox, Typography, Tag, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Table' />
 
@@ -29,7 +28,7 @@ No cabeçalho da tabela desse exemplo, os dados dos `TableData` estão sendo def
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Table>
         <TableContent as='thead'>
           <TableRow>
@@ -88,7 +87,7 @@ No cabeçalho da tabela desse exemplo, os dados dos `TableData` estão sendo def
           </TableRow>
         </TableContent>
       </Table>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -106,7 +105,7 @@ A tabela do tipo `hideExternalBorder` possui as mesmas propriedades da `regular`
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Table hideExternalBorder={true}>
         <TableContent as='thead'>
           <TableData>
@@ -141,7 +140,7 @@ A tabela do tipo `hideExternalBorder` possui as mesmas propriedades da `regular`
           </TableRow>
         </TableContent>
       </Table>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

@@ -1,16 +1,15 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Loader } from '../components'
-import { ThemeProvider } from '../theme'
+import { Loader, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Loader' component={Loader} />
 
 # Loader
 
 export const LoaderBase = args => (
-  <ThemeProvider>
+  <SaturnProvider>
     <Loader {...args} />
-  </ThemeProvider>
+  </SaturnProvider>
 )
 
 O componente `Loader` é utilizado para apresentar carregamentos de forma visual ao usuário. Estando disponível com os tamanhos `major` (padrão) e `icon`. Juntamente com as variants com tempo definido (`determinate`) e sem tempo definido (`indeterminate` - padrão).
@@ -41,10 +40,10 @@ O `Loader` possui a prop `size` que pode receber dois valores possíveis, `icon`
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Loader size='major' />
       <Loader size='icon' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -66,12 +65,12 @@ Quando for a variação `indeterminate`, o tempo de ciclo do loader por padrão 
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Loader percentage={30} showPercentage type='determinate' />
       <Loader percentage={30} type='determinate' />
       <Loader type='indeterminate' />
       <Loader type='indeterminate' time={8} />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 

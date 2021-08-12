@@ -1,7 +1,6 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
 
-import { Flex, Switch } from '../components'
-import { ThemeProvider } from '../theme'
+import { Flex, Switch, SaturnProvider } from '../components'
 
 <Meta title='Data input/Switch' component={Switch} />
 
@@ -19,13 +18,13 @@ O componente de `Switch` é utilizado para a seleção de dados na aplicação, 
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Switch name='base' defaultChecked />
         <Switch name='disabled_on' disabled defaultChecked />
         <Switch name='disabled_off' disabled />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Preview>
 
@@ -41,13 +40,13 @@ Ele pode receber também, através da propriedade `label` um texto.
       }
     }}
   >
-    <ThemeProvider>
+    <SaturnProvider>
       <Flex>
         <Switch name='base_text' label='Label' defaultChecked mr={12} />
         <Switch name='disabled_on_text' label='Disabled selecionado' disabled defaultChecked mr={12} />
         <Switch name='disabled_off_text' label='Disabled descelecionado' disabled mr={12} />
       </Flex>
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Preview>
 

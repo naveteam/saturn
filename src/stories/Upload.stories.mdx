@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Upload } from '../components'
-import { ThemeProvider } from '../theme'
+import { Upload, SaturnProvider } from '../components'
 
 <Meta title='Data Input/Upload' component={Upload} />
 
@@ -19,9 +18,9 @@ O componente `Upload` é utilizado para permitir que o usuário possa realizar u
       }
     }}
   >
-    <ThemeProvider>
-      <Upload variant='button' name='teste'/>
-    </ThemeProvider>
+    <SaturnProvider>
+      <Upload variant='button' name='teste' />
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -39,9 +38,9 @@ A prop `disabled` desabilita completamente o botão, impedindo seu uso.
       }
     }}
   >
-    <ThemeProvider>
-      <Upload caption='Upload Button (Primary)' disabled={true} name='teste-disabled'/>
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true}  name='teste-disabled-2'/>
+    <SaturnProvider>
+      <Upload caption='Upload Button (Primary)' disabled={true} name='teste-disabled' />
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true} name='teste-disabled-2' />
       <Upload
         caption='Upload Drag &amp; Drop'
         description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
@@ -49,8 +48,8 @@ A prop `disabled` desabilita completamente o botão, impedindo seu uso.
         disabled={true}
         name='teste-disabled-3'
       />
-      <Upload caption='Upload Image' variant='image' disabled={true} name='teste-disabled-4'/>
-    </ThemeProvider>
+      <Upload caption='Upload Image' variant='image' disabled={true} name='teste-disabled-4' />
+    </SaturnProvider>
   </Story>
 </Canvas>
 
@@ -68,9 +67,9 @@ O componente `Upload` pode receber também a prop `variant`. As variants podem c
       }
     }}
   >
-    <ThemeProvider>
-      <Upload caption='Upload Button (Primary)' variant='button' name='upload-button'/>
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' name='upload-button-outlined'/>
+    <SaturnProvider>
+      <Upload caption='Upload Button (Primary)' variant='button' name='upload-button' />
+      <Upload caption='Upload Button (Secondary)' variant='button-outlined' name='upload-button-outlined' />
       <Upload
         caption='Upload Drag &amp; Drop'
         description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
@@ -79,7 +78,7 @@ O componente `Upload` pode receber também a prop `variant`. As variants podem c
         name='upload-drag-and-drop'
       />
       <Upload caption='Upload Image' variant='image' name='upload-image' />
-    </ThemeProvider>
+    </SaturnProvider>
   </Story>
 </Canvas>
 
