@@ -1,6 +1,6 @@
 import React from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { th, variant, compose, color, layout, space, border } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import {variant, compose, color, layout, space, border } from 'styled-system'
 import PropTypes from 'prop-types'
 import { Typography } from '../'
 import { Icon } from '../Iconography'
@@ -18,46 +18,48 @@ const Tag = ({ children, close, ...props }) => (
 
 const baseProps = compose(color, layout, space, border)
 
-const selectedVariant = variant({
+const selectedVariant = ({theme: {colors}, color}) => variant({
   default: true,
   prop: 'selected',
   key: 'tag',
   variants: {
-    true: css`
-      background-color: ${({ color }) => th.color(color)};
-      border-color: ${({ color }) => th.color(color)};
-      cursor: pointer;
-      p {
-        color: white;
+    true: {
+      backgroundColor: colors[color],
+      borderColor: colors[color],
+      cursor: 'pointer',
+      p: {
+        color: 'white'
       }
-    `,
-    false: css`
-      background-color: transparent;
-      border-color: gray.600;
-      cursor: pointer;
-      p {
-        color: gray.600;
+    },
+    false: {
+      backgroundColor: 'transparent',
+      borderColor: colors.gray['600'],
+      cursor: 'pointer',
+      p: {
+        color: colors.gray['600']
       }
-    `,
-    disabled: css`
-      background-color: disabled;
-      border-color: disabled;
-      cursor: default;
-      p {
-        color: white;
+    },
+    disabled: {
+      backgroundColor: 'disabled',
+      borderColor: 'disabled',
+      cursor: 'default',
+      p: {
+        color: 'white'
       }
-    `
+    }
   }
 })
 
-const Base = styled.div`
+const Base = styled.div(
+  props => css`
   display: inline-block;
   border-radius: 1;
   border-width: 1px;
   border-style: solid;
+  ${border}
   ${baseProps}
-  ${selectedVariant}
-`
+  ${selectedVariant(props)}
+`)
 
 const Content = styled.div`
   display: flex;
@@ -65,9 +67,9 @@ const Content = styled.div`
 `
 
 const Text = styled(Typography)`
-  font-weight: 1;
-  font-size: 1;
-  line-height: 1;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
 `
 
 Tag.defaultProps = {
