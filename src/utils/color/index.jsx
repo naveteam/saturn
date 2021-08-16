@@ -3,7 +3,7 @@ export const getThemeColor = (colorName, theme) => {
   const colorOnTheme = theme.colors[color]
 
   if (colorOnTheme) {
-    const colorWithHue = theme.colors[color][`${hue}`] || theme.colors[color]['500']
+    const colorWithHue = theme.colors[color][`${hue}`] || theme.colors[color]
     return colorWithHue
   }
 
