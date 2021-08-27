@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react'
-import styled, { css, up, down } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../Typography'
@@ -214,10 +214,8 @@ Tabs.propTypes = {
 const BaseVariants = variant({
   prop: 'direction',
   variants: {
-    horizontal: css``,
-    vertical: css`
-      display: flex;
-    `
+    horizontal: {},
+    vertical: { display: 'flex' }
   }
 })
 
@@ -232,13 +230,10 @@ const Base = styled.div`
 const disabledArrowButton = variant({
   prop: 'disabled',
   variants: {
-    true: css`
-      pointer-events: none;
-      * {
-        fill: disabled;
-      }
-    `,
-    false: css``
+    true: {
+      pointerEvents: 'none'
+    },
+    false: {}
   }
 })
 
@@ -258,44 +253,44 @@ const ArrowButton = styled.button`
 const hasScrollVariant = variant({
   prop: 'hasScroll',
   variants: {
-    false: css`
-      button {
-        display: none;
+    false: {
+      button: {
+        display: 'none'
       }
-    `
+    }
   }
 })
 
 const collapsedVariant = variant({
   prop: 'collapsed',
   variants: {
-    true: css`
-      transform: translateX(-103%);
-    `,
-    false: css`
-      transform: translateX(0);
-    `
+    true: {
+      transform: 'translateX(-103%)'
+    },
+    false: {
+      transform: 'translateX(0)'
+    }
   }
 })
 
-const NavigationWrapperDirectionVariant = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      display: block;
-    `,
-    vertical: css`
-      display: block;
-      transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      box-sizing: border-box;
-      padding: 6 0;
-      background-color: white;
-      max-width: fit-content;
-      box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
-      ${collapsedVariant};
-    `
-  }
-})
+const NavigationWrapperDirectionVariant = ({ theme }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        display: 'block'
+      },
+      vertical: {
+        display: 'block',
+        transition: '0.4s cubic-bezier(0.22, 0.61, 0.36, 1)',
+        boxSizing: 'border-box',
+        padding: `${theme.space[6]} 0`,
+        background: white,
+        maxWidth: 'fit-content',
+        boxShadow: '0px 4px 10px rgba(33, 33, 33, 0.25)'
+      }
+    }
+  })
 
 const NavigationWrapper = styled.div`
   width: 100%;
@@ -303,103 +298,162 @@ const NavigationWrapper = styled.div`
   justify-content: space-between;
   ${hasScrollVariant};
 
-  ${down(
-    'md',
-    css`
-      button {
-        display: none;
-      }
-    `
-  )}
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    button {
+      display: none;
+    }
+  }
 
-  ${down(
-    'sm',
-    css`
-      ${NavigationWrapperDirectionVariant};
-    `
-  )}
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    ${NavigationWrapperDirectionVariant};
+  }
 `
 
-const directionVariantContainer = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      width: 100%;
-      max-width: 100%;
-      flex-direction: row;
-      border-bottom: 1px solid;
-      border-bottom-color: gray.300;
+const directionVariantContainer = ({ theme }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        width: '100%',
+        maxWidth: '100%',
+        flexDirection: 'row',
+        borderBottom: '1px solid',
+        borderBottomColor: 'gray.300',
 
-      li:last-child {
-        margin-right: 0;
+        'li:last-child': {
+          marginRight: 0
+        }
+      },
+      // horizontal: css`
+      //   width: 100%;
+      //   max-width: 100%;
+      //   flex-direction: row;
+      //   border-bottom: 1px solid;
+      //   border-bottom-color: gray.300;
+
+      //   li:last-child {
+      //     margin-right: 0;
+      //   }
+      // `,
+      vertical: {
+        flexDirection: 'column',
+        borderRight: '1px solid',
+        borderRightColor: 'gray.300',
+        maxHeight: '400px',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        '-ms-overflow-style': 'none',
+        'scrollbar-width': 'none',
+
+        '::-webkit-scrollbar': {
+          display: 'none'
+        },
+
+        'li:last-child': {
+          marginBottom: 0
+        },
+
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+          paddingLeft: theme.space[6]
+        }
       }
-    `,
-    vertical: css`
-      flex-direction: column;
-      border-right: 1px solid;
-      border-right-color: gray.300;
-      max-height: 400px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+      // vertical: css`
+      //   flex-direction: column;
+      //   border-right: 1px solid;
+      //   border-right-color: gray.300;
+      //   max-height: 400px;
+      //   overflow-y: scroll;
+      //   overflow-x: hidden;
+      //   -ms-overflow-style: none;
+      //   scrollbar-width: none;
 
-      ::-webkit-scrollbar {
-        display: none;
+      //   ::-webkit-scrollbar {
+      //     display: none;
+      //   }
+
+      //   li:last-child {
+      //     margin-bottom: 0;
+      //   }
+
+      //   ${down(
+      //     'sm',
+      //     css`
+      //       padding-left: 32px;
+      //     `
+      //   )}
+      // `
+    }
+  })
+
+const directionVariantTab = ({ theme }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        padding: `0 ${theme.space[3]} ${theme.space[4]} ${theme.space[3]}`,
+        marginRight: theme.space[6],
+        display: 'flex',
+        alignItemas: 'center',
+        maxWidth: 'fit-content',
+        justifyContent: 'center',
+
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+          maxWidth: '100%'
+        },
+
+        '&::after': {
+          bottom: '-1px',
+          left: 0,
+          width: '100%',
+          height: '4px'
+        }
+      },
+      // horizontal: css`
+      //   padding: 0 3 4 3;
+      //   margin-right: 6;
+      //   display: flex;
+      //   align-items: center;
+      //   max-width: fit-content;
+      //   justify-content: center;
+
+      //   ${down(
+      //     'md',
+      //     css`
+      //       max-width: 100%;
+      //     `
+      //   )}
+
+      //   &::after {
+      //     bottom: -1px;
+      //     left: 0;
+      //     width: 100%;
+      //     height: 4px;
+      //   }
+      // `,
+      vertical: {
+        padding: `${theme.space[3]} ${theme.space[6]} ${theme.space[3]} 0`,
+        marginBottom: theme.space[6],
+
+        '&::after': {
+          right: '-1px',
+          top: 0,
+          width: '4px',
+          height: '100%'
+        }
       }
+      // vertical: css`
+      //   padding: 3 6 3 0;
+      //   margin-bottom: 6;
 
-      li:last-child {
-        margin-bottom: 0;
-      }
-
-      ${down(
-        'sm',
-        css`
-          padding-left: 32px;
-        `
-      )}
-    `
-  }
-})
-
-const directionVariantTab = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      padding: 0 3 4 3;
-      margin-right: 6;
-      display: flex;
-      align-items: center;
-      max-width: fit-content;
-      justify-content: center;
-
-      ${down(
-        'md',
-        css`
-          max-width: 100%;
-        `
-      )}
-
-      &::after {
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 4px;
-      }
-    `,
-    vertical: css`
-      padding: 3 6 3 0;
-      margin-bottom: 6;
-
-      &::after {
-        right: -1px;
-        top: 0;
-        width: 4px;
-        height: 100%;
-      }
-    `
-  }
-})
+      //   &::after {
+      //     right: -1px;
+      //     top: 0;
+      //     width: 4px;
+      //     height: 100%;
+      //   }
+      // `
+    }
+  })
 
 const TabsContainer = styled.ul`
   list-style-type: none;
@@ -410,52 +464,79 @@ const TabsContainer = styled.ul`
   align-items: center;
   ${directionVariantContainer};
 
-  ${down(
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    margin: 0;
+  }
+  /* ${down(
     'md',
     css`
       margin: 0;
     `
-  )}
+  )} */
 
-  ${down(
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    border: none;
+  }
+  /* ${down(
     'sm',
     css`
       border: none;
     `
-  )}
+  )} */
 `
 
-const tabsWrapperDirectionVariant = variant({
-  prop: 'direction',
-  variants: {
-    vertical: css`
-      flex-direction: column;
+const tabsWrapperDirectionVariant = ({ theme }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      vertical: {
+        flexDirection: 'column',
 
-      ${down(
-        'sm',
-        css`
-          background-color: white;
-          box-sizing: border-box;
-          max-height: 400px;
-          position: relative;
-          overflow-y: scroll;
-          overflow-x: hidden;
-        `
-      )}
-    `,
-    horizontal: css`
-      flex-direction: row;
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+          backgroundColor: 'white',
+          boxSizing: 'border-box',
+          maxHeight: '400px',
+          position: 'relative',
+          overflowY: 'scroll',
+          overflowX: 'hidden'
+        }
+      },
+      // vertical: css`
+      //   flex-direction: column;
 
-      ${down(
-        'md',
-        css`
-          overflow-x: scroll;
-          overflow-y: hidden;
-        `
-      )}
-    `
-  }
-})
+      //   ${down(
+      //     'sm',
+      //     css`
+      //       background-color: white;
+      //       box-sizing: border-box;
+      //       max-height: 400px;
+      //       position: relative;
+      //       overflow-y: scroll;
+      //       overflow-x: hidden;
+      //     `
+      //   )}
+      // `,
+      horizontal: {
+        flexDirection: 'row',
+
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+          overflowX: 'scroll',
+          overflowY: 'hidden'
+        }
+      }
+      // horizontal: css`
+      //   flex-direction: row;
+
+      //   ${down(
+      //     'md',
+      //     css`
+      //       overflow-x: scroll;
+      //       overflow-y: hidden;
+      //     `
+      //   )}
+      // `
+    }
+  })
 
 const HamburgerButton = styled.div`
   display: flex;
@@ -470,7 +551,13 @@ const HamburgerButton = styled.div`
 `
 
 const MobileMenu = styled.div`
-  ${down(
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    display: ${({ direction }) => (direction === 'vertical' ? 'flex' : 'none')};
+    margin-bottom: 32px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+  }
+  /* ${down(
     'sm',
     css`
       display: ${({ direction }) => (direction === 'vertical' ? 'flex' : 'none')};
@@ -478,13 +565,17 @@ const MobileMenu = styled.div`
       box-sizing: border-box;
       justify-content: flex-end;
     `
-  )}
-  ${up(
+  )} */
+
+  @media (max-width: ${theme.breakpoints.sm}px) {
+    display: none;
+  }
+  /* ${up(
     'sm',
     css`
       display: none;
     `
-  )}
+  )} */
 `
 
 const TabsWrapper = styled.div`
@@ -494,33 +585,51 @@ const TabsWrapper = styled.div`
   ${tabsWrapperDirectionVariant};
 `
 
-const iconDisabledVariant = variant({
-  prop: 'disabled',
-  variants: {
-    true: css`
-      * {
-        fill: gray.400 !important;
-      }
-    `,
-    false: css``
-  }
-})
+const iconDisabledVariant = ({ theme }) =>
+  variant({
+    prop: 'disabled',
+    variants: {
+      true: {
+        '*': {
+          fill: theme.colors.gray['400']
+        }
+      },
+      false: {}
+      // true: css`
+      //   * {
+      //     fill: gray.400 !important;
+      //   }
+      // `,
+      // false: css``
+    }
+  })
 
-const iconActiveVariant = variant({
-  prop: 'active',
-  variants: {
-    true: css`
-      * {
-        fill: primary;
+const iconActiveVariant = ({ theme }) =>
+  variant({
+    prop: 'active',
+    variants: {
+      true: {
+        '*': {
+          fill: theme.colors.primary
+        }
+      },
+      false: {
+        '*': {
+          fill: theme.gray['800']
+        }
       }
-    `,
-    false: css`
-      * {
-        fill: gray.800;
-      }
-    `
-  }
-})
+      // true: css`
+      //   * {
+      //     fill: primary;
+      //   }
+      // `,
+      // false: css`
+      //   * {
+      //     fill: gray.800;
+      //   }
+      // `
+    }
+  })
 
 const IconContainer = styled.div(
   ({ hasLabel }) => css`
@@ -548,78 +657,118 @@ const Label = styled(Typography)`
   }
 `
 
-const disabledTabVariant = variant({
-  default: false,
-  prop: 'disabled',
-  variants: {
-    false: css`
-      cursor: pointer;
-      ${down(
-        'md',
-        css`
-          cursor: default;
-        `
-      )}
-    `,
-    true: css`
-      pointer-events: none;
-      color: disabled;
-    `
-  }
-})
-
-const activeTabVariant = variant({
-  default: false,
-  prop: 'active',
-  variants: {
-    true: css`
-      color: primary;
-      font-weight: 1;
-
-      &:hover {
-        color: primary;
+const disabledTabVariant = ({ theme }) =>
+  variant({
+    // default: false,
+    prop: 'disabled',
+    variants: {
+      false: {
+        cursor: 'pointer'
+      },
+      true: {
+        pointerEvents: 'none',
+        color: 'disabled'
       }
+      // false: css`
+      //   cursor: pointer;
+      //   ${down(
+      //     'md',
+      //     css`
+      //       cursor: default;
+      //     `
+      //   )}
+      // `,
+      // true: css`
+      //   pointer-events: none;
+      //   color: disabled;
+      // `
+    }
+  })
 
-      &::after {
-        background-color: primary;
-      }
-    `,
-    false: css`
-      &:hover {
-        span {
-          color: gray.900;
-          font-weight: 1;
+const activeTabVariant = ({ theme }) =>
+  variant({
+    // default: false,
+    prop: 'active',
+    variants: {
+      true: {
+        color: theme.colors.primary,
+        fontWeight: theme.fontWeights[1],
+
+        '&:hover': {
+          color: theme.colors.primary
+        },
+
+        '&::after': {
+          backgroundColor: theme.colors.primary
         }
-        * {
-          fill: gray.900;
+      },
+      false: {
+        '&:hover': {
+          span: {
+            color: theme.colors.gray['900'],
+            fontWeight: theme.fontWeight[1]
+          },
+          '*': {
+            fill: theme.colors.gray['900']
+          }
         }
       }
-    `
-  }
-})
+      // true: css`
+      //   color: primary;
+      //   font-weight: 1;
 
-const minWidthTabVariant = variant({
-  prop: 'type',
-  variants: {
-    full: css``,
-    onlyIcon: css`
-      min-width: 24px;
-    `,
-    onlyText: css`
-      min-width: 24px;
-    `
-  }
-})
+      //   &:hover {
+      //     color: primary;
+      //   }
+
+      //   &::after {
+      //     background-color: primary;
+      //   }
+      // `,
+      // false: css`
+      //   &:hover {
+      //     span {
+      //       color: gray.900;
+      //       font-weight: 1;
+      //     }
+      //     * {
+      //       fill: gray.900;
+      //     }
+      //   }
+      // `
+    }
+  })
+
+const minWidthTabVariant = ({ theme }) =>
+  variant({
+    prop: 'type',
+    variants: {
+      full: {},
+      onlyIcon: {
+        minWidth: '24px'
+      },
+      onlyText: {
+        minWidth: '24px'
+      }
+      // full: css``,
+      // onlyIcon: css`
+      //   min-width: 24px;
+      // `,
+      // onlyText: css`
+      //   min-width: 24px;
+      // `
+    }
+  })
 
 const Tab = styled.li`
   width: 100%;
-  font-size: 3;
-  line-height: 3;
+  font-size: ${({ theme }) => theme.fontSize[3]};
+  line-height: ${({ theme }) => theme.lineHeight[3]};
   font-weight: normal;
   box-sizing: border-box;
-  border-radius: 1;
+  border-radius: ${({ theme }) => theme.radii[1]};
   position: relative;
-  color: gray.800;
+  color: ${({ theme }) => theme.colors.gray['800']};
   ${directionVariantTab};
   ${disabledTabVariant};
   ${activeTabVariant};
@@ -627,7 +776,7 @@ const Tab = styled.li`
 
   &:active {
     &::after {
-      background-color: primary;
+      background-color: ${({ theme }) => theme.colors.primary};
     }
   }
 
