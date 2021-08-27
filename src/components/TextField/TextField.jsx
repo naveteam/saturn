@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
-import styled, { css } from '@xstyled/styled-components'
-import { borders, variant } from '@xstyled/system'
+import styled from 'styled-components'
+import { borders, variant } from 'styled-system'
 
 import { Flex, Box } from '../Grid'
 import { Caption, Typography } from '../Typography'
@@ -78,72 +78,72 @@ TextField.defaultProps = {
   borderColor: 'black'
 }
 
-const errorVariant = variant({
-  prop: 'error',
-  default: false,
-  variants: {
-    true: css`
-      p {
-        color: error;
-      }
-      div {
-        border-color: error;
-        span {
-          color: error;
+const errorVariant = ({ theme: { colors } }) =>
+  variant({
+    prop: 'error',
+    default: false,
+    variants: {
+      true: {
+        p: {
+          color: colors.error
+        },
+        div: {
+          borderColor: colors.error,
+          span: {
+            color: colors.error
+          }
         }
-      }
-    `,
-    false: css``
-  }
-})
+      },
+      false: {}
+    }
+  })
 
-const disabledVariant = variant({
-  prop: 'disabled',
-  default: false,
-  variants: {
-    true: css`
-      * {
-        color: disabled !important;
-      }
-      div {
-        border-color: gray.400;
-        background-color: gray.100;
-        span {
-          color: gray.400;
+const disabledVariant = ({ theme: { colors } }) =>
+  variant({
+    prop: 'disabled',
+    default: false,
+    variants: {
+      true: {
+        '*': {
+          color: `${colors.disabled} !important`
+        },
+        div: {
+          borderColor: colors.gray['400'],
+          backgroundColor: colors.gray['100'],
+          span: {
+            color: colors.gray['400']
+          }
         }
-      }
-    `,
-    false: css``
-  }
-})
+      },
+      false: {}
+    }
+  })
 
-const focusVariant = variant({
-  prop: 'focus',
-  default: false,
-  variants: {
-    true: css`
-      border-color: blue.50;
-      border-width: 2px;
-      padding: 0;
-    `,
-    false: css``
-  }
-})
+const focusVariant = ({ theme: { colors } }) =>
+  variant({
+    prop: 'focus',
+    variants: {
+      true: {
+        borderColor: colors.blue['50'],
+        borderWidth: '2px',
+        padding: 0
+      }
+    }
+  })
 
 const Wrapper = styled(Box)`
   ${errorVariant}
   ${disabledVariant}
 `
 const Label = styled(Typography)`
-  font-size: 2;
-  line-height: 1;
-  font-weight: 1;
-  margin-bottom: 3;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
 `
 const Container = styled(Flex)`
   border-width: 1px;
   border-style: solid;
-  border-radius: 2;
+  border-radius: 4px;
   align-items: center;
   padding: 1px;
   width: 100%;
@@ -151,16 +151,16 @@ const Container = styled(Flex)`
   ${focusVariant}
 `
 const Affix = styled(Typography)`
-  font-size: 1;
-  line-height: 1;
-  margin: 0 3;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0 8px;
   pointer-events: none;
 `
 const InputBase = styled.input`
   border: 0;
   flex: 1;
-  font-size: 3;
-  line-height: 3;
+  font-size: 16px;
+  line-height: 24px;
   background-color: transparent;
   padding: 6px;
   overflow: hidden;
@@ -180,9 +180,9 @@ const InputBase = styled.input`
   }
 `
 const Message = styled(Caption)`
-  font-size: 1;
-  line-height: 1;
-  margin-top: 2;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
 `
 
 export default TextField
