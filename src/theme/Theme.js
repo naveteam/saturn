@@ -1,22 +1,21 @@
 import pallette from './pallette'
 
-const breakpoints = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920
-}
+const breakpoints = [600, 960, 1280, 1920]
 
-const fontSizes = [10, 12, 14, 16, 20, 24, 32, 40, 48]
+breakpoints['sm'] = breakpoints[0]
+breakpoints['md'] = breakpoints[1]
+breakpoints['lg'] = breakpoints[2]
+breakpoints['xl'] = breakpoints[3]
+
+const fontSizes = ['10px', '12px', '14px', '16px', '20px', '24px', '32px', '40px', '48px']
 
 const fontWeights = [400, 600]
 
 const lineHeights = ['14px', '16px', '18px', '24px', '32px', '40px', '48px', '64px', '72px']
 
-const space = [0, 2, 4, 8, 16, 24, 32, 64]
+const space = ['0', '2px', '4px', '8px', '16px', '24px', '32px', '64px']
 
-const radii = [0, 2, 4, 8]
+const radii = ['0', '2px', '4px', '8px']
 
 const colors = { ...pallette }
 

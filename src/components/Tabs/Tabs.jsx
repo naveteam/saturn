@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react'
-import styled, { css, up, down } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../Typography'
@@ -214,10 +214,8 @@ Tabs.propTypes = {
 const BaseVariants = variant({
   prop: 'direction',
   variants: {
-    horizontal: css``,
-    vertical: css`
-      display: flex;
-    `
+    horizontal: {},
+    vertical: { display: 'flex' }
   }
 })
 
@@ -232,13 +230,13 @@ const Base = styled.div`
 const disabledArrowButton = variant({
   prop: 'disabled',
   variants: {
-    true: css`
-      pointer-events: none;
-      * {
-        fill: disabled;
+    true: {
+      pointerEvents: 'none',
+      '*': {
+        fill: 'disabled'
       }
-    `,
-    false: css``
+    },
+    false: {}
   }
 })
 
@@ -258,42 +256,36 @@ const ArrowButton = styled.button`
 const hasScrollVariant = variant({
   prop: 'hasScroll',
   variants: {
-    false: css`
-      button {
-        display: none;
+    false: {
+      'button': {
+        display: 'none'
       }
-    `
+    }
   }
 })
 
 const collapsedVariant = variant({
   prop: 'collapsed',
   variants: {
-    true: css`
-      transform: translateX(-103%);
-    `,
-    false: css`
-      transform: translateX(0);
-    `
+    true: { transform: 'translateX(-103%)' },
+    false: { transform: 'translateX(0)' }
   }
 })
 
 const NavigationWrapperDirectionVariant = variant({
   prop: 'direction',
   variants: {
-    horizontal: css`
-      display: block;
-    `,
-    vertical: css`
-      display: block;
-      transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      box-sizing: border-box;
-      padding: 6 0;
-      background-color: white;
-      max-width: fit-content;
-      box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
-      ${collapsedVariant};
-    `
+    horizontal: { display: 'block' },
+    vertical: {
+      display: 'block',
+      transition: '0.4s cubic-bezier(0.22, 0.61, 0.36, 1)',
+      boxSizing: 'border-box',
+      padding: '6px 0px',
+      backgroundColor: 'white',
+      maxWidth: 'fit-content',
+      boxShadow: '0px 4px 10px rgba(33, 33, 33, 0.25)',
+      ...collapsedVariant
+    }
   }
 })
 
@@ -302,158 +294,133 @@ const NavigationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   ${hasScrollVariant};
-
-  ${down(
-    'md',
-    css`
-      button {
-        display: none;
-      }
-    `
-  )}
-
-  ${down(
-    'sm',
-    css`
-      ${NavigationWrapperDirectionVariant};
-    `
-  )}
+  
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    button {
+      display: none;
+    }
+  }
+  
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    ${NavigationWrapperDirectionVariant};
+  }
 `
 
-const directionVariantContainer = variant({
+
+const directionVariantContainer = ({ theme }) => variant({
   prop: 'direction',
   variants: {
-    horizontal: css`
-      width: 100%;
-      max-width: 100%;
-      flex-direction: row;
-      border-bottom: 1px solid;
-      border-bottom-color: gray.300;
+    horizontal: {
+      width: '100%',
+      maxWidth: '100%',
+      flexDirection: 'row',
+      borderBottom: '1px solid',
+      borderBottomColor: 'gray.300',
 
-      li:last-child {
-        margin-right: 0;
+      'li:last-child': {
+        marginRight: '0'
       }
-    `,
-    vertical: css`
-      flex-direction: column;
-      border-right: 1px solid;
-      border-right-color: gray.300;
-      max-height: 400px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    },
+    vertical: {
+      borderRight: '1px solid',
+      maxHeight: '400px',
+      flexDirection: 'column',
+      borderRightColor: 'gray.300',
+      overflowY: 'scroll',
+      overflowX: 'hidden',
+      '-ms-overflow-style': 'none',
+      scrollbarWidth: 'none',
 
-      ::-webkit-scrollbar {
-        display: none;
+      '::-webkit-scrollbar': {
+        display: 'none'
+      },
+
+      'li:last-child': {
+        marginBottom: '0'
+      },
+
+      [`@media only screen and (max-width: ${theme.breakpoints.sm}px)`]: {
+        paddingLeft: '32px'
       }
-
-      li:last-child {
-        margin-bottom: 0;
-      }
-
-      ${down(
-        'sm',
-        css`
-          padding-left: 32px;
-        `
-      )}
-    `
+    }
   }
 })
 
-const directionVariantTab = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      padding: 0 3 4 3;
-      margin-right: 6;
-      display: flex;
-      align-items: center;
-      max-width: fit-content;
-      justify-content: center;
+const directionVariantTab = ({ theme: { breakpoints, space } }) => {
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        padding: `0px ${space[3]} ${space[4]}`,
+        marginRight: space[6],
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: 'fit-content',
+        justifyContent: 'center',
+        [`@media only screen and (max-width: ${breakpoints.md}px)`]: {
+          maxWidth: '100%'
+        },
+        '&::after': {
+          bottom: '-1px',
+          left: '0',
+          width: '100%',
+          height: '4px'
+        }
+      },
+      vertical: {
+        padding: `$${space[3]} ${space[6]} ${space[3]} 0`,
+        marginBottom: space[6],
 
-      ${down(
-        'md',
-        css`
-          max-width: 100%;
-        `
-      )}
-
-      &::after {
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 4px;
+        '&:: after': {
+          right: '-1px',
+          top: '0px',
+          width: '4px',
+          height: '100%'
+        }
       }
-    `,
-    vertical: css`
-      padding: 3 6 3 0;
-      margin-bottom: 6;
-
-      &::after {
-        right: -1px;
-        top: 0;
-        width: 4px;
-        height: 100%;
-      }
-    `
-  }
-})
+    }
+  })
+}
 
 const TabsContainer = styled.ul`
   list-style-type: none;
   display: flex;
-  margin: ${({ hasScroll }) => (hasScroll ? '0 24px' : '0')};
+  margin: ${({ hasScroll }) => (hasScroll ? `0 ${space[5]}` : '0')};
   padding: 0;
   overflow: hidden;
   align-items: center;
   ${directionVariantContainer};
 
-  ${down(
-    'md',
-    css`
-      margin: 0;
-    `
-  )}
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    margin: 0;
+  }
 
-  ${down(
-    'sm',
-    css`
-      border: none;
-    `
-  )}
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    border: none;
+  }
 `
 
-const tabsWrapperDirectionVariant = variant({
+const tabsWrapperDirectionVariant = ({ theme }) => variant({
   prop: 'direction',
   variants: {
-    vertical: css`
-      flex-direction: column;
-
-      ${down(
-        'sm',
-        css`
-          background-color: white;
-          box-sizing: border-box;
-          max-height: 400px;
-          position: relative;
-          overflow-y: scroll;
-          overflow-x: hidden;
-        `
-      )}
-    `,
-    horizontal: css`
-      flex-direction: row;
-
-      ${down(
-        'md',
-        css`
-          overflow-x: scroll;
-          overflow-y: hidden;
-        `
-      )}
-    `
+    vertical: {
+      flexDirection: 'column',
+      [`@media only screen and (max-width: ${theme.breakpoints.sm}px)`]: {
+        backgroundColor: 'white',
+        boxSizing: 'border-box',
+        maxHeight: '400px',
+        position: 'relative',
+        'overflow-y': 'scroll',
+        'overflow-x': 'hidden'
+      }
+    },
+    horizontal: {
+      flexDirection: 'row',
+      [`@media only screen and (max-width: ${theme.breakpoints.md}px)`]: {
+        overflowX: 'scroll',
+        overflowY: 'hidden'
+      }
+    }
   }
 })
 
@@ -469,175 +436,165 @@ const HamburgerButton = styled.div`
   border-bottom-right-radius: 4px;
 `
 
-const MobileMenu = styled.div`
-  ${down(
-    'sm',
-    css`
-      display: ${({ direction }) => (direction === 'vertical' ? 'flex' : 'none')};
-      margin-bottom: 32px;
-      box-sizing: border-box;
-      justify-content: flex-end;
-    `
-  )}
-  ${up(
-    'sm',
-    css`
-      display: none;
-    `
-  )}
-`
+
+
+// const MobileMenu = styled.div(
+//   ({ theme: { breakpoints, space }, direction }) =>
+//     css`
+//       @media only screen and(max-width: ${breakpoints.md}px) {
+//         display: ${direction === 'vertical' ? 'flex' : 'none'};
+//         margin-bottom: ${space[5]};
+//         box-sizing: border-box;
+//         justify-content: flex-end;
+//       }
+
+//       @media only screen and(min-width: ${breakpoints.sm}px) {
+//         display: none;
+//       }
+//   `)
+// )
+
+
 
 const TabsWrapper = styled.div`
-  display: flex;
-  transition: 0.3s;
-  width: 100%;
-  ${tabsWrapperDirectionVariant};
+display: flex;
+transition: 0.3s;
+width: 100 %;
+${tabsWrapperDirectionVariant};
 `
 
-const iconDisabledVariant = variant({
+const iconDisabledVariant = ({ theme }) => variant({
   prop: 'disabled',
   variants: {
-    true: css`
-      * {
-        fill: gray.400 !important;
+    true: {
+      '*': {
+        fill: `${theme.colors.gray['400']} !important; `
       }
-    `,
-    false: css``
+    },
+    false: {}
   }
 })
 
-const iconActiveVariant = variant({
+const iconActiveVariant = ({ theme }) => variant({
   prop: 'active',
   variants: {
-    true: css`
-      * {
-        fill: primary;
+    true: {
+      '*': {
+        fill: theme.colors.primary
       }
-    `,
-    false: css`
-      * {
-        fill: gray.800;
+    },
+    false: {
+      '*': {
+        fill: theme.colors.gray['800']
       }
-    `
+    }
   }
 })
 
-const IconContainer = styled.div(
-  ({ hasLabel }) => css`
-    display: block;
-    max-height: 24px;
-    height: 100%;
-    ${iconDisabledVariant};
-    ${iconActiveVariant};
-    ${hasLabel && 'margin-right: 16px'};
-  `
-)
+const IconContainer = styled.div`
+  display: block;
+  max-height: 24px;
+  height: 100%;
+  ${iconDisabledVariant};
+  ${iconActiveVariant};
+  ${({ hasLabel, theme }) => hasLabel && `margin-right: ${theme.space[4]}`};
+`
 
 const Label = styled(Typography)`
-  display: inline-block;
-  transition: font-weight 0.3s cubic-bezier(0.04, 1.01, 0.6, 0.57);
+display: inline - block;
+transition: font - weight 0.3s cubic - bezier(0.04, 1.01, 0.6, 0.57);
 
-  &::after {
-    display: block;
-    content: attr(title);
-    font-weight: bold;
-    height: 1px;
-    color: transparent;
-    overflow: hidden;
-    visibility: hidden;
-  }
+  &:: after {
+  display: block;
+  content: attr(title);
+  font - weight: bold;
+  height: 1px;
+  color: transparent;
+  overflow: hidden;
+  visibility: hidden;
+}
 `
 
-const disabledTabVariant = variant({
-  default: false,
+const disabledTabVariant = ({ theme }) => variant({
   prop: 'disabled',
   variants: {
-    false: css`
-      cursor: pointer;
-      ${down(
-        'md',
-        css`
-          cursor: default;
-        `
-      )}
-    `,
-    true: css`
-      pointer-events: none;
-      color: disabled;
-    `
+    true: {
+      pointerEvents: 'none',
+      color: 'disabled'
+    }
   }
 })
 
-const activeTabVariant = variant({
-  default: false,
+const activeTabVariant = ({ theme }) => variant({
   prop: 'active',
   variants: {
-    true: css`
-      color: primary;
-      font-weight: 1;
-
-      &:hover {
-        color: primary;
+    true: {
+      color: theme.colors.primary,
+      fontWeight: theme.fontWeights[0],
+      '&:hover': {
+        color: theme.colors.primary
+      },
+      '&::after': {
+        backgroundColor: theme.colors.primary
       }
-
-      &::after {
-        background-color: primary;
-      }
-    `,
-    false: css`
-      &:hover {
-        span {
-          color: gray.900;
-          font-weight: 1;
-        }
-        * {
-          fill: gray.900;
+    },
+    false: {
+      '&:hover': {
+        'span': {
+          color: theme.colors.gray['900'],
+          fontWeight: theme.fontWeights[0]
+        },
+        '*': {
+          fill: theme.colors.gray['900']
         }
       }
-    `
+    }
   }
 })
 
-const minWidthTabVariant = variant({
+const minWidthTabVariant = ({ theme }) => variant({
   prop: 'type',
   variants: {
-    full: css``,
-    onlyIcon: css`
-      min-width: 24px;
-    `,
-    onlyText: css`
-      min-width: 24px;
-    `
+    full: {},
+    onlyIcon: {
+      minWidth: theme.space[5]
+    },
+    onlyText: {
+      minWidth: theme.space[5]
+    }
   }
 })
 
 const Tab = styled.li`
-  width: 100%;
-  font-size: 3;
-  line-height: 3;
-  font-weight: normal;
-  box-sizing: border-box;
-  border-radius: 1;
-  position: relative;
-  color: gray.800;
-  ${directionVariantTab};
-  ${disabledTabVariant};
-  ${activeTabVariant};
-  ${minWidthTabVariant};
+${({ theme }) => css`
+    width: 100%;
+    font-size: ${theme.fontSizes[3]};
+    line-height: ${theme.lineHeights[3]};
+    font-weight: normal;
+    box-sizing: border-box;
+    border-radius: ${theme.radii[1]};
+    position: relative;
+    color: ${theme.colors.gray['800']};
+    cursor: pointer;
+    ${directionVariantTab}
+    ${disabledTabVariant}
+    ${minWidthTabVariant}
+    ${activeTabVariant}
 
-  &:active {
-    &::after {
-      background-color: primary;
+    &:active {
+      &::after {
+          background-color: ${theme.colors.primary};
+      }
     }
-  }
 
-  &::after {
-    content: '';
-    display: block;
-    border-radius: 1;
-    transition: background-color 0.2s linear;
-    position: absolute;
-  }
+    &::after{
+      content: '';
+      display: block;
+      border-radius: ${theme.radii[1]};
+      transition: background-color 0.2s linear;
+      position: absolute;
+    }
+  `}
 `
 
 const TabBody = styled.div`
@@ -646,11 +603,9 @@ const TabBody = styled.div`
   overflow-x: hidden;
 `
 
-const TabContent = styled.div(
-  ({ hidden }) => css`
-    display: ${hidden ? 'none' : 'block'};
-  `
-)
+const TabContent = styled.div`
+display: ${({ hidden }) => hidden ? 'none' : 'block'};
+`
 
 const Body = styled.div`
   width: 100%;

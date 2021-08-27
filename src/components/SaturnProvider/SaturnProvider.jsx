@@ -11,7 +11,7 @@ const SaturnProvider = ({ children, theme = {} }) => {
       theme={{
         ...Theme,
         ...theme,
-        breakpoints: Object.values(Theme.breakpoints),
+        breakpoints: Theme.breakpoints,
         colors: { ...Theme?.colors, ...theme?.colors }
       }}
     >
