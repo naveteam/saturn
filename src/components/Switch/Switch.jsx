@@ -1,6 +1,5 @@
 import React, { useState, forwardRef } from 'react'
-import styled, { css } from 'styled-components'
-import { variant } from 'styled-system'
+import styled, { css, variant } from '@xstyled/styled-components'
 import PropTypes from 'prop-types'
 
 import { Flex, Box } from '../Grid'
@@ -32,31 +31,30 @@ const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChec
   )
 })
 
-const colorVariants = ({ theme: { colors } }) =>
-  variant({
-    default: false,
-    prop: 'enabled',
-    variants: {
-      true: {
-        backgroundColor: colors.primary
-      },
+const colorVariants = variant({
+  default: false,
+  prop: 'enabled',
+  variants: {
+    true: css`
+      background-color: primary;
+    `,
 
-      false: {
-        backgroundColor: colors.gray['700']
-      }
-    }
-  })
+    false: css`
+      background-color: gray.700;
+    `
+  }
+})
 
 const positionVariant = variant({
   default: false,
   prop: 'enabled',
   variants: {
-    true: {
-      left: '18px'
-    },
-    false: {
-      left: '2px'
-    }
+    true: css`
+      left: 18px;
+    `,
+    false: css`
+      left: 2px;
+    `
   }
 })
 
