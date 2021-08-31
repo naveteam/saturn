@@ -1,7 +1,6 @@
 import React, { useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from '@xstyled/styled-components'
-import { th, up, down } from '@xstyled/system'
+import styled from 'styled-components'
 
 import { Flex, Typography } from '../'
 
@@ -56,58 +55,49 @@ const Breadcrumb = ({ path, variant, ...props }) => {
   )
 }
 
-const Link = styled.a`
+const Link = styled.a(
+  ({ theme: { colors } }) => `
   cursor: pointer;
   font-size: 16px;
   line-height: 24px;
-  color: ${({ color }) => th.color(color)};
   text-decoration: none;
   font-family: 'Open Sans';
-
   :hover {
     text-decoration: underline;
   }
-
   :visited {
     color: inherit;
   }
-
   :active {
     color: inherit;
   }
-
   :only-child {
     &:last-child {
       cursor: default;
-      color: gray.800;
+      color: ${colors.gray['800']};
       :hover {
         text-decoration: none;
       }
     }
   }
-`
+  `
+)
 
 const Icon = styled(Typography)`
   cursor: default;
 `
 
-const DesktopContainer = styled(Flex)(
-  down(
-    'md',
-    css`
-      display: none;
-    `
-  )
-)
+const DesktopContainer = styled(Flex)`
+  @media (max-width: ${({ theme }) => `${theme.breakpoints[2]}px`}) {
+    display: none;
+  }
+`
 
-const MobileContainer = styled(Flex)(
-  up(
-    'md',
-    css`
-      display: none;
-    `
-  )
-)
+const MobileContainer = styled(Flex)`
+  @media (min-width: ${({ theme }) => `${theme.breakpoints[2]}px`}) {
+    display: none;
+  }
+`
 
 Breadcrumb.defaultProps = {
   color: 'blue.400',
