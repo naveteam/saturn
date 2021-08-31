@@ -56,11 +56,10 @@ const Breadcrumb = ({ path, variant, ...props }) => {
 }
 
 const Link = styled.a(
-  ({ theme: { colors }, color }) => `
+  ({ theme: { colors } }) => `
   cursor: pointer;
   font-size: 16px;
   line-height: 24px;
-  color: ${colors[color]};
   text-decoration: none;
   font-family: 'Open Sans';
   :hover {
