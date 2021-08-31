@@ -1,5 +1,7 @@
-import { backgrounds, system } from '@xstyled/system'
-import styled from '@xstyled/styled-components'
+import { background, typography, layout, space, compose, color } from 'styled-system'
+import styled from 'styled-components'
+
+const composeSystem = compose(background, typography, layout, space, color)
 
 const TableData = styled.td`
   word-break: normal;
@@ -9,8 +11,7 @@ const TableData = styled.td`
   letter-spacing: 0.01071em;
   vertical-align: inherit;
   font-family: 'Open Sans', sans-serif;
-  ${backgrounds}
-  ${system}
+  ${composeSystem}
 `
 
 export default TableData

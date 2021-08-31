@@ -1,6 +1,5 @@
 import React from 'react'
-import styled from '@xstyled/styled-components'
-import { th } from '@xstyled/system'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Table = ({ hideExternalBorder, children, ...props }) => (
@@ -17,23 +16,26 @@ const OverflowWrapper = styled.div`
   overflow-y: hidden;
 `
 
-const Container = styled.table`
-  ${({ hideExternalBorder }) => {
-    if (hideExternalBorder) {
-      return 'border: 0;'
-    }
-    return 'box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);'
-  }}
-  border-radius: 4;
-  background: ${th.color('white')};
+const Container = styled.table(
+  ({ theme: { colors, space }, hideExternalBorder }) => css`
+    ${hideExternalBorder
+      ? css`
+          border: 0;
+        `
+      : css`
+          box-shadow: 0px 2px 4px rgba(33, 33, 33, 0.2);
+        `}
+    border-radius: ${space[2]}px;
+    background-color: ${colors['white']};
 
-  min-width: 328px;
-  max-width: 100%;
-  width: 100%;
-  height: 100%;
-  border-collapse: collapse;
-  text-align: left;
-`
+    min-width: 328px;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  `
+)
 
 Table.propTypes = {
   hideExternalBorder: PropTypes.bool
