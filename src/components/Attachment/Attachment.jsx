@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from '@xstyled/styled-components'
-import { space, layout } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import { space, layout } from 'styled-system'
 
 import { Typography } from '../Typography'
 import { Icon } from '../Iconography'
@@ -133,21 +133,23 @@ const Container = styled(Flex)`
   justify-content: space-between;
 `
 
-const StyledIcon = styled(Icon)`
-  display: none;
-  fill: blue.300;
-  width: 24px;
-  height: 24px;
-  padding-right: 8px;
+const StyledIcon = styled(Icon)(
+  ({ theme: { colors } }) => css`
+    display: none;
+    fill: ${colors.blue['300']};
+    width: 24px;
+    height: 24px;
+    padding-right: 8px;
 
-  &:last-child {
-    padding-right: 0px;
-  }
+    &:last-child {
+      padding-right: 0px;
+    }
 
-  :hover {
-    cursor: pointer;
-  }
-`
+    :hover {
+      cursor: pointer;
+    }
+  `
+)
 
 const Wrapper = styled(Flex)`
   ${StyledIcon} {
@@ -167,10 +169,13 @@ const Wrapper = styled(Flex)`
   ${space}
 `
 
-const AttachmentIcon = styled(Icon)`
-  transform: rotate(-45deg);
-  fill: blue.300;
-`
+const AttachmentIcon = styled(Icon)(
+  ({ theme: { colors } }) =>
+    css`
+      transform: rotate(-45deg);
+      fill: ${colors.blue['300']};
+    `
+)
 
 Attachment.propTypes = {
   name: PropTypes.string,
