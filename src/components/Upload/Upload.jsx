@@ -1,5 +1,5 @@
 import React, { useEffect, useState, forwardRef } from 'react'
-import styled from '@xstyled/styled-components'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../Typography'
@@ -98,7 +98,7 @@ const UploadDragAndDrop = forwardRef(
     const [error, setError] = useState(false)
 
     useEffect(() => {
-      setUploadedFiles(resetValue)
+      !!resetValue && setUploadedFiles(resetValue)
     }, [JSON.stringify(resetValue)])
 
     const handleChange = event => {
