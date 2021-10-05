@@ -56,6 +56,7 @@
     "@xstyled/prop-types": "^1.17.1",
     "@xstyled/styled-components": "^1.17.1",
     "@xstyled/system": "^1.17.1",
+    "all-contributors-cli": "^6.20.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "chromatic": "^4.0.3",
