@@ -145,29 +145,31 @@ const StyledIcon = styled(Icon)(
       padding-right: 0px;
     }
 
-    :hover {
+    &:hover {
       cursor: pointer;
     }
   `
 )
 
-const Wrapper = styled(Flex)`
-  ${StyledIcon} {
-    display: ${props => (props.variant === 'download' || props.error) && 'block'};
-  }
-  :hover {
+const Wrapper = styled(Flex)(
+  ({ variant, error }) => css`
     ${StyledIcon} {
-      display: block;
+      display: ${(variant === 'download' || error) && 'block'};
     }
-  }
-  width: 100%;
-  border-radius: 4px;
-  justify-content: space-between;
-  padding-right: 4px;
-  padding-left: 4px;
-  ${layout}
-  ${space}
-`
+    :hover {
+      ${StyledIcon} {
+        display: block;
+      }
+    }
+    width: 100%;
+    border-radius: 4px;
+    justify-content: space-between;
+    padding-right: 4px;
+    padding-left: 4px;
+    ${layout}
+    ${space}
+  `
+)
 
 const AttachmentIcon = styled(Icon)(
   ({ theme: { colors } }) =>
