@@ -50,7 +50,7 @@ const Tag = ({ children, close, closable, variant, selected, disabled, value, on
         <Text padding={close || closable ? '3px 0 3px 4px' : '3px 4px 3px 4px'} lineHeight={1}>
           {children}
         </Text>
-        {(close || closable) && <Icon icon='clear' color='white' height='16' />}
+        {(close || closable) && <Icon icon='clear' color='white' size='sm' />}
       </Content>
     </Base>
   )
