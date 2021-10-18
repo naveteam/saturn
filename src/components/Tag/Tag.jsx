@@ -11,7 +11,7 @@ const Tag = ({ children, close, ...props }) => (
       <Text padding={close ? '3px 0 3px 4px' : '3px 4px 3px 4px'} lineHeight={1}>
         {children}
       </Text>
-      {close && <Icon icon='clear' color='white' height='16' />}
+      {close && <Icon icon='clear' color='white' variantSize />}
     </Content>
   </Base>
 )
