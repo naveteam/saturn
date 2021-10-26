@@ -80,6 +80,7 @@
     "rollup": "^2.13.1",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^6.1.0",
     "storybook-addon-designs": "^5.4.2",
     "storybook-svgr-react-component": "^1.0.1",
@@ -92,5 +93,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {}
 }

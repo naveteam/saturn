@@ -10,7 +10,7 @@ const Accordion = ({ children, isOpen: isOpenProp }) => {
 
   const propChildren = Children.map(children, current => {
     return cloneElement(current, {
-      isOpen: isOpen ? 1 : 0,
+      isOpen: isOpen ? true : false,
       setIsOpen
     })
   })
@@ -168,15 +168,13 @@ const StyledHeader = styled(Flex)(
     box-sizing: border-box;
     border-color: ${colors.gray['300']} !important;
 
-    ${
-      isOpen
-        ? {
-            borderBottomLeftRadius: '0px !important',
-            borderBottomRightRadius: '0px !important',
-            borderBottomWidth: '0px !important'
-          }
-        : ''
-    }
+    ${isOpen
+      ? {
+          borderBottomLeftRadius: '0px !important',
+          borderBottomRightRadius: '0px !important',
+          borderBottomWidth: '0px !important'
+        }
+      : ''}
 
     ${background}
     ${layout}
@@ -199,7 +197,6 @@ const AccordionContent = styled.div(
     ${heightTransition && { maxHeight: '0' }}
 
     ${isOpen && [space, { maxHeight: heightTransition }]}
-
   `
 )
 

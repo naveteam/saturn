@@ -5,6 +5,7 @@ import image from '@rollup/plugin-image'
 import external from 'rollup-plugin-peer-deps-external'
 import { eslint } from 'rollup-plugin-eslint'
 import { terser } from 'rollup-plugin-terser'
+import styles from 'rollup-plugin-styles'
 
 import pkg from './package.json'
 
@@ -38,6 +39,7 @@ export default {
     }),
     commonjs(),
     image(),
-    terser()
+    terser(),
+    styles()
   ]
 }
