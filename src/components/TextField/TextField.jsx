@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { borders, variant } from 'styled-system'
 
 import { Flex, Box } from '../Grid'
@@ -75,7 +75,7 @@ TextField.propTypes = {
 }
 
 TextField.defaultProps = {
-  borderColor: 'black'
+  borderColor: 'gray.600'
 }
 
 const errorVariant = ({ theme: { colors } }) =>
@@ -135,11 +135,14 @@ const Wrapper = styled(Box)`
   ${errorVariant}
   ${disabledVariant}
 `
-const Label = styled(Typography)`
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-`
+const Label = styled(Typography)(
+  ({ theme: { colors } }) => css`
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: ${colors.gray['800']};
+  `
+)
 const Container = styled(Flex)`
   border-width: 1px;
   border-style: solid;
@@ -179,10 +182,13 @@ const InputBase = styled.input`
     }
   }
 `
-const Message = styled(Caption)`
-  font-size: 12px;
-  line-height: 16px;
-  margin-top: 4px;
-`
+const Message = styled(Caption)(
+  ({ theme: { colors } }) => css`
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 4px;
+    color: ${colors.gray['800']};
+  `
+)
 
 export default TextField
