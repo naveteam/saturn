@@ -10,7 +10,6 @@ export const AvatarControl = args => (
   </SaturnProvider>
 )
 
-
 # Avatar
 
 O componente de `Avatar` é utilizado para mostrar o avatar de um usuário.
@@ -68,8 +67,8 @@ Caso não seja passado um atributo `avatar` é possível passar as iniciais do n
     }}
   >
     <SaturnProvider>
-      <Avatar letter='A' />
-      <Avatar letter='AB' size='large' />
+      <Avatar letter='A' color='#ffffff' />
+      <Avatar letter='AB' color='#ffffff' size='large' />
     </SaturnProvider>
   </Story>
 </Canvas>
@@ -165,4 +164,5 @@ Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone
   </Story>
 </Canvas>
 
+<ArgsTable of={Avatar} />
 <ArgsTable of={Avatar} />

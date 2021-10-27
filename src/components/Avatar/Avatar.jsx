@@ -174,11 +174,11 @@ const AvatarContainer = styled.div(
 )
 
 const AvatarImage = styled.div(
-  ({ avatar, size, variant }) => css`
+  ({ theme: {space}, avatar, size, variant }) => css`
     cursor: pointer;
     width: ${size};
     height: ${size};
-    border-radius: ${variant ? 2 : '50%'};
+    border-radius: ${variant ?  `${space[4]}px` : '50%'};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -187,10 +187,10 @@ const AvatarImage = styled.div(
 )
 
 const NonAvatarContainer = styled(Flex)(
-  ({ variant }) => css`
+  ({ theme: {space}, variant }) => css`
     overflow: hidden;
     cursor: pointer;
-    border-radius: ${variant ? 2 : '50%'};
+    border-radius: ${variant ?  `${space[4]}px` : '50%'};
     position: relative;
   `
 )
