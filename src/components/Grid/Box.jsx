@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { compose, space, layout, typography, color, flexboxes, backgrounds } from '@xstyled/system'
-import { getSystemPropTypes } from '@xstyled/prop-types'
+import propTypes from '@styled-system/prop-types'
+import { compose, space, layout, typography, color, flexbox, background } from 'styled-system'
 
-const props = compose(space, layout, typography, color, flexboxes, backgrounds)
+const props = compose(space, layout, typography, color, flexbox, background)
 
 const Box = styled.div`
   margin: 0;
@@ -11,6 +11,13 @@ const Box = styled.div`
   ${props}
 `
 
-Box.propTypes = getSystemPropTypes(props)
+Box.propTypes = {
+  ...propTypes.space,
+  ...propTypes.layout,
+  ...propTypes.typography,
+  ...propTypes.color,
+  ...propTypes.flexbox,
+  ...propTypes.background
+}
 
 export default Box
