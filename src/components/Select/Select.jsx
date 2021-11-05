@@ -97,7 +97,7 @@ const Select = forwardRef(
             <Flex justifyContent='center' alignItems='center'>
               {clearValue && optionSelected[optionValue] && (
                 <>
-                  <Icon icon='times' width='16px' height='16px' color='gray.800' onClick={clearValueFunction} />
+                  <Icon icon='clear' size='sm' color='gray.800' onClick={clearValueFunction} />
                   <Box bg='gray.500' width='1px' height='24px' margin='0 8px 0px 12px'></Box>
                 </>
               )}
@@ -278,12 +278,15 @@ const SelectContainer = styled(Flex)(
   isOpenedVariant
 )
 
-const OverflowText = styled(Typography)`
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: calc(100% - 24px);
-  text-overflow: ellipsis;
-`
+const OverflowText = styled(Typography)(
+  ({ theme: { colors } }) => css`
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100% - 24px);
+    text-overflow: ellipsis;
+    color: ${colors.gray['800']} !important;
+  `
+)
 
 Select.defaultProps = {
   clearValue: true,
