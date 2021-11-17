@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react'
-import styled, { css, up, down } from '@xstyled/styled-components'
-import { variant } from '@xstyled/system'
+import styled, { css } from 'styled-components'
+import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../Typography'
@@ -29,8 +29,8 @@ Content.propTypes = {
   value: PropTypes.any.isRequired
 }
 
-const ScrollButton = forwardRef(({ to, disabled, clickHandler }, ref) => (
-  <ArrowButton ref={ref} onClick={clickHandler} disabled={disabled}>
+const ScrollButton = forwardRef(({ to, disabled, clickHandler, direction }, ref) => (
+  <ArrowButton ref={ref} onClick={clickHandler} disabled={disabled} direction={direction}>
     <Icon icon={`chevron-${to}`} color='primary' />
   </ArrowButton>
 ))
@@ -54,7 +54,7 @@ const getType = (hasLabel, hasIcon) => {
   return 'onlyText'
 }
 
-export const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
+const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
   const [activeTabValue, setActiveTab] = useState(initialActiveTab || 0)
   const [navigationVisible, setNavigationVisible] = useState(false)
   const [leftArrowClickable, setLeftArrowClickable] = useState(false)
@@ -136,7 +136,13 @@ export const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) 
             <Icon icon='menu' color='primary' />
           </HamburgerButton>
         </MobileMenu>
-        <ScrollButton to='left' disabled={!leftArrowClickable} ref={leftTrigger} clickHandler={leftTriggerHandler} />
+        <ScrollButton
+          to='left'
+          disabled={!leftArrowClickable}
+          ref={leftTrigger}
+          clickHandler={leftTriggerHandler}
+          direction={direction}
+        />
         <TabsContainer hasScroll={navigationVisible} value={activeTabValue} direction={direction}>
           <TabsWrapper ref={tabsWrapper} direction={direction}>
             {tabs.map((tab, index) => {
@@ -179,6 +185,7 @@ export const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) 
           disabled={!rightArrowClickable}
           ref={rightTrigger}
           clickHandler={rightTriggerHandler}
+          direction={direction}
         />
       </NavigationWrapper>
       <Body>
@@ -211,251 +218,311 @@ Tabs.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
 }
 
-const BaseVariants = variant({
+const BaseVariant = variant({
   prop: 'direction',
   variants: {
-    horizontal: css``,
-    vertical: css`
-      display: flex;
-    `
+    horizontal: {},
+    vertical: {
+      display: 'flex'
+    }
   }
 })
-
-const Base = styled.div`
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  ${BaseVariants};
-`
 
 const disabledArrowButton = variant({
   prop: 'disabled',
   variants: {
-    true: css`
-      pointer-events: none;
-      * {
-        fill: disabled;
+    true: {
+      pointerEvents: 'none',
+      '*': {
+        fill: 'disabled'
       }
-    `,
-    false: css``
+    },
+    false: {}
   }
 })
-
-const ArrowButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
-  ${disabledArrowButton};
-`
 
 const hasScrollVariant = variant({
   prop: 'hasScroll',
   variants: {
-    false: css`
-      button {
-        display: none;
-      }
-    `
+    false: {},
+    button: {
+      display: 'none'
+    }
   }
 })
 
 const collapsedVariant = variant({
   prop: 'collapsed',
   variants: {
-    true: css`
-      transform: translateX(-103%);
-    `,
-    false: css`
-      transform: translateX(0);
-    `
+    true: {
+      transform: 'translateX(-103%)'
+    },
+    false: {
+      transform: 'translateX(0)'
+    }
   }
 })
 
-const NavigationWrapperDirectionVariant = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      display: block;
-    `,
-    vertical: css`
-      display: block;
-      transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      box-sizing: border-box;
-      padding: 6 0;
-      background-color: white;
-      max-width: fit-content;
-      box-shadow: 0px 4px 10px rgba(33, 33, 33, 0.25);
-      ${collapsedVariant};
-    `
-  }
-})
-
-const NavigationWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  ${hasScrollVariant};
-
-  ${down(
-    'md',
-    css`
-      button {
-        display: none;
+const NavigationWrapperDirectionVariant = ({ theme }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        display: 'block'
+      },
+      vertical: {
+        display: 'block',
+        transition: '0.4s cubic-bezier(0.22, 0.61, 0.36, 1)',
+        boxSizing: 'border-box',
+        padding: `${theme.space[6]}px 0`,
+        backgroundColor: 'white',
+        maxWidth: 'fit-content',
+        boxShadow: '0px 4px 10px rgba(33, 33, 33, 0.25)'
       }
-    `
-  )}
+    }
+  })
 
-  ${down(
-    'sm',
-    css`
-      ${NavigationWrapperDirectionVariant};
-    `
-  )}
-`
+const directionVariantContainer = ({ theme: { colors, space } }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        width: '100%',
+        maxWidth: '100%',
+        flexDirection: 'row',
+        borderBottom: '1px solid',
+        borderBottomColor: `${colors.gray['300']}`,
 
-const directionVariantContainer = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      width: 100%;
-      max-width: 100%;
-      flex-direction: row;
-      border-bottom: 1px solid;
-      border-bottom-color: gray.300;
-
-      li:last-child {
-        margin-right: 0;
+        'li:last-child': {
+          marginRight: 0
+        }
+      },
+      vertical: {
+        flexDirection: 'column',
+        borderRight: '1px solid',
+        borderRightColor: `${colors.gray['300']}`,
+        maxHeight: '400px',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        '::-webkit-scrollbar': 'none',
+        scrollbarWidth: 'none',
+        '&::-webkit-scrollbar': {
+          display: 'none'
+        },
+        'li:last-child': {
+          marginBottom: 0
+        },
+        '@media (max-width: 600px)': {
+          paddingLeft: `${space[6]}px`
+        }
       }
-    `,
-    vertical: css`
-      flex-direction: column;
-      border-right: 1px solid;
-      border-right-color: gray.300;
-      max-height: 400px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    }
+  })
 
-      ::-webkit-scrollbar {
-        display: none;
+const directionVariantTab = ({ theme: { space } }) =>
+  variant({
+    prop: 'direction',
+    variants: {
+      horizontal: {
+        padding: `0 ${space[3]}px ${space[4]}px ${space[3]}px`,
+        marginRight: `${space[6]}px`,
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: 'fit-content',
+        justifyContent: 'center',
+
+        '&::after': {
+          bottom: -1,
+          left: 0,
+          width: '100%',
+          height: 4
+        }
+      },
+      vertical: {
+        padding: `${space[3]}px ${space[6]}px ${space[3]}px 0`,
+        marginBottom: `${space[6]}px`,
+
+        '&::after': {
+          right: -1,
+          top: 0,
+          width: 4,
+          height: '100%'
+        },
+
+        '@media (max-width: 960px)': {
+          maxWidth: '100%'
+        }
       }
-
-      li:last-child {
-        margin-bottom: 0;
-      }
-
-      ${down(
-        'sm',
-        css`
-          padding-left: 32px;
-        `
-      )}
-    `
-  }
-})
-
-const directionVariantTab = variant({
-  prop: 'direction',
-  variants: {
-    horizontal: css`
-      padding: 0 3 4 3;
-      margin-right: 6;
-      display: flex;
-      align-items: center;
-      max-width: fit-content;
-      justify-content: center;
-
-      ${down(
-        'md',
-        css`
-          max-width: 100%;
-        `
-      )}
-
-      &::after {
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 4px;
-      }
-    `,
-    vertical: css`
-      padding: 3 6 3 0;
-      margin-bottom: 6;
-
-      &::after {
-        right: -1px;
-        top: 0;
-        width: 4px;
-        height: 100%;
-      }
-    `
-  }
-})
-
-const TabsContainer = styled.ul`
-  list-style-type: none;
-  display: flex;
-  margin: ${({ hasScroll }) => (hasScroll ? '0 24px' : '0')};
-  padding: 0;
-  overflow: hidden;
-  align-items: center;
-  ${directionVariantContainer};
-
-  ${down(
-    'md',
-    css`
-      margin: 0;
-    `
-  )}
-
-  ${down(
-    'sm',
-    css`
-      border: none;
-    `
-  )}
-`
+    }
+  })
 
 const tabsWrapperDirectionVariant = variant({
   prop: 'direction',
   variants: {
-    vertical: css`
-      flex-direction: column;
-
-      ${down(
-        'sm',
-        css`
-          background-color: white;
-          box-sizing: border-box;
-          max-height: 400px;
-          position: relative;
-          overflow-y: scroll;
-          overflow-x: hidden;
-        `
-      )}
-    `,
-    horizontal: css`
-      flex-direction: row;
-
-      ${down(
-        'md',
-        css`
-          overflow-x: scroll;
-          overflow-y: hidden;
-        `
-      )}
-    `
+    vertical: {
+      flexDirection: 'column',
+      '@media (max-width: 600px)': {
+        backgroundColor: 'white',
+        boxSizing: 'border-box',
+        maxHeight: 400,
+        position: 'relative',
+        overflowY: 'scroll',
+        overflowX: 'hidden'
+      }
+    },
+    horizontal: {
+      flexDirection: 'row',
+      '@media (max-width: 960px)': {
+        overflowX: 'scroll',
+        overflowY: 'hidden'
+      }
+    }
   }
 })
+
+const iconActiveVariant = ({ theme: { colors } }) =>
+  variant({
+    prop: 'active',
+    variants: {
+      true: {
+        '*': {
+          fill: `${colors.primary}`
+        }
+      },
+      false: {
+        '*': {
+          fill: `${colors.gray['800']}`
+        }
+      }
+    }
+  })
+
+const disabledTabVariant = variant({
+  prop: 'disabled',
+  variants: {
+    false: {
+      cursor: 'pointer',
+      '@media (max-width: 960px)': {
+        cursor: 'default'
+      }
+    },
+    true: {
+      pointerEvents: 'none',
+      color: 'disabled'
+    }
+  }
+})
+
+const activeTabVariant = ({ theme: { colors, space } }) =>
+  variant({
+    prop: 'active',
+    variants: {
+      true: {
+        color: `${colors.primary}`,
+        fontWeight: `${space[1]}px`,
+
+        '&:hover': {
+          color: `${colors.primary}`
+        },
+
+        '&::after': {
+          backgroundColor: `${colors.primary}`
+        }
+      },
+      false: {
+        '&:hover': {
+          '& span': {
+            color: `${colors.gray['900']}`,
+            fontWeight: `${space[1]}px`
+          },
+          '*': {
+            fill: `${colors.gray['900']}`
+          }
+        }
+      }
+    }
+  })
+
+const minWidthTabVariant = variant({
+  prop: 'type',
+  variants: {
+    full: {},
+    onlyIcon: {
+      minWidth: 24
+    },
+    onlyText: {
+      minWidth: 24
+    }
+  }
+})
+
+const iconDisabledVariant = ({ theme: { colors } }) =>
+  variant({
+    prop: 'disabled',
+    variants: {
+      true: {
+        '*': {
+          fill: `${colors.gray['400']} !important`
+        }
+      },
+      false: {}
+    }
+  })
+
+const Base = styled.div`
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  ${BaseVariant};
+`
+
+const TabsContainer = styled.ul(
+  ({ theme: { breakpoints } }) => css`
+    list-style-type: none;
+    display: flex;
+    margin: ${({ hasScroll }) => (hasScroll ? '0 24px' : '0')};
+    padding: 0;
+    overflow: hidden;
+    align-items: center;
+    ${directionVariantContainer};
+
+    @media (max-width: ${breakpoints.md}px) {
+      margin: 0;
+    }
+
+    @media (max-width: ${breakpoints.sm}px) {
+      border: none;
+    }
+  `
+)
+
+const NavigationWrapper = styled.div(
+  ({ theme, direction }) => css`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    ${hasScrollVariant};
+
+    @media (max-width: ${theme.breakpoints.md}px) {
+      button {
+        display: none;
+      }
+    }
+
+    @media (max-width: ${theme.breakpoints.sm}px) {
+      ${NavigationWrapperDirectionVariant};
+    }
+
+    @media (max-width: ${theme.breakpoints.sm}px) {
+      button {
+        display: none;
+      }
+      position: relative;
+      ${direction === 'vertical' && collapsedVariant};
+    }
+  `
+)
 
 const HamburgerButton = styled.div`
   display: flex;
@@ -469,23 +536,39 @@ const HamburgerButton = styled.div`
   border-bottom-right-radius: 4px;
 `
 
-const MobileMenu = styled.div`
-  ${down(
-    'sm',
-    css`
-      display: ${({ direction }) => (direction === 'vertical' ? 'flex' : 'none')};
+const MobileMenu = styled.div(
+  ({ theme: { breakpoints }, direction }) => css`
+    @media (max-width: ${breakpoints.sm}px) {
+      display: ${direction === 'vertical' ? 'flex' : 'none'};
       margin-bottom: 32px;
       box-sizing: border-box;
       justify-content: flex-end;
-    `
-  )}
-  ${up(
-    'sm',
-    css`
+    }
+
+    @media (min-width: ${breakpoints.md}px) {
       display: none;
-    `
-  )}
-`
+    }
+
+    @media (min-width: ${breakpoints.sm}px) {
+      display: none;
+    }
+  `
+)
+
+const ArrowButton = styled.button(
+  ({ direction }) => css`
+    display: ${direction === 'vertical' ? 'none' : 'flex'};
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    ${disabledArrowButton};
+  `
+)
 
 const TabsWrapper = styled.div`
   display: flex;
@@ -494,34 +577,6 @@ const TabsWrapper = styled.div`
   ${tabsWrapperDirectionVariant};
 `
 
-const iconDisabledVariant = variant({
-  prop: 'disabled',
-  variants: {
-    true: css`
-      * {
-        fill: gray.400 !important;
-      }
-    `,
-    false: css``
-  }
-})
-
-const iconActiveVariant = variant({
-  prop: 'active',
-  variants: {
-    true: css`
-      * {
-        fill: primary;
-      }
-    `,
-    false: css`
-      * {
-        fill: gray.800;
-      }
-    `
-  }
-})
-
 const IconContainer = styled.div(
   ({ hasLabel }) => css`
     display: block;
@@ -529,7 +584,10 @@ const IconContainer = styled.div(
     height: 100%;
     ${iconDisabledVariant};
     ${iconActiveVariant};
-    ${hasLabel && 'margin-right: 16px'};
+    ${hasLabel &&
+    css`
+      margin-right: 16px;
+    `};
   `
 )
 
@@ -548,97 +606,36 @@ const Label = styled(Typography)`
   }
 `
 
-const disabledTabVariant = variant({
-  default: false,
-  prop: 'disabled',
-  variants: {
-    false: css`
-      cursor: pointer;
-      ${down(
-        'md',
-        css`
-          cursor: default;
-        `
-      )}
-    `,
-    true: css`
-      pointer-events: none;
-      color: disabled;
-    `
-  }
-})
+const Tab = styled.li(
+  ({ theme: { colors, space, fontSizes, lineHeights, breakpoints } }) => css`
+    width: 100%;
+    font-size: ${fontSizes[3]}px;
+    line-height: ${lineHeights[3]};
+    font-weight: normal;
+    box-sizing: border-box;
+    border-radius: ${space[1]}px;
+    color: ${colors.gray['800']};
+    position: relative;
+    ${directionVariantTab};
+    ${disabledTabVariant};
+    ${activeTabVariant};
+    ${minWidthTabVariant};
 
-const activeTabVariant = variant({
-  default: false,
-  prop: 'active',
-  variants: {
-    true: css`
-      color: primary;
-      font-weight: 1;
-
-      &:hover {
-        color: primary;
-      }
-
+    &:active {
       &::after {
-        background-color: primary;
+        background-color: ${colors.primary};
       }
-    `,
-    false: css`
-      &:hover {
-        span {
-          color: gray.900;
-          font-weight: 1;
-        }
-        * {
-          fill: gray.900;
-        }
-      }
-    `
-  }
-})
-
-const minWidthTabVariant = variant({
-  prop: 'type',
-  variants: {
-    full: css``,
-    onlyIcon: css`
-      min-width: 24px;
-    `,
-    onlyText: css`
-      min-width: 24px;
-    `
-  }
-})
-
-const Tab = styled.li`
-  width: 100%;
-  font-size: 3;
-  line-height: 3;
-  font-weight: normal;
-  box-sizing: border-box;
-  border-radius: 1;
-  position: relative;
-  color: gray.800;
-  ${directionVariantTab};
-  ${disabledTabVariant};
-  ${activeTabVariant};
-  ${minWidthTabVariant};
-
-  &:active {
-    &::after {
-      background-color: primary;
     }
-  }
 
-  &::after {
-    content: '';
-    display: block;
-    border-radius: 1;
-    transition: background-color 0.2s linear;
-    position: absolute;
-  }
-`
+    &::after {
+      content: '';
+      display: block;
+      border-radius: ${space[1]}px;
+      transition: background-color 0.2s linear;
+      position: absolute;
+    }
+  `
+)
 
 const TabBody = styled.div`
   display: table;
@@ -656,3 +653,4 @@ const Body = styled.div`
   width: 100%;
   height: 100%;
 `
+export default Tabs

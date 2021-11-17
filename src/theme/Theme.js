@@ -1,12 +1,11 @@
 import pallette from './pallette'
 
-const breakpoints = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920
-}
+const breakpoints = [0, 600, 960, 1280, 1920]
+breakpoints.xs = breakpoints[0]
+breakpoints.sm = breakpoints[1]
+breakpoints.md = breakpoints[2]
+breakpoints.lg = breakpoints[3]
+breakpoints.xl = breakpoints[4]
 
 const fontSizes = [10, 12, 14, 16, 20, 24, 32, 40, 48]
 
