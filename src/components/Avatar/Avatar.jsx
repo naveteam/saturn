@@ -6,7 +6,7 @@ import { Icon } from '../Iconography'
 import { Flex } from '../Grid'
 import { Typography } from '../Typography'
 
-const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) => {
+const Avatar = ({ avatar, name = '', size, status, variant, ...props }) => {
   const sizeProps = useMemo(() => {
     switch (size) {
       case 'tiny':
@@ -126,6 +126,15 @@ const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) =
     }
   }
 
+  const formatInitials = name => {
+    let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu')
+    let initials = [...name.matchAll(rgx)] || []
+
+    initials = ((initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')).toUpperCase()
+
+    return initials
+  }
+
   return avatar ? (
     <AvatarContainer
       size={sizeProps.sizeInPx}
@@ -144,12 +153,12 @@ const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) =
       height={sizeProps.sizeInPx}
       justifyContent='center'
       alignItems='center'
-      bg={children || letter ? sizeProps.color : 'white'}
+      bg={name ? sizeProps.color : 'white'}
       {...props}
     >
-      {children || letter ? (
+      {name ? (
         <Typography color='orange' lineHeight={6} fontSize={sizeProps.fontSize}>
-          {children || letter}
+          {formatInitials(name)}
         </Typography>
       ) : (
         <Icon
@@ -166,7 +175,6 @@ const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) =
 
 const AvatarContainer = styled.div(
   ({ size }) => css`
-    overflow: hidden;
     width: ${size};
     height: ${size};
     position: relative;
@@ -174,11 +182,11 @@ const AvatarContainer = styled.div(
 )
 
 const AvatarImage = styled.div(
-  ({ theme: {space}, avatar, size, variant }) => css`
+  ({ avatar, size, variant }) => css`
     cursor: pointer;
     width: ${size};
     height: ${size};
-    border-radius: ${variant ?  `${space[4]}px` : '50%'};
+    border-radius: ${variant ? '4px' : '50%'};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -187,10 +195,9 @@ const AvatarImage = styled.div(
 )
 
 const NonAvatarContainer = styled(Flex)(
-  ({ theme: {space}, variant }) => css`
-    overflow: hidden;
+  ({ variant }) => css`
     cursor: pointer;
-    border-radius: ${variant ?  `${space[4]}px` : '50%'};
+    border-radius: ${variant ? '4px' : '50%'};
     position: relative;
   `
 )
@@ -220,11 +227,10 @@ Avatar.defaultProps = {
 
 Avatar.propTypes = {
   avatar: PropTypes.string,
-  letter: PropTypes.string,
+  name: PropTypes.string,
   size: PropTypes.oneOf(['tiny', 'very-small', 'small', 'medium', 'large', 'very-large', 'huge']),
   status: PropTypes.oneOf(['available', 'away', 'approved', 'busy', 'denied']),
-  variant: PropTypes.bool,
-  children: PropTypes.string
+  variant: PropTypes.bool
 }
 
 export default Avatar

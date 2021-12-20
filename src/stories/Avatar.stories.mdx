@@ -52,9 +52,9 @@ a variação `Variant` é utilizada quando o avatar mostrado é de uma empresa.
   </Story>
 </Canvas>
 
-# Iniciais
+# Name
 
-Caso não seja passado um atributo `avatar` é possível passar as iniciais do nome do avatar, através da propriedade `letter`.
+Caso não seja passado um atributo `avatar` é possível passar um do nome do avatar, para que sejam mostradas as suas iniciais, através da propriedade `name`.
 
 <Canvas>
   <Story
@@ -67,15 +67,15 @@ Caso não seja passado um atributo `avatar` é possível passar as iniciais do n
     }}
   >
     <SaturnProvider>
-      <Avatar letter='A' color='#ffffff' />
-      <Avatar letter='AB' color='#ffffff' size='large' />
+      <Avatar name='Lorem Ipsum' color='#ffffff' />
+      <Avatar name='Fulano de Tal' color='#ffffff' size='large' />
     </SaturnProvider>
   </Story>
 </Canvas>
 
 # Default
 
-Caso não seja haja as propriedades `avatar` e `letter` será mostrado um ícone padrão para usuário e para empresa.
+Caso não haja as propriedades `avatar` e `name` será mostrado um ícone padrão para usuário e para empresa.
 
 <Canvas>
   <Story
