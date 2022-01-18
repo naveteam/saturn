@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components'
 import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
-import { Flex, Box } from '../Grid'
+import { Box } from '../Box'
+import { Flex } from '../Flex'
 import { Caption, Typography } from '..'
 
 const TextArea = forwardRef(({ label, caption, placeholder, disabled, name, ...props }, ref) => {
