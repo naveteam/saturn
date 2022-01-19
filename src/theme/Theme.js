@@ -1,6 +1,6 @@
 import pallette from './pallette'
 
-const breakpoints = [0, 600, 960, 1280, 1920]
+const breakpoints = ['0px', '600px', '960px', '1280px', '1920px']
 breakpoints.xs = breakpoints[0]
 breakpoints.sm = breakpoints[1]
 breakpoints.md = breakpoints[2]
