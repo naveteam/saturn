@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { typography } from 'styled-system'
 
 import { Typography } from '../'
-import { Flex } from '../Grid'
+import { Flex } from '../Flex'
 import { Icon } from '../Iconography'
 
 const Checkbox = forwardRef(

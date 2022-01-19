@@ -4,7 +4,8 @@ import { variant } from 'styled-system'
 import { useClickOutside, useHotKey } from '@naveteam/prometheus'
 import PropTypes from 'prop-types'
 
-import { Flex, Box } from '../Grid'
+import { Box } from '../Box'
+import { Flex } from '../Flex'
 import { Typography, Caption, Icon } from '..'
 
 const Select = forwardRef(

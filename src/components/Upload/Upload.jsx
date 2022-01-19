@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../Typography'
-import { Flex } from '../Grid'
+import { Flex } from '../Flex'
 import { Button } from '../Button'
 import { Icon } from '../Iconography'
 import { Attachment } from '../Attachment'

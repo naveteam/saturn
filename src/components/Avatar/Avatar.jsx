@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Icon } from '../Iconography'
-import { Flex } from '../Grid'
+import { Flex } from '../Flex'
 import { Typography } from '../Typography'
 
 const Avatar = ({ avatar, letter, size, status, variant, children, ...props }) => {
@@ -174,11 +174,11 @@ const AvatarContainer = styled.div(
 )
 
 const AvatarImage = styled.div(
-  ({ theme: {space}, avatar, size, variant }) => css`
+  ({ theme: { space }, avatar, size, variant }) => css`
     cursor: pointer;
     width: ${size};
     height: ${size};
-    border-radius: ${variant ?  `${space[4]}px` : '50%'};
+    border-radius: ${variant ? `${space[4]}px` : '50%'};
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -187,10 +187,10 @@ const AvatarImage = styled.div(
 )
 
 const NonAvatarContainer = styled(Flex)(
-  ({ theme: {space}, variant }) => css`
+  ({ theme: { space }, variant }) => css`
     overflow: hidden;
     cursor: pointer;
-    border-radius: ${variant ?  `${space[4]}px` : '50%'};
+    border-radius: ${variant ? `${space[4]}px` : '50%'};
     position: relative;
   `
 )

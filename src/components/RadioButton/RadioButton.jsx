@@ -4,7 +4,7 @@ import { typography } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'
-import { Flex } from '../Grid'
+import { Flex } from '../Flex'
 import { Icon } from '../Iconography'
 
 const RadioButton = forwardRef(({ color, label, disabled, checked, name, onChange, value, ...props }, ref) => {
