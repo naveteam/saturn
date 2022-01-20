@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
+import { Flex, Box, Typography, SaturnProvider } from '../components'
+
+<Meta title='Layout/Flex | Box' component={Flex} />
+
+# Flex | Box
+
+O Componente Flex é o componente que encapsula todos os filhos `Box` e os delimita dentro do layout. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado.
+O componente Box é responsável por encapsular uma porção de conteúdo, afim de posicioná-lo na tela. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado. Sua principal diferença está na forma de definir a width do componente, onde um array de larguras pode ser inserido, seguindo os breakpoints disponíveis no `theme` definido.
+
+<Canvas>
+  <Story name='Flex | Box'>
+    <SaturnProvider>
+      <Flex flexWrap='wrap' backgroundColor='gray.400'>
+        <Box width={1} p='2'>
+          <Typography color='white'>Flex</Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 4
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 4
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 4
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 4
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 3
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 3
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 3
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 2 }} p='2' backgroundColor='blue.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 2
+          </Typography>
+        </Box>
+        <Box width={{ xs: 1, md: 1 / 2 }} p='2' backgroundColor='blue.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1 / 2
+          </Typography>
+        </Box>
+        <Box width={1} p='2' backgroundColor='green.400'>
+          <Typography color='white' textAlign='center'>
+            Box 1
+          </Typography>
+        </Box>
+      </Flex>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+### Proptypes Flex
+
+<ArgsTable of={Flex} />
+
+### Proptypes Box
+
+<ArgsTable of={Box} />

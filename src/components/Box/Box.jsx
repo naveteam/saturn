@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import propTypes from '@styled-system/prop-types'
-import { compose, space, layout, typography, color, flexbox, background } from 'styled-system'
+import { compose, space, layout, typography, color, flexbox, background, grid, border } from 'styled-system'
 
-const props = compose(space, layout, typography, color, flexbox, background)
+const props = compose(space, layout, typography, color, flexbox, background, grid, border)
 
 const Box = styled.div`
   margin: 0;

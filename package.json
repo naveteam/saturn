@@ -94,5 +94,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "clsx": "^1.1.1"
+  }
 }
