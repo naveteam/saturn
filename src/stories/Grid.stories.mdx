@@ -4,9 +4,7 @@ import { Grid, Box, Typography, SaturnProvider } from '../components'
 
 <Meta title='Layout/Grid' component={Grid} />
 
-# Grid (simples)
-
-Sit in quis Lorem enim dolor excepteur dolore laborum. Elit aliquip aliqua consequat ut labore anim culpa occaecat qui ea irure do ipsum. Magna fugiat veniam elit irure pariatur voluptate occaecat sit. Duis velit commodo cillum consequat. Aliqua nulla sint laborum qui id quis eu adipisicing velit.
+Componente primitivo para construção de layout's complexos (onde somente os componentes de Box/Grid nao sao suficientes). O componente possibilita a utilização de qualquer propriedade que envolva grid suportada pelo styled system (https://styled-system.com/api/#grid-layout) além de propriedades customizadas para casos mais simples
 
 <Canvas>
   <Story name='Grid'>
@@ -34,3 +32,46 @@ Sit in quis Lorem enim dolor excepteur dolore laborum. Elit aliquip aliqua conse
     </SaturnProvider>
   </Story>
 </Canvas>
+
+# Grid (simples)
+
+Para utilizar a grid com finalidades mais simples (ex.: listagem com colunas) basta utilizar o Grid como Wrapper. Utilizar propriedade `columns` para escrever a quantidade de colunas desejadas (ex.: columns={3} equivale a `templateColumns="repeat(3, 1fr)"`)
+
+<Canvas >
+  <Story name='Grid Simples'>
+    <SaturnProvider>
+			<Grid columns={[0, 2, 3, 4]} gap={10} mb={50}>
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+			</Grid>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Grid (uso geral)
+
+Para demais finalidades da Grid, aconselhamos utilizar Grid o mesmo componente grid, passando como prop item. Assim você terá acesso a todas as as funcionalidades relacionadas a grid tanto no Wrapper quanto nos filhos
+
+<Canvas >
+  <Story name='Grid (uso geral)'>
+    <SaturnProvider>
+			<Grid
+				gap={10}
+				templateRows='repeat(2, 1fr)'
+				templateColumns='repeat(5, 1fr)'
+			>
+				<Grid item column={1} row={1} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={1} columnEnd={3} row={2} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={2} columnEnd={5} row={1} bg='blue.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+			</Grid>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
