@@ -91,7 +91,7 @@ Já a prop `defaultChecked` define o componente como checado inicialmente.
 
 # Checked
 
-O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor de um `Radio Button`, por padrão o valor é `false`.
+O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor se o valor está selecionado ou não `Radio Button`.
 
 <Canvas>
   <Story
@@ -136,9 +136,11 @@ A prop `onChange` é responsável por chamar uma função quando o valor do `inp
   </Story>
 </Canvas>
 
-# Color
+# Color | ColorIcon
 
-O `Radio Button` pode receber a prop `color`. Essa propriedade indica qual a cor do texto. Se o componente estiver desabilitado, a cor será `gray.500`.
+O `Radio Button` pode receber as seguintes propriedades para cores: `color` e `colorIcon`.
+A propriedade `colorIcon` indica qual do ícone apenas, enquanto a propriedade `color` indica a cor do ícone e do texto.
+Se o componente estiver desabilitado, a cor do ícone e texto será `gray.500`.
 
 <Canvas>
   <Story
@@ -152,9 +154,10 @@ O `Radio Button` pode receber a prop `color`. Essa propriedade indica qual a cor
   >
     <SaturnProvider>
       <RadioButton label='Botão Comum' name='colorProp' />
-      <RadioButton disabled={true} label='Comum disabled' name='colorProp' />
-      <RadioButton color='purple.400' label='Botão Roxo' name='colorProp' />
-      <RadioButton disabled={true} color='purple.400' label='Roxo Disabled' name='colorProp' />
+      <RadioButton colorIcon='green.400' label='Botão Comum Ícone Verde' name='colorProp' />
+      <RadioButton color='red.400' label='Botão e Texto Vermelho' name='colorProp' />
+      <RadioButton color='purple.400' label='Botão e Texto Roxo' name='colorProp' />
+      <RadioButton disabled={true} label='Botão Disabled' name='colorProp' />
     </SaturnProvider>
   </Story>
 </Canvas>

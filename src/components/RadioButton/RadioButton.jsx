@@ -8,7 +8,7 @@ import { Icon } from '../Iconography'
 
 const RadioButton = forwardRef(
   (
-    { name, label, value, disabled = false, onChange, defaultChecked = false, checked = false, color, id, ...props },
+    { name, label, value, disabled = false, onChange, defaultChecked = false, checked, color, colorIcon, id, ...props },
     ref
   ) => {
     return (
@@ -20,15 +20,13 @@ const RadioButton = forwardRef(
             name={name}
             id={id}
             value={value}
-            onChange={e => {
-              if (onChange) onChange(e)
-            }}
+            onChange={e => onChange && onChange(e)}
             disabled={disabled}
             defaultChecked={defaultChecked}
-            checked={checked ? checked : undefined}
+            checked={checked}
           />
 
-          <CheckedIcon icon='radio_button_checked' color={disabled ? 'disabled' : 'primary'} />
+          <CheckedIcon icon='radio_button_checked' color={disabled ? 'disabled' : colorIcon ?? color ?? 'primary'} />
           <UncheckedIcon icon='radio_button_outline' color={disabled ? 'disabled' : 'gray.800'} />
           {label && (
             <Typography
@@ -96,6 +94,7 @@ RadioButton.propTypes = {
   defaultChecked: PropTypes.bool,
   checked: PropTypes.bool,
   color: PropTypes.string,
+  colorIcon: PropTypes.string,
   onChange: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
