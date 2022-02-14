@@ -7,6 +7,7 @@ import { RadioButton, SaturnProvider } from '../components'
 # RadioButton
 
 O componente `Radio Button` deve ser utilizado em casos onde o usuário pode selecionar apenas uma opção dentre uma lista de opções.
+Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente.
 É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
 Sendo eles:
 
@@ -54,9 +55,9 @@ O `Radio Button` aceita um `label` opcional para cada elemento, se não for forn
     }}
   >
     <SaturnProvider>
-      <RadioButton name='labelProp' value='noLabel' />
       <RadioButton label='Label 1' name='labelProp' value='label1' />
       <RadioButton label='Label 2' name='labelProp' value='label2' />
+      <RadioButton name='labelProp' value='noLabel' />
     </SaturnProvider>
   </Story>
 </Canvas>

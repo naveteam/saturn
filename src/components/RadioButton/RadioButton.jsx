@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Typography } from '../'
-import { Flex } from '../Grid'
 import { Icon } from '../Iconography'
 
 const RadioButton = forwardRef(
@@ -12,35 +11,33 @@ const RadioButton = forwardRef(
     ref
   ) => {
     return (
-      <Flex alignItems='center' {...props}>
-        <RadioButtonContainer disabled={disabled}>
-          <HiddenInput
-            ref={ref}
-            type='radio'
-            name={name}
-            id={id}
-            value={value}
-            onChange={e => onChange && onChange(e)}
-            disabled={disabled}
-            defaultChecked={defaultChecked}
-            checked={checked}
-          />
+      <RadioButtonContainer disabled={disabled} {...props}>
+        <HiddenInput
+          ref={ref}
+          type='radio'
+          name={name}
+          id={id}
+          value={value}
+          onChange={e => onChange && onChange(e)}
+          disabled={disabled}
+          defaultChecked={defaultChecked}
+          checked={checked}
+        />
 
-          <CheckedIcon icon='radio_button_checked' color={disabled ? 'disabled' : colorIcon ?? color ?? 'primary'} />
-          <UncheckedIcon icon='radio_button_outline' color={disabled ? 'disabled' : 'gray.800'} />
-          {label && (
-            <Typography
-              fontSize={3}
-              lineHeight={3}
-              fontWeight={0}
-              paddingLeft={3}
-              color={disabled ? 'disabled' : color ? color : 'gray.800'}
-            >
-              {label}
-            </Typography>
-          )}
-        </RadioButtonContainer>
-      </Flex>
+        <CheckedIcon icon='radio_button_checked' color={disabled ? 'disabled' : colorIcon ?? color ?? 'primary'} />
+        <UncheckedIcon icon='radio_button_outline' color={disabled ? 'disabled' : 'gray.800'} />
+        {label && (
+          <Typography
+            fontSize={3}
+            lineHeight={3}
+            fontWeight={0}
+            paddingLeft={3}
+            color={disabled ? 'disabled' : color ? color : 'gray.800'}
+          >
+            {label}
+          </Typography>
+        )}
+      </RadioButtonContainer>
     )
   }
 )
@@ -58,14 +55,12 @@ const UncheckedIcon = styled(Icon)`
 const RadioButtonContainer = styled.label(
   ({ disabled }) => css`
     height: 24px;
-    display: flex;
+    display: inline-flex;
+    vertical-align: top;
+    position: relative;
+    user-select: none;
     align-items: center;
     cursor: pointer;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
 
     ${disabled
       ? css`
