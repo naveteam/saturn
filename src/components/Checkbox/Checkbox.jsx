@@ -7,105 +7,89 @@ import { Flex } from '../Grid'
 import { Icon } from '../Iconography'
 
 const Checkbox = forwardRef(
-  ({ label, color, name, disabled, onChange, value, defaultValue, checked, ...props }, ref) => {
+  (
+    { name, label, value, disabled = false, onChange, defaultValue = false, checked, color, colorIcon, id, ...props },
+    ref
+  ) => {
     return (
-      <LabelContainer as='label' color={color} {...props}>
-        <Input
-          type='checkbox'
+      <CheckboxContainer disabled={disabled} {...props}>
+        <HiddenInput
           ref={ref}
+          type='checkbox'
           name={name}
-          onChange={onChange}
+          id={id}
           value={value}
-          checked={checked}
-          defaultValue={defaultValue}
+          onChange={e => onChange && onChange(e)}
           disabled={disabled}
+          defaultValue={defaultValue}
+          checked={checked}
         />
-        <CheckedIcon icon='checkbox_checked' color='primary' />
-        <UncheckedIcon icon='checkbox_outline' />
+
+        <CheckedIcon icon='checkbox_checked' color={disabled ? 'disabled' : colorIcon ?? color ?? 'primary'} />
+        <UncheckedIcon icon='checkbox_outline' color={disabled ? 'disabled' : 'gray.800'} />
         {label && (
-          <Typography fontSize={3} lineHeight={3} fontWeight={0} paddingLeft={3}>
+          <Typography
+            fontSize={3}
+            lineHeight={3}
+            fontWeight={0}
+            paddingLeft={3}
+            color={disabled ? 'disabled' : color ? color : 'gray.800'}
+          >
             {label}
           </Typography>
         )}
-      </LabelContainer>
+      </CheckboxContainer>
     )
   }
 )
 
-Checkbox.propTypes = {
-  checked: PropTypes.bool,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  label: PropTypes.string,
-  name: PropTypes.string
-}
-
 const CheckedIcon = styled(Icon)`
-  display: none;
+  opacity: 0;
+  transition: opacity 0.2s linear;
 `
 const UncheckedIcon = styled(Icon)`
-  & path {
-    fill: gray.700;
-  }
+  opacity: 1;
+  position: absolute;
+  transition: opacity 0.2s linear;
 `
 
-const LabelContainer = styled(Flex)`
-  display: inline-flex;
-  vertical-align: top;
-  position: relative;
-  user-select: none;
-  color: gray.800;
-  min-height: 24px;
-
-  ${down(
-    'sm',
-    css`
-      display: flex;
-    `
-  )}
-
-  & >
-    input:checked:enabled
-    ~ p {
-    color: gray.900;
-    ${typography}
-  }
-  ${typography}
-`
-
-const Input = styled.input`
-  opacity: 0;
-  margin: 0;
-  height: 0;
-  width: 0;
-
-  & ~ p,
-  & ~ svg {
+const CheckboxContainer = styled.label(
+  ({ disabled }) => css`
+    height: 24px;
+    display: inline-flex;
+    vertical-align: top;
+    position: relative;
+    user-select: none;
+    align-items: center;
     cursor: pointer;
-  }
-
-  &:disabled ~ p,
-  &:disabled ~ svg {
-    cursor: not-allowed;
-  }
-
+    ${disabled
+      ? css`
+          cursor: not-allowed;
+        `
+      : ''}
+  `
+)
+const HiddenInput = styled.input`
+  display: none;
   &:checked + ${CheckedIcon} {
-    display: inherit;
+    opacity: 1;
     & + ${UncheckedIcon} {
-      display: none;
+      opacity: 0;
     }
   }
-
-  &:disabled ~ svg path {
-    fill: gray.400;
-  }
-
-  &:disabled ~ p {
-    color: disabled;
-  }
 `
+
+Checkbox.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  disabled: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  checked: PropTypes.bool,
+  color: PropTypes.string,
+  colorIcon: PropTypes.string,
+  onChange: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+}
 
 export default Checkbox
