@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { forwardRef } from 'react'
-import styled, { css, down, typography } from '@xstyled/styled-components'
+import styled, { css } from '@xstyled/styled-components'
 
 import { Typography } from '../'
-import { Flex } from '../Grid'
 import { Icon } from '../Iconography'
 
 const Checkbox = forwardRef(
