@@ -1,21 +1,32 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+
 import { RadioButton, SaturnProvider } from '../components'
 
 <Meta title='Data Input/Radio Button' component={RadioButton} argTypes={{ color: { control: 'color' } }} />
 
-export const RadioButtonControl = args => (
-  <SaturnProvider>
-    <RadioButton {...args} />
-  </SaturnProvider>
-)
-
 # RadioButton
 
-O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode selecionar apenas uma opção dentre uma lista de opções. Em sua versão desktop os Radio Buttons são mostrados lado a lado. No mobile, os Radio Buttons são mostrados verticalmente. Em suas props padrões, o componente está habilitado e desmarcado.
+O componente `Radio Button` deve ser utilizado em casos onde o usuário pode selecionar apenas uma opção dentre uma lista de opções.
+Em sua versão desktop os Checkboxes são mostrados lado a lado. No mobile, os Checkboxes são mostrados verticalmente.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
+Sendo eles:
+
+- `name`: Define o nome do `input`. Obrigatória para sabermos quais botões pertecem a este `name`.
+- `label`: Texto do `input`, recebe uma string que fica posicionada ao lado do ícone.
+- `value`: Define qual o valor do componente, pode receber uma string, um numeral ou até um booleano.
+- `disabled`: Define se o componente está ou não habilitado, recebe um booleano.
+- `defaultChecked`: Define se o componente está inicialmente marcado ou não, recebe um booleano.
+- `checked`: Define se o componente está marcado ou se não, recebe um booleano.
+- `color`: Define a cor do texto referente àquele `Radio Button`, recebe uma string informando a cor.
+- `onChange`: Define o que será executado quando o componente for modificado.
+- `id`: Define o `id` do `input`.
+
+# Base
+
+Em suas props padrões, o componente está habilitado e desmarcado.
 
 <Story
   name='Base'
-  args={{ label: 'Base' }}
   parameters={{
     design: {
       type: 'figma',
@@ -23,55 +34,15 @@ O componente `Radio Button` deve ser utilizado em casos no qual o usuário pode 
     }
   }}
 >
-  {RadioButtonControl.bind({})}
+  <SaturnProvider>
+    <RadioButton name='base' />
+    <RadioButton name='base' />
+  </SaturnProvider>
 </Story>
-
-# Checked | onChange
-
-O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor inicial para um `Radio Button`, por padrão o valor é `false`. Se o valor `checked` for passado para o `Radio Button`, será necessário também passar uma função de onChange para mudar o seu valor, caso contrário, o valor de checked nunca irá mudar. Se o componente estiver desabilitado, não será necessário passar uma função de `onChange`.
-
-<Canvas>
-  <Story
-    name='Checked | onChange'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <RadioButton checked={false} onChange={() => {}} label='Not selected' />
-      <RadioButton checked={true} disabled={true} label='Selected disabled' />
-      <RadioButton checked={false} disabled={true} label='Not selected disabled' />
-    </SaturnProvider>
-  </Story>
-</Canvas>
-
-# Disabled
-
-A prop `disabled` desabilita completamente o `Radio Button`, impedindo seu uso e as cores customizadas não irão funcionar.
-
-<Canvas>
-  <Story
-    name='Disabled'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <RadioButton label='Not selected disabled' disabled={true} name='radio13' />
-      <RadioButton checked={true} label='Selected disabled' disabled={true} name='radio14' />
-    </SaturnProvider>
-  </Story>
-</Canvas>
 
 # Label
 
-O `Radio Button` aceita uma label opcional para cada elemento, se não for fornecido, nada será exibido.
+O `Radio Button` aceita um `label` opcional para cada elemento, se não for fornecido, nada será exibido.
 
 <Canvas>
   <Story
@@ -84,8 +55,110 @@ O `Radio Button` aceita uma label opcional para cada elemento, se não for forne
     }}
   >
     <SaturnProvider>
-      <RadioButton label='RadioButton Label' name='radio15' />
-      <RadioButton name='radio15' />
+      <RadioButton label='Label 1' name='labelProp' value='label1' />
+      <RadioButton label='Label 2' name='labelProp' value='label2' />
+      <RadioButton name='labelProp' value='noLabel' />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Disabled | Default Checked
+
+A prop `disabled` desabilita completamente o `Radio Button`, impedindo seu uso e as cores customizadas não irão funcionar.
+Já a prop `defaultChecked` define o componente como checado inicialmente.
+
+<Canvas>
+  <Story
+    name='DisabledAndDefaultChecked'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <RadioButton label='No Default Checked' name='disabledDefaultCheckedProp' value='noDefaultChecked' />
+      <RadioButton label='Default Checked' defaultChecked name='disabledDefaultCheckedProp' value='defaultChecked' />
+      <RadioButton
+        label='Disabled No Default Checked'
+        disabled
+        name='disabledDefaultCheckedProp'
+        value='DisabledNoDefaultChecked'
+      />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Checked
+
+O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor se o valor está selecionado ou não `Radio Button`.
+
+<Canvas>
+  <Story
+    name='Checked'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <RadioButton checked={false} label='Not Checked' name='checkedProp' />
+      <RadioButton checked={true} label='Checked' name='checkedProp' />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# OnChange
+
+A prop `onChange` é responsável por chamar uma função quando o valor do `input` mudar.
+
+<Canvas>
+  <Story
+    name='OnChange'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <RadioButton onChange={e => window.alert(e.target.value)} label='Botão Um' name='onChangeProp' value='Valor Um' />
+      <RadioButton
+        onChange={e => window.alert(e.target.value)}
+        label='Botão Dois'
+        name='onChangeProp'
+        value='Valor Dois'
+      />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Color | ColorIcon
+
+O `Radio Button` pode receber as seguintes propriedades para cores: `color` e `colorIcon`.
+A propriedade `colorIcon` indica qual do ícone apenas, enquanto a propriedade `color` indica a cor do ícone e do texto.
+Se o componente estiver desabilitado, a cor do ícone e texto será `gray.500`.
+
+<Canvas>
+  <Story
+    name='Color'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=239%3A470'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <RadioButton label='Botão Comum' name='colorProp' />
+      <RadioButton colorIcon='green.400' label='Botão Comum Ícone Verde' name='colorProp' />
+      <RadioButton color='red.400' label='Botão e Texto Vermelho' name='colorProp' />
+      <RadioButton color='purple.400' label='Botão e Texto Roxo' name='colorProp' />
+      <RadioButton disabled={true} label='Botão Disabled' name='colorProp' />
     </SaturnProvider>
   </Story>
 </Canvas>
