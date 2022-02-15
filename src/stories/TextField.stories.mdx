@@ -12,11 +12,36 @@ export const TextFieldControls = args => (
 
 # TextField
 
-O componente de `TextField` é utilizado para que o usuário possa inserir informações na aplicação. Sua estrutura é composta por um Label (definido pela prop `label`, que recebe children), um campo de entrada de dados (que utiliza as props `name` e `placeholder`) e uma mensagem de auxílio (definida pela prop `message`).
+O componente de `TextField` deve ser utilizado para que o usuário possa inserir informações na aplicação.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
+Sendo eles:
+
+- `borderColor`: Define a cor da borda do `input`, recebe uma string informando a cor.
+- `label`: Texto do `input`, recebe uma string que fica posicionada acima do campo.
+- `message`: Mensagem de auxílio que fica abaixo do campo, recebe uma string.
+- `prefix`: Recebe uma string que será adicionada à esquerda no campo.
+- `suffix`: Recebe uma string que será adicionada à direita no campo.
+- `customPrefix`: Recebe um objeto que será adicionado à esquerda no campo.
+- `customSuffix`: Recebe um objeto que será adicionado à direita no campo.
+- `placeholder`: Texto de exemplo inserido previamente no `input` que é apagado assim que o usuário começa a escrever, recebe uma string.
+- `disabled`: Define se o componente está ou não habilitado, recebe um booleano.
+- `type`: Define o tipo do `input`, recebe uma string.
+- `name`: Define o nome do `input`, recebe uma string.
+- `defaultValue`: Define o valor inicial escrito no campo, recebe uma string ou um numeral.
+- `value`: Define qual o valor do componente, pode receber uma string ou um numeral.
+- `onChange`: Recebe uma função que será executada assim que houver uma modificação no componente.
+- `mask`: Defina uma máscara para o `input`, recebe uma string.
+- `maskChar`: Caractere para cobrir as partes não preenchidas da máscara. O caractere padrão é "\_". Se definido como string nula ou vazia, as partes não preenchidas ficarão vazias como na entrada comum.
+- `formatChars`: Objeto que define o que cada caractere representa, recebe um objeto com caracteres como as chaves e RegExp para os valores.
+- `alwaysShowMask`: Define se vai mostrar a máscara quando a entrada estiver vazia e sem foco, recebe um booleano.
+- `inputProps`: Define outras props para o `input`, recebe um objeto.
+
+# Base
+
+Em suas props padrões, o componente será apenas um campo.
 
 <Story
   name='Base'
-  args={{ label: 'Label', message: 'Message', placeholder: 'Placeholder', error: false, disabled: false }}
   parameters={{
     design: {
       type: 'figma',
@@ -24,51 +49,10 @@ O componente de `TextField` é utilizado para que o usuário possa inserir infor
     }
   }}
 >
-  {TextFieldControls.bind({})}
+  <SaturnProvider>
+    <TextField />
+  </SaturnProvider>
 </Story>
-
-# Affixes
-
-O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas. Também é possível utilizar affixes customizados, elementos children podem ser passados através das props `customPrefix` e `customSuffix`.
-
-<Canvas>
-  <Story
-    name='Affixes'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <TextField name='prefix' label='Prefix' placeholder='Prefix' prefix='R$' />
-      <TextField mt={'1%'} name='prefix' label='Prefix' placeholder='Custom Prefix' customPrefix={<Icon />} />
-      <TextField mt={'1%'} name='suffix' label='Suffix' placeholder='Suffix' suffix='reais' />
-      <TextField mt={'1%'} name='suffix' label='Suffix' placeholder='Custom Suffix' customSuffix={<Icon />} />
-    </SaturnProvider>
-  </Story>
-</Canvas>
-
-# Error
-
-Passando a prop de `error` para o `TextField`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado no input em questão.
-
-<Canvas>
-  <Story
-    name='Error'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' error />
-    </SaturnProvider>
-  </Story>
-</Canvas>
 
 # Border Color
 
@@ -85,24 +69,20 @@ Através da prop `borderColor` que pode ser passada para o `TextField`, é poss�
     }}
   >
     <SaturnProvider>
-      <TextField
-        name='borderColor'
-        label='Border Color'
-        placeholder='Border Color'
-        borderColor='primary'
-        inputProps={{ maxLength: '5' }}
-      />
+      <TextField borderColor='green.400' />
     </SaturnProvider>
   </Story>
 </Canvas>
 
-# Height | Width
+# Label | Message | Placeholder
 
-Através das props `height` e `width` é possível alterar a altura e largura do input.
+A prop `label` será adicionada acima do campo.
+O `placeholder` será apresentado dentro do campo.
+Enquanto isso, a prop `message` representa o texto auxiliar mostrado abaixo do campo.
 
 <Canvas>
   <Story
-    name='Height | Width'
+    name='Label | Message | Placeholder'
     parameters={{
       design: {
         type: 'figma',
@@ -111,9 +91,30 @@ Através das props `height` e `width` é possível alterar a altura e largura do
     }}
   >
     <SaturnProvider>
-      <TextField name='height' label='Height' placeholder='Height' height='100px' />
-      <TextField name='width' label='Width' placeholder='Width' width='200px' />
-      <TextField name='heightWidth' label='Height e Width' placeholder='Height e Width' height='100px' width='200px' />
+      <TextField label='Label' placeholder='Placeholder' message='Message' />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Affixes
+
+O `TextField` pode receber prefixos e sufixos para trazer um feedback para o usuário de qual é o escopo das informações inseridas. Também é possível utilizar affixes customizados, elementos children podem ser passados através das props `customPrefix` e `customSuffix`.
+
+<Canvas>
+  <Story
+    name='Affixes'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <TextField name='prefix' placeholder='Prefix' prefix='R$' />
+      <TextField name='prefix' placeholder='Custom Prefix' customPrefix={<Icon />} />
+      <TextField name='suffix' placeholder='Suffix' suffix='reais' />
+      <TextField name='suffix' placeholder='Custom Suffix' customSuffix={<Icon />} />
     </SaturnProvider>
   </Story>
 </Canvas>
@@ -137,11 +138,80 @@ O `TextField` pode receber a prop de `disabled`, que desabilita todo o seu uso.
         name='disabled'
         label='Disabled'
         placeholder='Disabled TextField'
-        disabled
         message='Disabled'
         prefix='R$'
         suffix='reais'
+        disabled
       />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Default Value | OnChange
+
+O `TextField` pode receber a prop de `defaultValue`, que representa o valor inicial do `input`.
+E a prop `onChange` que é responsável por executar um trecho de código toda vez que o valor do input for alterado.
+
+<Canvas>
+  <Story
+    name='Default Value | OnChange'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <TextField
+        name='defaultValueOnChange'
+        label='Default Value and OnChange'
+        defaultValue='Initial Value'
+        onChange={e => window.alert(e.target.value)}
+      />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Mask
+
+O `TextField` pode receber algumas propriedades relacionadas a máscara, são elas: `mask`, `maskChar`, `formatChars`, `alwaysShowMask`
+
+<Canvas>
+  <Story
+    name='Mask'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <TextField name='mask' label='Mask' mask='999.999.999-99' />
+      <TextField mt='1%' name='maskChar' label='MaskChar' mask='(99) 99999-9999' maskChar='*' />
+      <TextField mt='1%' name='formatChars' label='FormatChars' mask='(33) 33333-3333' formatChars={{ '3': '[0-9]' }} />
+      <TextField mt='1%' name='alwaysShowMask' label='AlwaysShowMask' mask='(99) 99999-9999' alwaysShowMask={true} />
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Error
+
+Passando a prop de `error` para o `TextField`, o usuário pode receber um feedback visível que existe algum ponto a ser alterado no input em questão.
+
+<Canvas>
+  <Story
+    name='Error'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=213%3A87'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <TextField name='error' label='Error' placeholder='Error TextField' message='Required' error />
     </SaturnProvider>
   </Story>
 </Canvas>

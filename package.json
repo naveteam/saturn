@@ -94,5 +94,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-input-mask": "^2.0.4"
+  }
 }
