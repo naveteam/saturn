@@ -3,7 +3,8 @@ import React, { useState, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 import { borders, variant } from 'styled-system'
 
-import { Flex, Box } from '../Grid'
+import { Box } from '../Box'
+import { Flex } from '../Flex'
 import { Caption, Typography } from '../Typography'
 
 const TextField = forwardRef(

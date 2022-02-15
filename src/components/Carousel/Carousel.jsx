@@ -9,7 +9,8 @@ import 'swiper/components/navigation/navigation.min.css'
 
 import SwiperCore, { Pagination, Navigation } from 'swiper/core'
 
-import { Box, Flex } from '../Grid'
+import { Flex } from '../Flex'
+import { Box } from '../Box'
 
 const variantTypes = ['light', 'dark']
 

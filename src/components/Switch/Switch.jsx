@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components'
 import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
 
-import { Flex, Box } from '../Grid'
+import { Box } from '../Box'
+import { Flex } from '../Flex'
 import Typography from '../Typography'
 
 const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, checked, id, ...props }, ref) => {

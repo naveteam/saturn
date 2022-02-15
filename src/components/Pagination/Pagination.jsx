@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { Button, Icon, Paragraph } from '..'
-import { Flex as Container } from '../Grid'
+import { Flex as Container } from '../Flex'
 
 const getLowerValue = (valueA, valueB) => {
   if (valueA > valueB) {
