@@ -1,80 +1,77 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
-import { Flex, Box, Typography, SaturnProvider } from '../components'
+import { Grid, Box, Typography, SaturnProvider } from '../components'
 
-<Meta title='Layout/Flex | Box' component={Flex} />
+<Meta title='Layout/Grid' component={Grid} />
 
-# Flex | Box
-
-O Componente Flex é o componente que encapsula todos os filhos `Box` e os delimita dentro do layout. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado.
-O componente Box é responsável por encapsular uma porção de conteúdo, afim de posicioná-lo na tela. Ele recebe qualquer propriedade disponível no [styled-system](https://styled-system.com/api), mas idealmente sua utilização deve ser estritamente a de posicionar o conteúdo dentro do layout desejado. Sua principal diferença está na forma de definir a width do componente, onde um array de larguras pode ser inserido, seguindo os breakpoints disponíveis no `theme` definido.
+Componente primitivo para construção de layout's complexos (onde somente os componentes de Box/Grid nao sao suficientes). O componente possibilita a utilização de qualquer propriedade que envolva grid suportada pelo styled system (https://styled-system.com/api/#grid-layout) além de propriedades customizadas para casos mais simples
 
 <Canvas>
-  <Story name='Flex | Box'>
+  <Story name='Grid'>
     <SaturnProvider>
-      <Flex flexWrap='wrap' backgroundColor='gray.400'>
-        <Box width={1} p='2'>
-          <Typography color='white'>Flex</Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 4
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 4
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 4
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 4 }} p='2' backgroundColor='purple.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 4
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 3
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 3
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 3 }} p='2' backgroundColor='red.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 3
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 2 }} p='2' backgroundColor='blue.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 2
-          </Typography>
-        </Box>
-        <Box width={{ xs: 1, md: 1 / 2 }} p='2' backgroundColor='blue.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1 / 2
-          </Typography>
-        </Box>
-        <Box width={1} p='2' backgroundColor='green.400'>
-          <Typography color='white' textAlign='center'>
-            Box 1
-          </Typography>
-        </Box>
-      </Flex>
+			<Grid columns={[0, 2, 3, 4]} gap={10} mb={50}>
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+			</Grid>
+			<Grid
+				gap={10}
+				templateRows='repeat(2, 1fr)'
+				templateColumns='repeat(5, 1fr)'
+			>
+				<Grid item column={1} row={1} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={1} columnEnd={3} row={2} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={2} columnEnd={5} row={1} bg='blue.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+			</Grid>
     </SaturnProvider>
   </Story>
 </Canvas>
 
-### Proptypes Flex
+# Grid (simples)
 
-<ArgsTable of={Flex} />
+Para utilizar a grid com finalidades mais simples (ex.: listagem com colunas) basta utilizar o Grid como Wrapper. Utilizar propriedade `columns` para escrever a quantidade de colunas desejadas (ex.: columns={3} equivale a `templateColumns="repeat(3, 1fr)"`)
 
-### Proptypes Box
+<Canvas >
+  <Story name='Grid Simples'>
+    <SaturnProvider>
+			<Grid columns={[0, 2, 3, 4]} gap={10} mb={50}>
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+				<Box bg="purple.500" borderRadius={4} height={50} />
+			</Grid>
+    </SaturnProvider>
+  </Story>
+</Canvas>
 
-<ArgsTable of={Box} />
+# Grid (uso geral)
+
+Para demais finalidades da Grid, aconselhamos utilizar Grid o mesmo componente grid, passando como prop item. Assim você terá acesso a todas as as funcionalidades relacionadas a grid tanto no Wrapper quanto nos filhos
+
+<Canvas >
+  <Story name='Grid (uso geral)'>
+    <SaturnProvider>
+			<Grid
+				gap={10}
+				templateRows='repeat(2, 1fr)'
+				templateColumns='repeat(5, 1fr)'
+			>
+				<Grid item column={1} row={1} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={1} columnEnd={3} row={2} bg='orange.500' height={50} borderRadius={4} />
+				<Grid item columnStart={2} columnEnd={5} row={1} bg='blue.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+				<Grid item columnStart={5} columnEnd={6} row={1} bg='red.500' height={50} borderRadius={4} />
+			</Grid>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
