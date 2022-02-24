@@ -25,8 +25,8 @@ const selectedVariant = ({ theme: { colors }, color }) =>
     key: 'tag',
     variants: {
       true: {
-        backgroundColor: colors[color],
-        borderColor: colors[color],
+        backgroundColor: color,
+        borderColor: color,
         cursor: 'pointer',
         p: {
           color: 'white'
@@ -79,13 +79,15 @@ const Text = styled(Typography)(
 Tag.defaultProps = {
   selected: true,
   close: false,
-  color: 'primary'
+  color: 'primary',
+  borderRadius: '2px'
 }
 
 Tag.propTypes = {
   selected: PropTypes.oneOf([true, false, 'disabled']),
   close: PropTypes.bool,
-  color: PropTypes.string
+  color: PropTypes.string,
+  borderRadius: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 export default Tag
