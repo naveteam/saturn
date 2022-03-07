@@ -1,18 +1,22 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-
 import { Tag, Flex, Box, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Tag' component={Tag} />
 
-export const TagBase = args => (
-  <SaturnProvider>
-    <Tag {...args}>Base Tag</Tag>
-  </SaturnProvider>
-)
-
 # Tag
 
-O component de `Tag` permite o usuário executar ações ou mostrar informações destacadas. Também pode ser utilizado como marcações para filtros, selects e checkbox.
+O componente de `Tag` é utilizado para demarcar status, estados, categorias, filtros, dentre outros.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
+Sendo eles:
+
+- `selected`: Define se o componente está marcado ou não e se está disabled, recebe um booleano.
+- `close`: Define o ícone de `close` deve ou não aparecer ao lado direito do texto, recebe um booleano.
+- `color`: Define a cor do texto referente àquela `Tag`, recebe uma string informando a cor.
+- `borderRadius`: Define o valor de curvatura da borda do componente.
+
+# Base
+
+Em suas props padrões, o componente está habilitado e desmarcado.
 
 <Story
   name='Base'
@@ -23,53 +27,16 @@ O component de `Tag` permite o usuário executar ações ou mostrar informaçõe
     }
   }}
 >
-  {TagBase.bind({})}
+  <SaturnProvider>
+    <Tag>Base</Tag>
+  </SaturnProvider>
 </Story>
-
-# Color
-
-A `Tag` pode receber a prop `color`. A variant primary tem uma função de mais destaque, ideal para executar ações e/ou mostrar informações fundamentais para o usuário. A variant secondary é ideal para funções de menores destaque como informações de filtro, upload de arquivos e execuções de menor prioridade.
-
-<Canvas>
-  <Story
-    name='Color'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <Tag color='primary'>Primary</Tag>
-      <Tag color='secondary'>Secondary</Tag>
-    </SaturnProvider>
-  </Story>
-</Canvas>
-
-# Close
-
-A `Tag` pode receber a prop `close`. Essa prop indicará se a tag deve renderizar o ícone de fechar/remover a tag.
-
-<Canvas>
-  <Story
-    name='Close'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
-      }
-    }}
-  >
-    <SaturnProvider>
-      <Tag close>Close</Tag>
-    </SaturnProvider>
-  </Story>
-</Canvas>
 
 # Selected
 
-A prop `selected` pode definir se a `Tag` está ou não selecionada. Pode ser de grande utilidade para informar quais tags esstão sendo utilizadas ou não. A variant disabled informa se o conteúdo está indisponível para a interação com o usuário.
+A prop `selected` pode definir se a `Tag` está ou não selecionada.
+Pode ser de grande utilidade para informar quais tags estão sendo utilizadas ou não.
+A variant disabled informa se o conteúdo está indisponível para a interação com o usuário.
 
 <Canvas>
   <Story
@@ -82,14 +49,99 @@ A prop `selected` pode definir se a `Tag` está ou não selecionada. Pode ser de
     }}
   >
     <SaturnProvider>
-      <Tag color='primary' selected={true}>
+      <Tag color='primary' selected={true} mr={8}>
         Selected
       </Tag>
-      <Tag color='primary' selected={false}>
+      <Tag color='primary' selected={false} mr={8}>
         Not Selected
       </Tag>
       <Tag color='primary' selected={'disabled'}>
         Disabled
+      </Tag>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Close
+
+As `Tags` podem receber a prop `close`. Essa prop indicará se a tag deve ou não renderizar o ícone de fechar/remover a tag.
+
+<Canvas>
+  <Story
+    name='Close'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <Tag close={false} mr={8}>
+        Close is false
+      </Tag>
+      <Tag close={true}>Close is true</Tag>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Color
+
+A prop `color` é utilizada para definir qual a cor do componente `Tag` e ela recebe cores do tema ou hexadecimais.
+A variant `primary` tem uma função de mais destaque, ideal para executar ações e/ou mostrar informações fundamentais para o usuário.
+A variant `secondary` é ideal para funções de menores destaque como informações de filtro, upload de arquivos e execuções de menor prioridade.
+
+<Canvas>
+  <Story
+    name='Color'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <Tag color='primary' mr={8}>
+        Primary
+      </Tag>
+      <Tag color='secondary' mr={8}>
+        Secondary
+      </Tag>
+      <Tag color='#f44' mr={8}>
+        Red
+      </Tag>
+      <Tag color='purple.400' mr={8}>
+        Purple
+      </Tag>
+    </SaturnProvider>
+  </Story>
+</Canvas>
+
+# Border Radius
+
+A prop `borderRadius` é utilizada para definir qual o raio da borda do componente `Tag`.
+
+<Canvas>
+  <Story
+    name='Border Radius'
+    parameters={{
+      design: {
+        type: 'figma',
+        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Design-System?node-id=260%3A593'
+      }
+    }}
+  >
+    <SaturnProvider>
+      <Tag mr={8}>Normal</Tag>
+      <Tag borderRadius='8px' mr={8}>
+        8 pixels all
+      </Tag>
+      <Tag borderRadius='8px 8px 0 0' mr={8}>
+        8 pixels top
+      </Tag>
+      <Tag borderRadius='12px 0 0 12px' mr={8}>
+        12 pixels left
       </Tag>
     </SaturnProvider>
   </Story>
