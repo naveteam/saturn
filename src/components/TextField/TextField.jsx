@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useState, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 import { borders, variant } from 'styled-system'
+import InputMask from 'react-input-mask'
 
 import { Box } from '../Box'
 import { Flex } from '../Flex'
@@ -11,12 +12,12 @@ const TextField = forwardRef(
   (
     {
       borderColor,
-      customPrefix,
-      customSuffix,
       label,
       message,
       prefix,
       suffix,
+      customPrefix,
+      customSuffix,
       placeholder,
       disabled,
       type,
@@ -24,6 +25,10 @@ const TextField = forwardRef(
       defaultValue,
       value,
       onChange,
+      mask,
+      maskChar,
+      formatChars,
+      alwaysShowMask,
       inputProps,
       ...props
     },
@@ -46,6 +51,10 @@ const TextField = forwardRef(
             value={value}
             onChange={onChange}
             defaultValue={defaultValue}
+            mask={mask}
+            maskChar={maskChar}
+            formatChars={formatChars}
+            alwaysShowMask={alwaysShowMask}
             {...inputProps}
           />
 
@@ -56,28 +65,6 @@ const TextField = forwardRef(
     )
   }
 )
-
-TextField.propTypes = {
-  borderColor: PropTypes.string,
-  label: PropTypes.string,
-  message: PropTypes.string,
-  customPrefix: PropTypes.object,
-  customSuffix: PropTypes.object,
-  prefix: PropTypes.string,
-  suffix: PropTypes.string,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  type: PropTypes.string,
-  name: PropTypes.string,
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func,
-  inputProps: PropTypes.object
-}
-
-TextField.defaultProps = {
-  borderColor: 'gray.600'
-}
 
 const errorVariant = ({ theme: { colors } }) =>
   variant({
@@ -160,7 +147,7 @@ const Affix = styled(Typography)`
   margin: 0 8px;
   pointer-events: none;
 `
-const InputBase = styled.input`
+const InputBase = styled(InputMask)`
   border: 0;
   flex: 1;
   font-size: 16px;
@@ -191,5 +178,31 @@ const Message = styled(Caption)(
     color: ${colors.gray['800']};
   `
 )
+
+TextField.propTypes = {
+  borderColor: PropTypes.string,
+  label: PropTypes.string,
+  message: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  customPrefix: PropTypes.object,
+  customSuffix: PropTypes.object,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
+  mask: PropTypes.string,
+  maskChar: PropTypes.string,
+  formatChars: PropTypes.object,
+  alwaysShowMask: PropTypes.bool,
+  inputProps: PropTypes.object
+}
+
+TextField.defaultProps = {
+  borderColor: 'gray.600'
+}
 
 export default TextField
