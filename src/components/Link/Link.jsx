@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 
 import Typography from '../Typography'
 
+import { getThemeColor } from '../../utils/color'
+
 const DefaultComponent = ({ children, to, textDecorationLine, color, ...props }) => (
   <StyledLink p={1} href={to} color={color} textDecorationLine={textDecorationLine} {...props}>
     {children}
@@ -40,17 +42,17 @@ const BaseStyled = styled.div`
 `
 
 const StyledLink = styled.a(
-  ({ theme: { colors, textDecorationLine } }) => `
-  text-decoration-line: ${textDecorationLine ? textDecorationLine : 'none'};
+  ({ theme, color }) => `
+  text-decoration-line: ${theme.textDecorationLine ? theme.textDecorationLine : 'none'};
   border-radius: 4px;
-  color: ${colors.blue['500']};
+  color: ${getThemeColor(color, theme)};
   &:hover {
     text-decoration-line: underline;
-    color: ${colors.blue['500']};
+    color: ${theme.colors.blue['500']};
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${colors.blue['50']};
+    box-shadow: 0 0 0 2px ${theme.colors.blue['50']};
   }
 `
 )
