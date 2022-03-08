@@ -3,11 +3,17 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { Link } from '../../src/components/Link'
 import { SaturnProvider } from '../components'
 
-<Meta title='Data Display/Link' />
+<Meta title='Data Display/Link' component={Link} />
 
 # Link
 
 O compomente de Link é uma extensão do componente de Typography, com um grande diferencial: ele pode ser utilizado com qualquer tipo de link, seja ele um a, ou um Link do Gatsby ou do Next.
+
+export const LinkBase = args => (
+  <SaturnProvider>
+    <Link {...args}>Lorem ipsum dolor sit amet</Link>
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -19,11 +25,7 @@ O compomente de Link é uma extensão do componente de Typography, com um grande
       }
     }}
   >
-    <SaturnProvider>
-      <Link to='https://nave.rs' target='_blank' as='p' propPath='href'>
-        Lorem Ipsum dolor
-      </Link>
-    </SaturnProvider>
+    {LinkBase.bind({})}
   </Story>
 </Canvas>
 
