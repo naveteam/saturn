@@ -2,7 +2,18 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 
 import { RadioButton, SaturnProvider } from '../components'
 
-<Meta title='Data Input/Radio Button' component={RadioButton} argTypes={{ color: { control: 'color' } }} />
+<Meta
+  title='Data Input/Radio Button'
+  component={RadioButton}
+  argTypes={{ color: { control: 'color' }, colorIcon: { control: 'color' } }}
+/>
+
+export const RadioButtonControls = args => (
+  <SaturnProvider>
+    <RadioButton name='base' {...args} />
+    <RadioButton name='base' {...args} />
+  </SaturnProvider>
+)
 
 # RadioButton
 
@@ -16,7 +27,7 @@ Sendo eles:
 - `value`: Define qual o valor do componente, pode receber uma string, um numeral ou até um booleano.
 - `disabled`: Define se o componente está ou não habilitado, recebe um booleano.
 - `defaultChecked`: Define se o componente está inicialmente marcado ou não, recebe um booleano.
-- `checked`: Define se o componente está marcado ou se não, recebe um booleano.
+- `checked`: Define se o componente está marcado ou não, recebe um booleano.
 - `color`: Define a cor do texto referente àquele `Radio Button`, recebe uma string informando a cor.
 - `onChange`: Define o que será executado quando o componente for modificado.
 - `id`: Define o `id` do `input`.
@@ -34,15 +45,20 @@ Em suas props padrões, o componente está habilitado e desmarcado.
     }
   }}
 >
-  <SaturnProvider>
-    <RadioButton name='base' />
-    <RadioButton name='base' />
-  </SaturnProvider>
+  {RadioButtonControls.bind({})}
 </Story>
 
 # Label
 
 O `Radio Button` aceita um `label` opcional para cada elemento, se não for fornecido, nada será exibido.
+
+export const LabelStoryControls = args => (
+  <SaturnProvider>
+    <RadioButton label='Label 1' name='labelProp' value='label1' {...args} />
+    <RadioButton label='Label 2' name='labelProp' value='label2' {...args} />
+    <RadioButton name='labelProp' value='noLabel' {...args} />
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -54,11 +70,7 @@ O `Radio Button` aceita um `label` opcional para cada elemento, se não for forn
       }
     }}
   >
-    <SaturnProvider>
-      <RadioButton label='Label 1' name='labelProp' value='label1' />
-      <RadioButton label='Label 2' name='labelProp' value='label2' />
-      <RadioButton name='labelProp' value='noLabel' />
-    </SaturnProvider>
+    {LabelStoryControls.bind({})}
   </Story>
 </Canvas>
 
@@ -66,6 +78,26 @@ O `Radio Button` aceita um `label` opcional para cada elemento, se não for forn
 
 A prop `disabled` desabilita completamente o `Radio Button`, impedindo seu uso e as cores customizadas não irão funcionar.
 Já a prop `defaultChecked` define o componente como checado inicialmente.
+
+export const DisabledAndDefaultCheckedStoryControls = args => (
+  <SaturnProvider>
+    <RadioButton label='No Default Checked' name='disabledDefaultCheckedProp' value='noDefaultChecked' {...args} />
+    <RadioButton
+      label='Default Checked'
+      defaultChecked
+      name='disabledDefaultCheckedProp'
+      value='defaultChecked'
+      {...args}
+    />
+    <RadioButton
+      label='Disabled No Default Checked'
+      disabled
+      name='disabledDefaultCheckedProp'
+      value='DisabledNoDefaultChecked'
+      {...args}
+    />
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -77,22 +109,20 @@ Já a prop `defaultChecked` define o componente como checado inicialmente.
       }
     }}
   >
-    <SaturnProvider>
-      <RadioButton label='No Default Checked' name='disabledDefaultCheckedProp' value='noDefaultChecked' />
-      <RadioButton label='Default Checked' defaultChecked name='disabledDefaultCheckedProp' value='defaultChecked' />
-      <RadioButton
-        label='Disabled No Default Checked'
-        disabled
-        name='disabledDefaultCheckedProp'
-        value='DisabledNoDefaultChecked'
-      />
-    </SaturnProvider>
+    {DisabledAndDefaultCheckedStoryControls.bind({})}
   </Story>
 </Canvas>
 
 # Checked
 
 O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica o valor se o valor está selecionado ou não `Radio Button`.
+
+export const CheckedStoryControls = args => (
+  <SaturnProvider>
+    <RadioButton checked={false} label='Not Checked' name='checkedProp' {...args} />
+    <RadioButton checked={true} label='Checked' name='checkedProp' {...args} />
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -104,16 +134,32 @@ O `Radio Button` pode receber a prop `checked`. É um valor booleano que indica 
       }
     }}
   >
-    <SaturnProvider>
-      <RadioButton checked={false} label='Not Checked' name='checkedProp' />
-      <RadioButton checked={true} label='Checked' name='checkedProp' />
-    </SaturnProvider>
+    {CheckedStoryControls.bind({})}
   </Story>
 </Canvas>
 
 # OnChange
 
 A prop `onChange` é responsável por chamar uma função quando o valor do `input` mudar.
+
+export const OnChangeStoryControls = args => (
+  <SaturnProvider>
+    <RadioButton
+      onChange={e => window.alert(e.target.value)}
+      label='Botão Um'
+      name='onChangeProp'
+      value='Valor Um'
+      {...args}
+    />
+    <RadioButton
+      onChange={e => window.alert(e.target.value)}
+      label='Botão Dois'
+      name='onChangeProp'
+      value='Valor Dois'
+      {...args}
+    />
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -125,15 +171,7 @@ A prop `onChange` é responsável por chamar uma função quando o valor do `inp
       }
     }}
   >
-    <SaturnProvider>
-      <RadioButton onChange={e => window.alert(e.target.value)} label='Botão Um' name='onChangeProp' value='Valor Um' />
-      <RadioButton
-        onChange={e => window.alert(e.target.value)}
-        label='Botão Dois'
-        name='onChangeProp'
-        value='Valor Dois'
-      />
-    </SaturnProvider>
+    {OnChangeStoryControls.bind({})}
   </Story>
 </Canvas>
 
@@ -142,6 +180,16 @@ A prop `onChange` é responsável por chamar uma função quando o valor do `inp
 O `Radio Button` pode receber as seguintes propriedades para cores: `color` e `colorIcon`.
 A propriedade `colorIcon` indica qual do ícone apenas, enquanto a propriedade `color` indica a cor do ícone e do texto.
 Se o componente estiver desabilitado, a cor do ícone e texto será `gray.500`.
+
+export const ColorStoryControls = args => (
+  <SaturnProvider>
+    <RadioButton label='Botão Comum' name='colorProp' {...args} />
+    <RadioButton colorIcon='green.400' label='Botão Comum Ícone Verde' name='colorProp' {...args} />
+    <RadioButton color='red.400' label='Botão e Texto Vermelho' name='colorProp' />
+    <RadioButton color='purple.400' label='Botão e Texto Roxo' name='colorProp' />
+    <RadioButton disabled={true} label='Botão Disabled' name='colorProp' />
+  </SaturnProvider>
+)
 
 <Canvas>
   <Story
@@ -153,13 +201,7 @@ Se o componente estiver desabilitado, a cor do ícone e texto será `gray.500`.
       }
     }}
   >
-    <SaturnProvider>
-      <RadioButton label='Botão Comum' name='colorProp' />
-      <RadioButton colorIcon='green.400' label='Botão Comum Ícone Verde' name='colorProp' />
-      <RadioButton color='red.400' label='Botão e Texto Vermelho' name='colorProp' />
-      <RadioButton color='purple.400' label='Botão e Texto Roxo' name='colorProp' />
-      <RadioButton disabled={true} label='Botão Disabled' name='colorProp' />
-    </SaturnProvider>
+    {ColorStoryControls.bind({})}
   </Story>
 </Canvas>
 

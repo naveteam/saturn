@@ -44,12 +44,12 @@ const RadioButton = forwardRef(
 
 const CheckedIcon = styled(Icon)`
   opacity: 0;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 `
 const UncheckedIcon = styled(Icon)`
   opacity: 1;
   position: absolute;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 `
 
 const RadioButtonContainer = styled.label(
