@@ -1,9 +1,9 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { useState } from 'react'
 
-import { Attachment, Flex, Typography, SaturnProvider } from '../components'
+import { Flex, Typography, SaturnProvider, AttachmentComponent } from '../components'
 
-<Meta title='Data Display/Attachment' component={Attachment} />
+<Meta title='Data Display/Attachment' component={AttachmentComponent} />
 
 # Attachment
 
@@ -25,7 +25,7 @@ O component de Attachment sinaliza arquivos que passaram por um processo de uplo
       return (
         <SaturnProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
+          <AttachmentComponent file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
         </SaturnProvider>
       )
     }}
@@ -52,7 +52,7 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
       return (
         <SaturnProvider>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
+          <AttachmentComponent file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
         </SaturnProvider>
       )
     }}
@@ -74,7 +74,7 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
     }}
   >
     <SaturnProvider>
-      <Attachment
+      <AttachmentComponent
         name='download.jpg'
         variant='download'
         onDownload={() => alert('download')}
@@ -108,7 +108,7 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
           <Typography fontSize={2} fontWeight='600' mb={10}>
             Link
           </Typography>
-          <Attachment
+          <AttachmentComponent
             mb={10}
             name='Example PDF link'
             variant='download'
@@ -117,20 +117,20 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
           <Typography fontSize={2} fontWeight='600' mb={10}>
             File
           </Typography>
-          <Attachment my={10} file={downloadMockFile} variant='download' />
+          <AttachmentComponent my={10} file={downloadMockFile} variant='download' />
           <Typography fontWeight='600' mt={20} mb={10}>
             Upload
           </Typography>
           <Typography fontSize={2} fontWeight='600' mb={10}>
             Link
           </Typography>
-          <Attachment
+          <AttachmentComponent
             mb={10}
             name='with_background'
             link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
             backgroundColor='gray.200'
           />
-          <Attachment
+          <AttachmentComponent
             mb={10}
             name='link_upload_error'
             link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
@@ -141,12 +141,12 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
             File (Adicione um arquivo)
           </Typography>
           <input type='file' onChange={e => handleChange(e)} />
-          <Attachment my={10} file={uploadedFile} />
-          <Attachment mb={10} file={uploadedFile} error={true} />
+          <AttachmentComponent my={10} file={uploadedFile} />
+          <AttachmentComponent mb={10} file={uploadedFile} error={true} />
         </SaturnProvider>
       )
     }}
   </Story>
 </Canvas>
 
-<ArgsTable of={Attachment} />
+<ArgsTable of={AttachmentComponent} />

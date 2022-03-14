@@ -1,5 +1,5 @@
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
 import styled, { css } from 'styled-components'
 import { space, layout } from 'styled-system'
 
@@ -16,7 +16,18 @@ const bytesToSize = bytes => {
   return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
 }
 
-const Attachment = ({ name, link, onDownload, onView, onDelete, file, backgroundColor, error, variant, ...props }) => {
+const AttachmentComponent = ({
+  name,
+  link,
+  onDownload,
+  onView,
+  onDelete,
+  file,
+  backgroundColor,
+  error,
+  variant,
+  ...props
+}) => {
   const handleName = () => {
     if (name) {
       if (name.length > 7) return name.slice(0, 7).concat('...')
@@ -53,7 +64,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
     }
   }
 
-  const handleErrorColor = () => (error && variant === 'upload' ? 'error' : 'blue.300')
+  const handleErrorColor = useMemo(() => (error && variant === 'upload' ? 'error' : 'blue.300'), [error, variant])
 
   if (variant === 'upload')
     return (
@@ -61,7 +72,7 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
         {(link || file) && (
           <Container>
             <Flex mr={5} alignItems='center'>
-              <AttachmentIcon color={handleErrorColor()} width={24} height={24} icon='attachment' />
+              <AttachmentIcon color={handleErrorColor} width={24} height={24} icon='attachment' />
               <Flex flexWrap='wrap'>
                 {error ? (
                   <Typography color='error' pl={3} fontSize={2}>
@@ -86,46 +97,45 @@ const Attachment = ({ name, link, onDownload, onView, onDelete, file, background
 
             <Flex>
               {!error && onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor()} />}
+              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor} />}
             </Flex>
           </Container>
         )}
       </Wrapper>
     )
 
-  if (variant === 'download')
-    return (
-      <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
-        {(link || file) && (
-          <Container>
-            <Flex mr={5} alignItems='center'>
-              <AttachmentIcon color={handleErrorColor()} width={24} height={24} icon='attachment' />
-              <Flex>
-                <Link
-                  fontSize={2}
-                  pl={3}
-                  {...(link && !file && { to: link, target: '_blank' })}
-                  {...(file && { onClick: onView })}
-                >
-                  {handleName()}
-                </Link>
-                {file?.size && (
-                  <Typography color='gray.800' pl={3} fontSize={2}>
-                    ({bytesToSize(file?.size)})
-                  </Typography>
-                )}
-              </Flex>
-            </Flex>
-
+  return (
+    <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
+      {(link || file) && (
+        <Container>
+          <Flex mr={5} alignItems='center'>
+            <AttachmentIcon color={handleErrorColor} width={24} height={24} icon='attachment' />
             <Flex>
-              {onDownload && <StyledIcon icon='download' onClick={onDownload} />}
-              {onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} />}
+              <Link
+                fontSize={2}
+                pl={3}
+                {...(link && !file && { to: link, target: '_blank' })}
+                {...(file && { onClick: onView })}
+              >
+                {handleName()}
+              </Link>
+              {file?.size && (
+                <Typography color='gray.800' pl={3} fontSize={2}>
+                  ({bytesToSize(file?.size)})
+                </Typography>
+              )}
             </Flex>
-          </Container>
-        )}
-      </Wrapper>
-    )
+          </Flex>
+
+          <Flex>
+            {onDownload && <StyledIcon icon='download' onClick={onDownload} />}
+            {onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
+            {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} />}
+          </Flex>
+        </Container>
+      )}
+    </Wrapper>
+  )
 }
 
 const Container = styled(Flex)`
@@ -179,7 +189,7 @@ const AttachmentIcon = styled(Icon)(
     `
 )
 
-Attachment.propTypes = {
+AttachmentComponent.propTypes = {
   name: PropTypes.string,
   link: PropTypes.string,
   onDownload: PropTypes.func,
@@ -191,10 +201,10 @@ Attachment.propTypes = {
   variant: PropTypes.oneOf(['upload', 'download'])
 }
 
-Attachment.defaultProps = {
+AttachmentComponent.defaultProps = {
   error: false,
   variant: 'upload',
   backgroundColor: 'none'
 }
 
-export default Attachment
+export default AttachmentComponent

@@ -6,7 +6,7 @@ import { Typography } from '../Typography'
 import { Flex } from '../Flex'
 import { Button } from '../Button'
 import { Icon } from '../Iconography'
-import { Attachment } from '../Attachment'
+import { AttachmentComponent } from '../AttachmentComponent'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
@@ -61,7 +61,7 @@ const UploadButton = forwardRef(
         </Button>
         {uploadedFiles &&
           Object.values(uploadedFiles).map((file, index) => (
-            <Attachment
+            <AttachmentComponent
               key={index}
               file={file}
               onView={() => window.open(URL.createObjectURL(file))}
@@ -141,7 +141,7 @@ const UploadDragAndDrop = forwardRef(
         />
         {uploadedFiles &&
           Object.values(uploadedFiles).map((file, index) => (
-            <Attachment
+            <AttachmentComponent
               key={index}
               file={file}
               error={error}
