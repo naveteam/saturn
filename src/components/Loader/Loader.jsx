@@ -22,7 +22,7 @@ export const Loader = ({ variant, percentage, showPercentage, size, time, type, 
         <circle />
         <circle ref={externalCircleRef} />
       </svg>
-      {showPercentage && percentage && size !== 'icon' && type !== 'indeterminate' && (
+      {showPercentage && percentage && size === 'major' && type !== 'indeterminate' && (
         <Typography color='primary' lineHeight='4' fontSize='4' fontWeight='1' as='span'>
           {percentage} %
         </Typography>
@@ -67,6 +67,23 @@ const sizeVariant = variant({
           cy: 10,
           r: 8,
           strokeWidth: 2
+        }
+      }
+    },
+    smallIcon: {
+      height: '16px',
+      width: '16px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      svg: {
+        height: '16px',
+        width: '16px',
+        circle: {
+          cx: 8,
+          cy: 8,
+          r: 7,
+          strokeWidth: 1.6
         }
       }
     }
@@ -134,7 +151,7 @@ const LoaderContainer = styled.div`
 Loader.propTypes = {
   percentage: PropTypes.number,
   showPercentage: PropTypes.bool,
-  size: PropTypes.oneOf(['icon', 'major']),
+  size: PropTypes.oneOf(['smallIcon', 'icon', 'major']),
   time: PropTypes.number,
   type: PropTypes.oneOf(['determinate', 'indeterminate'])
 }
