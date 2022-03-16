@@ -9,9 +9,9 @@ const bytesToSize = bytes => {
   if (bytes === 0) return
 
   const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+  const selectTypeSize = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
 
-  return `${i === 0 ? bytes : (bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
+  return `${selectTypeSize === 0 ? bytes : (bytes / 1024 ** selectTypeSize).toFixed(1)} ${sizes[selectTypeSize]}`
 }
 
 const AttachmentComponent = ({
@@ -79,7 +79,7 @@ const AttachmentComponent = ({
         </Fragment>
       )
     }
-  }, [])
+  }, [variant, isLoading, error, onDownload, onView, onDelete])
 
   return (
     <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
@@ -139,10 +139,10 @@ const StyledIcon = styled(Icon)`
   width: 16px;
   height: 16px;
   cursor: pointer;
-  padding-right: 8px;
+  margin-right: 8px;
 
   &:last-child {
-    padding-right: 0px;
+    margin-right: 0px;
   }
 `
 
