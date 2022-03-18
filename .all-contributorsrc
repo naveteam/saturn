@@ -297,6 +297,28 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "YuriFarnesio",
+      "name": "Yuri Farnesio",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45167583?v=4",
+      "profile": "https://github.com/YuriFarnesio",
+      "contributions": [
+        "code",
+        "maintenance",
+        "bug"
+      ]
+    },
+    {
+      "login": "matheusdoedev",
+      "name": "Matheus do É Santos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58111490?v=4",
+      "profile": "https://github.com/matheusdoedev",
+      "contributions": [
+        "code",
+        "maintenance",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -304,5 +326,6 @@
   "projectOwner": "naveteam",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "none"
 }
