@@ -75,17 +75,17 @@ const Upload = forwardRef(
               uploadedFile => submittedFile.name === uploadedFile.name && submittedFile.size === uploadedFile.size
             ) <= -1
 
-          if (isANewFile) {
-            newFileList.push(submittedFile)
-            existsANewFile = true
-          }
+          if (!isANewFile) return
+
+          newFileList.push(submittedFile)
+          existsANewFile = true
         })
 
         if (inputRef?.current) inputRef.current.files = createFileList(newFileList)
-        if (existsANewFile) {
-          setUploadedFiles(newFileList)
-          fileHandler && fileHandler(newFileList)
-        }
+        if (!existsANewFile) return
+
+        setUploadedFiles(newFileList)
+        fileHandler && fileHandler(newFileList)
       } catch (err) {
         console.log(err)
         setError(true)
@@ -93,7 +93,7 @@ const Upload = forwardRef(
     }
 
     const handleDelete = index => {
-      const newFileList = isImageVariant ? [] : uploadedFiles.filter((_, i) => index !== i)
+      const newFileList = isImageVariant ? [] : uploadedFiles.filter((_, indexUploaded) => index !== indexUploaded)
       if (inputRef?.current) inputRef.current.files = createFileList(newFileList)
       setUploadedFiles(newFileList)
       fileHandler && fileHandler(newFileList)
