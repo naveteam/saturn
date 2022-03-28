@@ -16,7 +16,7 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
           mr={direction === 'row' ? 3 : 0}
           ml={direction === 'row-reverse' ? 3 : 0}
           mb={direction === 'column' ? 3 : 0}
-          fill={props.variant === 'filled' ? 'white' : props.color}
+          color={props.variant === 'filled' ? 'white' : props.disabled ? 'gray.500' : props.color}
         />
       )}
       {caption && (
@@ -31,7 +31,7 @@ const Button = forwardRef(({ children, icon, direction, caption, captionColor, d
         </Typography>
       )}
       {description && (
-        <Typography px={7} fontSize={2} fontWeight={0} lineHeight={3}>
+        <Typography textAlign='center' px={7} fontSize={2} fontWeight={0} lineHeight={1}>
           {description}
         </Typography>
       )}

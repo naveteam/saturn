@@ -1,19 +1,17 @@
-import React, { useMemo } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { space, layout } from 'styled-system'
 
-import { Typography } from '../Typography'
-import { Icon } from '../Iconography'
-import { Flex } from '../Flex'
-import { Link } from '../Link'
+import { Flex, Icon, Link, Loader, Typography } from './../../components'
 
 const bytesToSize = bytes => {
+  if (bytes === 0) return
+
   const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  if (bytes === 0) return ''
-  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
-  if (i === 0) return `${bytes} ${sizes[i]}`
-  return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`
+  const selectTypeSize = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+
+  return `${selectTypeSize === 0 ? bytes : (bytes / 1024 ** selectTypeSize).toFixed(1)} ${sizes[selectTypeSize]}`
 }
 
 const AttachmentComponent = ({
@@ -26,168 +24,127 @@ const AttachmentComponent = ({
   backgroundColor,
   error,
   variant,
+  isLoading,
   ...props
 }) => {
-  const handleName = () => {
-    if (name) {
-      if (name.length > 7) return name.slice(0, 7).concat('...')
-      return name
-    }
+  const fileName = useMemo(() => {
+    if (name) return name.length > 7 ? name.slice(0, 7).concat('...') : name
 
     if (file) {
-      if (file.name.length > 11) {
-        const extension = file.name.substring(file.name.lastIndexOf('.'))
-        const slicedName = file.name.substring(0, file.name.lastIndexOf('.'))
-        const maxNameLength = 11 - extension.length
-        const maxSlicedNameLength = maxNameLength - 3
-        if (slicedName.length > maxSlicedNameLength) {
-          return slicedName.slice(0, maxSlicedNameLength).concat(`..${extension}`)
-        }
-        return slicedName.concat(`..${extension}`)
+      if (file.name.length > 10) {
+        const [slicedName, extension] = file.name.split('.', 2)
+        const maxSlicedNameLength = 10 - extension.length - 3
+
+        if (maxSlicedNameLength > 0) return slicedName.slice(0, maxSlicedNameLength).concat(`...${extension}`)
+
+        return `${slicedName.slice(0, 7)}...`
       }
+
       return file.name
     }
 
     if (link) {
       const linkFileName = link.substring(link.lastIndexOf('/') + 1)
-      const extension = linkFileName.substring(linkFileName.lastIndexOf('.'))
-      const slicedLinkName = linkFileName.slice(0, linkFileName.lastIndexOf('.'))
-      if (linkFileName.length > 11) {
-        const maxLinkNameLength = 11 - extension.length
-        const maxSlicedLinkLength = maxLinkNameLength - 3
-        if (slicedLinkName.length > maxSlicedLinkLength) {
-          return slicedLinkName.slice(0, maxSlicedLinkLength).concat(`..${extension}`)
-        }
-        return slicedLinkName.concat(`..${extension}`)
+
+      if (linkFileName.length > 10) {
+        const [slicedName, extension] = linkFileName.split('.', 2)
+        const maxSlicedNameLength = 10 - extension.length - 3
+
+        if (maxSlicedNameLength > 0) return slicedName.slice(0, maxSlicedNameLength).concat(`...${extension}`)
+
+        return `${slicedName.slice(0, 7)}...`
       }
+
       return linkFileName
     }
-  }
+  }, [name, file, link])
 
-  const handleErrorColor = useMemo(() => (error && variant === 'upload' ? 'error' : 'blue.300'), [error, variant])
-
-  if (variant === 'upload')
-    return (
-      <Wrapper backgroundColor={backgroundColor} error={error} variant={variant} {...props}>
-        {(link || file) && (
-          <Container>
-            <Flex mr={5} alignItems='center'>
-              <AttachmentIcon color={handleErrorColor} width={24} height={24} icon='attachment' />
-              <Flex flexWrap='wrap'>
-                {error ? (
-                  <Typography color='error' pl={3} fontSize={2}>
-                    {handleName()}
-                  </Typography>
-                ) : link ? (
-                  <Link fontSize={2} pl={3} {...(link && { to: link, target: '_blank' })}>
-                    {handleName()}
-                  </Link>
-                ) : (
-                  <Link fontSize={2} pl={3} onClick={onView}>
-                    {handleName()}
-                  </Link>
-                )}
-                {file?.size && !error && (
-                  <Typography color='gray.800' pl={3} fontSize={2}>
-                    ({bytesToSize(file?.size)})
-                  </Typography>
-                )}
-              </Flex>
-            </Flex>
-
-            <Flex>
-              {!error && onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
-              {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={handleErrorColor} />}
-            </Flex>
-          </Container>
-        )}
-      </Wrapper>
-    )
+  const iconsColor = useMemo(() => (error && variant === 'upload' ? 'error' : 'blue.300'), [error, variant])
+  const renderIcons = useMemo(() => {
+    if (variant === 'upload' && isLoading) {
+      return <Loader size='smallIcon' />
+    } else if (variant === 'upload') {
+      return (
+        <Fragment>
+          {!error && onView && <StyledIcon icon='visibility-outline' onClick={onView} color={iconsColor} />}
+          {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={iconsColor} />}
+        </Fragment>
+      )
+    } else {
+      return (
+        <Fragment>
+          {onDownload && <StyledIcon icon='download' onClick={onDownload} color={iconsColor} />}
+          {onView && <StyledIcon icon='visibility-outline' onClick={onView} color={iconsColor} />}
+          {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} color={iconsColor} />}
+        </Fragment>
+      )
+    }
+  }, [variant, isLoading, error, onDownload, onView, onDelete])
 
   return (
     <Wrapper backgroundColor={backgroundColor} variant={variant} {...props}>
       {(link || file) && (
-        <Container>
-          <Flex mr={5} alignItems='center'>
-            <AttachmentIcon color={handleErrorColor} width={24} height={24} icon='attachment' />
-            <Flex>
-              <Link
-                fontSize={2}
-                pl={3}
-                {...(link && !file && { to: link, target: '_blank' })}
-                {...(file && { onClick: onView })}
-              >
-                {handleName()}
-              </Link>
-              {file?.size && (
-                <Typography color='gray.800' pl={3} fontSize={2}>
+        <Flex width={1} justifyContent='space-between' alignItems='center'>
+          <Flex alignItems='center' mr={4}>
+            <AttachmentIcon icon='attachment' color={iconsColor} />
+            <Flex flexWrap='wrap'>
+              {variant === 'upload' && (error || isLoading) ? (
+                <Typography fontSize={14} lineHeight='24px' color={iconsColor}>
+                  {fileName}
+                </Typography>
+              ) : (
+                <Link
+                  fontSize={14}
+                  lineHeight='24px'
+                  {...(link && !file && { to: link, target: '_blank' })}
+                  {...(file && { onClick: onView })}
+                >
+                  {fileName}
+                </Link>
+              )}
+
+              {file?.size > 0 && (variant === 'download' || !error) && (
+                <Typography fontSize={14} lineHeight='24px' ml={8} color='gray.800'>
                   ({bytesToSize(file?.size)})
                 </Typography>
               )}
             </Flex>
           </Flex>
 
-          <Flex>
-            {onDownload && <StyledIcon icon='download' onClick={onDownload} />}
-            {onView && <StyledIcon icon='visibility-outline' onClick={onView} />}
-            {onDelete && <StyledIcon icon='delete-outline' onClick={onDelete} />}
-          </Flex>
-        </Container>
+          <Flex alignItems='center'>{renderIcons}</Flex>
+        </Flex>
       )}
     </Wrapper>
   )
 }
 
-const Container = styled(Flex)`
+const Wrapper = styled(Flex)`
   width: 100%;
   justify-content: space-between;
+  padding: 0 4px;
+  border-radius: 4px;
+
+  ${layout}
+  ${space}
 `
 
-const StyledIcon = styled(Icon)(
-  ({ theme: { colors } }) => css`
-    display: none;
-    fill: ${colors.blue['300']};
-    width: 24px;
-    height: 24px;
-    padding-right: 8px;
+const AttachmentIcon = styled(Icon)`
+  width: 16px;
+  height: 16px;
+  transform: rotate(-45deg);
+  margin-right: 8px;
+`
 
-    &:last-child {
-      padding-right: 0px;
-    }
+const StyledIcon = styled(Icon)`
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-right: 8px;
 
-    &:hover {
-      cursor: pointer;
-    }
-  `
-)
-
-const Wrapper = styled(Flex)(
-  ({ variant, error }) => css`
-    ${StyledIcon} {
-      display: ${(variant === 'download' || error) && 'block'};
-    }
-    :hover {
-      ${StyledIcon} {
-        display: block;
-      }
-    }
-    width: 100%;
-    border-radius: 4px;
-    justify-content: space-between;
-    padding-right: 4px;
-    padding-left: 4px;
-    ${layout}
-    ${space}
-  `
-)
-
-const AttachmentIcon = styled(Icon)(
-  ({ theme: { colors } }) =>
-    css`
-      transform: rotate(-45deg);
-      fill: ${colors.blue['300']};
-    `
-)
+  &:last-child {
+    margin-right: 0px;
+  }
+`
 
 AttachmentComponent.propTypes = {
   name: PropTypes.string,
@@ -198,13 +155,15 @@ AttachmentComponent.propTypes = {
   file: PropTypes.object,
   backgroundColor: PropTypes.string,
   error: PropTypes.bool,
-  variant: PropTypes.oneOf(['upload', 'download'])
+  variant: PropTypes.oneOf(['upload', 'download']),
+  isLoading: PropTypes.bool
 }
 
 AttachmentComponent.defaultProps = {
+  backgroundColor: 'none',
   error: false,
   variant: 'upload',
-  backgroundColor: 'none'
+  isLoading: false
 }
 
 export default AttachmentComponent

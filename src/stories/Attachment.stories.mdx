@@ -1,40 +1,53 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import { useState } from 'react'
-
-import { Flex, Typography, SaturnProvider, AttachmentComponent } from '../components'
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
+import { AttachmentComponent, Flex, Typography, SaturnProvider } from '../components'
 
 <Meta title='Data Display/Attachment' component={AttachmentComponent} />
 
 # Attachment
 
-O component de Attachment sinaliza arquivos que passaram por um processo de upload ou estão prontos para passar por um processo de download.
+O componente `Attachment` sinaliza arquivos que passaram por um processo de upload ou estão prontos para passar por um processo de download.
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
+Sendo eles:
 
-<Canvas>
-  <Story
-    name='Default'
-    parameters={{
-      design: {
-        type: 'figma',
-        url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
-      }
-    }}
-  >
-    {() => {
-      const [uploadedFile, setUploadedFile] = useState()
-      const handleChange = event => setUploadedFile(event.target?.files[0])
-      return (
-        <SaturnProvider>
-          <input type='file' onChange={e => handleChange(e)} />
-          <AttachmentComponent file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
-        </SaturnProvider>
-      )
-    }}
-  </Story>
-</Canvas>
+- `name`: Define o nome do `Attachment`, recebe uma string informando o nome.
+- `link`: Define o link para o qual o usuário será encaminhado, recebe uma string.
+- `onDownload`: Define o que será executado quando o usuário clicar no ícone de fazer o download, recebe uma função.
+- `onView`: Define o que será executado quando o usuário clicar no ícone de visualizar, recebe uma função.
+- `onDelete`: Define o que será executado quando o usuário clicar no excluir o `Attachment`, recebe uma função.
+- `file`: Define o arquivo vinculado ao `Attachment`, recebe um objeto.
+- `backgroundColor`: Define a cor de fundo referente àquele `Attachment`, recebe uma string informando a cor.
+- `error`: Define se o componente está ou não com algum erro, recebe um booleano.
+- `variant`: Define qual a variante do respectivo `Attachment`, recebe a string `upload` ou a string `download`.
+- `isLoading`: Define se o componente de `Attachment` está em `loading` ou não, recebe um booleano.
+
+# Base
+
+<Story
+  name='Base'
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=300%3A1'
+    }
+  }}
+>
+  {() => {
+    const [uploadedFile, setUploadedFile] = useState()
+    const handleChange = event => setUploadedFile(event.target?.files[0])
+    return (
+      <SaturnProvider>
+        <input type='file' onChange={e => handleChange(e)} />
+        <AttachmentComponent file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
+      </SaturnProvider>
+    )
+  }}
+</Story>
 
 # Upload
 
-A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado. O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
+Variação onde ocorre o upload. Pode acompanhar ícones à sua direita a depender do estado.
+O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
 
 <Canvas>
   <Story
@@ -47,12 +60,81 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
     }}
   >
     {() => {
-      const [uploadedFile, setUploadedFile] = useState()
-      const handleChange = event => setUploadedFile(event.target?.files[0])
+      const [uploadedViewFile, setUploadedViewFile] = useState()
+      const [uploadedDeleteFile, setUploadedDeleteFile] = useState()
+      const [uploadedAllFile, setUploadedAllFile] = useState()
+      const [uploadedLoadingFile, setUploadedLoadingFile] = useState()
+      const [uploadedErrorFile, setUploadedErrorFile] = useState()
+      const handleViewChange = event => setUploadedViewFile(event.target?.files[0])
+      const handleDeleteChange = event => setUploadedDeleteFile(event.target?.files[0])
+      const handleAllChange = event => setUploadedAllFile(event.target?.files[0])
+      const handleLoadingChange = event => setUploadedLoadingFile(event.target?.files[0])
+      const handleErrorChange = event => setUploadedErrorFile(event.target?.files[0])
       return (
         <SaturnProvider>
-          <input type='file' onChange={e => handleChange(e)} />
-          <AttachmentComponent file={uploadedFile} onView={() => alert('View')} onDelete={() => alert('Delete')} />
+          <Typography fontSize={16} fontWeight={600} mb='4px'>
+            Upload
+          </Typography>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Visualizar
+            </Typography>
+            <input type='file' onChange={e => handleViewChange(e)} />
+            <AttachmentComponent variant='upload' file={uploadedViewFile} onView={() => alert('view')} m='4px 0' />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Delete
+            </Typography>
+            <input type='file' onChange={e => handleDeleteChange(e)} />
+            <AttachmentComponent
+              variant='upload'
+              file={uploadedDeleteFile}
+              onDelete={() => alert('delete')}
+              m='4px 0'
+            />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              All
+            </Typography>
+            <input type='file' onChange={e => handleAllChange(e)} />
+            <AttachmentComponent
+              variant='upload'
+              file={uploadedAllFile}
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              m='4px 0'
+            />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Loading
+            </Typography>
+            <input type='file' onChange={e => handleLoadingChange(e)} />
+            <AttachmentComponent
+              variant='upload'
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              isLoading={true}
+              file={uploadedLoadingFile}
+              m='4px 0'
+            />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Error
+            </Typography>
+            <input type='file' onChange={e => handleErrorChange(e)} />
+            <AttachmentComponent
+              variant='upload'
+              file={uploadedErrorFile}
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              error={true}
+              m='4px 0'
+            />
+          </Flex>
         </SaturnProvider>
       )
     }}
@@ -61,7 +143,8 @@ A variante `upload` pode acompanhar ícones à sua esquerda a depender do estado
 
 # Download
 
-A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode efetuar três ações: efetuar o download, visualizar ou excluir o arquivo.
+Variação onde ocorre o download. Acompanha sempre ícones à sua direita.
+O usuário pode efetuar três ações: efetuar o download, visualizar ou excluir o arquivo.
 
 <Canvas>
   <Story
@@ -73,22 +156,60 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
       }
     }}
   >
-    <SaturnProvider>
-      <AttachmentComponent
-        name='download.jpg'
-        variant='download'
-        onDownload={() => alert('download')}
-        link='https:// www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-      />
-    </SaturnProvider>
+    {() => {
+      const downloadMockFile = { name: 'downloadMockFile.jpg', size: '531531' }
+      const viewMockFile = { name: 'viewMockFile.jpg', size: '156423' }
+      const deleteMockFile = { name: 'deleteMockFile.jpg', size: '7895623' }
+      const allMockFile = { name: 'allMockFile.jpg', size: '8942326' }
+      return (
+        <SaturnProvider>
+          <Typography fontSize={16} fontWeight={600} mb='4px'>
+            Download
+          </Typography>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Download
+            </Typography>
+            <AttachmentComponent variant='download' file={downloadMockFile} onDownload={() => alert('download')} />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Visualizar
+            </Typography>
+            <AttachmentComponent variant='download' file={viewMockFile} onView={() => alert('view')} />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Delete
+            </Typography>
+            <AttachmentComponent variant='download' file={deleteMockFile} onDelete={() => alert('delete')} />
+          </Flex>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              All
+            </Typography>
+            <AttachmentComponent
+              variant='download'
+              file={allMockFile}
+              onDownload={() => alert('download')}
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+            />
+          </Flex>
+        </SaturnProvider>
+      )
+    }}
   </Story>
 </Canvas>
 
-# Variants
+# Link | File | Background Color
+
+Variação onde ocorre o upload. Pode acompanhar ícones à sua direita a depender do estado.
+O usuário pode efetuar duas ações: visualizar ou excluir o arquivo. Existe também a possibilidade de estes ícones serem substituídos por um loader.
 
 <Canvas>
   <Story
-    name='Variants'
+    name='Link | File | Background Color'
     parameters={{
       design: {
         type: 'figma',
@@ -97,52 +218,86 @@ A variante `download` acompanha sempre ícones à sua esquerda. O usuário pode 
     }}
   >
     {() => {
-      const [uploadedFile, setUploadedFile] = useState()
-      const downloadMockFile = { name: 'download_mocked_file.jpg', size: '531531' }
-      const handleChange = event => setUploadedFile(event.target?.files[0])
+      const loadingMockFile = { name: 'loadingMockFile.jpg', size: '9845632' }
+      const normalMockFile = { name: 'normalMockFile.jpg', size: '4562636' }
+      const errorMockFile = { name: 'errorMockFile.jpg', size: '2678923' }
       return (
         <SaturnProvider>
-          <Typography fontWeight='600' mb={10}>
-            Download
-          </Typography>
-          <Typography fontSize={2} fontWeight='600' mb={10}>
-            Link
-          </Typography>
-          <AttachmentComponent
-            mb={10}
-            name='Example PDF link'
-            variant='download'
-            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-          />
-          <Typography fontSize={2} fontWeight='600' mb={10}>
+          <Typography fontSize={16} fontWeight={600} mb='4px'>
             File
           </Typography>
-          <AttachmentComponent my={10} file={downloadMockFile} variant='download' />
-          <Typography fontWeight='600' mt={20} mb={10}>
-            Upload
-          </Typography>
-          <Typography fontSize={2} fontWeight='600' mb={10}>
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Loading
+            </Typography>
+            <AttachmentComponent variant='upload' file={loadingMockFile} isLoading={true} m='4px 0' />
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Normal
+            </Typography>
+            <AttachmentComponent
+              variant='upload'
+              file={normalMockFile}
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              m='4px 0'
+            />
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Error
+            </Typography>
+            <AttachmentComponent
+              variant='upload'
+              file={errorMockFile}
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              error={true}
+              m='4px 0'
+            />
+          </Flex>
+          <Typography fontSize={16} fontWeight={600} mb='4px'>
             Link
           </Typography>
-          <AttachmentComponent
-            mb={10}
-            name='with_background'
-            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-            backgroundColor='gray.200'
-          />
-          <AttachmentComponent
-            mb={10}
-            name='link_upload_error'
-            link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-            onDelete={() => alert('Delete')}
-            error={true}
-          />
-          <Typography fontSize={2} fontWeight='600' mb={10}>
-            File (Adicione um arquivo)
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Normal
+            </Typography>
+            <AttachmentComponent
+              variant='download'
+              name='Normal Example PDF link'
+              link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              m='4px 0'
+            />
+          </Flex>
+          <Typography fontSize={16} fontWeight={600} mb='4px'>
+            Background Color
           </Typography>
-          <input type='file' onChange={e => handleChange(e)} />
-          <AttachmentComponent my={10} file={uploadedFile} />
-          <AttachmentComponent mb={10} file={uploadedFile} error={true} />
+          <Flex flexDirection='column' backgroundColor='gray.100' p='4px 16px' mb='8px'>
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Gray 200
+            </Typography>
+            <AttachmentComponent
+              variant='download'
+              name='Background Color Example PDF link'
+              link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              backgroundColor='gray.200'
+              m='4px 0'
+            />
+            <Typography fontSize={14} fontWeight={600} m='4px 0'>
+              Purple 50
+            </Typography>
+            <AttachmentComponent
+              variant='download'
+              name='Background Color Example PDF link'
+              link='https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+              onView={() => alert('view')}
+              onDelete={() => alert('delete')}
+              backgroundColor='purple.50'
+              m='4px 0'
+            />
+          </Flex>
         </SaturnProvider>
       )
     }}

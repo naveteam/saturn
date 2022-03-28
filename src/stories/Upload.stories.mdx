@@ -1,16 +1,55 @@
+import { useRef, useState } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-
-import { Upload, SaturnProvider } from '../components'
+import { AttachmentComponent, Flex, Typography, Upload, SaturnProvider } from '../components'
 
 <Meta title='Data Input/Upload' component={Upload} />
 
 # Upload
 
-O componente `Upload` é utilizado para permitir que o usuário possa realizar upload de arquivos dentro da aplicação.
+A funcionalidade de `Upload` resume-se como um processo de publicação de informações em um servidor remoto por meio uma página da web.  
+É composto por subcomponentes e propriedades que podem ou não ser acrescentados à sua estrutura principal, de acordo com a necessidade e preferência do usuário.
+Sendo eles:
+
+- `name`: Define o nome do `Upload`, recebe uma string informando o nome.
+- `variant`: Define qual a variação do `Upload`, recebe uma string informando a variação.
+- `caption`: Define qual o título apresentado no input, recebe uma string.
+- `description`: Define qual a descrição apresentada no input, recebe uma string.
+- `color`: Define qual a cor do componente de `Upload`, recebe uma string.
+- `acceptedFileTypes`: Define quais tipos de arquivos são aceitos para fazer o upload, recebe uma string ou array.
+- `multipleFiles`: Define se o componente de `Upload` aceita ou não mais de um arquivo, recebe um booleano.
+- `disabled`: Define se o componente está ou não desabilitado, recebe um booleano.
+- `fileHandler`: Define o que será feito quando mudar os arquivos inseridos no `Upload`, recebe uma função.
+- `resetValue`: Define qual os valores (files) de reset do componente, recebe um array com files.
+
+# Base
+
+<Story
+  name='Base'
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/O3bKxIcsj2rc1FNIRclJyT/Saturn-System?node-id=284%3A855'
+    }
+  }}
+>
+  {() => {
+    return (
+      <SaturnProvider>
+        <Upload name='baseUpload' />
+      </SaturnProvider>
+    )
+  }}
+</Story>
+
+# Button
+
+Variação na qual o upload é feito através de um botão.
+Apresenta as mesmas diretrizes de construção do button Text + Icon, podendo ser primário ou secundário, dependendo do peso da ação que o botão deve apresentar.
+Deve receber a propriedade `name` e pode receber as props: `variant`, `caption`, `color`, `acceptedFileTypes`, `multipleFiles`, `disabled`, `fileHandler`, `resetValue`
 
 <Canvas>
   <Story
-    name='Base'
+    name='Button'
     parameters={{
       design: {
         type: 'figma',
@@ -18,19 +57,58 @@ O componente `Upload` é utilizado para permitir que o usuário possa realizar u
       }
     }}
   >
-    <SaturnProvider>
-      <Upload variant='button' name='teste' />
-    </SaturnProvider>
+    {() => {
+      const ref = useRef()
+      const fileDefault = new File(
+        [new Blob(['texto'.repeat(Math.random() * 1000000)], { type: 'image/jpg' })],
+        `file1.jpg`,
+        {
+          type: 'image/jpg'
+        }
+      )
+      return (
+        <SaturnProvider>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload name='button' variant='button' mr={4} />
+            <Upload name='buttonWithCaption' variant='button' caption='Caption' mr={4} />
+            <Upload name='buttonWithColor' variant='button' caption='Color' color='secondary' />
+          </Flex>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload
+              name='buttonWithAcceptedFileTypes'
+              variant='button'
+              caption='Accepted File Types'
+              acceptedFileTypes='image/*'
+              mr={4}
+            />
+            <Upload name='buttonWithMultipleFiles' variant='button' caption='Multiple Files' multipleFiles mr={4} />
+            <Upload name='buttonDisabled' variant='button' caption='Disabled' disabled />
+          </Flex>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload
+              name='buttonWithResetValue'
+              variant='button'
+              caption='Reset Value'
+              resetValue={[fileDefault]}
+              mr={4}
+            />
+            <Upload name='buttonSecondary' variant='button-secondary' caption='Secondary' mr={4} />
+            <Upload name='buttonOutlined' variant='button-outlined' caption='Outlined' color='secondary' />
+          </Flex>
+        </SaturnProvider>
+      )
+    }}
   </Story>
 </Canvas>
 
-# Disabled
+# Drag & Drop
 
-A prop `disabled` desabilita completamente o botão, impedindo seu uso.
+Variação drag & drop da funcionalidade de upload. Deve ser utilizada exclusivamente no ambiente desktop.
+Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`, `description`, `color`, `acceptedFileTypes`, `multipleFiles`, `disabled`, `fileHandler`, `resetValue`
 
 <Canvas>
   <Story
-    name='Disabled'
+    name='Drag & Drop'
     parameters={{
       design: {
         type: 'figma',
@@ -38,28 +116,71 @@ A prop `disabled` desabilita completamente o botão, impedindo seu uso.
       }
     }}
   >
-    <SaturnProvider>
-      <Upload caption='Upload Button (Primary)' disabled={true} name='teste-disabled' />
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' disabled={true} name='teste-disabled-2' />
-      <Upload
-        caption='Upload Drag &amp; Drop'
-        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
-        variant='drag-drop'
-        disabled={true}
-        name='teste-disabled-3'
-      />
-      <Upload caption='Upload Image' variant='image' disabled={true} name='teste-disabled-4' />
-    </SaturnProvider>
+    {() => {
+      const ref = useRef()
+      const fileDefault = new File(
+        [new Blob(['texto'.repeat(Math.random() * 1000000)], { type: 'image/jpg' })],
+        `file1.jpg`,
+        {
+          type: 'image/jpg'
+        }
+      )
+      return (
+        <SaturnProvider>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload
+              name='dragDropWithDescription'
+              variant='drag-drop'
+              description='Drag & Drop with description'
+              mr={4}
+            />
+            <Upload
+              name='dragDropWithColor'
+              variant='drag-drop'
+              caption='Caption'
+              description='Drag & Drop color'
+              color='secondary'
+              mr={4}
+            />
+            <Upload
+              name='dragDropWithAcceptedFileTypes'
+              variant='drag-drop'
+              description='Drag & Drop with acceptedFileTypes'
+              acceptedFileTypes='image/*'
+              mr={4}
+            />
+          </Flex>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload
+              name='dragDropWithMultipleFiles'
+              variant='drag-drop'
+              description='Drag & Drop with multipleFiles'
+              multipleFiles
+              mr={4}
+            />
+            <Upload
+              name='dragDropWithResetValue'
+              variant='drag-drop'
+              description='Drag & Drop resetValue'
+              resetValue={[fileDefault]}
+              mr={4}
+            />
+            <Upload name='dragDropDisabled' variant='drag-drop' description='Drag & Drop disabled' disabled mr={4} />
+          </Flex>
+        </SaturnProvider>
+      )
+    }}
   </Story>
 </Canvas>
 
-# Variant
+# Image
 
-O componente `Upload` pode receber também a prop `variant`. As variants podem criar botões preenchidos, apenas contornados, drag and drops ou upload de imagem com preview.
+Variação específica para imagens da funcionalidade de upload. Pode ser acionada através de clique ou drag & drop. Deve utilizar sempre a proporção 1:1.
+Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`, `color`, `disabled`, `fileHandler`, `resetValue`
 
 <Canvas>
   <Story
-    name='Variants'
+    name='Image'
     parameters={{
       design: {
         type: 'figma',
@@ -67,18 +188,25 @@ O componente `Upload` pode receber também a prop `variant`. As variants podem c
       }
     }}
   >
-    <SaturnProvider>
-      <Upload caption='Upload Button (Primary)' variant='button' name='upload-button' />
-      <Upload caption='Upload Button (Secondary)' variant='button-outlined' name='upload-button-outlined' />
-      <Upload
-        caption='Upload Drag &amp; Drop'
-        description='Aqui vai uma pequena descrição sobre os formatos de arquivos.'
-        variant='drag-drop'
-        multipleFiles
-        name='upload-drag-and-drop'
-      />
-      <Upload caption='Upload Image' variant='image' name='upload-image' />
-    </SaturnProvider>
+    {() => {
+      const ref = useRef()
+      const fileDefault = new File(
+        [new Blob(['texto'.repeat(Math.random() * 1000000)], { type: 'image/jpg' })],
+        `file1.jpg`,
+        {
+          type: 'image/jpg'
+        }
+      )
+      return (
+        <SaturnProvider>
+          <Flex justifyContent='space-between' mb={4}>
+            <Upload name='imageUpload' variant='image' mr={4} />
+            <Upload name='imageWithColor' variant='image' caption='Color' color='secondary' mr={4} />
+            <Upload name='imageWithColor' variant='image' caption='Disabled' disabled mr={4} />
+          </Flex>
+        </SaturnProvider>
+      )
+    }}
   </Story>
 </Canvas>
 

@@ -1,309 +1,256 @@
-import React, { useEffect, useState, forwardRef } from 'react'
-import styled from 'styled-components'
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { Typography } from '../Typography'
-import { Flex } from '../Flex'
-import { Button } from '../Button'
-import { Icon } from '../Iconography'
-import { AttachmentComponent } from '../AttachmentComponent'
+import { AttachmentComponent, Button, Flex, Icon, Typography } from './../../components'
 
 const handleAcceptedFileTypes = fileTypes => (typeof fileTypes === 'object' ? fileTypes.join(',') : fileTypes)
 
-const UploadButton = forwardRef(
-  (
-    {
-      name,
-      variant,
-      caption,
-      acceptedFileTypes,
-      multipleFiles,
-      disabled,
-      fileHandler,
-      defaultValue,
-      resetValue,
-      ...props
-    },
-    ref
-  ) => {
-    const [uploadedFiles, setUploadedFiles] = useState()
+const createFileList = files => {
+  const dt = new DataTransfer()
 
-    useEffect(() => {
-      setUploadedFiles(resetValue)
-    }, [JSON.stringify(resetValue)])
+  files.forEach(file => dt.items.add(file))
 
-    const handleChange = event => {
-      setUploadedFiles(event.target.files)
-      fileHandler && fileHandler(event)
-    }
-
-    return (
-      <Wrapper {...props}>
-        <Button
-          disabled={disabled}
-          variant={variant === 'button' || variant === 'button-primary' ? 'filled' : 'outlined'}
-          icon='upload'
-          caption={caption}
-          as={!disabled && 'label'}
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-        >
-          <HiddenInput
-            type='file'
-            ref={ref}
-            name={name}
-            onChange={handleChange}
-            multiple={multipleFiles}
-            accept={handleAcceptedFileTypes(acceptedFileTypes)}
-            defaultValue={defaultValue}
-          />
-        </Button>
-        {uploadedFiles &&
-          Object.values(uploadedFiles).map((file, index) => (
-            <AttachmentComponent
-              key={index}
-              file={file}
-              onView={() => window.open(URL.createObjectURL(file))}
-              onDelete={() => {
-                setUploadedFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
-              }}
-            />
-          ))}
-      </Wrapper>
-    )
-  }
-)
-
-const UploadDragAndDrop = forwardRef(
-  (
-    {
-      caption,
-      name,
-      description,
-      acceptedFileTypes,
-      multipleFiles,
-      disabled,
-      fileHandler,
-      defaultValue,
-      resetValue,
-      ...props
-    },
-    ref
-  ) => {
-    const [uploadedFiles, setUploadedFiles] = useState([])
-    const [error, setError] = useState(false)
-
-    useEffect(() => {
-      !!resetValue && setUploadedFiles(resetValue)
-    }, [JSON.stringify(resetValue)])
-
-    const handleChange = event => {
-      try {
-        setUploadedFiles(event.target.files)
-        fileHandler && fileHandler(event)
-      } catch (err) {
-        console.log(err)
-        setError(true)
-      }
-    }
-
-    return (
-      <Wrapper {...props}>
-        <HiddenInput
-          type='file'
-          ref={ref}
-          name={name}
-          onChange={handleChange}
-          multiple={multipleFiles}
-          accept={handleAcceptedFileTypes(acceptedFileTypes)}
-          defaultValue={defaultValue}
-        />
-        <StyledButton
-          uploadedFiles={uploadedFiles}
-          onDragOver={e => {
-            e.preventDefault()
-          }}
-          onDrop={e => {
-            e.preventDefault()
-            setUploadedFiles(e.dataTransfer.files)
-          }}
-          py={5}
-          disabled={disabled}
-          icon='upload'
-          direction='column'
-          variant='outlined'
-          caption={caption}
-          description={description}
-        />
-        {uploadedFiles &&
-          Object.values(uploadedFiles).map((file, index) => (
-            <AttachmentComponent
-              key={index}
-              file={file}
-              error={error}
-              onView={() => window.open(URL.createObjectURL(file))}
-              onDelete={() => {
-                setUploadedFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
-              }}
-            />
-          ))}
-      </Wrapper>
-    )
-  }
-)
-
-const UploadImage = forwardRef(
-  ({ name, caption, acceptedFileTypes, disabled, fileHandler, defaultValue, ...props }, ref) => {
-    const [uploadedImage, setUploadedImage] = useState(null)
-    const [imagePreview, setImagePreview] = useState(null)
-    const [error, setError] = useState(false)
-
-    const handleChange = event => {
-      try {
-        setUploadedImage(event.target.files[0])
-        setImagePreview(URL.createObjectURL(event.target.files[0]))
-        fileHandler && fileHandler(event)
-      } catch (err) {
-        console.log(err)
-        setError(true)
-      } finally {
-        event.target.value = null
-      }
-    }
-
-    return (
-      <Wrapper {...props}>
-        <HiddenInput
-          type='file'
-          ref={ref}
-          name={name}
-          onChange={handleChange}
-          accept={handleAcceptedFileTypes(acceptedFileTypes)}
-          defaultValue={defaultValue}
-        />
-        {imagePreview || error ? (
-          <ImageContainer imagePreview={imagePreview} error={error} p={3}>
-            <ImageOverlay>
-              {!error && (
-                <Icon
-                  icon='visibility-outline'
-                  color='white'
-                  mr={2}
-                  onClick={() => window.open(imagePreview, '_blank')}
-                />
-              )}
-              <Icon
-                icon='delete-outline'
-                color='white'
-                ml={2}
-                onClick={() => {
-                  setImagePreview(null)
-                  setUploadedImage(null)
-                  setError(false)
-                }}
-              />
-            </ImageOverlay>
-            {error ? (
-              <ImageErrorContainer flexDirection='column'>
-                <Icon icon='broken-image' color='error' />
-                <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
-                  Upload Error
-                </Typography>
-              </ImageErrorContainer>
-            ) : (
-              <StyledImage src={imagePreview} />
-            )}
-          </ImageContainer>
-        ) : (
-          <ImageUpload
-            py={5}
-            error={error}
-            disabled={disabled}
-            icon='upload'
-            direction='column'
-            variant='outlined'
-            caption={caption}
-            color={'primary'}
-          />
-        )}
-      </Wrapper>
-    )
-  }
-)
+  return dt.files
+}
 
 const Upload = forwardRef(
   (
     {
       name,
+      variant,
       caption,
       description,
-      variant,
+      color,
       acceptedFileTypes,
       multipleFiles,
       disabled,
       fileHandler,
-      defaultValue,
+      resetValue,
       ...props
     },
     ref
   ) => {
-    if (
-      variant === 'button' ||
-      variant === 'button-primary' ||
-      variant === 'button-outlined' ||
-      variant === 'button-secondary'
+    const inputRef = ref ?? useRef()
+    const [uploadedFiles, setUploadedFiles] = useState([])
+    const acceptedTypes = useMemo(() => handleAcceptedFileTypes(acceptedFileTypes), [acceptedFileTypes])
+
+    const isImageVariant = useMemo(() => variant === 'image', [variant])
+    const buttonVariant = useMemo(() => {
+      if (variant === 'button-primary' || variant === 'button') return 'filled'
+      return 'outlined'
+    }, [variant])
+
+    const [error, setError] = useState(false)
+    const imagePreview = useMemo(() => {
+      if (!isImageVariant || uploadedFiles.length <= 0) return null
+      return URL.createObjectURL(uploadedFiles?.[0])
+    }, [uploadedFiles])
+
+    useEffect(() => {
+      if (!resetValue) return
+
+      if (inputRef?.current) inputRef.current.files = createFileList(resetValue)
+      setUploadedFiles(resetValue)
+    }, [resetValue])
+
+    const handleChange = (event, isDrop) => {
+      event.preventDefault()
+      try {
+        const submittedFiles = Array.from(isDrop ? event.dataTransfer.files : event.target.files)
+
+        if (!multipleFiles || isImageVariant) {
+          if (inputRef?.current)
+            inputRef.current.files = createFileList(isImageVariant ? [submittedFiles[0]] : submittedFiles)
+          setUploadedFiles(isImageVariant ? [submittedFiles[0]] : submittedFiles)
+          fileHandler && fileHandler(isImageVariant ? [submittedFiles[0]] : submittedFiles)
+          return
+        }
+
+        const newFileList = [...uploadedFiles]
+        let existsANewFile = false
+        submittedFiles.forEach(submittedFile => {
+          const isANewFile =
+            uploadedFiles.findIndex(
+              uploadedFile => submittedFile.name === uploadedFile.name && submittedFile.size === uploadedFile.size
+            ) <= -1
+
+          if (!isANewFile) return
+
+          newFileList.push(submittedFile)
+          existsANewFile = true
+        })
+
+        if (inputRef?.current) inputRef.current.files = createFileList(newFileList)
+        if (!existsANewFile) return
+
+        setUploadedFiles(newFileList)
+        fileHandler && fileHandler(newFileList)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      }
+    }
+
+    const handleDelete = index => {
+      const newFileList = isImageVariant ? [] : uploadedFiles.filter((_, indexUploaded) => index !== indexUploaded)
+      if (inputRef?.current) inputRef.current.files = createFileList(newFileList)
+      setUploadedFiles(newFileList)
+      fileHandler && fileHandler(newFileList)
+    }
+
+    const renderButton = variant => {
+      if (
+        variant === 'button' ||
+        variant === 'button-primary' ||
+        variant === 'button-secondary' ||
+        variant === 'button-outlined'
+      )
+        return (
+          <Button
+            variant={buttonVariant}
+            disabled={disabled}
+            caption={caption}
+            icon='upload'
+            color={color}
+            padding={0}
+            onClick={() => inputRef.current.click()}
+            onDragOver={e => e.preventDefault()}
+            onDrop={e => handleChange(e, true)}
+          />
+        )
+
+      if (variant === 'drag-drop')
+        return (
+          <DragAndDropButton
+            direction='column'
+            variant='outlined'
+            disabled={disabled}
+            caption={caption}
+            description={description}
+            icon='upload'
+            color={color}
+            py={5}
+            onClick={() => inputRef.current.click()}
+            onDragOver={e => e.preventDefault()}
+            onDrop={e => handleChange(e, true)}
+            uploadedFiles={uploadedFiles}
+          />
+        )
+
+      if (isImageVariant && !imagePreview && !error) {
+        return (
+          <ImageButton
+            direction='column'
+            variant='outlined'
+            disabled={disabled}
+            caption={caption}
+            icon='upload'
+            color={color}
+            error={error}
+            onClick={() => inputRef.current.click()}
+            onDragOver={e => e.preventDefault()}
+            onDrop={e => handleChange(e, true)}
+          />
+        )
+      }
+    }
+
+    return (
+      <Wrapper isImageVariant={isImageVariant} {...props}>
+        <HiddenInput
+          type='file'
+          name={name}
+          accept={isImageVariant ? 'image/*' : acceptedTypes}
+          multiple={isImageVariant ? false : multipleFiles}
+          onChange={e => handleChange(e, false)}
+          ref={inputRef}
+        />
+
+        {renderButton(variant)}
+
+        {isImageVariant
+          ? (imagePreview || error) && (
+              <ImageContainer imagePreview={imagePreview} error={error} color={color} p={3}>
+                <ImageOverlay>
+                  {!error && (
+                    <Icon
+                      icon='visibility-outline'
+                      color='white'
+                      mr={2}
+                      onClick={() => window.open(imagePreview, '_blank')}
+                    />
+                  )}
+                  <Icon icon='delete-outline' color='white' ml={2} onClick={() => handleDelete()} />
+                </ImageOverlay>
+                {error ? (
+                  <ImageErrorContainer flexDirection='column'>
+                    <Icon icon='broken-image' color='error' />
+                    <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
+                      Upload Error
+                    </Typography>
+                  </ImageErrorContainer>
+                ) : (
+                  <StyledImage src={imagePreview} />
+                )}
+              </ImageContainer>
+            )
+          : uploadedFiles?.map((file, index) => (
+              <AttachmentComponent
+                variant='upload'
+                key={index}
+                file={file}
+                onView={() => window.open(URL.createObjectURL(file))}
+                onDelete={() => handleDelete(index)}
+              />
+            ))}
+      </Wrapper>
     )
-      return (
-        <UploadButton
-          variant={variant}
-          caption={caption}
-          name={name}
-          acceptedFileTypes={acceptedFileTypes}
-          multipleFiles={multipleFiles}
-          disabled={disabled}
-          ref={ref}
-          defaultValue={defaultValue}
-          fileHandler={fileHandler}
-          {...props}
-        />
-      )
-    if (variant === 'drag-drop')
-      return (
-        <UploadDragAndDrop
-          caption={caption}
-          name={name}
-          description={description}
-          acceptedFileTypes={acceptedFileTypes}
-          multipleFiles={multipleFiles}
-          disabled={disabled}
-          fileHandler={fileHandler}
-          defaultValue={defaultValue}
-          ref={ref}
-          {...props}
-        />
-      )
-    if (variant === 'image')
-      return (
-        <UploadImage
-          caption={caption}
-          name={name}
-          acceptedFileTypes={acceptedFileTypes || 'image/*'}
-          disabled={disabled}
-          fileHandler={fileHandler}
-          defaultValue={defaultValue}
-          ref={ref}
-          {...props}
-        />
-      )
   }
 )
+
+const Wrapper = styled(Flex)`
+  width: 100%;
+  max-width: ${props => (props.isImageVariant ? '282px' : '384px')};
+  flex-direction: column;
+  align-items: center;
+`
+
+const HiddenInput = styled.input`
+  display: none;
+`
+
+const DragAndDropButton = styled(Button)`
+  border-color: ${props => props.color ?? props.theme.colors.primary};
+  border-width: 1px;
+  border-style: ${props => (props.uploadedFiles.length <= 0 ? 'dashed' : 'solid')};
+`
+
+const ImageButton = styled(Button)`
+  border: 1px
+    ${props => (props.error ? props.theme.colors.error : props.theme.colors[props.color] ?? props.theme.colors.primary)}
+    dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :hover {
+    ${ImageOverlay} {
+      opacity: 0.8;
+      ${Icon} {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    height: 0;
+    float: left;
+    padding-bottom: 100%;
+  }
+`
 
 const ImageErrorContainer = styled(Flex)`
   margin: auto;
@@ -328,11 +275,10 @@ const ImageOverlay = styled(Flex)`
 const ImageContainer = styled(Flex)`
   width: 282px;
   height: 282px;
-  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary)} solid;
+  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors[props.color])} solid;
   border-radius: 4px;
   margin: auto;
   :hover {
-    border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors.primary_hover)} solid;
     ${ImageOverlay} {
       opacity: 0.8;
       ${Icon} {
@@ -352,50 +298,24 @@ const StyledImage = styled.img`
   border-radius: 4px;
 `
 
-const StyledButton = styled(Button)`
-  border-color: ${props => props.theme.colors.primary};
-  border-width: 1px;
-  border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
-`
-
-const ImageUpload = styled(Button)`
-  border: ${props =>
-    props.error ? `1px ${props.theme.colors.error} dashed` : `1px ${props.theme.colors.primary} dashed`};
-  max-width: 282px;
-  height: 282px;
-`
-
-const HiddenInput = styled.input`
-  display: none;
-`
-
-const Wrapper = styled(Flex)`
-  align-items: center;
-  flex-direction: column;
-  max-width: 384px;
-  margin-bottom: 10px;
-`
-
 Upload.propTypes = {
+  name: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['button', 'button-primary', 'button-secondary', 'button-outlined', 'drag-drop', 'image']),
   caption: PropTypes.string,
   description: PropTypes.string,
-  variant: PropTypes.oneOf(['button', 'button-primary', 'button-outlined', 'button-secondary', 'drag-drop', 'image']),
+  color: PropTypes.string,
   acceptedFileTypes: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf([PropTypes.string])]),
   multipleFiles: PropTypes.bool,
   disabled: PropTypes.bool,
   fileHandler: PropTypes.func,
-  name: PropTypes.string.isRequired
+  resetValue: PropTypes.array
 }
 
 Upload.defaultProps = {
-  caption: 'Upload',
   variant: 'button',
+  caption: 'Upload',
   multipleFiles: false,
   disabled: false
-}
-
-UploadImage.defaultProps = {
-  acceptedFileTypes: 'image/*'
 }
 
 export default Upload
