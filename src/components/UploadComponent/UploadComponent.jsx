@@ -14,7 +14,7 @@ const createFileList = files => {
   return dt.files
 }
 
-const Upload = forwardRef(
+const UploadComponent = forwardRef(
   (
     {
       name,
@@ -298,7 +298,7 @@ const StyledImage = styled.img`
   border-radius: 4px;
 `
 
-Upload.propTypes = {
+UploadComponent.propTypes = {
   name: PropTypes.string.isRequired,
   variant: PropTypes.oneOf(['button', 'button-primary', 'button-secondary', 'button-outlined', 'drag-drop', 'image']),
   caption: PropTypes.string,
@@ -311,11 +311,11 @@ Upload.propTypes = {
   resetValue: PropTypes.array
 }
 
-Upload.defaultProps = {
+UploadComponent.defaultProps = {
   variant: 'button',
   caption: 'Upload',
   multipleFiles: false,
   disabled: false
 }
 
-export default Upload
+export default UploadComponent

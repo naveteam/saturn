@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
-import { AttachmentComponent, Flex, Typography, Upload, SaturnProvider } from '../components'
+import { AttachmentComponent, Flex, Typography, UploadComponent, SaturnProvider } from '../components'
 
-<Meta title='Data Input/Upload' component={Upload} />
+<Meta title='Data Input/Upload' component={UploadComponent} />
 
 # Upload
 
@@ -35,7 +35,7 @@ Sendo eles:
   {() => {
     return (
       <SaturnProvider>
-        <Upload name='baseUpload' />
+        <UploadComponent name='baseUpload' />
       </SaturnProvider>
     )
   }}
@@ -69,31 +69,37 @@ Deve receber a propriedade `name` e pode receber as props: `variant`, `caption`,
       return (
         <SaturnProvider>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload name='button' variant='button' mr={4} />
-            <Upload name='buttonWithCaption' variant='button' caption='Caption' mr={4} />
-            <Upload name='buttonWithColor' variant='button' caption='Color' color='secondary' />
+            <UploadComponent name='button' variant='button' mr={4} />
+            <UploadComponent name='buttonWithCaption' variant='button' caption='Caption' mr={4} />
+            <UploadComponent name='buttonWithColor' variant='button' caption='Color' color='secondary' />
           </Flex>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload
+            <UploadComponent
               name='buttonWithAcceptedFileTypes'
               variant='button'
               caption='Accepted File Types'
               acceptedFileTypes='image/*'
               mr={4}
             />
-            <Upload name='buttonWithMultipleFiles' variant='button' caption='Multiple Files' multipleFiles mr={4} />
-            <Upload name='buttonDisabled' variant='button' caption='Disabled' disabled />
+            <UploadComponent
+              name='buttonWithMultipleFiles'
+              variant='button'
+              caption='Multiple Files'
+              multipleFiles
+              mr={4}
+            />
+            <UploadComponent name='buttonDisabled' variant='button' caption='Disabled' disabled />
           </Flex>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload
+            <UploadComponent
               name='buttonWithResetValue'
               variant='button'
               caption='Reset Value'
               resetValue={[fileDefault]}
               mr={4}
             />
-            <Upload name='buttonSecondary' variant='button-secondary' caption='Secondary' mr={4} />
-            <Upload name='buttonOutlined' variant='button-outlined' caption='Outlined' color='secondary' />
+            <UploadComponent name='buttonSecondary' variant='button-secondary' caption='Secondary' mr={4} />
+            <UploadComponent name='buttonOutlined' variant='button-outlined' caption='Outlined' color='secondary' />
           </Flex>
         </SaturnProvider>
       )
@@ -128,13 +134,13 @@ Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`
       return (
         <SaturnProvider>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload
+            <UploadComponent
               name='dragDropWithDescription'
               variant='drag-drop'
               description='Drag & Drop with description'
               mr={4}
             />
-            <Upload
+            <UploadComponent
               name='dragDropWithColor'
               variant='drag-drop'
               caption='Caption'
@@ -142,7 +148,7 @@ Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`
               color='secondary'
               mr={4}
             />
-            <Upload
+            <UploadComponent
               name='dragDropWithAcceptedFileTypes'
               variant='drag-drop'
               description='Drag & Drop with acceptedFileTypes'
@@ -151,21 +157,27 @@ Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`
             />
           </Flex>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload
+            <UploadComponent
               name='dragDropWithMultipleFiles'
               variant='drag-drop'
               description='Drag & Drop with multipleFiles'
               multipleFiles
               mr={4}
             />
-            <Upload
+            <UploadComponent
               name='dragDropWithResetValue'
               variant='drag-drop'
               description='Drag & Drop resetValue'
               resetValue={[fileDefault]}
               mr={4}
             />
-            <Upload name='dragDropDisabled' variant='drag-drop' description='Drag & Drop disabled' disabled mr={4} />
+            <UploadComponent
+              name='dragDropDisabled'
+              variant='drag-drop'
+              description='Drag & Drop disabled'
+              disabled
+              mr={4}
+            />
           </Flex>
         </SaturnProvider>
       )
@@ -200,9 +212,9 @@ Deve receber a propriedade `name` e `variant` e pode receber as props: `caption`
       return (
         <SaturnProvider>
           <Flex justifyContent='space-between' mb={4}>
-            <Upload name='imageUpload' variant='image' mr={4} />
-            <Upload name='imageWithColor' variant='image' caption='Color' color='secondary' mr={4} />
-            <Upload name='imageWithColor' variant='image' caption='Disabled' disabled mr={4} />
+            <UploadComponent name='imageUpload' variant='image' mr={4} />
+            <UploadComponent name='imageWithColor' variant='image' caption='Color' color='secondary' mr={4} />
+            <UploadComponent name='imageWithColor' variant='image' caption='Disabled' disabled mr={4} />
           </Flex>
         </SaturnProvider>
       )
