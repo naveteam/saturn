@@ -14,7 +14,7 @@ const createFileList = files => {
   return dt.files
 }
 
-const Upload = forwardRef(
+const UploadComponent = forwardRef(
   (
     {
       name,
@@ -99,7 +99,7 @@ const Upload = forwardRef(
       fileHandler && fileHandler(newFileList)
     }
 
-    const renderButton = variant => {
+    const renderButton = (variant, props) => {
       if (
         variant === 'button' ||
         variant === 'button-primary' ||
@@ -117,6 +117,7 @@ const Upload = forwardRef(
             onClick={() => inputRef.current.click()}
             onDragOver={e => e.preventDefault()}
             onDrop={e => handleChange(e, true)}
+            {...props}
           />
         )
 
@@ -130,11 +131,12 @@ const Upload = forwardRef(
             description={description}
             icon='upload'
             color={color}
-            py={5}
+            py='24px'
             onClick={() => inputRef.current.click()}
             onDragOver={e => e.preventDefault()}
             onDrop={e => handleChange(e, true)}
             uploadedFiles={uploadedFiles}
+            {...props}
           />
         )
 
@@ -151,6 +153,7 @@ const Upload = forwardRef(
             onClick={() => inputRef.current.click()}
             onDragOver={e => e.preventDefault()}
             onDrop={e => handleChange(e, true)}
+            {...props}
           />
         )
       }
@@ -167,26 +170,26 @@ const Upload = forwardRef(
           ref={inputRef}
         />
 
-        {renderButton(variant)}
+        {renderButton(variant, props)}
 
         {isImageVariant
           ? (imagePreview || error) && (
-              <ImageContainer imagePreview={imagePreview} error={error} color={color} p={3}>
+              <ImageContainer imagePreview={imagePreview} error={error} color={color} p='8px'>
                 <ImageOverlay>
                   {!error && (
                     <Icon
                       icon='visibility-outline'
                       color='white'
-                      mr={2}
+                      mr='4px'
                       onClick={() => window.open(imagePreview, '_blank')}
                     />
                   )}
-                  <Icon icon='delete-outline' color='white' ml={2} onClick={() => handleDelete()} />
+                  <Icon icon='delete-outline' color='white' ml='4px' onClick={() => handleDelete()} />
                 </ImageOverlay>
                 {error ? (
                   <ImageErrorContainer flexDirection='column'>
                     <Icon icon='broken-image' color='error' />
-                    <Typography color='error' fontWeight={1} fontSize={2} mt={3}>
+                    <Typography color='error' fontWeight={1} fontSize={2} mt='8px'>
                       Upload Error
                     </Typography>
                   </ImageErrorContainer>
@@ -275,7 +278,9 @@ const ImageOverlay = styled(Flex)`
 const ImageContainer = styled(Flex)`
   width: 282px;
   height: 282px;
-  border: 2px ${props => (props.error ? props.theme.colors.error : props.theme.colors[props.color])} solid;
+  border: 2px
+    ${props => (props.error ? props.theme.colors.error : props.theme.colors[props.color] ?? props.theme.colors.primary)}
+    solid;
   border-radius: 4px;
   margin: auto;
   :hover {
@@ -298,7 +303,7 @@ const StyledImage = styled.img`
   border-radius: 4px;
 `
 
-Upload.propTypes = {
+UploadComponent.propTypes = {
   name: PropTypes.string.isRequired,
   variant: PropTypes.oneOf(['button', 'button-primary', 'button-secondary', 'button-outlined', 'drag-drop', 'image']),
   caption: PropTypes.string,
@@ -311,11 +316,11 @@ Upload.propTypes = {
   resetValue: PropTypes.array
 }
 
-Upload.defaultProps = {
+UploadComponent.defaultProps = {
   variant: 'button',
   caption: 'Upload',
   multipleFiles: false,
   disabled: false
 }
 
-export default Upload
+export default UploadComponent
