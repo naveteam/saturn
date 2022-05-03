@@ -485,7 +485,7 @@ const Base = styled.div`
 `
 
 const TabsContainer = styled.ul(
-  () => css`
+  ({ theme: { breakpoints } }) => css`
     list-style-type: none;
     display: flex;
     margin: ${({ hasScroll }) => (hasScroll ? '0 24px' : '0')};
@@ -494,34 +494,34 @@ const TabsContainer = styled.ul(
     align-items: center;
     ${directionVariantContainer};
 
-    @media (max-width: 960px) {
+    @media (max-width: ${breakpoints.md}) {
       margin: 0;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.sm}) {
       border: none;
     }
   `
 )
 
 const NavigationWrapper = styled.div(
-  ({ direction }) => css`
+  ({ theme, direction }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
     ${hasScrollVariant};
 
-    @media (max-width: 960px) {
+    @media (max-width: ${theme.breakpoints.md}) {
       button {
         display: none;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${theme.breakpoints.sm}) {
       ${NavigationWrapperDirectionVariant};
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${theme.breakpoints.sm}) {
       button {
         display: none;
       }
@@ -544,19 +544,19 @@ const HamburgerButton = styled.div`
 `
 
 const MobileMenu = styled.div(
-  ({ direction }) => css`
-    @media (max-width: 600px) {
+  ({ theme: { breakpoints }, direction }) => css`
+    @media (max-width: ${breakpoints.sm}) {
       display: ${direction === 'vertical' ? 'flex' : 'none'};
       margin-bottom: 32px;
       box-sizing: border-box;
       justify-content: flex-end;
     }
 
-    @media (min-width: 960px) {
+    @media (min-width: ${breakpoints.md}) {
       display: none;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: ${breakpoints.sm}) {
       display: none;
     }
   `
