@@ -88,13 +88,13 @@ const Icon = styled(Typography)`
 `
 
 const DesktopContainer = styled(Flex)`
-  @media (max-width: ${({ theme }) => `${theme.breakpoints[2]}px`}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints[2]}) {
     display: none;
   }
 `
 
 const MobileContainer = styled(Flex)`
-  @media (min-width: ${({ theme }) => `${theme.breakpoints[2]}px`}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints[2]}) {
     display: none;
   }
 `

@@ -58,7 +58,7 @@ const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
   const [activeTabValue, setActiveTab] = useState(initialActiveTab || 0)
   const [navigationVisible, setNavigationVisible] = useState(false)
   const [leftArrowClickable, setLeftArrowClickable] = useState(false)
-  const [rightArrowClickable, setRightArrowClickable] = useState(true)
+  const [rightArrowClickable, setRightArrowClickable] = useState(false)
   const [collapsedList, setCollapse] = useState(true)
   const [viewSize, setViewSize] = useState(0)
   const [totalSize, setTotalSize] = useState(0)
@@ -110,6 +110,13 @@ const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
   }, [])
 
   useEffect(() => {
+    if (!totalSize || !tabsWrapper || Math.abs(translate)) return
+
+    const lastViewWidth = tabsWrapper.current.clientWidth
+    totalSize > lastViewWidth && setRightArrowClickable(true)
+  }, [totalSize, tabsWrapper])
+
+  useEffect(() => {
     setTabSizeArray([...tabsWrapper.current.childNodes].map(el => outerWidth(el)))
   }, [viewSize])
 
@@ -129,7 +136,7 @@ const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
   }, [translate])
 
   return (
-    <Base {...props} direction={direction} id={id}>
+    <Base direction={direction} id={id} {...props}>
       <NavigationWrapper hasScroll={navigationVisible} collapsed={collapsedList} direction={direction}>
         <MobileMenu direction={direction}>
           <HamburgerButton onClick={() => setCollapse(!collapsedList)}>
@@ -263,7 +270,7 @@ const collapsedVariant = variant({
   }
 })
 
-const NavigationWrapperDirectionVariant = ({ theme }) =>
+const NavigationWrapperDirectionVariant = () =>
   variant({
     prop: 'direction',
     variants: {
@@ -274,7 +281,7 @@ const NavigationWrapperDirectionVariant = ({ theme }) =>
         display: 'block',
         transition: '0.4s cubic-bezier(0.22, 0.61, 0.36, 1)',
         boxSizing: 'border-box',
-        padding: `${theme.space[6]}px 0`,
+        padding: '32px 0',
         backgroundColor: 'white',
         maxWidth: 'fit-content',
         boxShadow: '0px 4px 10px rgba(33, 33, 33, 0.25)'
@@ -282,7 +289,7 @@ const NavigationWrapperDirectionVariant = ({ theme }) =>
     }
   })
 
-const directionVariantContainer = ({ theme: { colors, space } }) =>
+const directionVariantContainer = ({ theme: { colors } }) =>
   variant({
     prop: 'direction',
     variants: {
@@ -301,7 +308,7 @@ const directionVariantContainer = ({ theme: { colors, space } }) =>
         flexDirection: 'column',
         borderRight: '1px solid',
         borderRightColor: `${colors.gray['300']}`,
-        maxHeight: '400px',
+        maxHeight: '100%',
         overflowY: 'scroll',
         overflowX: 'hidden',
         '::-webkit-scrollbar': 'none',
@@ -313,19 +320,19 @@ const directionVariantContainer = ({ theme: { colors, space } }) =>
           marginBottom: 0
         },
         '@media (max-width: 600px)': {
-          paddingLeft: `${space[6]}px`
+          paddingLeft: '32px'
         }
       }
     }
   })
 
-const directionVariantTab = ({ theme: { space } }) =>
+const directionVariantTab = () =>
   variant({
     prop: 'direction',
     variants: {
       horizontal: {
-        padding: `0 ${space[3]}px ${space[4]}px ${space[3]}px`,
-        marginRight: `${space[6]}px`,
+        padding: '0 8px 16px 8px',
+        marginRight: '32px',
         display: 'flex',
         alignItems: 'center',
         maxWidth: 'fit-content',
@@ -339,8 +346,8 @@ const directionVariantTab = ({ theme: { space } }) =>
         }
       },
       vertical: {
-        padding: `${space[3]}px ${space[6]}px ${space[3]}px 0`,
-        marginBottom: `${space[6]}px`,
+        padding: '8px 32px 8px 0',
+        marginBottom: '32px',
 
         '&::after': {
           right: -1,
@@ -413,13 +420,13 @@ const disabledTabVariant = variant({
   }
 })
 
-const activeTabVariant = ({ theme: { colors, space } }) =>
+const activeTabVariant = ({ theme: { colors } }) =>
   variant({
     prop: 'active',
     variants: {
       true: {
         color: `${colors.primary}`,
-        fontWeight: `${space[1]}px`,
+        fontWeight: '2px',
 
         '&:hover': {
           color: `${colors.primary}`
@@ -433,7 +440,7 @@ const activeTabVariant = ({ theme: { colors, space } }) =>
         '&:hover': {
           '& span': {
             color: `${colors.gray['900']}`,
-            fontWeight: `${space[1]}px`
+            fontWeight: '2px'
           },
           '*': {
             fill: `${colors.gray['900']}`
@@ -478,7 +485,7 @@ const Base = styled.div`
 `
 
 const TabsContainer = styled.ul(
-  ({ theme: { breakpoints } }) => css`
+  () => css`
     list-style-type: none;
     display: flex;
     margin: ${({ hasScroll }) => (hasScroll ? '0 24px' : '0')};
@@ -487,34 +494,34 @@ const TabsContainer = styled.ul(
     align-items: center;
     ${directionVariantContainer};
 
-    @media (max-width: ${breakpoints.md}px) {
+    @media (max-width: 960px) {
       margin: 0;
     }
 
-    @media (max-width: ${breakpoints.sm}px) {
+    @media (max-width: 600px) {
       border: none;
     }
   `
 )
 
 const NavigationWrapper = styled.div(
-  ({ theme, direction }) => css`
+  ({ direction }) => css`
     width: 100%;
     display: flex;
     justify-content: space-between;
     ${hasScrollVariant};
 
-    @media (max-width: ${theme.breakpoints.md}px) {
+    @media (max-width: 960px) {
       button {
         display: none;
       }
     }
 
-    @media (max-width: ${theme.breakpoints.sm}px) {
+    @media (max-width: 600px) {
       ${NavigationWrapperDirectionVariant};
     }
 
-    @media (max-width: ${theme.breakpoints.sm}px) {
+    @media (max-width: 600px) {
       button {
         display: none;
       }
@@ -537,19 +544,19 @@ const HamburgerButton = styled.div`
 `
 
 const MobileMenu = styled.div(
-  ({ theme: { breakpoints }, direction }) => css`
-    @media (max-width: ${breakpoints.sm}px) {
+  ({ direction }) => css`
+    @media (max-width: 600px) {
       display: ${direction === 'vertical' ? 'flex' : 'none'};
       margin-bottom: 32px;
       box-sizing: border-box;
       justify-content: flex-end;
     }
 
-    @media (min-width: ${breakpoints.md}px) {
+    @media (min-width: 960px) {
       display: none;
     }
 
-    @media (min-width: ${breakpoints.sm}px) {
+    @media (min-width: 600px) {
       display: none;
     }
   `
@@ -607,13 +614,13 @@ const Label = styled(Typography)`
 `
 
 const Tab = styled.li(
-  ({ theme: { colors, space, fontSizes, lineHeights, breakpoints } }) => css`
+  ({ theme: { colors } }) => css`
     width: 100%;
-    font-size: ${fontSizes[3]}px;
-    line-height: ${lineHeights[3]};
+    font-size: 16px;
+    line-height: 24px;
     font-weight: normal;
     box-sizing: border-box;
-    border-radius: ${space[1]}px;
+    border-radius: 2px;
     color: ${colors.gray['800']};
     position: relative;
     ${directionVariantTab};
@@ -630,7 +637,7 @@ const Tab = styled.li(
     &::after {
       content: '';
       display: block;
-      border-radius: ${space[1]}px;
+      border-radius: 2px;
       transition: background-color 0.2s linear;
       position: absolute;
     }
