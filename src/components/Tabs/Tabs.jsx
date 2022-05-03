@@ -114,7 +114,7 @@ const Tabs = ({ direction, tabs, initialActiveTab, children, ...props }) => {
 
     const lastViewWidth = tabsWrapper.current.clientWidth
     totalSize > lastViewWidth && setRightArrowClickable(true)
-  }, [totalSize, tabsWrapper])
+  }, [totalSize, tabsWrapper, translate])
 
   useEffect(() => {
     setTabSizeArray([...tabsWrapper.current.childNodes].map(el => outerWidth(el)))
