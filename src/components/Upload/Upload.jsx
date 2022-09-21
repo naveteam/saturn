@@ -76,10 +76,9 @@ const UploadButton = forwardRef(
               file={file}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setInternalUploadFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
+                const newValue = Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                setInternalUploadFiles(newValue)
+                fileHandler && fileHandler({ target: { name, files: newValue } })
               }}
             />
           ))}
@@ -167,10 +166,9 @@ const UploadDragAndDrop = forwardRef(
               error={error}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setInternalUploadFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
+                const newValue = Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                setInternalUploadFiles(newValue)
+                fileHandler && fileHandler({ target: { name, files: newValue } })
               }}
             />
           ))}
