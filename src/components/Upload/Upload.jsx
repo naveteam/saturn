@@ -22,19 +22,28 @@ const UploadButton = forwardRef(
       fileHandler,
       defaultValue,
       resetValue,
+      value,
       ...props
     },
     ref
   ) => {
-    const [uploadedFiles, setUploadedFiles] = useState()
+    const [internalUploadedFiles, setInternalUploadFiles] = useState()
+
+    const uploadedFiles = value || internalUploadedFiles || []
 
     useEffect(() => {
-      setUploadedFiles(resetValue)
+      setInternalUploadFiles(resetValue)
     }, [JSON.stringify(resetValue)])
 
     const handleChange = event => {
-      setUploadedFiles(event.target.files)
-      fileHandler && fileHandler(event)
+      const dataTransfer = new DataTransfer()
+
+      if (multipleFiles) {
+        uploadedFiles.forEach(e => dataTransfer.items.add(e))
+      }
+      event.target.files.forEach(e => dataTransfer.items.add(e))
+      setInternalUploadFiles(dataTransfer.files)
+      fileHandler && fileHandler({ target: { files: dataTransfer.files } })
     }
 
     return (
@@ -50,6 +59,7 @@ const UploadButton = forwardRef(
           justifyContent='center'
         >
           <HiddenInput
+            value={value}
             type='file'
             ref={ref}
             name={name}
@@ -66,10 +76,9 @@ const UploadButton = forwardRef(
               file={file}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setUploadedFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
+                const newValue = Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                setInternalUploadFiles(newValue)
+                fileHandler && fileHandler({ target: { name, files: newValue } })
               }}
             />
           ))}
@@ -90,21 +99,30 @@ const UploadDragAndDrop = forwardRef(
       fileHandler,
       defaultValue,
       resetValue,
+      value,
       ...props
     },
     ref
   ) => {
-    const [uploadedFiles, setUploadedFiles] = useState([])
+    const [internalUploadedFiles, setInternalUploadFiles] = useState([])
     const [error, setError] = useState(false)
 
+    const uploadedFiles = value || internalUploadedFiles
+
     useEffect(() => {
-      setUploadedFiles(resetValue)
+      setInternalUploadFiles(resetValue)
     }, [JSON.stringify(resetValue)])
 
     const handleChange = event => {
       try {
-        setUploadedFiles(event.target.files)
-        fileHandler && fileHandler(event)
+        const dataTransfer = new DataTransfer()
+
+        if (multipleFiles) {
+          uploadedFiles.forEach(e => dataTransfer.items.add(e))
+        }
+        event.target.files.forEach(e => dataTransfer.items.add(e))
+        setInternalUploadFiles(dataTransfer.files)
+        fileHandler && fileHandler({ target: { files: dataTransfer.files } })
       } catch (err) {
         console.log(err)
         setError(true)
@@ -121,6 +139,7 @@ const UploadDragAndDrop = forwardRef(
           multiple={multipleFiles}
           accept={handleAcceptedFileTypes(acceptedFileTypes)}
           defaultValue={defaultValue}
+          value={value}
         />
         <StyledButton
           uploadedFiles={uploadedFiles}
@@ -129,7 +148,7 @@ const UploadDragAndDrop = forwardRef(
           }}
           onDrop={e => {
             e.preventDefault()
-            setUploadedFiles(e.dataTransfer.files)
+            setInternalUploadFiles(e.dataTransfer.files)
           }}
           py={5}
           disabled={disabled}
@@ -147,10 +166,9 @@ const UploadDragAndDrop = forwardRef(
               error={error}
               onView={() => window.open(URL.createObjectURL(file))}
               onDelete={() => {
-                setUploadedFiles(uploadedFiles =>
-                  Object.values(uploadedFiles).filter(element => element.name !== file.name)
-                )
-                fileHandler && fileHandler({ target: { name } })
+                const newValue = Object.values(uploadedFiles).filter(element => element.name !== file.name)
+                setInternalUploadFiles(newValue)
+                fileHandler && fileHandler({ target: { name, files: newValue } })
               }}
             />
           ))}
@@ -355,7 +373,7 @@ const StyledImage = styled.img`
 const StyledButton = styled(Button)`
   border-color: ${props => props.theme.colors.primary};
   border-width: 1px;
-  border-style: ${props => (props.uploadedFiles.length === 0 ? 'dashed' : 'solid')};
+  border-style: ${props => (props?.uploadedFiles?.length === 0 ? 'dashed' : 'solid')};
 `
 
 const ImageUpload = styled(Button)`
