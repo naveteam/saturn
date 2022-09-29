@@ -10,6 +10,8 @@ import Typography from '../Typography'
 const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, id, ...props }, ref) => {
   const [isChecked, setIsChecked] = useState(defaultChecked)
 
+  const typographyColor = disabled ? 'disabled' : 'gray.900'
+
   const handleOnChange = () => {
     setIsChecked(!isChecked)
     onChange && onChange(isChecked)
@@ -30,7 +32,7 @@ const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChec
         />
         <Controller enabled={isChecked} />
       </SwitchContainer>
-      {label && <Typography color={disabled ? 'disabled' : 'gray.900'}>{label}</Typography>}
+      {label && <Typography color={typographyColor}>{label}</Typography>}
     </Flex>
   )
 })
