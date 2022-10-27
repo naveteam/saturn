@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import { variant } from 'styled-system'
 import PropTypes from 'prop-types'
@@ -7,35 +7,38 @@ import { Box } from '../Box'
 import { Flex } from '../Flex'
 import Typography from '../Typography'
 
-const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, checked, id, ...props }, ref) => {
-  const [isEnabled, setIsEnabled] = useState(defaultChecked)
+const Switch = forwardRef(({ name, label, value, disabled, onChange, defaultChecked, id, ...props }, ref) => {
+  const [isChecked, setIsChecked] = useState(defaultChecked)
+
+  const typographyColor = disabled ? 'disabled' : 'gray.900'
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked)
+    onChange && onChange(isChecked)
+  }
+
   return (
     <Flex alignItems='center' {...props}>
-      <SwitchContainer enabled={isEnabled} disabled={disabled}>
+      <SwitchContainer enabled={isChecked} disabled={disabled}>
         <HiddenInput
           ref={ref}
           type='checkbox'
           name={name}
           id={id}
-          value={value}
-          onChange={e => {
-            setIsEnabled(e.target.checked)
-            if (onChange) onChange(e)
-          }}
           disabled={disabled}
-          defaultChecked={defaultChecked}
-          checked={checked}
+          value={value}
+          onChange={handleOnChange}
+          checked={isChecked}
         />
-        <Controller enabled={isEnabled} />
+        <Controller enabled={isChecked} />
       </SwitchContainer>
-      {label && <Typography color={disabled ? 'disabled' : 'gray.900'}>{label}</Typography>}
+      {label && <Typography color={typographyColor}>{label}</Typography>}
     </Flex>
   )
 })
 
 const colorVariants = ({ theme: { colors } }) =>
   variant({
-    default: false,
     prop: 'enabled',
     variants: {
       true: {
@@ -49,7 +52,6 @@ const colorVariants = ({ theme: { colors } }) =>
   })
 
 const positionVariant = variant({
-  default: false,
   prop: 'enabled',
   variants: {
     true: {
@@ -62,7 +64,7 @@ const positionVariant = variant({
 })
 
 const SwitchContainer = styled.label(
-  ({ disabled }) => css`
+  ({ disabled, theme }) => css`
     width: 32px;
     height: 16px;
     border-radius: 8px;
@@ -70,13 +72,14 @@ const SwitchContainer = styled.label(
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-right: 8px;
+    background-color: ${theme.colors.gray['700']};
 
     ${disabled
       ? css`
-          background-color: gray.400;
+          background-color: ${theme.colors.disabled};
           cursor: not-allowed;
         `
-      : colorVariants}
+      : colorVariants};
   `
 )
 
@@ -92,20 +95,16 @@ const Controller = styled(Box)`
   position: absolute;
   top: 2px;
   left: 2px;
-
   transition: all 0.3s ease-in-out;
-
   ${positionVariant}
 `
 
 Switch.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  defaultChecked: PropTypes.bool,
-  checked: PropTypes.any,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
